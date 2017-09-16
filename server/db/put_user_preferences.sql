@@ -1,0 +1,1 @@
+UPDATE user_preferences SET dist_min = $2, dist_max = $3, age_min = $4, age_max = $5 WHERE facebook_auth_id = $1;

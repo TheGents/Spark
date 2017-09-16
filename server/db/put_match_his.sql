@@ -1,0 +1,1 @@
+UPDATE matches SET dude_swipe = $2 WHERE id = $1;

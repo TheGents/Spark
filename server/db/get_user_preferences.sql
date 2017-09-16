@@ -1,0 +1,1 @@
+SELECT * FROM user_preferences WHERE facebook_auth_id = $1;
