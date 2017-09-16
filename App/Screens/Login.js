@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { connect, Provider } from 'react-redux';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
 import * as actions from '../Actions';
 import store from '../Store';
 
@@ -8,11 +8,13 @@ import store from '../Store';
 class Login extends React.Component {
   componentDidMount() {
     this.props.facebookLogin();
+    //removeItem will allow you to signup again!
+    AsyncStorage.removeItem('fb_token');
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text>AuthScreen!</Text>
+        <Text>This is Spark!</Text>
       </View>
     );
   }
