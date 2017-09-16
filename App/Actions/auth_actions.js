@@ -14,6 +14,7 @@ export const facebookLogin = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
 
   if (token) {
+    console.log('auth_actions.js');
     // Dispatch an action saying FB login is done
     dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
   } else {
@@ -26,6 +27,7 @@ const doFacebookLogin = async dispatch => {
   let { type, token } = await Facebook.logInWithReadPermissionsAsync('586526771517989', {
     permissions: ['public_profile']
   });
+  console.log(token);
 
   if (type === 'cancel') {
     return dispatch({ type: FACEBOOK_LOGIN_FAIL });

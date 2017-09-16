@@ -16,7 +16,7 @@ const SLIDE_DATA = [
   
     async componentWillMount() {
       let token = await AsyncStorage.getItem('fb_token');
-  
+      console.log(token);
       if (token) {
         this.props.navigation.navigate('map');
         this.setState({ token });
