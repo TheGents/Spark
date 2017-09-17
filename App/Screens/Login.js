@@ -5,28 +5,31 @@ import * as actions from '../Actions';
 
 
 class Login extends React.Component {
+  //We recieve state from auth_payload in auth_reducer.js. If token is defined, user is logged in.
   componentDidMount() {
-    this.props.facebookLogin();
-    this.onAuthComplete(this.props);
     //removeItem will allow you to signup again!
     //AsyncStorage.removeItem('fb_token');
+    this.props.facebookLogin();
+    this.onAuthComplete(this.props);
   }
 
+  // componentWillReceiveProps is a lifecycle method that is called just when a component 
+  // is about to rerender. It is capturing the case when a user successfully logs in. 
   componentWillReceiveProps(nextProps) {
     this.onAuthComplete(nextProps);
   }
 
   onAuthComplete(props) {
     if (props.token) {
-      this.props.navigation.navigate('Profile');
+      this.props.navigation.navigate('Home');
     }
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>This is Spark!</Text>
-      </View>
+      <View>
+        <Text>Login Screen</Text>
+      </View>  
     );
   }
 }

@@ -18,7 +18,7 @@ const SLIDE_DATA = [
       let token = await AsyncStorage.getItem('fb_token');
       console.log(token);
       if (token) {
-        this.props.navigation.navigate('map');
+        this.props.navigation.navigate('Home');
         this.setState({ token });
       } else {
         this.setState({ token: false });
@@ -27,7 +27,7 @@ const SLIDE_DATA = [
   
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
-      this.props.navigation.navigate('auth');
+      this.props.navigation.navigate('Home');
     }
   
     render() {
