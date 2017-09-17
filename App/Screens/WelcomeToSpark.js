@@ -27,7 +27,7 @@ const SLIDE_DATA = [
   
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('auth');
     }
   
     render() {

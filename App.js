@@ -23,7 +23,7 @@ class App extends Component {
     const MainNavigator = TabNavigator(
       {
         Welcome: { screen: WelcomeScreen },
-        Home: { screen: Login },
+        auth: { screen: Login },
         Profile: { screen: Profile },
         Settings: { screen: Preferences },
         Shopping: { screen: GoShopping },
@@ -33,8 +33,7 @@ class App extends Component {
           tabBarVisible: false 
         },
         lazyLoad: true
-      }
-    );
+      });
 
     return (
       <Provider store={store}>

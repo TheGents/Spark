@@ -31,7 +31,7 @@ const Profile = () => {
        <Text style={{color:'#777', fontSize:11}}>less than a mile away</Text>
        </View>
        <View style={styles.description}>
-       <Text style={{color:'#555'}}>This is my bio. We hook up, you do my laundry, I promise to call you but never really.</Text>
+       <Text style={{color:'#555'}}>This is my bio. .</Text>
        </View>
        <View style ={styles.commons}>
        <Text style = {styles.title}>
