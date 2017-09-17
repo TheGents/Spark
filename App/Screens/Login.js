@@ -8,7 +8,7 @@ class Login extends React.Component {
   componentDidMount() {
     this.props.facebookLogin();
     //removeItem will allow you to signup again!
-    //AsyncStorage.removeItem('fb_token');
+    AsyncStorage.removeItem('fb_token');
   }
   render() {
     return (
@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+},
 });
 
 export default connect(null, actions)(Login);

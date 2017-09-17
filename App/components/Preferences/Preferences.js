@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 
-class UserPreferences extends Component {
+class Preferences extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserPreferences;
+export default Preferences;

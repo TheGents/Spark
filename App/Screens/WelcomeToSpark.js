@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import Slides from '../components/Slides';
 
 
 const SLIDE_DATA = [
-    { text: 'Welcome to Spark', color: '#03A9F4' },
+    { text: 'Welcome to Spark', color: '#223d5a' },
     { text: 'A Place for Modern Dating', color: '#009688' },
-    { text: 'Swipe Away', color: '#03A9F4' }
+    { text: 'Swipe Away', color: '#b5b8bf' }
   ];
 
   class WelcomeScreen extends Component {
@@ -26,7 +26,8 @@ const SLIDE_DATA = [
     }
   
     onSlidesComplete = () => {
-      this.props.navigation.navigate('Register');
+      //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
+      this.props.navigation.navigate('Home');
     }
   
     render() {

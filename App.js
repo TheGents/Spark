@@ -6,12 +6,11 @@ import Login from './App/Screens/Login';
 import store from './App/Store';
 
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
-import Register from './App/components/Register/Register.js';
 import Profile from './App/components/ShopProfile/profile.js';
 import GoShopping from './App/components/GoShopping/ShowShop.js';
 import Messages from './App/components/Matches/Matches';
 import UserProfile from './App/components/UserProfile/UserProfile.js';
-import UserPreferences from './App/components/UserPreferences/UserPreferences';
+import Preferences from './App/components/Preferences/Preferences';
 
 class App extends Component {
   // static navigationOptions = {
@@ -24,14 +23,15 @@ class App extends Component {
     const MainNavigator = TabNavigator(
       {
         Welcome: { screen: WelcomeScreen },
-        Home: { screen: UserProfile },
+        Home: { screen: Login },
         Profile: { screen: Profile },
-        Settings: { screen: UserPreferences },
-        Register: { screen: Register },
-        Shopping: { screen: GoShopping }
-
+        Settings: { screen: Preferences },
+        Shopping: { screen: GoShopping },
       },
       {
+        navigationOptions: {
+          tabBarVisible: false 
+        },
         lazyLoad: true
       }
     );
@@ -52,10 +52,10 @@ export default App;
 //     Profile: { screen: Profile },
 //     GoShopping: { screen: GoShopping },
 //     Matches: { screen: Messages }
-//     // UserPreferences: { screen: UserPreferences },
+//     // Preferences: { screen: Preferences },
 //     // UserProfile: { screen: UserProfile },
 //     // UserSetup: { screen: UserSetup },
-//     // UserPreferences: { screen: UserPreferences },
+//     // Preferences: { screen: Preferences },
 //   },
 //   { headerMode: 'none' }
 // );
