@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
@@ -13,9 +12,9 @@ import Nav from '../global-widgets/nav';
 import Shopping from './GoShopping.js';
 
 const GoShopping = () => {
-    return(
+    return (
         <Shopping />
-    )
-}
+    );
+};
 
 export default GoShopping;

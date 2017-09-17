@@ -26,7 +26,7 @@ const SLIDE_DATA = [
     }
   
     onSlidesComplete = () => {
-      this.props.navigation.navigate('auth');
+      this.props.navigation.navigate('Register');
     }
   
     render() {
@@ -35,6 +35,7 @@ const SLIDE_DATA = [
       }
   
       return (
+        //onComplete is a method button taken from Slides.js which brings user to login screen
         <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
       );
     }

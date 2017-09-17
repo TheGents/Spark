@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScrollView from 'react-native';
 import { Provider } from 'react-redux';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Login from './App/Screens/Login';
@@ -22,8 +23,13 @@ class App extends Component {
 
     const MainNavigator = TabNavigator(
       {
-        welcome: { screen: WelcomeScreen },
-        auth: { screen: Login }
+        Welcome: { screen: WelcomeScreen },
+        Home: { screen: UserProfile },
+        Profile: { screen: Profile },
+        Settings: { screen: UserPreferences },
+        Register: { screen: Register },
+        Shopping: { screen: GoShopping }
+
       },
       {
         lazyLoad: true
