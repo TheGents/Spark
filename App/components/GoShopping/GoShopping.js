@@ -119,7 +119,24 @@ this.refs['swiper']._goToNextCard()  }
   render() {
     return (
       <View style={styles.container}>
-           <Nav chat = {() => this.props.navigator.replace({id: "messages"})} toProfile = {() => this.props.navigator.replace({id:'profile'})} />
+           <View  style={styles.nav}>
+           <TouchableOpacity 
+          onPress={() => {
+          this.props.navigation.navigate('Home');
+          }}
+        >
+      <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} />
+      </TouchableOpacity>
+      <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+      <TouchableOpacity 
+          onPress={() => {
+          this.props.navigation.navigate('Messages');
+          }}
+        >
+      <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
+      </TouchableOpacity>
+      </View>
+
       <SwipeCards
         ref = {'swiper'}
         cards={this.state.cards}
@@ -150,6 +167,16 @@ const styles = StyleSheet.create({
     flex: 1,
 
     backgroundColor: '#f7f7f7',
+  },
+  nav: {
+    height:60,
+    flexDirection:'row',
+    paddingTop:10,
+    justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#fff',
+    borderBottomWidth:1,
+    borderColor:'rgba(0,0,0,0.1)'
   },
   buttons:{
     width:80, 

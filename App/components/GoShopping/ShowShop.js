@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    Button
-  } from 'react-native';
+// import React, { Component } from 'react';
+// import {
+//     AppRegistry,
+//     StyleSheet,
+//     Text,
+//     View,
+//     Image,
+//     Button
+//   } from 'react-native';
 
-import Nav from '../global-widgets/nav';
-import Shopping from './GoShopping.js';
+// import Nav from '../global-widgets/nav';
+// import Shopping from './GoShopping.js';
 
-const GoShopping = () => {
-    return (
-        <Shopping />
-    );
-};
+// const GoShopping = () => {
+//     return (
+//         <Shopping />
+//     );
+// };
 
-export default GoShopping;
+// export default GoShopping;

@@ -38,7 +38,16 @@ class Home extends Component {
 
     return (
       <ScrollView style={container}>
-        <Nav type="home" />
+        <View  style={styles.nav}>
+          <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{ width: 100, height: 30 }} />
+        <TouchableOpacity 
+          onPress={() => {
+          this.props.navigation.navigate('Shopping');
+          }}
+        >
+      <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
+      </TouchableOpacity>
+      </View>
         <Image
           source={require('../../images/player-vs-gentleman.jpg')}
           resizeMode="stretch"
@@ -53,7 +62,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            console.log('Shopping');
+            this.props.navigation.navigate('Shopping');
           }}
         >
           Shopping
@@ -62,7 +71,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            console.log('Profile Setup');
+            this.props.navigation.navigate('Setup');
           }}
         >
           Profile Setup
@@ -71,7 +80,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            console.log('Preference Settings');
+            this.props.navigation.navigate('Preferences');
           }}
         >
           Preference Settings
@@ -84,6 +93,16 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  nav: {
+    height:60,
+    flexDirection:'row',
+    paddingTop:10,
+    justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#fff',
+    borderBottomWidth:1,
+    borderColor:'rgba(0,0,0,0.1)'
   },
   nameStyle: {
     fontSize: 19,

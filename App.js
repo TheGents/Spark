@@ -7,10 +7,12 @@ import store from './App/Store';
 
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
 import Profile from './App/components/ShopProfile/profile.js';
-import GoShopping from './App/components/GoShopping/ShowShop.js';
+import Shopping from './App/components/GoShopping/GoShopping.js';
 import Messages from './App/components/Matches/Matches';
-import UserProfile from './App/components/UserProfile/UserProfile.js';
+import Home from './App/components/Home/Home.js';
 import Preferences from './App/components/Preferences/Preferences';
+import Setup from './App/components/UserSetup/UserSetup';
+import Chatroom from './App/components/ChatRoom/ChatRoom';
 
 class App extends Component {
   // static navigationOptions = {
@@ -24,9 +26,13 @@ class App extends Component {
       {
         Welcome: { screen: WelcomeScreen },
         auth: { screen: Login },
-        Profile: { screen: Profile },
+        Home: { screen: Home },
         Settings: { screen: Preferences },
-        Shopping: { screen: GoShopping },
+        Messages: { screen: Messages },
+        Shopping: { screen: Shopping },
+        Setup: { screen: Setup },
+        Preferences: { screen: Preferences },
+        Chat: { screen: Chatroom },
       },
       {
         navigationOptions: {
@@ -52,7 +58,7 @@ export default App;
 //     GoShopping: { screen: GoShopping },
 //     Matches: { screen: Messages }
 //     // Preferences: { screen: Preferences },
-//     // UserProfile: { screen: UserProfile },
+//     // Home: { screen: Home },
 //     // UserSetup: { screen: UserSetup },
 //     // Preferences: { screen: Preferences },
 //   },
