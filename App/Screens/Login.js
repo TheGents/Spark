@@ -7,9 +7,21 @@ import * as actions from '../Actions';
 class Login extends React.Component {
   componentDidMount() {
     this.props.facebookLogin();
+    this.onAuthComplete(this.props);
     //removeItem will allow you to signup again!
     //AsyncStorage.removeItem('fb_token');
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('Profile');
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -26,6 +38,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+},
 });
 
-export default connect(null, actions)(Login);
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, actions)(Login);

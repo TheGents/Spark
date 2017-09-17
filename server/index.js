@@ -27,12 +27,12 @@ app.use(express.static('./public'));
 app.post('/postMatch', userCtrl.post_match)
 
 app.get('/getUserProfile', userCtrl.get_user_profile)
-app.get('/getUserPreferences', userCtrl.get_user_preferences)
+app.get('/getPreferences', userCtrl.get_user_preferences)
 app.get('/shopTillYouDrop', userCtrl.get_shopping)
 app.get('/getmatches', userCtrl.get_matches)
 
 app.put('/putUserProfile', userCtrl.put_user_profile)
-app.put('/putUserPreferences', userCtrl.put_user_preferences)
+app.put('/putPreferences', userCtrl.put_user_preferences)
 
 app.delete('/deleteMatch', userCtrl.delete_match)
 app.delete('/deleteUserAccount', userCtrl.delete_user_account)
