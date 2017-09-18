@@ -228,33 +228,28 @@ export default class Shopping extends Component {
             justifyContent: 'center'
           }}
         >
-          <TouchableOpacity style={styles.buttons} onPress={() => this.nope()}>
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-close"
-              size={45}
-              color="#888"
-              style={{ width: 25, height: 25, margin: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonSmall}>
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-information"
-              size={5}
-              color="#888"
-              style={{ width: 25, height: 25, margin: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttons} onPress={() => this.yup()}>
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-heart-outline"
-              size={36}
-              color="#888"
-              style={{ width: 25, height: 25, margin: 5 }}
-            />
-          </TouchableOpacity>
+      <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
+      </TouchableOpacity>
+      </View>
+
+      <SwipeCards
+        ref = {'swiper'}
+        cards={this.state.cards}
+        containerStyle = {{  backgroundColor: '#f7f7f7', alignItems:'center', margin:20}}
+        renderCard={(cardData) => this.Card(cardData)}
+        renderNoMoreCards={() => this.noMore()}
+        handleYup={this.handleYup}
+        handleNope={this.handleNope} />
+        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+        {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
+        <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.buttonSmall}>
+        <Image source = {require('../images/suit.png')} name='ios-information' size={5} color="#888" style={{width:25, height:25, margin:10}} />
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
+        <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
+        </TouchableOpacity> */}
         </View>
       </View>
     );
