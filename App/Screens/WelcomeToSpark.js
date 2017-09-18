@@ -18,6 +18,7 @@ const SLIDE_DATA = [
       let token = await AsyncStorage.getItem('fb_token');
       console.log(token);
       if (token) {
+        //Home
         this.props.navigation.navigate('Home');
         this.setState({ token });
       } else {

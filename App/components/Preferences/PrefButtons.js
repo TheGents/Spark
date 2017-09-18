@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
     bottom: '10%',
     left: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'black'
+    justifyContent: 'space-around',
+    // backgroundColor: 'black'
   },
   buttonStyle8: {
     backgroundColor: 'white',
