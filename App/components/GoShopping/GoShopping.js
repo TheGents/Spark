@@ -208,31 +208,6 @@ export default class Shopping extends Component {
           </TouchableOpacity>
         </View>
 
-        <SwipeCards
-          ref={'swiper'}
-          cards={this.state.cards}
-          containerStyle={{
-            backgroundColor: '#f7f7f7',
-            alignItems: 'center',
-            margin: 20
-          }}
-          renderCard={cardData => this.Card(cardData)}
-          renderNoMoreCards={() => this.noMore()}
-          handleYup={this.handleYup}
-          handleNope={this.handleNope}
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-      <TouchableOpacity> 
-        <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
-      </TouchableOpacity>
-      </View>
-
       <SwipeCards
         ref = {'swiper'}
         cards={this.state.cards}
