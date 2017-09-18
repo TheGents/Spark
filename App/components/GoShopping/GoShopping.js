@@ -228,7 +228,8 @@ export default class Shopping extends Component {
             justifyContent: 'center'
           }}
         >
-      <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
+      <TouchableOpacity> 
+        <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
       </TouchableOpacity>
       </View>
 
@@ -255,6 +256,7 @@ export default class Shopping extends Component {
     );
   }
 }
+
 //onPress = {() => this.renderNope()}
 
 const styles = StyleSheet.create({

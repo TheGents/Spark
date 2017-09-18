@@ -19,7 +19,7 @@ const SLIDE_DATA = [
       console.log(token);
       if (token) {
         //Home
-        this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('Home', { userToken: token });
         this.setState({ token });
       } else {
         this.setState({ token: false });

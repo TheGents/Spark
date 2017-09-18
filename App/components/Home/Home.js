@@ -7,9 +7,11 @@ import {
   Platform,
   TouchableOpacity,
   Dimensions,
+  AsyncStorage,
   View,
   ScrollView
 } from 'react-native';
+import axios from 'axios';
 import Button from 'apsl-react-native-button';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
@@ -23,9 +25,22 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOnPressing: false
+      isOnPressing: false,
+      userToken: props.navigation.state.params.userToken,
+      user: ""
     };
   }
+  componentWillMount() {
+
+    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=${this.state.userToken}`)
+      .then(response => {
+        this.setState({ user: response.data });
+        console.log(response.data);
+      }
+    );
+      //we call this.setState when we want to update what a component shows
+  } 
+  
   render() {
     var onPressProps;
     if (this.state.isOnPressing) {
@@ -54,7 +69,7 @@ class Home extends Component {
           style={{ height: 350, width: '100%' }}
         />
         <Card>
-          <Text style={nameStyle}>First Name</Text>
+          <Text style={nameStyle}>{this.state.user.name}</Text>
           <Text style={ageStyle}>23</Text>
           <Text>Occupation</Text>
           <Text>Education</Text>
