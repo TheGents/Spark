@@ -54,9 +54,10 @@ class Home extends Component {
           style={{ height: 350, width: '100%' }}
         />
         <Card>
-          <Text style={nameStyle}>Gentleman</Text>
+          <Text style={nameStyle}>First Name</Text>
           <Text style={ageStyle}>23</Text>
-          <Text>Hit me up if you're going to Popeyes.</Text>
+          <Text>Occupation</Text>
+          <Text>Education</Text>
         </Card>
         <Button
           style={styles.buttonStyle5}

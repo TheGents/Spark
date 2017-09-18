@@ -146,7 +146,7 @@ this.refs['swiper']._goToNextCard()  }
         handleYup={this.handleYup}
         handleNope={this.handleNope} />
         <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-        <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
+        {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
         <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
         </TouchableOpacity>
         <TouchableOpacity style = {styles.buttonSmall}>
@@ -154,7 +154,7 @@ this.refs['swiper']._goToNextCard()  }
         </TouchableOpacity>
         <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
         <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </View>
         </View>
     )
