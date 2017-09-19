@@ -26,16 +26,17 @@ class Home extends Component {
     super(props);
     this.state = {
       isOnPressing: false,
-      userToken: props.navigation.state.params.userToken,
-      user: ""
+      userToken: () => props.navigation.state.params.userToken==='token' ? 'token' : props.navigation.state.params.userToken,
+      user: ''
     };
   }
   componentWillMount() {
 
-    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=${this.state.userToken}`)
+    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=${this.state.userToken()}`)
       .then(response => {
         this.setState({ user: response.data });
         console.log(response.data);
+        console.log('this is the response data');
       }
     );
       //we call this.setState when we want to update what a component shows
