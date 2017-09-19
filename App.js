@@ -38,7 +38,7 @@ class App extends Component {
         navigationOptions: {
           tabBarVisible: false 
         },
-        lazyLoad: true
+        lazy: true
       });
 
     return (

@@ -8,7 +8,11 @@ class Login extends React.Component {
   //We recieve state from auth_payload in auth_reducer.js. If token is defined, user is logged in.
   componentDidMount() {
     //removeItem will allow you to signup again!
-    AsyncStorage.removeItem('fb_token');
+    // AsyncStorage.removeItem('fb_token').then( () => {
+    //   this.props.facebookLogin();
+    //   this.onAuthComplete(this.props);
+    // })
+    //AsyncStorage.removeItem('fb_token');
     this.props.facebookLogin();
     this.onAuthComplete(this.props);
   }
