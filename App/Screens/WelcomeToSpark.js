@@ -16,13 +16,14 @@ const SLIDE_DATA = [
   
     async componentWillMount() {
       let token = await AsyncStorage.getItem('fb_token');
-      console.log(token);
+      console.log('token is', token);
       if (token) {
         //Home
         this.props.navigation.navigate('Home', { userToken: token });
         this.setState({ token });
       } else {
         this.setState({ token: false });
+        this.props.navigation.navigate('Home', { userToken: 'token' });
       }
     }
   
