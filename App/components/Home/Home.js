@@ -36,7 +36,11 @@ class Home extends Component {
       .then(response => {
         this.setState({ user: response.data });
         console.log(response.data);
-        console.log('this is the response data');
+        
+        console.log('Asyncstorage', AsyncStorage.getItem('fb_token').then(function(results){
+          console.log(results);
+          return results;
+        }));
       }
     );
       //we call this.setState when we want to update what a component shows

@@ -12,24 +12,28 @@ const SLIDE_DATA = [
   ];
 
   class WelcomeScreen extends Component {
-    state = { token: null }
+    constructor(props) {
+      super(props)
+      this.state = { token: null };
+    }
   
     async componentWillMount() {
       let token = await AsyncStorage.getItem('fb_token');
-      console.log('token is', token);
+      //console.log('token is', token);
+      console.log("token from async storage", token)
       if (token) {
         //Home
+               this.setState({ token });
         this.props.navigation.navigate('Home', { userToken: token });
-        this.setState({ token });
+ 
       } else {
         this.setState({ token: false });
-        this.props.navigation.navigate('Home', { userToken: 'token' });
       }
     }
   
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('auth');
     }
   
     render() {
