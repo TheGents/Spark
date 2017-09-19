@@ -69,7 +69,7 @@ class Home extends Component {
       </TouchableOpacity>
       </View>
         <Image
-          source={require('../../images/player-vs-gentleman.jpg')}
+          source={{uri:'https://graph.facebook.com/' + this.state.user.id + '/picture?type=large'}}
           resizeMode="stretch"
           style={{ height: 350, width: '100%' }}
         />
