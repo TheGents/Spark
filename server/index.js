@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+require('dotenv').config();
 const express = require('express');
 const { json } = require('body-parser');
 const session = require('express-session');
@@ -6,11 +8,10 @@ const cors = require('cors')
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
+
 // const config = require('./config/config.js');
 const userCtrl = require('./ctrl/userCtrl.js')
 const loginCtrl = require('./ctrl/loginCtrl.js')
-
-let port = process.env.PORT;
 
 const app = express();
 app.use(json());
@@ -37,8 +38,8 @@ app.put('/putPreferences', userCtrl.put_user_preferences)
 app.delete('/deleteMatch', userCtrl.delete_match)
 app.delete('/deleteUserAccount', userCtrl.delete_user_account)
 
-// const connectionString = process.env.DATABASE_URL; //Connects to heroku bro
-// massive.config(config.connectionString).then(db => app.set('db', db));
+const connectionString = process.env.DATABASE_URL; //Connects to heroku bro
+massive(connectionString).then(db => app.set('db', db));
 
 // passport.use(new Auth0Strategy(config.auth0, (accessToken, refreshToken, extraParams, profile, done) => {
 //     // console.log(profile)
@@ -61,4 +62,4 @@ app.delete('/deleteUserAccount', userCtrl.delete_user_account)
 
 // passport.deserializeUser(loginCtrl.deserialize);
 
-app.listen(port, () => { console.log(`Listening on port: ${port}`)});
+app.listen(process.env.PORT, () => { console.log(`Listening on port: ${process.env.PORT}`)});
