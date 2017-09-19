@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ScrollView from 'react-native';
-import { Provider } from 'react-redux';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import {Provider} from 'react-redux';
+import {TabNavigator, StackNavigator} from 'react-navigation';
 import Login from './App/Screens/Login';
 import store from './App/Store';
 
@@ -12,38 +12,52 @@ import Messages from './App/components/Matches/Matches';
 import Home from './App/components/Home/Home.js';
 import Preferences from './App/components/Preferences/Preferences';
 import Setup from './App/components/UserSetup/UserSetup';
-import Chatroom from './App/components/ChatRoom/ChatRoom';
+import ChatRoom from './App/components/ChatRoom/ChatRoom';
 
 class App extends Component {
-  // static navigationOptions = {
-  //   header: null
-  // };
+  // static navigationOptions = {   header: null };
   render() {
-    // const { navigation } = this.props;
-    // return <Register navigation={navigation} />;
+    // const { navigation } = this.props; return <Register navigation={navigation}
+    // />;
 
-    const MainNavigator = TabNavigator(
-      {
-        Welcome: { screen: WelcomeScreen },
-        auth: { screen: Login },
-        Home: { screen: Home },
-        Settings: { screen: Preferences },
-        Messages: { screen: Messages },
-        Shopping: { screen: Shopping },
-        Setup: { screen: Setup },
-        Preferences: { screen: Preferences },
-        Chat: { screen: Chatroom },
+    const MainNavigator = TabNavigator({
+      Welcome: {
+        screen: WelcomeScreen
       },
-      {
-        navigationOptions: {
-          tabBarVisible: false 
-        },
-        lazy: true
-      });
+      auth: {
+        screen: Login
+      },
+      Home: {
+        screen: Home
+      },
+      Settings: {
+        screen: Preferences
+      },
+      Messages: {
+        screen: Messages
+      },
+      Shopping: {
+        screen: Shopping
+      },
+      Setup: {
+        screen: Setup
+      },
+      Preferences: {
+        screen: Preferences
+      },
+      Chat: {
+        screen: ChatRoom
+      }
+    }, {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true
+    });
 
     return (
       <Provider store={store}>
-        <MainNavigator />
+        <MainNavigator/>
       </Provider>
     );
   }
@@ -51,16 +65,8 @@ class App extends Component {
 
 export default App;
 
-// const DaGents = StackNavigator(
-//   {
-//     Home: { screen: Register },
-//     Profile: { screen: Profile },
-//     GoShopping: { screen: GoShopping },
-//     Matches: { screen: Messages }
-//     // Preferences: { screen: Preferences },
-//     // Home: { screen: Home },
-//     // UserSetup: { screen: UserSetup },
-//     // Preferences: { screen: Preferences },
-//   },
-//   { headerMode: 'none' }
-// );
+// const DaGents = StackNavigator(   {     Home: { screen: Register }, Profile:
+// { screen: Profile },     GoShopping: { screen: GoShopping }, Matches: {
+// screen: Messages }     // Preferences: { screen: Preferences },  // Home: {
+// screen: Home },     // UserSetup: { screen: UserSetup },     // Preferences:
+// { screen: Preferences },   },   { headerMode: 'none' } );
