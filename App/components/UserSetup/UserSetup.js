@@ -96,8 +96,10 @@ class Setup extends Component {
         })
         }
       </Animated.ScrollView>
+
       );
     }
+
      _pickImage = async (val) => {
         let result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
@@ -128,6 +130,16 @@ class Setup extends Component {
       justifyContent: 'center',
       paddingTop: BAR_HEIGHT,
       backgroundColor: '#fff'
+    },
+    nav: {
+      height:60,
+      flexDirection:'row',
+      paddingTop:10,
+      justifyContent: 'space-between',
+      alignItems:'center',
+      backgroundColor: '#fff',
+      borderBottomWidth:1,
+      borderColor:'rgba(0,0,0,0.1)'
     },
     paragraph: {
       margin: 24,

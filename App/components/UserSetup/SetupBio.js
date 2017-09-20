@@ -5,10 +5,12 @@ import {
   StyleSheet,
   Image,
   Text,
+  TextInput,
   Animated,
   TouchableOpacity,
   Dimensions,
   View,
+  Switch,
   Easing,
   ScrollView,
   Button
@@ -82,25 +84,17 @@ class SetupImage extends Component {
                     ]}>
                     <View> 
                     
-                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('first') }}>
-                    <Animated.Image
-                      key={image}
-                      source={{ uri: image }} style={{ width: 200, height: 200 }}
-                      style={[
-                        {
-                          height: ITEM_SIZE,
-                          width: ITEM_SIZE,
-                          borderRadius: ITEM_SIZE / 2.2,
-                          backgroundColor: 'blue'
-                        }
-                      ]}
-                    />
-                    </TouchableOpacity>
                     <Card>
                         <Text style={styles.nameStyle}>Name</Text>
                         <Text style={styles.ageStyle}>23</Text>
                         <Text>Occupation</Text>
                         <Text>Education</Text>
+                    </Card>
+                    <Card>
+                      <TextInput></TextInput>
+                    </Card>
+                    <Card>
+                      <Switch></Switch>
                     </Card>
                    
                     
