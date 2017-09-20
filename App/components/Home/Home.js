@@ -35,15 +35,26 @@ class Home extends Component {
     axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work&access_token=${this.state.userToken()}`)
       .then(response => {
         this.setState({ user: response.data });
-        console.log(response.data);
+        // console.log(this.state.user);
+        // console.log(response.data);
         
-        console.log('Asyncstorage', AsyncStorage.getItem('fb_token').then(function(results){
-          console.log(results);
-          return results;
-        }));
-      }
-    );
+        // console.log('Asyncstorage', AsyncStorage.getItem('fb_token').then(function(results){
+        //   console.log(results);
+        //   return results;
+        // }));
+        return axios.get(`http://localhost:3000/getHome/${response.data.id}`);
+      }).then((response)=> {
+        // console.log('sup hoe',response.config)
+        if(response.config.data === undefined) {
+          return axios.post(`http://localhost:3000/adduser`, this.state.user)
+        }
+        return axios.get(`http://localhost:3000/getHome/${response.data.id}`);
+      }).then((response)=> {
+        console.log(response.data[0]);
+        this.setState({ user: response.data[0] })
+      })
       //we call this.setState when we want to update what a component shows
+    
   } 
   
   render() {
@@ -69,15 +80,15 @@ class Home extends Component {
       </TouchableOpacity>
       </View>
         <Image
-          source={{uri:'https://graph.facebook.com/' + this.state.user.id + '/picture?type=large'}}
+          source={{uri:'https://graph.facebook.com/' + this.state.user.facebook_auth_id + '/picture?type=large'}}
           resizeMode="stretch"
           style={{ height: 350, width: '100%' }}
         />
         <Card>
-          <Text style={nameStyle}>{this.state.user.name}</Text>
+          <Text style={nameStyle}>{this.state.user.first_name}</Text>
           <Text style={ageStyle}>23</Text>
-          <Text>Occupation</Text>
-          <Text>Education</Text>
+          <Text>Occupation: {this.state.user.occupation}</Text>
+          <Text>Education: {this.state.user.school}</Text>
         </Card>
         <Button
           style={styles.buttonStyle5}
