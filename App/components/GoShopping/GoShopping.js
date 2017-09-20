@@ -3,12 +3,18 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+  
+
+
+
+
 
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 import Nav from '../global-widgets/nav';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
+import Axios from 'axios';
 
 var image1 = require('../images/eric.jpeg');
 var image2 = require('../images/danish.jpeg');
@@ -17,69 +23,90 @@ var image4 = require('../images/shea.jpeg');
 var image5 = require('../images/seven.jpeg');
 var image6 = require('../images/andy.jpeg');
 
-const Cards = [
-  {
-    id: 1,
-    first_name: 'Eric',
-    age: 26,
-    friends: 9,
-    interests: 38,
-    image: image1
-  },
-  {
-    id: 2,
-    first_name: 'Daanish',
-    age: 26,
-    friends: 16,
-    interests: 49,
-    image: image2
-  },
-  {
-    id: 3,
-    first_name: 'Terri',
-    age: 24,
-    friends: 2,
-    interests: 39,
-    image: image3
-  },
-  {
-    id: 4,
-    first_name: 'Shea',
-    age: 33,
-    friends: 18,
-    interests: 50,
-    image: image4
-  },
-  {
-    id: 5,
-    first_name: 'Steven',
-    age: 25,
-    friends: 2,
-    interests: 13,
-    image: image5
-  },
-  {
-    id: 6,
-    first_name: 'Andy',
-    age: 32,
-    friends: 12,
-    interests: 44,
-    image: image6
-  }
-];
-
+// let Cards = [
+//   {
+//     id: 1,
+//     first_name: 'Eric',
+//     age: 26,
+//     friends: 9,
+//     interests: 38,
+//     image: image1
+//   },
+//   {
+//     id: 2,
+//     first_name: 'Daanish',
+//     age: 26,
+//     friends: 16,
+//     interests: 49,
+//     image: image2
+//   },
+//   {
+//     id: 3,
+//     first_name: 'Terri',
+//     age: 24,
+//     friends: 2,
+//     interests: 39,
+//     image: image3
+//   },
+//   {
+//     id: 4,
+//     first_name: 'Shea',
+//     age: 33,
+//     friends: 18,
+//     interests: 50,
+//     image: image4
+//   },
+//   {
+//     id: 5,
+//     first_name: 'Steven',
+//     age: 25,
+//     friends: 2,
+//     interests: 13,
+//     image: image5
+//   },
+//   {
+//     id: 6,
+//     first_name: 'Andy',
+//     age: 32,
+//     friends: 12,
+//     interests: 44,
+//     image: image6
+//   }
+// ];
 export default class Shopping extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cards: Cards
+    this.state = { 
+      cards: []
     };
   }
-  Card(x) {
+  componentDidMount() {
+    Axios.get('http://localhost:3000/shopTillYouDrop/0').then((response)=> {
+      let person = response.data;
+      let cardInfo = [];
+      person.map((x)=> { 
+        cardInfo.push({ 
+          id: x.id,
+          first_name: x.first_name,
+          age: x.age,
+          friends: 32,
+          interests: 32,
+          image: x.facebook_pic,
+          occupation: x.occupation,
+          location: x.location,
+        }) 
+      })
+      this.setState({ cards: cardInfo })
+    })
+  }
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
+ Card(x) {
     return (
       <View style={styles.card}>
         <Image
-          source={x.image}
+          source={{uri: x.image}}
           resizeMode="contain"
           style={{ width: 350, height: 350 }}
         />
@@ -143,6 +170,8 @@ export default class Shopping extends Component {
             </View>
           </View>
         </View>
+        <Text>Work: {x.occupation}</Text>
+        <Text>Location: {x.location}</Text>
       </View>
     );
   }
@@ -169,65 +198,65 @@ export default class Shopping extends Component {
   nope() {
     console.log(this.refs['swiper']);
     this.refs['swiper']._goToNextCard();
-  }
+  }   
+
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.nav}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Home');
-            }}
-          >
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-person"
-              color="#888"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </TouchableOpacity>
+      <View style={styles.nav}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Home');
+          }}
+        >
           <Image
-            source={require('../images/logo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 30 }}
+            source={require('../images/suit.png')}
+            name="ios-person"
+            color="#888"
+            size={25}
+            style={{ width: 30, height: 30, margin: 10 }}
           />
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Messages');
-            }}
-          >
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-chatboxes-outline"
-              color="#555"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </TouchableOpacity>
-        </View>
-
-      <SwipeCards
-        ref = {'swiper'}
-        cards={this.state.cards}
-        containerStyle = {{  backgroundColor: '#f7f7f7', alignItems:'center', margin:20}}
-        renderCard={(cardData) => this.Card(cardData)}
-        renderNoMoreCards={() => this.noMore()}
-        handleYup={this.handleYup}
-        handleNope={this.handleNope} />
-        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-        {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
-        <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.buttonSmall}>
-        <Image source = {require('../images/suit.png')} name='ios-information' size={5} color="#888" style={{width:25, height:25, margin:10}} />
+        <Image
+          source={require('../images/logo.png')}
+          resizeMode="contain"
+          style={{ width: 100, height: 30 }}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Messages');
+          }}
+        >
+          <Image
+            source={require('../images/suit.png')}
+            name="ios-chatboxes-outline"
+            color="#555"
+            size={25}
+            style={{ width: 30, height: 30, margin: 10 }}
+          />
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
-        <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
-        </TouchableOpacity> */}
-        </View>
       </View>
+    <SwipeCards
+      ref = {'swiper'}
+      cards={this.state.cards}
+      containerStyle = {{  backgroundColor: '#f7f7f7', alignItems:'center', margin:20}}
+      renderCard={(cardData) => this.Card(cardData)}
+      renderNoMoreCards={() => this.noMore()}
+      handleYup={this.handleYup}
+      handleNope={this.handleNope} />
+      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+      {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
+      <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
+      </TouchableOpacity>
+      <TouchableOpacity style = {styles.buttonSmall}>
+      <Image source = {require('../images/suit.png')} name='ios-information' size={5} color="#888" style={{width:25, height:25, margin:10}} />
+      </TouchableOpacity>
+      <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
+      <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
+      </TouchableOpacity> */}
+      </View>
+    </View>
     );
   }
 }

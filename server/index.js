@@ -5,8 +5,8 @@ const { json } = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 const cors = require('cors')
-const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
+// const passport = require('passport');
+// const Auth0Strategy = require('passport-auth0');
 
 
 // const config = require('./config/config.js');
@@ -21,15 +21,15 @@ app.use(session({
     saveUninitialized: false,
     resave: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static('./public'));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(express.static('./public'));
 
 app.post('/postMatch', userCtrl.post_match)
 
 app.get('/getHome', userCtrl.get_user_profile)
 app.get('/getPreferences', userCtrl.get_user_preferences)
-app.get('/shopTillYouDrop', userCtrl.get_shopping)
+app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping)
 app.get('/getmatches', userCtrl.get_matches)
 
 app.put('/putHome', userCtrl.put_user_profile)

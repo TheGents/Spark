@@ -23,11 +23,11 @@ module.exports = {
     },
     get_shopping: (req,res) => {
         const db = req.app.get('db');
-        const { gender } = req.params;
-        if(gender === 1) {
+        let gender = req.params.gender;
+        if(gender === '1') {
             db.get_dudes([gender]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
         }
-        if(gender === 0 ) {
+        if(gender === '0' ) {
             db.get_chicks([gender]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
         }
     },

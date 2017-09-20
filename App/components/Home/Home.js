@@ -32,7 +32,7 @@ class Home extends Component {
   }
   componentWillMount() {
 
-    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=${this.state.userToken()}`)
+    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work&access_token=${this.state.userToken()}`)
       .then(response => {
         this.setState({ user: response.data });
         console.log(response.data);
