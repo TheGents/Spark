@@ -11,6 +11,15 @@ module.exports = {
             db.post_match_hers([her_id, his_id, chick_swipe]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
         }
     },
+    post_user: (req,res) => {
+        const db = req.app.get('db');
+        const { id, name, birthday, work } = req.body;
+        // console.log(work[0].position.name, id);
+        let newBirthday = new Date(birthday);
+        let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)))
+        // console.log(katkatAge);
+        db.post_user([id, name, katkatAge, work[0].position.name]).then((user)=>res.status('200').send(user)).catch(()=> res.status.send('404'));
+    },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;

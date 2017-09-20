@@ -26,8 +26,9 @@ app.use(session({
 // app.use(express.static('./public'));
 
 app.post('/postMatch', userCtrl.post_match)
+app.post('/addUser', userCtrl.post_user)
 
-app.get('/getHome', userCtrl.get_user_profile)
+app.get('/getHome/:id', userCtrl.get_user_profile)
 app.get('/getPreferences', userCtrl.get_user_preferences)
 app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping)
 app.get('/getmatches', userCtrl.get_matches)
