@@ -18,7 +18,7 @@ module.exports = {
         let newBirthday = new Date(birthday);
         let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)))
         // console.log(katkatAge);
-        db.post_user([id, name, katkatAge, work[0].position.name]).then((user)=>res.status('200').send(user)).catch(()=> res.status.send('404'));
+        db.post_user([id, name, katkatAge, work[0].position.name]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
