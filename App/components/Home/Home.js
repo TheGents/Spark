@@ -45,8 +45,8 @@ class Home extends Component {
         // console.log('initial shit',response.data.id)
         return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       }).then((response)=> {
-        // console.log('sup hoe',response.data[0])
-        if(response.data === undefined) {
+        // console.log('sup hoe',response.data[0], this.state.user)
+        if(response.data[0] === undefined) {
           return axios.post(`http://localhost:3000/adduser`, this.state.user)
         }
         return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
