@@ -42,13 +42,14 @@ class Home extends Component {
         //   console.log(results);
         //   return results;
         // }));
-        return axios.get(`http://localhost:3000/getHome/${response.data.id}`);
+        // console.log('initial shit',response.data.id)
+        return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       }).then((response)=> {
-        // console.log('sup hoe',response.config)
-        if(response.config.data === undefined) {
+        // console.log('sup hoe',response.data[0])
+        if(response.data === undefined) {
           return axios.post(`http://localhost:3000/adduser`, this.state.user)
         }
-        return axios.get(`http://localhost:3000/getHome/${response.data.id}`);
+        return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
       }).then((response)=> {
         console.log(response.data[0]);
         this.setState({ user: response.data[0] })
@@ -86,7 +87,7 @@ class Home extends Component {
         />
         <Card>
           <Text style={nameStyle}>{this.state.user.first_name}</Text>
-          <Text style={ageStyle}>23</Text>
+          <Text style={ageStyle}>{this.state.user.age}</Text>
           <Text>Occupation: {this.state.user.occupation}</Text>
           <Text>Education: {this.state.user.school}</Text>
         </Card>
