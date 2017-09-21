@@ -32,6 +32,7 @@ app.get('/getHome/:id', userCtrl.get_user_profile)
 app.get('/getPreferences', userCtrl.get_user_preferences)
 app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping)
 app.get('/getmatches/:id/:gender', userCtrl.get_matches)
+app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered)
 
 app.put('/putHome', userCtrl.put_user_profile)
 app.put('/putPreferences', userCtrl.put_user_preferences)

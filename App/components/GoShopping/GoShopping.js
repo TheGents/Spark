@@ -73,32 +73,50 @@ var image6 = require('../images/andy.jpeg');
 //     image: image6
 //   }
 // ];
+
+
+
+
 export default class Shopping extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       cards: [],
       matches: [],
-      userInfo: props.navigation.state.params.user
+      userInfo: props.navigation.state.params.user,
+      filtered: "not replaced",
     };
   }
   componentDidMount() {
-    Axios.get('http://localhost:3000/shopTillYouDrop/0').then((response)=> {
-      let person = response.data;
-      let cardInfo = [];
-      person.map((x)=> { 
-        cardInfo.push({ 
-          id: x.id,
-          first_name: x.first_name,
-          age: x.age,
-          friends: 32,
-          interests: 32,
-          image: x.facebook_pic,
-          occupation: x.occupation,
-          location: x.location,
-        }) 
+    // This part could probably be done all in the backend, but we are trying to test a spread operator axios request.
+    Axios.get(`http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`).then((responseD)=> {
+      Axios.get(`http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
+        let filteredx = response.data;
+        this.setState({ filtered: response.data })
+        let swipedPeople = response.data;
+        let person = responseD.data;
+        swipedPeople.map((x)=> {
+          person.map((y,i)=> {
+            if(x === y.facebook_auth_id) {
+              person.splice(i,1);
+            }
+          })
+        })
+        let cardInfo = [];
+        person.map((x)=> { 
+          cardInfo.push({ 
+            id: x.id,
+            first_name: x.first_name,
+            age: x.age,
+            friends: 32,
+            interests: 32,
+            image: x.facebook_pic,
+            occupation: x.occupation,
+            location: x.location,
+          }) 
+        })
+        this.setState({ cards: cardInfo })
       })
-      this.setState({ cards: cardInfo })
     })
   }
   componentWillUnmount() {
@@ -208,6 +226,7 @@ export default class Shopping extends Component {
 
   render() {
     console.log('hey there this is goshopping',this.state.userInfo);
+    console.log('hey this is noob', this.state.filtered);
     return (
       <View style={styles.container}>
       <View style={styles.nav}>
