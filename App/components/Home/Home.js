@@ -74,7 +74,7 @@ class Home extends Component {
           <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{ width: 100, height: 30 }} />
         <TouchableOpacity 
           onPress={() => {
-          this.props.navigation.navigate('Shopping', this.state.user);
+          this.props.navigation.navigate('Shopping', { user :this.state.user });
           }}
         >
       <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
@@ -95,7 +95,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            this.props.navigation.navigate('Shopping');
+            this.props.navigation.navigate('Shopping', { user :this.state.user });
           }}
         >
           Shopping
@@ -104,7 +104,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            this.props.navigation.navigate('Setup');
+            this.props.navigation.navigate('Setup', { user :this.state.user });
           }}
         >
           Profile Setup
@@ -113,7 +113,7 @@ class Home extends Component {
           style={styles.buttonStyle5}
           textStyle={styles.textStyle}
           onPress={() => {
-            this.props.navigation.navigate('Preferences');
+            this.props.navigation.navigate('Preferences', { user :this.state.user });
           }}
         >
           Preference Settings
