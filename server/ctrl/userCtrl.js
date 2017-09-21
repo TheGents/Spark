@@ -37,11 +37,12 @@ module.exports = {
     get_shopping: (req,res) => {
         const db = req.app.get('db');
         let gender = req.params.gender;
+        // console.log(gender);
         if(gender === '1') {
-            db.get_dudes([gender]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+            db.get_dudes([gender]).then((data)=>{res.status('200').send(data) }).catch(()=> res.status('404').send());
         }
         if(gender === '0' ) {
-            db.get_chicks([gender]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+            db.get_chicks([gender]).then((data)=>{res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
     get_matches: (req,res) => {
@@ -52,6 +53,25 @@ module.exports = {
         }
         if(gender === 0) {
             db.get_her_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+        }
+    },
+    get_filtered: (req,res) => {
+        const db = req.app.get('db');
+        const { id, gender } = req.params;
+        if(gender === '1') {
+            db.get_his_filtered([id]).then((data)=>{
+                let DataIDs = [];
+                data.map((x)=> DataIDs.push(x.chick_id));
+                res.status('200').send(DataIDs)}).catch((error)=>res.status('404').send(error));
+        }
+        if(gender === '0') {
+            db.get_her_filtered([id]).then((data)=>{
+                let DataID = [];
+                data.map((x)=> DataID.push(x.dude_id));
+                console.log(DataID);
+                res.status('200').send(DataID)}).catch((error)=>{
+                    console.log('error',error);
+                    res.status('404').send(error)});
         }
     },
     put_user_profile: (req,res) => {
