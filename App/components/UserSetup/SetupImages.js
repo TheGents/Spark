@@ -18,7 +18,8 @@ import {
   SharedElementGroup
 } from '@expo/ex-navigation';
 import ITEMS from './data';
-import Card from '../Home/Card';
+import Card from './UserCard';
+
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -91,7 +92,7 @@ class SetupImage extends Component {
                           height: ITEM_SIZE,
                           width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
-                          backgroundColor: 'blue'
+                          backgroundColor: 'rgba(52, 52, 52, 0.2)',
                         }
                       ]}
                     />
@@ -106,7 +107,7 @@ class SetupImage extends Component {
                           height: ITEM_SIZE,
                           width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
-                          backgroundColor: 'blue'
+                          backgroundColor: 'rgba(52, 52, 52, 0.1)'
                         }
                       ]}
                     />
@@ -121,7 +122,7 @@ class SetupImage extends Component {
                           height: ITEM_SIZE,
                           width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
-                          backgroundColor: 'blue'
+                          backgroundColor: 'rgba(52, 52, 52, 0.8)'
                         }
                       ]}
                     />
