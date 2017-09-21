@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const UserCard = props => {
+const BioCard = props => {
   return <View style={styles.containerStyle}>{props.children}</View>;
 };
 
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: 'red',
+    borderColor: 'black',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserCard;
+export default BioCard;
