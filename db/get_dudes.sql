@@ -1,1 +1,1 @@
-SELECT * FROM user_profile WHERE gender = '0';
+SELECT * FROM user_profile WHERE gender = '1';

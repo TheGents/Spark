@@ -25,20 +25,22 @@ app.use(session({
 // app.use(passport.session());
 // app.use(express.static('./public'));
 
-app.post('/postMatch', userCtrl.post_match)
-app.post('/addUser', userCtrl.post_user)
+app.post('/postMatch', userCtrl.post_match);
+app.post('/addUser', userCtrl.post_user);
 
-app.get('/getHome/:id', userCtrl.get_user_profile)
-app.get('/getPreferences', userCtrl.get_user_preferences)
-app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping)
-app.get('/getmatches/:id/:gender', userCtrl.get_matches)
-app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered)
+app.get('/getHome/:id', userCtrl.get_user_profile);
+app.get('/getPreferences', userCtrl.get_user_preferences);
+app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping);
+app.get('/getmatches/:id/:gender', userCtrl.get_matches);
+app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered);
+app.get('/getPrematch/:id/:gender', userCtrl.get_prematch);
 
-app.put('/putHome', userCtrl.put_user_profile)
-app.put('/putPreferences', userCtrl.put_user_preferences)
+app.put('/putHome', userCtrl.put_user_profile);
+app.put('/putPreferences', userCtrl.put_user_preferences);
+app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
 
-app.delete('/deleteMatch', userCtrl.delete_match)
-app.delete('/deleteUserAccount', userCtrl.delete_user_account)
+app.delete('/deleteMatch', userCtrl.delete_match);
+app.delete('/deleteUserAccount', userCtrl.delete_user_account);
 
 const connectionString = process.env.DATABASE_URL; //Connects to heroku bro
 massive(connectionString).then(db => app.set('db', db));

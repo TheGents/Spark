@@ -3,12 +3,13 @@ module.exports = {
     // POST - PUT - GET - DELETE
     post_match: (req,res) => {
         const db = req.app.get('db');
-        const { her_id, his_id, gender, chick_swipe, dude_swipe } = req.body;
-        if(gender === 0) { 
-            db.post_match_his([her_id, his_id, dude_swipe]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
+        const { gender, matchID, ID, SwipeMatch } = req.body
+        // console.log(gender, matchID, ID, SwipeMatch);
+        if(gender === '0') { 
+            db.post_match_hers([matchID, ID, SwipeMatch]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
         }
-        if(gender === 1) {
-            db.post_match_hers([her_id, his_id, chick_swipe]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
+        if(gender === '1') {
+            db.post_match_his([matchID, ID, SwipeMatch]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
         }
     },
     post_user: (req,res) => {
@@ -38,10 +39,10 @@ module.exports = {
         const db = req.app.get('db');
         let gender = req.params.gender;
         // console.log(gender);
-        if(gender === '1') {
+        if(gender === '0') {
             db.get_dudes([gender]).then((data)=>{res.status('200').send(data) }).catch(()=> res.status('404').send());
         }
-        if(gender === '0' ) {
+        if(gender === '1' ) {
             db.get_chicks([gender]).then((data)=>{res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
@@ -68,11 +69,32 @@ module.exports = {
             db.get_her_filtered([id]).then((data)=>{
                 let DataID = [];
                 data.map((x)=> DataID.push(x.dude_id));
-                console.log(DataID);
+                // console.log(DataID);
                 res.status('200').send(DataID)}).catch((error)=>{
-                    console.log('error',error);
+                    // console.log('error',error);
                     res.status('404').send(error)});
         }
+    },
+    get_prematch: (req,res) => {
+        const db = req.app.get('db');
+        let { id, gender } = req.params;
+        // console.log(id, gender);
+        if(gender === '1') {
+            db.get_his_prematch([id]).then((data)=>{
+                let TheDataX = [];
+                data.map((x)=> TheDataX.push(x.chick_id));
+                // console.log(DataID);
+                res.status('200').send(TheDataX)}).catch((error)=>res.status('404').send(error));
+        }
+        if(gender === '0') {
+            db.get_her_prematch([id]).then((data)=>{
+                // console.log(data);
+                let TheDataY = [];
+                data.map((x)=> TheDataY.push(x.dude_id));
+                // console.log(TheDataY, 'hello?');
+                res.status('200').send(TheDataY)}).catch((error)=>res.status('404').send(error));
+        }
+
     },
     put_user_profile: (req,res) => {
         const db = req.app.get('db');
@@ -86,12 +108,13 @@ module.exports = {
     },
     put_match: (req,res) => {
         const db = req.app.get('db');
-        const { id, gender } = req.body;
-        if(gender === 0) { 
-            db.put_match_his([id, dude_swipe]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
+        const { matchedID, id, gender, SwipeMatch } = req.params;
+        // console.log(matchedID, id, gender, SwipeMatch);
+        if(gender === '1') { 
+            db.put_match_his([matchedID, id, SwipeMatch]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
         }
-        if(gender === 1) {
-            db.put_match_hers([id, chick_swipe]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
+        if(gender === '0') {
+            db.put_match_hers([matchedID, id, SwipeMatch]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
         }
     },
     delete_match: (req,res) => {
