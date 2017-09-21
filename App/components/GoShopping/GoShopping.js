@@ -77,7 +77,9 @@ export default class Shopping extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      cards: []
+      cards: [],
+      matches: [],
+      userInfo: props.navigation.state.params.user
     };
   }
   componentDidMount() {
@@ -176,11 +178,14 @@ export default class Shopping extends Component {
     );
   }
   handleYup(card) {
-    console.log(`Yup for ${card.text}`);
+    console.log(card);
+    
+    // console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
-    console.log(`Nope for ${card.text}`);
+    console.log(card);
+    // console.log(`Nope for ${card.text}`);
   }
   noMore() {
     return (
@@ -202,6 +207,7 @@ export default class Shopping extends Component {
 
 
   render() {
+    console.log('hey there this is goshopping',this.state.userInfo);
     return (
       <View style={styles.container}>
       <View style={styles.nav}>

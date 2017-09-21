@@ -1,0 +1,1 @@
+SELECT dude_id FROM matches WHERE chick_id = $1 AND chick_swipe !== null AND dude_swipe !== null;
