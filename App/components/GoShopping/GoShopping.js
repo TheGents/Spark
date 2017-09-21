@@ -84,11 +84,10 @@ export default class Shopping extends Component {
       cards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
-      filtered: "not replaced",
+      filtered: "check to see if state changes and console log before render",
     };
   }
   componentDidMount() {
-    // This part could probably be done all in the backend, but we are trying to test a spread operator axios request.
     Axios.get(`http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`).then((responseD)=> {
       Axios.get(`http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
         let filteredx = response.data;
@@ -113,11 +112,29 @@ export default class Shopping extends Component {
             image: x.facebook_pic,
             occupation: x.occupation,
             location: x.location,
+            facebook_auth_id: x.facebook_auth_id
           }) 
         })
         this.setState({ cards: cardInfo })
       })
     })
+    Axios.get(`http://localhost:3000/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
+      this.setState({ matches: response.data })
+    })
+    PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
+      let FoundMatch = [];
+      for(let i = 0; i<this.state.matches.length; i++) {
+        if(card.facebook_auth_id === this.state.matches[i]) {
+          FoundMatch.push(this.state.matches[i]);
+        }
+      }
+      if(FoundMatch.length == 0) {
+        Axios.post('http://localhost:3000/postMatch', {gender: this.state.userInfo.gender, matchID: card.facebook_auth_id, ID: this.state.userInfo.facebook_auth_id, SwipeMatch: SwipeMatch }).then((response)=>console.log(response));
+      }
+      if(FoundMatch.length > 0) {
+        Axios.put(`http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`).then((response)=> console.log(response));
+      }
+    }
   }
   componentWillUnmount() {
     this.serverRequest.abort();
@@ -196,19 +213,20 @@ export default class Shopping extends Component {
     );
   }
   handleYup(card) {
-    console.log(card);
-    
+    let SwipeMatch = true;
+    PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
-    console.log(card);
+    let SwipeMatch = false;
+    PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
   noMore() {
     return (
       <View style={styles.card}>
-        <Text>No More Cards</Text>
+        <Text>No more matches, please check back later.</Text>
       </View>
     );
   }
@@ -225,8 +243,9 @@ export default class Shopping extends Component {
 
 
   render() {
-    console.log('hey there this is goshopping',this.state.userInfo);
-    console.log('hey this is noob', this.state.filtered);
+    // console.log('hey there this is goshopping',this.state.userInfo);
+    // console.log('hey this is noob', this.state.filtered);
+    // console.log('hey this is poop', this.state.matches);
     return (
       <View style={styles.container}>
       <View style={styles.nav}>
