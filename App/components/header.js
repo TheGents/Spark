@@ -1,4 +1,4 @@
-/*
+
 //Import Libraries for making a component
 import React from 'react';
 import { Text, View, Image } from 'react-native';
@@ -43,4 +43,4 @@ const styles = {
 //Make the component available to other parts of the app
 export default Header;
 
-*/
+
