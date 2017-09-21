@@ -26,14 +26,14 @@ class Login extends React.Component {
   onAuthComplete(props) {
     if (props.token) {
       //Home
-      this.props.navigation.navigate('Home');
+      console.log('onAuthComplete')
+      this.props.navigation.navigate('Home', { userToken: props.token });
     }
   }
 
   render() {
     return (
       <View>
-        <Text>Login Screen</Text>
       </View>  
     );
   }

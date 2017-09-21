@@ -28,17 +28,18 @@ const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
-class SetupImage extends Component {
+class SetupBio extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        text: '',
+        general_bio: '',
       }
     }
+    componentDidUpdate() {
+      console.log(this.state.general_bio)
+    }  
     render() {
-        const { image, photo, third } = this.props.images; 
         const { nameStyle, borderStyle, ageStyle } = styles;
-        console.log(this.state.text);
     return (
         
           <Animated.View
@@ -104,8 +105,8 @@ class SetupImage extends Component {
                       multiline = {true}
                       maxLength = {250}
                       numberOfLines = {5}
-                      onChangeText={(text) => this.setState({ text })}
-                      value={this.state.text}
+                      onChangeText={(general_bio) => this.setState({ general_bio })}
+                      value={this.state.general_bio}
                       style={styles.textInput}
                       />
                       </BioCard>
@@ -155,4 +156,4 @@ class SetupImage extends Component {
                 }       
         }
     };
-            export default SetupImage;
+            export default SetupBio;

@@ -51,7 +51,7 @@ class Home extends Component {
         }
         return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
       }).then((response)=> {
-        console.log(response.data[0]);
+        console.log('Home.js',response.data[0]);
         this.setState({ user: response.data[0] })
       })
       //we call this.setState when we want to update what a component shows
