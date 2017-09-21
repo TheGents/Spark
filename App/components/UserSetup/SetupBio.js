@@ -91,7 +91,7 @@ class SetupImage extends Component {
                         <Text>Education</Text>
                     </Card>
                     <Card>
-                      <TextInput></TextInput>
+                      <TextInput style={styles.nameStyle}></TextInput>
                     </Card>
                     <Card>
                       <Switch></Switch>

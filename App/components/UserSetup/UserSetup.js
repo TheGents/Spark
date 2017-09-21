@@ -20,6 +20,7 @@ import {
 import ITEMS from './data';
 import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
+import Card from '../Home/Card';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -45,23 +46,26 @@ class Setup extends Component {
       gent[i] = new Animated.Value(0);
       console.log('gent', i);
       let inputRange = [
+        (i - 3) * ITEM_SIZE,
         (i - 2) * ITEM_SIZE,
-        (i - 1) * ITEM_SIZE,
         i * ITEM_SIZE,
-        (i + 1) * ITEM_SIZE
+        (i + 2) * ITEM_SIZE
       ];
       console.log('retunr', i)
       // Ensure that we're leaving space for first and last item.
       
       console.log('inside', i)
-      if(i===0){ 
+      if (!item) {
+        return <View key={i} style={{ width: EMPTY_ITEM_SIZE / 2 }} />;
+      }
+      if(i===1){ 
         return (
-          <SetupImage inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
+          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
         );
       }
-      else if ( i === 1) {
+      else if ( i === 2) {
         return(
-          <SetupBio inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
+          <SetupBio key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
         );
       }
       
@@ -72,8 +76,22 @@ class Setup extends Component {
     render() {
   
       return (
+        <View>
+          <View style={styles.nav}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Home')}
+          >
+            <Image
+              source={require('../images/suit.png')}
+              style={{ width: 25, height: 25, margin: 10 }}
+            />
+          </TouchableOpacity>
+          <Text>Settings</Text>
+        </View>
+        <ScrollView>
+        <Card>
         <Animated.ScrollView
-        style={{ flex: 0.65, width: width, paddingTop: BAR_HEIGHT * 0.6 }}
+        style={{ paddingTop: BAR_HEIGHT * 0.6 }}
         contentContainerStyle={{
           alignItems: 'flex-start',
           justifyContent: 'center',
@@ -96,7 +114,9 @@ class Setup extends Component {
         })
         }
       </Animated.ScrollView>
-
+      </Card>
+      </ScrollView>
+        </View>
       );
     }
 
@@ -141,6 +161,14 @@ class Setup extends Component {
       borderBottomWidth:1,
       borderColor:'rgba(0,0,0,0.1)'
     },
+    nameStyle: {
+      fontSize: 19,
+      fontWeight: '400'
+      },  
+  ageStyle: {
+      fontSize: 19,
+      fontWeight: '400'
+      },       
     paragraph: {
       margin: 24,
       fontSize: 18,

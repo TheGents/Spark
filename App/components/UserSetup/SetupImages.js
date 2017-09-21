@@ -18,6 +18,7 @@ import {
   SharedElementGroup
 } from '@expo/ex-navigation';
 import ITEMS from './data';
+import Card from '../Home/Card';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -30,7 +31,7 @@ class SetupImage extends Component {
         const { image, photo, third } = this.props.images; 
 
     return (
-        
+       
           <Animated.View
             style={[
               {
@@ -79,7 +80,7 @@ class SetupImage extends Component {
                       },
                       animation
                     ]}>
-                    <View> 
+                    <Card>
                     
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('first') }}>
                     <Animated.Image
@@ -88,34 +89,37 @@ class SetupImage extends Component {
                       style={[
                         {
                           height: ITEM_SIZE,
-                          width: ITEM_SIZE,
+                          width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
                           backgroundColor: 'blue'
                         }
                       ]}
                     />
                     </TouchableOpacity>
-                    
+                    </Card>
+                    <Card>
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('second') }}>
                     <Animated.Image
-                      source={{ uri: photo }} style={{ width: 300, height: 200 }}
+                      source={{ uri: photo }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
-                          width: ITEM_SIZE,
+                          width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
                           backgroundColor: 'blue'
                         }
                       ]}
                     />
                     </TouchableOpacity>
+                    </Card>
+                    <Card>
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('third') }}>
                     <Animated.Image
                       source={{ uri: third }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
-                          width: ITEM_SIZE,
+                          width: ITEM_SIZE / 1.06,
                           borderRadius: ITEM_SIZE / 2.2,
                           backgroundColor: 'blue'
                         }
@@ -123,14 +127,14 @@ class SetupImage extends Component {
                     />
                     </TouchableOpacity>
                     
-                    
-                    </View>
+                    </Card>
+                   
                   </Animated.View>
                 )}
               </SharedElement>
             
           </Animated.View>
-  
+        
       );
     }
 }
