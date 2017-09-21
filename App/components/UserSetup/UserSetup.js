@@ -20,7 +20,8 @@ import {
 import ITEMS from './data';
 import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
-import Card from '../Home/Card';
+import Card from './UserCard';
+import UserCardSection from './UserCardSection';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -89,7 +90,7 @@ class Setup extends Component {
           <Text>Settings</Text>
         </View>
         <ScrollView>
-        <Card>
+        <UserCardSection>
         <Animated.ScrollView
         style={{ paddingTop: BAR_HEIGHT * 0.6 }}
         contentContainerStyle={{
@@ -114,7 +115,7 @@ class Setup extends Component {
         })
         }
       </Animated.ScrollView>
-      </Card>
+      </UserCardSection>
       </ScrollView>
         </View>
       );

@@ -20,7 +20,7 @@ import {
   SharedElementGroup
 } from '@expo/ex-navigation';
 import ITEMS from './data';
-import Card from '../Home/Card';
+import Card from './UserCard';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -28,7 +28,12 @@ const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
 class SetupImage extends Component {
-    
+    constructor(props) {
+      super(props);
+      this.state = {
+        text: 'ok',
+      }
+    }
     render() {
         const { image, photo, third } = this.props.images; 
 
@@ -90,9 +95,17 @@ class SetupImage extends Component {
                         <Text>Occupation</Text>
                         <Text>Education</Text>
                     </Card>
-                    <Card>
-                      <TextInput style={styles.nameStyle}></TextInput>
-                    </Card>
+                    <View style={styles.borderStyle}>
+                      <Text>Bio</Text>
+                      <TextInput 
+                      multiline = {true}
+                      numberOfLines = {5}
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.text}
+                      style={styles.textInput}
+                      />
+                    
+                    </View>
                     <Card>
                       <Switch></Switch>
                     </Card>
@@ -121,11 +134,21 @@ class SetupImage extends Component {
             nameStyle: {
                 fontSize: 19,
                 fontWeight: '400'
-                },  
+                },
+            borderStyle: {
+                borderWidth: 1,
+                borderRadius: 2,
+                borderBottomColor: 'green',
+            },      
             ageStyle: {
                 fontSize: 19,
                 fontWeight: '400'
-                },       
+                },    
+            textInput: {
+                fontSize: 19,
+                fontWeight: '400',
+                height: 40  
+                }       
         }
-    }
+    };
             export default SetupImage;
