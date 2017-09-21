@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ScrollView from 'react-native';
-import {Provider} from 'react-redux';
-import {TabNavigator, StackNavigator} from 'react-navigation';
+import { Provider } from 'react-redux';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import Login from './App/Screens/Login';
 import store from './App/Store';
 
@@ -13,6 +13,7 @@ import Home from './App/components/Home/Home.js';
 import Preferences from './App/components/Preferences/Preferences';
 import Setup from './App/components/UserSetup/UserSetup';
 import ChatRoom from './App/components/ChatRoom/ChatRoom';
+import TermsOfService from './App/components/Preferences/TermsOfService';
 
 class App extends Component {
   // static navigationOptions = {   header: null };
@@ -20,44 +21,50 @@ class App extends Component {
     // const { navigation } = this.props; return <Register navigation={navigation}
     // />;
 
-    const MainNavigator = TabNavigator({
-      Welcome: {
-        screen: WelcomeScreen
+    const MainNavigator = TabNavigator(
+      {
+        Welcome: {
+          screen: WelcomeScreen
+        },
+        auth: {
+          screen: Login
+        },
+        Home: {
+          screen: Home
+        },
+        Settings: {
+          screen: Preferences
+        },
+        Messages: {
+          screen: Messages
+        },
+        Shopping: {
+          screen: Shopping
+        },
+        Setup: {
+          screen: Setup
+        },
+        Preferences: {
+          screen: Preferences
+        },
+        Chat: {
+          screen: ChatRoom
+        },
+        TermsOfService: {
+          screen: TermsOfService
+        }
       },
-      auth: {
-        screen: Login
-      },
-      Home: {
-        screen: Home
-      },
-      Settings: {
-        screen: Preferences
-      },
-      Messages: {
-        screen: Messages
-      },
-      Shopping: {
-        screen: Shopping
-      },
-      Setup: {
-        screen: Setup
-      },
-      Preferences: {
-        screen: Preferences
-      },
-      Chat: {
-        screen: ChatRoom
+      {
+        navigationOptions: {
+          tabBarVisible: false
+        },
+        lazy: true
       }
-    }, {
-      navigationOptions: {
-        tabBarVisible: false
-      },
-      lazy: true
-    });
+    );
 
     return (
       <Provider store={store}>
-        <MainNavigator/>
+        <MainNavigator />
       </Provider>
     );
   }
