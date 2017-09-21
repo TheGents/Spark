@@ -18,7 +18,11 @@ module.exports = {
         let newBirthday = new Date(birthday);
         let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)))
         // console.log(katkatAge);
-        db.post_user([id, name, katkatAge, work[0].position.name]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
+        works = work[0].position.name
+        if(work === 'undefined') {
+            works = null;
+        }
+        db.post_user([id, name, katkatAge, works]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
@@ -42,15 +46,13 @@ module.exports = {
     },
     get_matches: (req,res) => {
         const db = req.app.get('db');
-        const { gender } = req.body;
-        db.get_matches([gender]).then((data)=>res.status('200').send(data)).catch(()=>res.status('404').send());
-        // const { id, gender } = req.body;
-        // if(gender === 0 ) { 
-        //     db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
-        // }
-        // if(gender === 1) {
-        //     db.get_her_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
-        // }
+        const { id, gender } = req.params;
+        if(gender === 1 ) { 
+            db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+        }
+        if(gender === 0) {
+            db.get_her_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+        }
     },
     put_user_profile: (req,res) => {
         const db = req.app.get('db');

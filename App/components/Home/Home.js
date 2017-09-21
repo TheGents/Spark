@@ -74,7 +74,7 @@ class Home extends Component {
           <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{ width: 100, height: 30 }} />
         <TouchableOpacity 
           onPress={() => {
-          this.props.navigation.navigate('Shopping');
+          this.props.navigation.navigate('Shopping', this.state.user);
           }}
         >
       <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
