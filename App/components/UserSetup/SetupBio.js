@@ -21,6 +21,7 @@ import {
 } from '@expo/ex-navigation';
 import ITEMS from './data';
 import Card from './UserCard';
+import BioCard from './BioCard'
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -31,12 +32,13 @@ class SetupImage extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        text: 'ok',
+        text: '',
       }
     }
     render() {
         const { image, photo, third } = this.props.images; 
-
+        const { nameStyle, borderStyle, ageStyle } = styles;
+        console.log(this.state.text);
     return (
         
           <Animated.View
@@ -90,21 +92,23 @@ class SetupImage extends Component {
                     <View> 
                     
                     <Card>
-                        <Text style={styles.nameStyle}>Name</Text>
-                        <Text style={styles.ageStyle}>23</Text>
+                        <Text style={nameStyle}>Name</Text>
+                        <Text style={ageStyle}>23</Text>
                         <Text>Occupation</Text>
                         <Text>Education</Text>
                     </Card>
-                    <View style={styles.borderStyle}>
+                    <View style={borderStyle}>
                       <Text>Bio</Text>
-                      <TextInput 
+                      <BioCard >
+                      <TextInput style={{height:50}}
                       multiline = {true}
+                      maxLength = {250}
                       numberOfLines = {5}
-                      onChangeText={(text) => this.setState({text})}
+                      onChangeText={(text) => this.setState({ text })}
                       value={this.state.text}
                       style={styles.textInput}
                       />
-                    
+                      </BioCard>
                     </View>
                     <Card>
                       <Switch></Switch>
@@ -132,7 +136,7 @@ class SetupImage extends Component {
                   height: 1
                 },
             nameStyle: {
-                fontSize: 19,
+                fontSize: 29,
                 fontWeight: '400'
                 },
             borderStyle: {
@@ -147,7 +151,7 @@ class SetupImage extends Component {
             textInput: {
                 fontSize: 19,
                 fontWeight: '400',
-                height: 40  
+                height: 90  
                 }       
         }
     };

@@ -77,7 +77,7 @@ class Setup extends Component {
     render() {
   
       return (
-        <View>
+        <View style={{backgroundColor: 'yellow', flex: 1}}>
           <View style={styles.nav}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home')}
@@ -89,7 +89,7 @@ class Setup extends Component {
           </TouchableOpacity>
           <Text>Settings</Text>
         </View>
-        <ScrollView>
+        <ScrollView style={{backgroundColor: 'rgba(32, 52, 52, 0.3)', flex: 1}}>
         <UserCardSection>
         <Animated.ScrollView
         style={{ paddingTop: BAR_HEIGHT * 0.6 }}
@@ -162,10 +162,6 @@ class Setup extends Component {
       borderBottomWidth:1,
       borderColor:'rgba(0,0,0,0.1)'
     },
-    nameStyle: {
-      fontSize: 19,
-      fontWeight: '400'
-      },  
   ageStyle: {
       fontSize: 19,
       fontWeight: '400'
