@@ -35,28 +35,33 @@ class Setup extends Component {
   
       this.state = {
         scrollX: new Animated.Value(0),
-        user: props.navigation.state.params.user
+        user: props.navigation.state.params.user,
+        value: '',
       };
       this._pickImage = this._pickImage.bind(this);
       this.renderItem = this.renderItem.bind(this);
+      this.handleChange = this.handleChangeValue.bind(this);
 
     }
+
+    componentDidUpdate() {
+      console.log(this.state.value);
+    }  
 
     renderItem(item, i, gent) {
       let { image, photo, third, fourth } = this.state;
       console.log('usersetup.js', this.state.user);
       gent[i] = new Animated.Value(0);
-      console.log('gent', i);
+      
       let inputRange = [
         (i - 3) * ITEM_SIZE,
         (i - 2) * ITEM_SIZE,
         i * ITEM_SIZE,
         (i + 2) * ITEM_SIZE
       ];
-      console.log('retunr', i)
+      
       // Ensure that we're leaving space for first and last item.
       
-      console.log('inside', i)
       if (!item) {
         return <View key={i} style={{ width: EMPTY_ITEM_SIZE / 2 }} />;
       }
@@ -81,7 +86,7 @@ class Setup extends Component {
         <View style={{backgroundColor: 'yellow', flex: 1}}>
           <View style={styles.nav}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home' )} 
+            onPress={() => this.props.navigation.navigate('Home') } 
           >
             <Text>Done</Text>
           </TouchableOpacity>
@@ -125,12 +130,10 @@ class Setup extends Component {
         aspect: [4, 3],
         });
 
-        console.log(result);
 
       if (!result.cancelled) {
         if(val === 'first' ) {
           this.setState({ image: result.uri });
-          console.log(result);
         }
         else if(val === 'second') {
           this.setState({ photo: result.uri });
@@ -143,6 +146,11 @@ class Setup extends Component {
         }
       }
   };
+
+    handleChangeValue = (e) => {
+      console.log('d', this.state.value);
+      this.setState({value: e.target.value})
+    };
   }
 
   const styles = {
@@ -161,35 +169,7 @@ class Setup extends Component {
       alignItems:'center',
       backgroundColor: '#fff',
       borderBottomWidth:1,
-      borderColor:'rgba(0,0,0,0.1)'
-    },
-  ageStyle: {
-      fontSize: 19,
-      fontWeight: '400'
-      },       
-    paragraph: {
-      margin: 24,
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      color: '#34495e'
-    },
-    shadow: {
-      shadowOpacity: 0.4,
-      shadowOffset: {
-        width: 1,
-        height: 3
-      },
-      shadowRadius: 6
-    },
-    headerShadow: {
-      shadowOpacity: 0.6,
-      shadowColor: 'blue',
-      shadowOffset: {
-        width: 0,
-        height: 1
-      },
-      shadowRadius: 12
+      borderColor:'rgba(0, 0, 0, 0.1)'
     }
   };
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const BioCard = props => {
   return <View style={styles.containerStyle}>{props.children}</View>;
 };
 
-const styles = StyleSheet.create({
+const styles = {
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 1,
   }
-});
+};
 
 export default BioCard;

@@ -36,6 +36,7 @@ app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered);
 app.get('/getPrematch/:id/:gender', userCtrl.get_prematch);
 
 app.put('/putHome', userCtrl.put_user_profile);
+app.put('/putBio', userCtrl.put_user_bio);
 app.put('/putPreferences', userCtrl.put_user_preferences);
 app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
 

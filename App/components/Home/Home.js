@@ -42,6 +42,7 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
+        console.log('Home.js axios.get', this.state.user.name)
         // console.log(this.state.user);
         // console.log(response.data);
 
@@ -50,9 +51,10 @@ class Home extends Component {
         //   return results;
         // }));
         // console.log('initial shit',response.data.id)
-        return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
-      })
-      .then(response => {
+
+        return axios.get(`http://localhost:3000/getHome/${this.state.user.facebook_auth_id}`);
+      }).then((response)=> {
+
         // console.log('sup hoe',response.data[0], this.state.user)
         if (response.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);
@@ -67,7 +69,52 @@ class Home extends Component {
   }
 
   render() {
+
+
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1
+      },
+      nav: {
+        height:60,
+        flexDirection:'row',
+        paddingTop:10,
+        justifyContent: 'space-between',
+        alignItems:'center',
+        backgroundColor: '#fff',
+        borderBottomWidth:1,
+        borderColor:'rgba(0,0,0,0.1)'
+      },
+      nameStyle: {
+        fontSize: 19,
+        fontWeight: '400'
+      },
+      ageStyle: {
+        fontSize: 21,
+        fontWeight: '300',
+        marginBottom: -2
+      },
+      textStyle: {
+        color: 'white'
+      },
+      buttonStyle5: {
+        borderColor: '#2980b9',
+        backgroundColor: '#3498db',
+        height: 35,
+        marginLeft: 30,
+        marginRight: 30
+      },
+      customViewStyle: {
+        width: 120,
+        height: 40,
+        alignItems: 'center',
+        flexDirection: 'row'
+      }
+    });
+
+    
     let onPressProps;
+
     if (this.state.isOnPressing) {
       onPressProps = styles.buttonStylePressing;
     } else {
@@ -205,57 +252,5 @@ class Home extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  nav: {
-    height: 60,
-    flexDirection: 'row',
-    paddingTop: 10,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
-  },
-  nameStyle: {
-    fontSize: 19,
-    fontWeight: '400'
-  },
-  ageStyle: {
-    fontSize: 21,
-    fontWeight: '300',
-    marginBottom: -2
-  },
-  textStyle: {
-    color: 'white'
-  },
-  buttonStyle5: {
-    borderColor: '#2980b9',
-    backgroundColor: '#3498db',
-    height: 35,
-    marginLeft: 30,
-    marginRight: 30
-  },
-  customViewStyle: {
-    width: 120,
-    height: 40,
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  contentContainerStyle: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 5
-  },
-  buttonParent: {
-    width: 200,
-    borderRadius: 5,
-    marginTop: 5
-  },
-});
 
 export default Home;
