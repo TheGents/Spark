@@ -269,7 +269,7 @@ export default class Shopping extends Component {
         />
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate('Messages');
+            this.props.navigation.navigate('Messages', {user: this.state.userInfo});
           }}
         >
           <Image
