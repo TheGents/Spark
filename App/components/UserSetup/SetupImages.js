@@ -29,7 +29,7 @@ const BAR_HEIGHT = Constants.statusBarHeight * 5;
 class SetupImage extends Component {
     
     render() {
-        const { image, photo, third } = this.props.images; 
+        const { image, photo, third, fourth } = this.props.images; 
 
     return (
        
@@ -127,9 +127,22 @@ class SetupImage extends Component {
                       ]}
                     />
                     </TouchableOpacity>
-                    
                     </Card>
-                   
+                    <Card>
+                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('fourth') }}>
+                    <Animated.Image
+                      source={{ uri: fourth }} style={{ width: 200, height: 200 }}
+                      style={[
+                        {
+                          height: ITEM_SIZE,
+                          width: ITEM_SIZE / 1.06,
+                          borderRadius: ITEM_SIZE / 2.2,
+                          backgroundColor: 'rgba(52, 52, 52, 0.8)'
+                        }
+                      ]}
+                    />
+                    </TouchableOpacity>
+                   </Card>
                   </Animated.View>
                 )}
               </SharedElement>

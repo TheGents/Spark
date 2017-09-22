@@ -8,16 +8,16 @@ class Slides extends Component {
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
             return (
-              <Image source={require('../images/bg.jpg')} style={styles.backgroundImage}>
+              
                 <View style={styles.container}>
                 <Image source={require('../images/gents.png')} style={{width: 193, height: 200}}/>
                 <Button 
-                title="Login To Spark" 
+                title="Login To Gent" 
                 raised buttonStyle={styles.buttonStyle} 
                 onPress={this.props.onComplete}
                 />
                 </View>
-              </Image> 
+               
                 
             );
         }

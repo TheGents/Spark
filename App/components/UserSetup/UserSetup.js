@@ -35,6 +35,7 @@ class Setup extends Component {
   
       this.state = {
         scrollX: new Animated.Value(0),
+        user: props.navigation.state.params.user
       };
       this._pickImage = this._pickImage.bind(this);
       this.renderItem = this.renderItem.bind(this);
@@ -42,8 +43,8 @@ class Setup extends Component {
     }
 
     renderItem(item, i, gent) {
-      let { image, photo, third } = this.state;
-      console.log('image', this.state);
+      let { image, photo, third, fourth } = this.state;
+      console.log('usersetup.js', this.state.user);
       gent[i] = new Animated.Value(0);
       console.log('gent', i);
       let inputRange = [
@@ -61,12 +62,12 @@ class Setup extends Component {
       }
       if(i===1){ 
         return (
-          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
+          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third, fourth }} index={i} />
         );
       }
-      else if ( i === 2) {
-        return(
-          <SetupBio key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third }} index={i} />
+      else if (i === 2) {
+        return (
+          <SetupBio key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} index={i} user={ this.state.user } />
         );
       }
       
@@ -80,12 +81,9 @@ class Setup extends Component {
         <View style={{backgroundColor: 'yellow', flex: 1}}>
           <View style={styles.nav}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home')}
+            onPress={() => this.props.navigation.navigate('Home' )} 
           >
-            <Image
-              source={require('../images/suit.png')}
-              style={{ width: 25, height: 25, margin: 10 }}
-            />
+            <Text>Done</Text>
           </TouchableOpacity>
           <Text>Settings</Text>
         </View>
@@ -140,6 +138,9 @@ class Setup extends Component {
         else if(val === 'third') {
           this.setState({ third: result.uri });
         } 
+        else{
+          this.setState({ fourth: result.uri });
+        }
       }
   };
   }
