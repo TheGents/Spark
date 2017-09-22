@@ -165,7 +165,7 @@ export default class Messages extends Component {
       userInfo: props.navigation.state.params.user
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     Axios.get(`http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
     //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
     this.setState({ kitkats: response.data })
