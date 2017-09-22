@@ -33,70 +33,70 @@ const image8 = require('../images/dylan.jpeg');
 const image9 = require('../images/franklin.png');
 const image10 = require('../images/mitchell.jpeg');
 const image11 = require('../images/shea.jpeg');
-
-var convos = [
-  {
-    id: 1,
-    name: 'Eric',
-    message: 'Suspendisse accumsan tortor quis turpis.',
-    image: image1
-  },
-  {
-    id: 2,
-    name: 'Daanish',
-    message:
-      'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
-    image: image2
-  },
-  {
-    id: 3,
-    name: 'Christopher',
-    message: 'Duis bibendum.',
-    image: image3
-  },
-  {
-    id: 4,
-    name: 'Terri',
-    message: 'Praesent blandit.',
-    image: image4
-  },
-  {
-    id: 5,
-    name: 'Andy',
-    message: 'Mauris enim leo, rhoncus sed, vestibulum, cursus id, turpis.',
-    image: image5
-  },
-  {
-    id: 6,
-    name: 'Stven',
-    message: 'Aliquam sit amet diam in magna bibendum imperdiet.',
-    image: image6
-  },
-  {
-    id: 7,
-    name: 'David',
-    message: 'Phasellus sit amet erat.',
-    image: image7
-  },
-  {
-    id: 8,
-    name: 'Dylan',
-    message: 'Vestibulum ante ipsum bilia Curae; Duis faucibus accumsan odio.',
-    image: image8
-  },
-  {
-    id: 9,
-    name: 'Frank',
-    message: 'Aliquam non mauris.',
-    image: image9
-  },
-  {
-    id: 10,
-    name: 'Mitchell',
-    message: 'Nulla ac enim.',
-    image: image10
-  }
-];
+let convos = [];
+// var convos = [
+//   {
+//     id: 1,
+//     name: 'Eric',
+//     message: 'Suspendisse accumsan tortor quis turpis.',
+//     image: image1
+//   },
+//   {
+//     id: 2,
+//     name: 'Daanish',
+//     message:
+//       'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
+//     image: image2
+//   },
+//   {
+//     id: 3,
+//     name: 'Christopher',
+//     message: 'Duis bibendum.',
+//     image: image3
+//   },
+//   {
+//     id: 4,
+//     name: 'Terri',
+//     message: 'Praesent blandit.',
+//     image: image4
+//   },
+//   {
+//     id: 5,
+//     name: 'Andy',
+//     message: 'Mauris enim leo, rhoncus sed, vestibulum, cursus id, turpis.',
+//     image: image5
+//   },
+//   {
+//     id: 6,
+//     name: 'Stven',
+//     message: 'Aliquam sit amet diam in magna bibendum imperdiet.',
+//     image: image6
+//   },
+//   {
+//     id: 7,
+//     name: 'David',
+//     message: 'Phasellus sit amet erat.',
+//     image: image7
+//   },
+//   {
+//     id: 8,
+//     name: 'Dylan',
+//     message: 'Vestibulum ante ipsum bilia Curae; Duis faucibus accumsan odio.',
+//     image: image8
+//   },
+//   {
+//     id: 9,
+//     name: 'Frank',
+//     message: 'Aliquam non mauris.',
+//     image: image9
+//   },
+//   {
+//     id: 10,
+//     name: 'Mitchell',
+//     message: 'Nulla ac enim.',
+//     image: image10
+//   }
+// ];
 
 // var newMatches = [
 //   {
@@ -169,16 +169,14 @@ export default class Messages extends Component {
     //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
     this.setState({ kitkats: response.data })
     let matchedUsers = response.data;
-    convos = [];
     matchedUsers.map((x)=> {
       convos.push({
         id: x.dude_id,
-        first_name: x.first_name,
+        name: x.first_name,
         image: x.facebook_pic,
       })
     })
-    convos = ds.cloneWithRows(convos);
-    this.setState({ convoData: convos });
+    this.setState({ convoData: ds.cloneWithRows(convos) });
     })
   }
 
@@ -216,7 +214,8 @@ export default class Messages extends Component {
             numberOfLines={1}
             style={{ fontWeight: '400', color: '#888', width: 200 }}
           >
-            {x.message}
+            {/* {x.message} */}
+            I'm a bad bitch.
           </Text>
         </View>
       </TouchableOpacity>
@@ -246,7 +245,7 @@ export default class Messages extends Component {
           <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
           </TouchableOpacity>
         </View>
-        <ScrollView style={styles.container}>
+        {/* <ScrollView style={styles.container}> */}
           {/* <TextInput style={{ height: 50 }} placeholder="Search" />
           <View style={styles.matches}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
@@ -265,6 +264,7 @@ export default class Messages extends Component {
               MATCHES
             </Text>
             <ListView
+              enableEmptySections={true}
               horizontal={false}
               scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
@@ -273,7 +273,7 @@ export default class Messages extends Component {
               renderRow={rowData => this.convoRender(rowData)}
             />
           </View>
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
     );
   }
