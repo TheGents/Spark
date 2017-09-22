@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ListView,
+  Button,
   View
 } from 'react-native';
 
@@ -231,7 +232,7 @@ export default class Messages extends Component {
         <View  style={styles.nav}>
           <TouchableOpacity 
             onPress={() => {
-            this.props.navigation.navigate('Shopping');
+            this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
           >
           <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} />
@@ -259,7 +260,7 @@ export default class Messages extends Component {
               renderRow={rowData => this.eachPic(rowData)}
             />
           </View> */}
-          <View style={{ margin: 10 }}>
+          <View style={{ margin: 10 }} onPress={console.log('Chat')}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
               MATCHES
             </Text>
@@ -271,7 +272,8 @@ export default class Messages extends Component {
               dataSource={this.state.convoData}
               pageSize={5}
               renderRow={rowData => this.convoRender(rowData)}
-            />
+            >
+            </ListView>     
           </View>
         {/* </ScrollView> */}
       </View>
