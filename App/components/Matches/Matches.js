@@ -170,13 +170,24 @@ export default class Messages extends Component {
     //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
     this.setState({ kitkats: response.data })
     let matchedUsers = response.data;
-    matchedUsers.map((x)=> {
-      convos.push({
-        id: x.dude_id,
-        name: x.first_name,
-        image: x.facebook_pic,
+    if(this.state.userInfo.gender === '0') {
+      matchedUsers.map((x)=> {
+        convos.push({
+          id: x.dude_id,
+          name: x.first_name,
+          image: x.facebook_pic,
+        })
       })
-    })
+    }
+    if(this.state.userInfo.gender === '1') {
+      matchedUsers.map((x)=> {
+        convos.push({
+          id: x.chick_id,
+          name: x.first_name,
+          image: x.facebook_pic,
+        })
+      })
+    }
     this.setState({ convoData: ds.cloneWithRows(convos) });
     })
   }
