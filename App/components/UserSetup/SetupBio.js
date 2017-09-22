@@ -22,6 +22,7 @@ import {
 import ITEMS from './data';
 import Card from './UserCard';
 import BioCard from './BioCard'
+import axios from 'axios';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -32,14 +33,44 @@ class SetupBio extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        general_bio: '',
-      }
+        general_bio: 'Looking for Gents',
+        occupation: 'Dog Catcher'
+      };
     }
-    componentDidUpdate() {
-      console.log(this.state.general_bio)
+    componentWillMount() {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        this.setState({general_bio: response.data[0].general_bio, occupation: response.data[0].general_bio})
+        console.log(this.state);
+      })
     }  
+    
     render() {
-        const { nameStyle, borderStyle, ageStyle } = styles;
+
+      const styles = {
+        headerShadow: {
+            shadowOpacity: 0.6,
+            shadowColor: 'blue',
+            shadowOffset: {
+              width: 0,
+              height: 1
+            }
+            },
+        nameStyle: {
+            fontSize: 29,
+            fontWeight: '400'
+            },
+        ageStyle: {
+            fontSize: 19,
+            fontWeight: '400'
+            },    
+        textInput: {
+            fontSize: 29,
+            fontWeight: '400',
+            height: 90  
+            }       
+    
+};
+        
     return (
         
           <Animated.View
@@ -91,25 +122,37 @@ class SetupBio extends Component {
                       animation
                     ]}>
                     <View> 
-                    
-                    <Card>
-                        <Text style={nameStyle}>Name</Text>
-                        <Text style={ageStyle}>23</Text>
-                        <Text>Occupation</Text>
-                        <Text>Education</Text>
-                    </Card>
-                    <View style={borderStyle}>
+                    <View>
                       <Text>Bio</Text>
-                      <BioCard >
-                      <TextInput style={{height:50}}
+                      <BioCard>
+                      <TextInput 
                       multiline = {true}
                       maxLength = {250}
                       numberOfLines = {5}
                       onChangeText={(general_bio) => this.setState({ general_bio })}
                       value={this.state.general_bio}
-                      style={styles.textInput}
+                      style={{...styles.textInput, height:50}}
                       />
                       </BioCard>
+                      <BioCard>
+                      <TextInput 
+                      multiline = {true}
+                      maxLength = {250}
+                      numberOfLines = {5}
+                      onChangeText={(occupation) => this.setState({ occupation })}
+                      value={this.state.occupation}
+                      style={{...styles.textInput, height:50}}
+                      />
+                      </BioCard>
+                      <BioCard>
+                      <Button
+                          title='ok'
+                         onPress={() => {
+                          console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id});
+                          axios.put('http://localhost:3000/putBio', {general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id, occupation: this.state.occupation}).then((response)=> console.log(response))
+                        }}
+                        />
+                        </BioCard>
                     </View>
                     <Card>
                       <Switch></Switch>
@@ -128,32 +171,4 @@ class SetupBio extends Component {
 }
         
 
-        const styles = {
-            headerShadow: {
-                shadowOpacity: 0.6,
-                shadowColor: 'blue',
-                shadowOffset: {
-                  width: 0,
-                  height: 1
-                },
-            nameStyle: {
-                fontSize: 29,
-                fontWeight: '400'
-                },
-            borderStyle: {
-                borderWidth: 1,
-                borderRadius: 2,
-                borderBottomColor: 'green',
-            },      
-            ageStyle: {
-                fontSize: 19,
-                fontWeight: '400'
-                },    
-            textInput: {
-                fontSize: 19,
-                fontWeight: '400',
-                height: 90  
-                }       
-        }
-    };
             export default SetupBio;
