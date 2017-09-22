@@ -18,6 +18,7 @@ import {
 
 import Nav from '../global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
+import Axios from 'axios';
 //import Icon from 'react-native-vector-icons/MaterialIcons';
 //import Iconz from 'react-native-vector-icons/Ionicons';
 
@@ -32,123 +33,123 @@ const image8 = require('../images/dylan.jpeg');
 const image9 = require('../images/franklin.png');
 const image10 = require('../images/mitchell.jpeg');
 const image11 = require('../images/shea.jpeg');
+let convos = [];
+// var convos = [
+//   {
+//     id: 1,
+//     name: 'Eric',
+//     message: 'Suspendisse accumsan tortor quis turpis.',
+//     image: image1
+//   },
+//   {
+//     id: 2,
+//     name: 'Daanish',
+//     message:
+//       'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
+//     image: image2
+//   },
+//   {
+//     id: 3,
+//     name: 'Christopher',
+//     message: 'Duis bibendum.',
+//     image: image3
+//   },
+//   {
+//     id: 4,
+//     name: 'Terri',
+//     message: 'Praesent blandit.',
+//     image: image4
+//   },
+//   {
+//     id: 5,
+//     name: 'Andy',
+//     message: 'Mauris enim leo, rhoncus sed, vestibulum, cursus id, turpis.',
+//     image: image5
+//   },
+//   {
+//     id: 6,
+//     name: 'Stven',
+//     message: 'Aliquam sit amet diam in magna bibendum imperdiet.',
+//     image: image6
+//   },
+//   {
+//     id: 7,
+//     name: 'David',
+//     message: 'Phasellus sit amet erat.',
+//     image: image7
+//   },
+//   {
+//     id: 8,
+//     name: 'Dylan',
+//     message: 'Vestibulum ante ipsum bilia Curae; Duis faucibus accumsan odio.',
+//     image: image8
+//   },
+//   {
+//     id: 9,
+//     name: 'Frank',
+//     message: 'Aliquam non mauris.',
+//     image: image9
+//   },
+//   {
+//     id: 10,
+//     name: 'Mitchell',
+//     message: 'Nulla ac enim.',
+//     image: image10
+//   }
+// ];
 
-var convos = [
-  {
-    id: 1,
-    name: 'Eric',
-    message: 'Suspendisse accumsan tortor quis turpis.',
-    image: image1
-  },
-  {
-    id: 2,
-    name: 'Daanish',
-    message:
-      'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
-    image: image2
-  },
-  {
-    id: 3,
-    name: 'Christopher',
-    message: 'Duis bibendum.',
-    image: image3
-  },
-  {
-    id: 4,
-    name: 'Terri',
-    message: 'Praesent blandit.',
-    image: image4
-  },
-  {
-    id: 5,
-    name: 'Andy',
-    message: 'Mauris enim leo, rhoncus sed, vestibulum, cursus id, turpis.',
-    image: image5
-  },
-  {
-    id: 6,
-    name: 'Stven',
-    message: 'Aliquam sit amet diam in magna bibendum imperdiet.',
-    image: image6
-  },
-  {
-    id: 7,
-    name: 'David',
-    message: 'Phasellus sit amet erat.',
-    image: image7
-  },
-  {
-    id: 8,
-    name: 'Dylan',
-    message: 'Vestibulum ante ipsum bilia Curae; Duis faucibus accumsan odio.',
-    image: image8
-  },
-  {
-    id: 9,
-    name: 'Frank',
-    message: 'Aliquam non mauris.',
-    image: image9
-  },
-  {
-    id: 10,
-    name: 'Mitchell',
-    message: 'Nulla ac enim.',
-    image: image10
-  }
-];
-
-var newMatches = [
-  {
-    id: 1,
-    first_name: 'David',
-    image: image7
-  },
-  {
-    id: 2,
-    first_name: 'Dylan',
-    image: image8
-  },
-  {
-    id: 3,
-    first_name: 'Frank',
-    image: image9
-  },
-  {
-    id: 4,
-    first_name: 'Mitchell',
-    image: image10
-  },
-  {
-    id: 5,
-    first_name: 'Shea',
-    image: image11
-  },
-  {
-    id: 6,
-    first_name: 'Andy',
-    image: image5
-  },
-  {
-    id: 7,
-    first_name: 'Steven',
-    image: image6
-  },
-  {
-    id: 8,
-    first_name: 'David',
-    image: image7
-  },
-  {
-    id: 9,
-    first_name: 'Eric',
-    image: image1
-  },
-  {
-    id: 10,
-    first_name: 'Shea',
-    image: image11
-  }
-];
+// var newMatches = [
+//   {
+//     id: 1,
+//     first_name: 'David',
+//     image: image7
+//   },
+//   {
+//     id: 2,
+//     first_name: 'Dylan',
+//     image: image8
+//   },
+//   {
+//     id: 3,
+//     first_name: 'Frank',
+//     image: image9
+//   },
+//   {
+//     id: 4,
+//     first_name: 'Mitchell',
+//     image: image10
+//   },
+//   {
+//     id: 5,
+//     first_name: 'Shea',
+//     image: image11
+//   },
+//   {
+//     id: 6,
+//     first_name: 'Andy',
+//     image: image5
+//   },
+//   {
+//     id: 7,
+//     first_name: 'Steven',
+//     image: image6
+//   },
+//   {
+//     id: 8,
+//     first_name: 'David',
+//     image: image7
+//   },
+//   {
+//     id: 9,
+//     first_name: 'Eric',
+//     image: image1
+//   },
+//   {
+//     id: 10,
+//     first_name: 'Shea',
+//     image: image11
+//   }
+// ];
 
 var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -157,22 +158,39 @@ export default class Messages extends Component {
     super(props);
 
     this.state = {
-      dataSource: ds.cloneWithRows(newMatches),
-      convoData: ds.cloneWithRows(convos)
+      // dataSource: ds.cloneWithRows(newMatches),
+      convoData: ds.cloneWithRows(convos),
+      kitkats: "",
+      userInfo: props.navigation.state.params.user
     };
   }
-
-  eachPic(x) {
-    return (
-      <TouchableOpacity style={{ alignItems: 'center' }}>
-        <Image
-          source={x.image}
-          style={{ width: 70, height: 70, borderRadius: 35, margin: 10 }}
-        />
-        <Text style={{ fontWeight: '600', color: '#444' }}>{x.first_name}</Text>
-      </TouchableOpacity>
-    );
+  componentDidMount() {
+    Axios.get(`http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
+    //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
+    this.setState({ kitkats: response.data })
+    let matchedUsers = response.data;
+    matchedUsers.map((x)=> {
+      convos.push({
+        id: x.dude_id,
+        name: x.first_name,
+        image: x.facebook_pic,
+      })
+    })
+    this.setState({ convoData: ds.cloneWithRows(convos) });
+    })
   }
+
+  // eachPic(x) {
+  //   return (
+  //     <TouchableOpacity style={{ alignItems: 'center' }}>
+  //       <Image
+  //         source={x.image}
+  //         style={{ width: 70, height: 70, borderRadius: 35, margin: 10 }}
+  //       />
+  //       <Text style={{ fontWeight: '600', color: '#444' }}>{x.first_name}</Text>
+  //     </TouchableOpacity>
+  //   );
+  // }
 
   convoRender(x) {
     return (
@@ -187,7 +205,7 @@ export default class Messages extends Component {
         }}
       >
         <Image
-          source={x.image}
+          source={{uri: x.image}}
           style={{ width: 70, height: 70, borderRadius: 35, margin: 10 }}
         />
         <View>
@@ -196,7 +214,8 @@ export default class Messages extends Component {
             numberOfLines={1}
             style={{ fontWeight: '400', color: '#888', width: 200 }}
           >
-            {x.message}
+            {/* {x.message} */}
+            I'm a bad bitch.
           </Text>
         </View>
       </TouchableOpacity>
@@ -204,6 +223,9 @@ export default class Messages extends Component {
   }
 
   render() {
+    console.log('userInfo: ',this.state.userInfo);
+    console.log('kitkats: ',this.state.kitkats);
+    console.log('convoData: ',this.state.convoData);
     return (
       <View style={{ flex: 1 }}>
         <View  style={styles.nav}>
@@ -223,8 +245,8 @@ export default class Messages extends Component {
           <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
           </TouchableOpacity>
         </View>
-        <ScrollView style={styles.container}>
-          <TextInput style={{ height: 50 }} placeholder="Search" />
+        {/* <ScrollView style={styles.container}> */}
+          {/* <TextInput style={{ height: 50 }} placeholder="Search" />
           <View style={styles.matches}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
               THESE GENTS NEED SOME BAD BITCHES!
@@ -236,12 +258,13 @@ export default class Messages extends Component {
               pageSize={5}
               renderRow={rowData => this.eachPic(rowData)}
             />
-          </View>
+          </View> */}
           <View style={{ margin: 10 }}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
-              MESSAGES
+              MATCHES
             </Text>
             <ListView
+              enableEmptySections={true}
               horizontal={false}
               scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
@@ -250,7 +273,7 @@ export default class Messages extends Component {
               renderRow={rowData => this.convoRender(rowData)}
             />
           </View>
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
     );
   }
