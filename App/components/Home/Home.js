@@ -109,6 +109,18 @@ class Home extends Component {
         height: 40,
         alignItems: 'center',
         flexDirection: 'row'
+      },
+      contentContainerStyle: {
+      flex: 1,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5
+      },
+      buttonParent: {
+        width: 200,
+         borderRadius: 5,
+         marginTop: 5
       }
     });
 
