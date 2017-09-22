@@ -39,7 +39,7 @@ class SetupBio extends Component {
     }
     componentWillMount() {
       axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
-        this.setState({general_bio: response.data[0].general_bio, occupation: response.data[0].general_bio})
+        this.setState({general_bio: response.data[0].general_bio, occupation: response.data[0].occupation})
         console.log(this.state);
       })
     }  

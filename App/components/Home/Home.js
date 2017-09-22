@@ -42,7 +42,7 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('Home.js axios.get', this.state.user.name)
+        console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
 
@@ -52,9 +52,9 @@ class Home extends Component {
         // }));
         // console.log('initial shit',response.data.id)
 
-        return axios.get(`http://localhost:3000/getHome/${this.state.user.facebook_auth_id}`);
+        return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       }).then((response)=> {
-
+        console.log('response',response.data[0])
         // console.log('sup hoe',response.data[0], this.state.user)
         if (response.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);
