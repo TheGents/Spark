@@ -57,13 +57,15 @@ module.exports = {
         const db = req.app.get('db');
         const { id, gender } = req.params;
         if(gender === '1' ) { 
-            db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+            db.get_his_matches([id]).then((data)=>{
+                console.log(data);
+                res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
         if(gender === '0') {
             // console.log('did i make it here?', id)
             db.get_her_matches([id]).then((data)=>{
                 // console.log('did i make it here?w')
-                // console.log(data);
+                console.log(data);
                 res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
