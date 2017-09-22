@@ -14,16 +14,23 @@ module.exports = {
     },
     post_user: (req,res) => {
         const db = req.app.get('db');
-        const { id, name, birthday, work } = req.body;
+        let { id, name, birthday, work, gender } = req.body;
+        console.log(id, name, birthday, work, gender);
         // console.log(work[0].position.name, id);
         let newBirthday = new Date(birthday);
         let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)))
         // console.log(katkatAge);
-        works = work[0].position.name
-        if(work === 'undefined') {
-            works = null;
+        let works = null;
+        if(gender === 'male') {
+            gender = '1';
         }
-        db.post_user([id, name, katkatAge, works]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
+        else {
+            gender = '0';
+        }
+        // if(work) {
+        //     works = work[0].position.name
+        // }
+        db.post_user([id, name, katkatAge, works, gender]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
@@ -49,11 +56,15 @@ module.exports = {
     get_matches: (req,res) => {
         const db = req.app.get('db');
         const { id, gender } = req.params;
-        if(gender === 1 ) { 
+        if(gender === '1' ) { 
             db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
         }
-        if(gender === 0) {
-            db.get_her_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+        if(gender === '0') {
+            // console.log('did i make it here?', id)
+            db.get_her_matches([id]).then((data)=>{
+                // console.log('did i make it here?w')
+                // console.log(data);
+                res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
     get_filtered: (req,res) => {
