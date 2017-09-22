@@ -32,7 +32,7 @@ class Home extends Component {
   }
   componentWillMount() {
 
-    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work&access_token=${this.state.userToken()}`)
+    axios.get(`https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work,gender&access_token=${this.state.userToken()}`)
       .then(response => {
         this.setState({ user: response.data });
         // console.log(this.state.user);
@@ -117,6 +117,15 @@ class Home extends Component {
           }}
         >
           Preference Settings
+        </Button>
+        <Button
+          style={styles.buttonStyle5}
+          textStyle={styles.textStyle}
+          onPress={() => {
+            this.props.navigation.navigate('Messages', { user :this.state.user });
+          }}
+        >
+          Matches
         </Button>
       </ScrollView>
     );
