@@ -32,6 +32,11 @@ module.exports = {
         // }
         db.post_user([id, name, katkatAge, works, gender]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
+    post_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id, user_id, created_at, message  } = req.body
+        db.post_message([room_id, user_id, created_at, message]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+    },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;
@@ -108,6 +113,14 @@ module.exports = {
                 res.status('200').send(TheDataY)}).catch((error)=>res.status('404').send(error));
         }
 
+    },
+    get_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id } = req.params;
+        console.log(room_id);
+        db.get_message([room_id]).then((response)=>{
+            console.log(response);
+            res.status('200').send(response)}).catch((error)=>res.status('404').send(error));
     },
     put_user_profile: (req,res) => {
         const db = req.app.get('db');
