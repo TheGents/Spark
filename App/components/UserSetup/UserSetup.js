@@ -44,7 +44,6 @@ class Setup extends Component {
       this.handleChange = this.handleChangeValue.bind(this);
 
     }
-
    
 
     _pickImage = async (val) => {
@@ -86,19 +85,17 @@ class Setup extends Component {
       }
     }
     console.log('the facebook id',result.uri)
-    // return await fetch('http://localhost:3000/adduser', {
-    //   method: 'PUT',
-    //   body: {formData, state.user.facebook_auth_id},
-    //   header: {
-    //     'content-type': 'multipart/form-data',
-    //   },
-    // });
+    
     axios.put('http://localhost:3000/putPics', { photo1: localUri, facebook_auth_id: this.state.user.facebook_auth_id }).then((response)=> console.log(response.data.photo1))
 };
 
+   
+    
+
     renderItem(item, i, gent) {
       let { image, photo, third, fourth } = this.state;
-      
+      // console.log('usersetup.js', this.state.user);
+
       gent[i] = new Animated.Value(0);
       
       let inputRange = [
@@ -173,7 +170,7 @@ class Setup extends Component {
     }
 
     handleChangeValue = (e) => {
-      console.log('d', this.state.value);
+      // console.log('d', this.state.value);
       this.setState({value: e.target.value})
     };
   }

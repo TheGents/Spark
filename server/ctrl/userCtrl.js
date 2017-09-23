@@ -32,6 +32,11 @@ module.exports = {
         // }
         db.post_user([id, name, katkatAge, works, gender]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
+    post_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id, user_id, created_at, message  } = req.body
+        db.post_message([room_id, user_id, created_at, message]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+    },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;
@@ -57,13 +62,15 @@ module.exports = {
         const db = req.app.get('db');
         const { id, gender } = req.params;
         if(gender === '1' ) { 
-            db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+            db.get_his_matches([id]).then((data)=>{
+                // console.log(data);
+                res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
         if(gender === '0') {
             // console.log('did i make it here?', id)
             db.get_her_matches([id]).then((data)=>{
                 // console.log('did i make it here?w')
-                // console.log(data);
+                console.log(data);
                 res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
@@ -106,6 +113,14 @@ module.exports = {
                 res.status('200').send(TheDataY)}).catch((error)=>res.status('404').send(error));
         }
 
+    },
+    get_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id } = req.params;
+        console.log(room_id);
+        db.get_message([room_id]).then((response)=>{
+            console.log(response);
+            res.status('200').send(response)}).catch((error)=>res.status('404').send(error));
     },
     put_user_profile: (req,res) => {
         const db = req.app.get('db');

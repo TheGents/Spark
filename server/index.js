@@ -4,7 +4,7 @@ const express = require('express');
 const { json } = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
-const cors = require('cors')
+const cors = require('cors');
 // const passport = require('passport');
 // const Auth0Strategy = require('passport-auth0');
 
@@ -27,6 +27,7 @@ app.use(session({
 
 app.post('/postMatch', userCtrl.post_match);
 app.post('/addUser', userCtrl.post_user);
+app.post('/postmessage', userCtrl.post_message);
 
 app.get('/getHome/:id', userCtrl.get_user_profile);
 app.get('/getPreferences', userCtrl.get_user_preferences);
@@ -34,6 +35,7 @@ app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping);
 app.get('/getmatches/:id/:gender', userCtrl.get_matches);
 app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered);
 app.get('/getPrematch/:id/:gender', userCtrl.get_prematch);
+app.get('/getmessage/:room_id', userCtrl.get_message);
 
 app.put('/putPics', userCtrl.put_user_pics);
 app.put('/putHome', userCtrl.put_user_profile);
