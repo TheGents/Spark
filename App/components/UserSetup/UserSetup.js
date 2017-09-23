@@ -17,6 +17,7 @@ import {
   SharedElement,
   SharedElementGroup
 } from '@expo/ex-navigation';
+import axios from 'axios'
 import ITEMS from './data';
 import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
@@ -41,7 +42,6 @@ class Setup extends Component {
       this._pickImage = this._pickImage.bind(this);
       this.renderItem = this.renderItem.bind(this);
       this.handleChange = this.handleChangeValue.bind(this);
-
     }
 
     componentDidUpdate() {
@@ -67,7 +67,7 @@ class Setup extends Component {
       }
       if(i===1){ 
         return (
-          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third, fourth }} index={i} />
+          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third, fourth }} index={i} user={ this.state.user } />
         );
       }
       else if (i === 2) {
@@ -83,7 +83,7 @@ class Setup extends Component {
     render() {
   
       return (
-        <View style={{backgroundColor: 'yellow', flex: 1}}>
+        <View style={{backgroundColor: 'white', flex: 1}}>
           <View style={styles.nav}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home') } 
@@ -92,7 +92,7 @@ class Setup extends Component {
           </TouchableOpacity>
           <Text>Settings</Text>
         </View>
-        <ScrollView style={{backgroundColor: 'rgba(32, 52, 52, 0.3)', flex: 1}}>
+        <ScrollView style={{backgroundColor: 'white', flex: 1}}>
         <UserCardSection>
         <Animated.ScrollView
         style={{ paddingTop: BAR_HEIGHT * 0.6 }}
@@ -124,32 +124,56 @@ class Setup extends Component {
       );
     }
 
-     _pickImage = async (val) => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-        allowsEditing: true,
-        aspect: [4, 3],
-        });
-
-
-      if (!result.cancelled) {
-        if(val === 'first' ) {
-          this.setState({ image: result.uri });
+    _pickImage = async (val) => {
+            let result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+            });
+      
+            if(result.cancelled) {
+              return;
+            }
+      
+            let localUri = result.uri
+            console.log('this is localUri', localUri)
+            let filename = localUri.split('/').pop();
+            console.log("filename is", filename)
+            let match = /\.(\w+)$/.exec(filename);
+            console.log('match', match)
+            let type = match ? `image/${match[1]}` : 'image';
+            console.log('type', type)
+      
+            let formData = new FormData();
+    
+           formData.append('photo', { uri: localUri, name: filename, type });
+      
+      
+          if (!result.cancelled) {
+            if(val === 'first' ) {
+              this.setState({ image: result.uri });
+              axios.put('http://localhost:3000/putPics', { photo1: localUri, facebook_auth_id: this.state.user.facebook_auth_id }).then((response)=> console.log(response.data.photo1))
+            }
+            else if(val === 'second') {
+              this.setState({ photo: result.uri });
+              axios.put('http://localhost:3000/putPics', { photo2: localUri, facebook_auth_id: this.state.user.facebook_auth_id }).then((response)=> console.log(response.data.photo2))
+            } 
+            else if(val === 'third') {
+              this.setState({ third: result.uri });
+              axios.put('http://localhost:3000/putPics', { photo3: localUri, facebook_auth_id: this.state.user.facebook_auth_id }).then((response)=> console.log(response.data.photo3))
+            } 
+            else{
+              this.setState({ fourth: result.uri });
+              axios.put('http://localhost:3000/putPics', { photo4: localUri, facebook_auth_id: this.state.user.facebook_auth_id }).then((response)=> console.log(response.data.photo4))
+            }
         }
-        else if(val === 'second') {
-          this.setState({ photo: result.uri });
-        } 
-        else if(val === 'third') {
-          this.setState({ third: result.uri });
-        } 
-        else{
-          this.setState({ fourth: result.uri });
-        }
-      }
-  };
+        console.log('the facebook id',result.uri)
+          
+          
+      };
 
     handleChangeValue = (e) => {
       // console.log('d', this.state.value);
-      this.setState({value: e.target.value})
+      this.setState({ value: e.target.value })
     };
   }
 
