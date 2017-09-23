@@ -42,7 +42,7 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('Home.js axios.get', this.state.user.facebook_auth_id)
+        // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
 

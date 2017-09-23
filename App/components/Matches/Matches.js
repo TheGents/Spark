@@ -161,7 +161,7 @@ export default class Messages extends Component {
     this.state = {
       // dataSource: ds.cloneWithRows(newMatches),
       convoData: ds.cloneWithRows(convos),
-      kitkats: "",
+      kitkats: true,
       userInfo: props.navigation.state.params.user
     };
   }
@@ -217,7 +217,7 @@ export default class Messages extends Component {
           borderBottomWidth: 1,
           borderColor: '#e3e3e3'
         }}
-      onPress={() => { this.props.navigation.navigate('Chat', {user: this.state.userInfo, match: x, Messages: this}); }}
+      onPress={() => { this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: x }); }}
       >
         <Image
           source={{uri: x.image}}

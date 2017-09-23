@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {GiftedChat} from 'react-native-gifted-chat';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
 import Axios from 'axios';
 
 class ChatRoom extends Component {
@@ -14,8 +14,40 @@ class ChatRoom extends Component {
       kitkats: 'This is a test to console log the return from axios'
     };
   }
+ 
+  componentWillReceiveProps(nextProps){
+    this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })
+    this.setState({ matched: nextProps.navigation.state.params.match })
+    this.setState({ messages: [] })
+    Axios.get(`http://localhost:3000/getmessage/${nextProps.navigation.state.params.match.chatRoom}`).then((response)=> {
+      this.setState({ kitkats: response.data });
+      let katkat = response.data;
+      let messageDB = [];
+      katkat.map((x)=> {
+        let avvy = "";
+        if(x.user_id == this.state.matched.id) {
+          avvy = this.state.matched.image;
+        }
+        if(x.user_id == this.state.userInfo.id) {
+          avvy = this.state.userInfo.facebook_pic;
+        }
+        messageDB.push({
+          _id: x.id,
+          text: x.message,
+          createdAt: new Date(x.created_at),
+          user: {
+            _id: x.user_id,
+            avatar: avvy
+          }
+        })
+      })
+      messageDB = messageDB.reverse();
+      this.setState({ messages: messageDB});
+    })
+  }
 
   componentWillMount() {
+    
     Axios.get(`http://localhost:3000/getmessage/${this.state.roomID}`).then((response)=> {
       this.setState({ kitkats: response.data });
       let katkat = response.data;
@@ -41,6 +73,8 @@ class ChatRoom extends Component {
       messageDB = messageDB.reverse();
       this.setState({ messages: messageDB});
     })
+    
+    
     // this.setState({
     //   // messages: [
     //   //   // {
