@@ -19,7 +19,7 @@ import {
 } from '@expo/ex-navigation';
 import ITEMS from './data';
 import Card from './UserCard';
-
+import axios from 'axios';
 
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -27,10 +27,26 @@ const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
 class SetupImage extends Component {
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo1: '../images/bond.jpeg',
+      photo2: '../images/bond.jpeg',
+      photo3: '../images/bond.jpeg',
+      photo4: '../images/bond.jpeg',
+    };
+  }
+    componentWillMount() {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo1);
+        this.setState({photo1: response.data[0].photo1})
+        console.log(this.state.photo1)
+      });
+    }
     render() {
         const { image, photo, third, fourth } = this.props.images; 
-
+        
+        console.log('this is the image', image)
     return (
        
           <Animated.View
@@ -86,7 +102,7 @@ class SetupImage extends Component {
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('first') }}>
                     <Animated.Image
                       key={image}
-                      source={{ uri: image }} style={{ width: 200, height: 200 }}
+                      source={{ uri: this.state.photo1 }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
