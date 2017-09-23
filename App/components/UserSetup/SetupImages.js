@@ -17,6 +17,7 @@ import {
   SharedElement,
   SharedElementGroup
 } from '@expo/ex-navigation';
+import axios from 'axios';
 import ITEMS from './data';
 import Card from './UserCard';
 
@@ -27,6 +28,46 @@ const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
 class SetupImage extends Component {
+
+  constructor(props) {
+       super(props);
+        this.state = {
+          photo1: '../images/bond.jpeg',
+          photo2: '../images/bond.jpeg',
+          photo3: '../images/bond.jpeg',
+          photo4: '../images/bond.jpeg',
+        };
+      }
+        componentWillMount() {
+          axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+            console.log('this is what i need',response.data[0].photo1);
+            this.setState({photo1: response.data[0].photo1 });
+            console.log(this.state.photo1)
+          });
+          axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+            console.log('this is what i need',response.data[0].photo2);
+            if(response.data[0].photo2){
+            this.setState({photo2: response.data[0].photo2 });
+            console.log(this.state.photo2)
+            }
+        });
+        axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+          console.log('this is what i need',response.data[0].photo3);
+          if(response.data[0].photo3){
+          this.setState({photo3: response.data[0].photo3 });
+          console.log(this.state.photo3)
+          }
+      });
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo4);
+        if(response.data[0].photo4){
+        this.setState({photo4: response.data[0].photo4 });
+        console.log(this.state.photo4)
+        }
+    });
+            
+        }
+        
     
     render() {
         const { image, photo, third, fourth } = this.props.images; 
@@ -83,10 +124,10 @@ class SetupImage extends Component {
                     ]}>
                     <Card>
                     
-                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('first') }}>
+                    <TouchableOpacity onPress={ () => { this.onClick('first') }}>
                     <Animated.Image
                       key={image}
-                      source={{ uri: image }} style={{ width: 200, height: 200 }}
+                      source={{ uri: image || this.state.photo1 }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
@@ -101,7 +142,7 @@ class SetupImage extends Component {
                     <Card>
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('second') }}>
                     <Animated.Image
-                      source={{ uri: photo }} style={{ width: 200, height: 200 }}
+                      source={{ uri: photo ||this.state.photo2 }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
@@ -116,7 +157,7 @@ class SetupImage extends Component {
                     <Card>
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('third') }}>
                     <Animated.Image
-                      source={{ uri: third }} style={{ width: 200, height: 200 }}
+                      source={{ uri: third ||this.state.photo3 }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
@@ -131,7 +172,7 @@ class SetupImage extends Component {
                     <Card>
                     <TouchableOpacity onPress={ () => { this.props.ImagePicker('fourth') }}>
                     <Animated.Image
-                      source={{ uri: fourth }} style={{ width: 200, height: 200 }}
+                      source={{ uri: fourth ||this.state.photo4 }} style={{ width: 200, height: 200 }}
                       style={[
                         {
                           height: ITEM_SIZE,
@@ -151,6 +192,34 @@ class SetupImage extends Component {
         
       );
     }
+
+    onClick(val) {
+      this.props.ImagePicker(val);
+      if(val == 'first') {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo1);
+        this.setState({photo1: response.data[0].photo1 });
+      })
+    }
+    else if(val == 'second') {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo1);
+        this.setState({photo2: response.data[0].photo2 });
+      })
+    }
+    else if(val == 'third') {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo1);
+        this.setState({photo3: response.data[0].photo3 });
+      })
+    }
+    else  {
+      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+        console.log('this is what i need',response.data[0].photo1);
+        this.setState({photo4: response.data[0].photo4 });
+      })
+    }
+  }
 }
         
 

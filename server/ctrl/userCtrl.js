@@ -127,6 +127,23 @@ module.exports = {
         const { facebook_auth_id , first_name, school, occupation, location, gender, age, facebook_pic, general_bio } = req.body;
         db.put_user_profile([facebook_auth_id , first_name, school, occupation, location, gender, age, facebook_pic, general_bio]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
     },
+    put_user_pics: (req,res) => {
+                const db = req.app.get('db');
+                const { facebook_auth_id , photo1, photo2, photo3, photo4 } = req.body;
+                console.log(facebook_auth_id, photo1);
+                if(photo1){
+                    db.put_user_pics([facebook_auth_id , photo1]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if(photo2){
+                    db.put_user_pics2([facebook_auth_id , photo2]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if(photo3){
+                    db.put_user_pics3([facebook_auth_id , photo3]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if (photo4){
+                    db.put_user_pics4([facebook_auth_id , photo4]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }      
+            },
     put_user_bio: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id , general_bio, occupation } = req.body;

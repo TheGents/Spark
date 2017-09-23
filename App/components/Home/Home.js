@@ -174,7 +174,7 @@ class Home extends Component {
           <Text style={ageStyle}>{this.state.user.age}</Text>
           <Text>Occupation: {this.state.user.occupation}</Text>
           <Text>Education: {this.state.user.school}</Text>
-          <Text>Bio: {this.state.user.biography}</Text>
+          <Text>Bio: {this.state.user.general_bio}</Text>
         </Card>
         <View style={styles.contentContainerStyle}>
           <TouchableHighlight style={styles.buttonParent}>
