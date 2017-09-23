@@ -63,7 +63,7 @@ module.exports = {
         const { id, gender } = req.params;
         if(gender === '1' ) { 
             db.get_his_matches([id]).then((data)=>{
-                console.log(data);
+                // console.log(data);
                 res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
         if(gender === '0') {

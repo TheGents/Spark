@@ -161,11 +161,11 @@ export default class Messages extends Component {
     this.state = {
       // dataSource: ds.cloneWithRows(newMatches),
       convoData: ds.cloneWithRows(convos),
-      kitkats: "",
+      kitkats: true,
       userInfo: props.navigation.state.params.user
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     Axios.get(`http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
     //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
     this.setState({ kitkats: response.data })
@@ -217,7 +217,7 @@ export default class Messages extends Component {
           borderBottomWidth: 1,
           borderColor: '#e3e3e3'
         }}
-      onPress={() => { this.props.navigation.navigate('Chat', {user: this.state.userInfo, match: x, Messages: this}); }}
+      onPress={() => { this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: x }); }}
       >
         <Image
           source={{uri: x.image}}

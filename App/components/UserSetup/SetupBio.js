@@ -40,7 +40,7 @@ class SetupBio extends Component {
     componentWillMount() {
       axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
         this.setState({general_bio: response.data[0].general_bio, occupation: response.data[0].occupation})
-        console.log(this.state);
+        // console.log(this.state);
       })
     }  
     
@@ -148,7 +148,7 @@ class SetupBio extends Component {
                       <Button
                           title='ok'
                          onPress={() => {
-                          console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id});
+                          {/* console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id}); */}
                           axios.put('http://localhost:3000/putBio', {general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id, occupation: this.state.occupation}).then((response)=> console.log(response))
                         }}
                         />

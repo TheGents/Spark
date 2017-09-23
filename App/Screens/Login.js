@@ -26,7 +26,7 @@ class Login extends React.Component {
   onAuthComplete(props) {
     if (props.token) {
       //Home
-      console.log('onAuthComplete')
+      // console.log('onAuthComplete')
       this.props.navigation.navigate('Home', { userToken: props.token });
     }
   }

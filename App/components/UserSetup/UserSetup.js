@@ -45,12 +45,12 @@ class Setup extends Component {
     }
 
     componentDidUpdate() {
-      console.log(this.state.value);
+      // console.log(this.state.value);
     }  
 
     renderItem(item, i, gent) {
       let { image, photo, third, fourth } = this.state;
-      console.log('usersetup.js', this.state.user);
+      // console.log('usersetup.js', this.state.user);
       gent[i] = new Animated.Value(0);
       
       let inputRange = [
@@ -148,7 +148,7 @@ class Setup extends Component {
   };
 
     handleChangeValue = (e) => {
-      console.log('d', this.state.value);
+      // console.log('d', this.state.value);
       this.setState({value: e.target.value})
     };
   }
