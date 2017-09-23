@@ -140,7 +140,7 @@ class SetupImage extends Component {
                     </TouchableOpacity>
                     </Card>
                     <Card>
-                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('second') }}>
+                    <TouchableOpacity onPress={ () => { this.onClick('second') }}>
                     <Animated.Image
                       source={{ uri: photo ||this.state.photo2 }} style={{ width: 200, height: 200 }}
                       style={[
@@ -155,7 +155,7 @@ class SetupImage extends Component {
                     </TouchableOpacity>
                     </Card>
                     <Card>
-                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('third') }}>
+                    <TouchableOpacity onPress={ () => { this.onClick('third') }}>
                     <Animated.Image
                       source={{ uri: third ||this.state.photo3 }} style={{ width: 200, height: 200 }}
                       style={[
@@ -170,7 +170,7 @@ class SetupImage extends Component {
                     </TouchableOpacity>
                     </Card>
                     <Card>
-                    <TouchableOpacity onPress={ () => { this.props.ImagePicker('fourth') }}>
+                    <TouchableOpacity onPress={ () => { this.onClick('fourth') }}>
                     <Animated.Image
                       source={{ uri: fourth ||this.state.photo4 }} style={{ width: 200, height: 200 }}
                       style={[
