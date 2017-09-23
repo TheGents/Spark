@@ -38,11 +38,11 @@ class Home extends Component {
   componentWillMount() {
     axios
       .get(
-        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work,gender&access_token=${this.state.userToken()}`
+        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,birthday,work,photos,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
         this.setState({ user: response.data });
-        // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
+
         // console.log(this.state.user);
         // console.log(response.data);
 
@@ -55,7 +55,7 @@ class Home extends Component {
         return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       }).then((response)=> {
         // console.log('sup hoe',response.data[0], this.state.user)
-        console.log("In Home", response.data)
+        
         if (response.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);
         }

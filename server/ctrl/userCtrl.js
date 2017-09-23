@@ -132,6 +132,12 @@ module.exports = {
         const { facebook_auth_id , general_bio, occupation } = req.body;
         db.put_user_bio([facebook_auth_id , general_bio, occupation]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
     },
+    put_user_pics: (req,res) => {
+        const db = req.app.get('db');
+        const { facebook_auth_id , photo1 } = req.body;
+        console.log(facebook_auth_id, photo1);
+        db.put_user_pics([facebook_auth_id , photo1]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+    },
     put_user_preferences: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id, dist_min, dist_max, age_min, age_max } = req.params;
