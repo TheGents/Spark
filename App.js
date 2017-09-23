@@ -14,6 +14,7 @@ import Preferences from './App/components/Preferences/Preferences';
 import Setup from './App/components/UserSetup/UserSetup';
 import ChatRoom from './App/components/ChatRoom/ChatRoom';
 import TermsOfService from './App/components/Preferences/TermsOfService';
+import ShowShop from './App/components/GoShopping/ShowShop.js';
 
 class App extends Component {
   // static navigationOptions = {   header: null };
@@ -40,6 +41,9 @@ class App extends Component {
         },
         Shopping: {
           screen: Shopping
+        },
+        ShowShop: {
+          screen: ShowShop
         },
         Setup: {
           screen: Setup
