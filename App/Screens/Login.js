@@ -11,7 +11,7 @@ class Login extends React.Component {
     //removeItem will allow you to signup again!
     // AsyncStorage.removeItem('fb_token').then( () => {
     //   this.props.facebookLogin();
-    //   this.onAuthComplete(this.props);
+    //   tthis.onAuthComplete(this.props);
     // })
     //AsyncStorage.removeItem('fb_token');
     this.props.facebookLogin();
