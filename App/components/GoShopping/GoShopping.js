@@ -1,20 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-  
-
-
-
-
-
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import Nav from '../global-widgets/nav';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
+import { AppLoading } from 'expo';
+
 
 var image1 = require('../images/eric.jpeg');
 var image2 = require('../images/danish.jpeg');
@@ -110,6 +102,10 @@ export default class Shopping extends Component {
             friends: 32,
             interests: 32,
             image: x.facebook_pic,
+            photo1: x.photo1,
+            photo2: x.photo2,
+            photo3: x.photo3,
+            photo4: x.photo4,
             occupation: x.occupation,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id
@@ -142,11 +138,15 @@ export default class Shopping extends Component {
  Card(x) {
     return (
       <View style={styles.card}>
+        <TouchableHighlight onPress={() => {
+            this.props.navigation.navigate('ShowShop', {user: x});
+          }}>
         <Image
           source={{uri: x.image}}
           resizeMode="contain"
           style={{ width: 350, height: 350 }}
         />
+        </TouchableHighlight>
         <View
           style={{
             width: 350,
@@ -243,6 +243,9 @@ export default class Shopping extends Component {
 
 
   render() {
+    if (!_.max(this.state.cards)) {
+      return <AppLoading />;
+    }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);

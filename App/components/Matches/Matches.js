@@ -161,11 +161,11 @@ export default class Messages extends Component {
     this.state = {
       // dataSource: ds.cloneWithRows(newMatches),
       convoData: ds.cloneWithRows(convos),
-      kitkats: "",
+      kitkats: true,
       userInfo: props.navigation.state.params.user
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     Axios.get(`http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
     //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
     this.setState({ kitkats: response.data })
@@ -176,6 +176,7 @@ export default class Messages extends Component {
           id: x.dude_id,
           name: x.first_name,
           image: x.facebook_pic,
+          chatRoom: x.id,
         })
       })
     }
@@ -185,6 +186,7 @@ export default class Messages extends Component {
           id: x.chick_id,
           name: x.first_name,
           image: x.facebook_pic,
+          chatRoom: x.id,
         })
       })
     }
@@ -215,6 +217,7 @@ export default class Messages extends Component {
           borderBottomWidth: 1,
           borderColor: '#e3e3e3'
         }}
+      onPress={() => { this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: x }); }}
       >
         <Image
           source={{uri: x.image}}
@@ -235,9 +238,9 @@ export default class Messages extends Component {
   }
 
   render() {
-    console.log('userInfo: ',this.state.userInfo);
-    console.log('kitkats: ',this.state.kitkats);
-    console.log('convoData: ',this.state.convoData);
+    // console.log('userInfo: ',this.state.userInfo);
+    // console.log('kitkats: ',this.state.kitkats);
+    // console.log('convoData: ',this.state.convoData);
     return (
       <View style={{ flex: 1 }}>
         <View  style={styles.nav}>
@@ -249,13 +252,11 @@ export default class Messages extends Component {
           <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} />
           </TouchableOpacity>
           <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
-          <TouchableOpacity 
-            onPress={() => {
-            this.props.navigation.navigate('Chat');
-            }}
-          >
-          <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
-          </TouchableOpacity>
+          {/* <TouchableOpacity 
+            onPress={() => { this.props.navigation.navigate('Chat'); }}
+          > */}
+          {/* <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
+          </TouchableOpacity> */}
         </View>
         {/* <ScrollView style={styles.container}> */}
           {/* <TextInput style={{ height: 50 }} placeholder="Search" />

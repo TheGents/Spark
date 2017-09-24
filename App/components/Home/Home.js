@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,6 +14,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
+import { AppLoading } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Nav from '../global-widgets/nav';
@@ -34,7 +36,7 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),
-      user: ''
+      user: []
     };
   }
   componentWillMount() {
@@ -44,7 +46,7 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('Home.js axios.get', this.state.user.facebook_auth_id);
+        // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
 
@@ -71,6 +73,11 @@ class Home extends Component {
   }
 
   render() {
+    console.log('got the loading', this.state.user)
+    if (_.isLength(this.state.user)) {
+      return <AppLoading />;
+    }
+
     let onPressProps;
 
     if (this.state.isOnPressing) {
