@@ -16,11 +16,13 @@ import {
 import axios from 'axios';
 import { AppLoading } from 'expo';
 // import Button from 'apsl-react-native-button';
-import { Button, Avatar } from 'react-native-elements';
-import Card from './Card';
+import { Button, Avatar, Icon } from 'react-native-elements';
 import Nav from '../global-widgets/nav';
+import HomeCard from './HomeCard';
+// import HomeButtons from './HomeButtons';
 
 console.ignoredYellowBox = ['Remote debugger'];
+console.disableYellowBox = true;
 const { height, width } = Dimensions.get('window');
 
 // after registering, settings link/pref settings link/profile setup link
@@ -55,9 +57,10 @@ class Home extends Component {
         // console.log('initial shit',response.data.id)
 
         return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
-      }).then((response)=> {
+      })
+      .then(response => {
         // console.log('sup hoe',response.data[0], this.state.user)
-        console.log("In Home", response.data)
+        console.log('In Home', response.data);
         if (response.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);
         }
@@ -75,7 +78,6 @@ class Home extends Component {
       return <AppLoading />;
     }
 
-    
     let onPressProps;
 
     if (this.state.isOnPressing) {
@@ -87,186 +89,131 @@ class Home extends Component {
     const { height, width } = Dimensions.get('window');
 
     return (
-      <ScrollView style={container}>
-        <View style={styles.nav}>
-          <Image
-            source={require('../images/logo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 30 }}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Shopping', { user: this.state.user });
-            }}
-          >
+      <View style={container}>
+        <ScrollView>
+          <View style={styles.nav}>
             <Image
-              source={require('../images/suit.png')}
-              name="ios-chatboxes-outline"
-              color="#555"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
+              source={require('../images/logo.png')}
+              resizeMode="contain"
+              style={{ width: 100, height: 30 }}
             />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.contentContainerStyle}>
-          <Avatar
-            rounded
-            source={{
-              uri: `https://graph.facebook.com/${this.state.user
-                .facebook_auth_id}/picture?type=large`
-            }}
-            onPress={() => console.log('Profile pic pressed')}
-            activeOpacity={0.7}
-            width={250}
-            height={250}
-          />
-        </View>
-        <Card style={styles.homeCard}>
-          <Text style={nameStyle}>{this.state.user.first_name}</Text>
-          <Text style={ageStyle}>{this.state.user.age}</Text>
-          <Text>Occupation: {this.state.user.occupation}</Text>
-          <Text>Education: {this.state.user.school}</Text>
-          <Text>Bio: {this.state.user.general_bio}</Text>
-        </Card>
-        <View style={styles.contentContainerStyle}>
-          <TouchableHighlight style={styles.buttonParent}>
-            <View>
-              <Button
-                onPress={() => {
-                  this.props.navigation.navigate('Shopping', { user: this.state.user });
-                }}
-                Large
-                buttonStyle={styles.button}
-                // backgroundColor={socialColors.quora}
-                raised
-                title="Shopping"
-                onpress={console.log('button pressed')}
-                color="#199E8C"
-                backgroundColor="#F9FBEA"
-                borderRadius={15}
-                underlayColor="transparent"
-                width="100px"
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Shopping', { user: this.state.user });
+              }}
+            >
+              <Image
+                source={require('../images/suit.png')}
+                name="ios-chatboxes-outline"
+                color="#555"
+                size={25}
+                style={{ width: 30, height: 30, margin: 10 }}
               />
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.buttonParent}>
-            <View>
-              <Button
+            </TouchableOpacity>
+          </View>
+          <View style={styles.contentContainerStyle}>
+            <Avatar
+              rounded
+              source={{
+                uri: `https://graph.facebook.com/${this.state.user
+                  .facebook_auth_id}/picture?type=large`
+              }}
+              onPress={() => console.log('Profile pic pressed')}
+              activeOpacity={0.7}
+              width={300}
+              height={300}
+            />
+          </View>
+          <HomeCard>
+            <Text style={nameStyle}>{this.state.user.first_name}</Text>
+            <Text style={ageStyle}>
+              {this.state.user.age}
+              {'\n'}
+            </Text>
+            <Text>
+              Occupation: {this.state.user.occupation}
+              {'\n'}
+            </Text>
+            <Text>
+              Education: {this.state.user.school}
+              {'\n'}
+            </Text>
+            <Text>
+              Bio: {this.state.user.biography}
+              {'\n'}
+            </Text>
+          </HomeCard>
+          <View style={styles.buttonContainer}>
+            <TouchableHighlight>
+              <Icon
                 onPress={() => {
                   this.props.navigation.navigate('Setup', { user: this.state.user });
                 }}
-                Large
-                buttonStyle={styles.button}
-                // backgroundColor={socialColors.quora}
-                raised
-                title="Profile Setup"
-                onpress={console.log('button pressed')}
-                color="#199E8C"
-                backgroundColor="#F9FBEA"
-                borderRadius={15}
-                underlayColor="transparent"
-                width="100px"
+                name={'ios-create'}
+                type={'ionicon'}
+                color={'#03A9F4'}
+                underlayColor={'white'}
+                reverse
               />
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.buttonParent}>
-            <View>
-              <Button
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Icon
                 onPress={() => {
                   this.props.navigation.navigate('Preferences', { user: this.state.user });
                 }}
-                Large
-                buttonStyle={styles.button}
-                // backgroundColor={socialColors.quora}
-                raised
-                title="Preference Settings"
-                onpress={console.log('button pressed')}
-                color="#199E8C"
-                backgroundColor="#F9FBEA"
-                borderRadius={15}
-                underlayColor="transparent"
-                width="100px"
+                name={'ios-home'}
+                type={'ionicon'}
+                color={'#03A9F4'}
+                underlayColor={'white'}
+                reverse
               />
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.buttonParent}>
-            <View>
-              <Button
-                onPress={() => {
-                  this.props.navigation.navigate('Messages', { user: this.state.user });
-                }}
-                Large
-                buttonStyle={styles.button}
-                // backgroundColor={socialColors.quora}
-                raised
-                title="Matches"
-                onpress={console.log('button pressed')}
-                color="#199E8C"
-                backgroundColor="#F9FBEA"
-                borderRadius={15}
-                underlayColor="transparent"
-                width="100px"
-              />
-            </View>
-          </TouchableHighlight>
-        </View>
-      </ScrollView>
+            </TouchableHighlight>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-    nav: {
-      height:60,
-      flexDirection:'row',
-      paddingTop:10,
-      justifyContent: 'space-between',
-      alignItems:'center',
-      backgroundColor: '#fff',
-      borderBottomWidth:1,
-      borderColor:'rgba(0,0,0,0.1)'
-    },
-    nameStyle: {
-      fontSize: 19,
-      fontWeight: '400'
-    },
-    ageStyle: {
-      fontSize: 21,
-      fontWeight: '300',
-      marginBottom: -2
-    },
-    textStyle: {
-      color: 'white'
-    },
-    buttonStyle5: {
-      borderColor: '#2980b9',
-      backgroundColor: '#3498db',
-      height: 35,
-      marginLeft: 30,
-      marginRight: 30
-    },
-    customViewStyle: {
-      width: 120,
-      height: 40,
-      alignItems: 'center',
-      flexDirection: 'row'
-    },
-    contentContainerStyle: {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  nav: {
+    height: 60,
+    flexDirection: 'row',
+    paddingTop: 10,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)'
+  },
+  nameStyle: {
+    fontSize: 19,
+    fontWeight: '400'
+  },
+  ageStyle: {
+    fontSize: 21,
+    fontWeight: '300',
+    marginBottom: -2
+  },
+  contentContainerStyle: {
     flex: 1,
     backgroundColor: 'white',
+    marginTop: 20,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonContainer: {
+    // flex: 1,
+    // alignItems: 'flex-end',
+    // position: 'absolute',
+    flexDirection: 'row',
     justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 5
-    },
-    buttonParent: {
-      width: 200,
-       borderRadius: 5,
-       marginTop: 5
-    }
-  });
-
+  },
+  homeCard: {}
+});
 
 export default Home;
