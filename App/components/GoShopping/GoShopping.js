@@ -1,11 +1,12 @@
-
-
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import Nav from '../global-widgets/nav';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
+import { AppLoading } from 'expo';
+
 
 var image1 = require('../images/eric.jpeg');
 var image2 = require('../images/danish.jpeg');
@@ -242,6 +243,9 @@ export default class Shopping extends Component {
 
 
   render() {
+    if (!_.max(this.state.cards)) {
+      return <AppLoading />;
+    }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);

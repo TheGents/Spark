@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
+import { AppLoading } from 'expo';
 
 
 class Login extends React.Component {
