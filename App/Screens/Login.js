@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
+import { AppLoading } from 'expo';
 
 
 class Login extends React.Component {
@@ -10,7 +11,7 @@ class Login extends React.Component {
     //removeItem will allow you to signup again!
     // AsyncStorage.removeItem('fb_token').then( () => {
     //   this.props.facebookLogin();
-    //   this.onAuthComplete(this.props);
+    //   tthis.onAuthComplete(this.props);
     // })
     //AsyncStorage.removeItem('fb_token');
     this.props.facebookLogin();
@@ -26,7 +27,7 @@ class Login extends React.Component {
   onAuthComplete(props) {
     if (props.token) {
       //Home
-      console.log('onAuthComplete')
+      // console.log('onAuthComplete')
       this.props.navigation.navigate('Home', { userToken: props.token });
     }
   }

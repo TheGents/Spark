@@ -20,7 +20,7 @@ const SLIDE_DATA = [
     async componentWillMount() {
       let token = await AsyncStorage.getItem('fb_token');
       //console.log('token is', token);
-      console.log("token from async storage", token)
+      // console.log("token from async storage", token)
       if (token) {
         //Home
                this.setState({ token });

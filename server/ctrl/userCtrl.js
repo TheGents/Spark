@@ -32,6 +32,11 @@ module.exports = {
         // }
         db.post_user([id, name, katkatAge, works, gender]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
+    post_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id, user_id, created_at, message  } = req.body
+        db.post_message([room_id, user_id, created_at, message]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+    },
     get_user_profile: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;
@@ -57,13 +62,15 @@ module.exports = {
         const db = req.app.get('db');
         const { id, gender } = req.params;
         if(gender === '1' ) { 
-            db.get_his_matches([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+            db.get_his_matches([id]).then((data)=>{
+                // console.log(data);
+                res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
         if(gender === '0') {
             // console.log('did i make it here?', id)
             db.get_her_matches([id]).then((data)=>{
                 // console.log('did i make it here?w')
-                // console.log(data);
+                console.log(data);
                 res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
@@ -107,11 +114,36 @@ module.exports = {
         }
 
     },
+    get_message: (req,res) => {
+        const db = req.app.get('db');
+        let { room_id } = req.params;
+        console.log(room_id);
+        db.get_message([room_id]).then((response)=>{
+            console.log(response);
+            res.status('200').send(response)}).catch((error)=>res.status('404').send(error));
+    },
     put_user_profile: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id , first_name, school, occupation, location, gender, age, facebook_pic, general_bio } = req.body;
         db.put_user_profile([facebook_auth_id , first_name, school, occupation, location, gender, age, facebook_pic, general_bio]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
     },
+    put_user_pics: (req,res) => {
+                const db = req.app.get('db');
+                const { facebook_auth_id , photo1, photo2, photo3, photo4 } = req.body;
+                console.log(facebook_auth_id, photo1);
+                if(photo1){
+                    db.put_user_pics([facebook_auth_id , photo1]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if(photo2){
+                    db.put_user_pics2([facebook_auth_id , photo2]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if(photo3){
+                    db.put_user_pics3([facebook_auth_id , photo3]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }
+                else if (photo4){
+                    db.put_user_pics4([facebook_auth_id , photo4]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+                }      
+            },
     put_user_bio: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id , general_bio, occupation } = req.body;
