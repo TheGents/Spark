@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Login from './App/Screens/Login';
 import store from './App/Store';
+import { notifications } from 'expo';
 
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
 import Profile from './App/components/ShopProfile/profile.js';

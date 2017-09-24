@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,6 +14,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
+import { AppLoading } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar } from 'react-native-elements';
 import Card from './Card';
@@ -32,7 +34,7 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),
-      user: ''
+      user: []
     };
   }
   componentWillMount() {
@@ -68,60 +70,10 @@ class Home extends Component {
   }
 
   render() {
-
-
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1
-      },
-      nav: {
-        height:60,
-        flexDirection:'row',
-        paddingTop:10,
-        justifyContent: 'space-between',
-        alignItems:'center',
-        backgroundColor: '#fff',
-        borderBottomWidth:1,
-        borderColor:'rgba(0,0,0,0.1)'
-      },
-      nameStyle: {
-        fontSize: 19,
-        fontWeight: '400'
-      },
-      ageStyle: {
-        fontSize: 21,
-        fontWeight: '300',
-        marginBottom: -2
-      },
-      textStyle: {
-        color: 'white'
-      },
-      buttonStyle5: {
-        borderColor: '#2980b9',
-        backgroundColor: '#3498db',
-        height: 35,
-        marginLeft: 30,
-        marginRight: 30
-      },
-      customViewStyle: {
-        width: 120,
-        height: 40,
-        alignItems: 'center',
-        flexDirection: 'row'
-      },
-      contentContainerStyle: {
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 5
-      },
-      buttonParent: {
-        width: 200,
-         borderRadius: 5,
-         marginTop: 5
-      }
-    });
+    console.log('got the loading', this.state.user)
+    if (_.isLength(this.state.user)) {
+      return <AppLoading />;
+    }
 
     
     let onPressProps;
@@ -262,6 +214,59 @@ class Home extends Component {
     );
   }
 }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1
+    },
+    nav: {
+      height:60,
+      flexDirection:'row',
+      paddingTop:10,
+      justifyContent: 'space-between',
+      alignItems:'center',
+      backgroundColor: '#fff',
+      borderBottomWidth:1,
+      borderColor:'rgba(0,0,0,0.1)'
+    },
+    nameStyle: {
+      fontSize: 19,
+      fontWeight: '400'
+    },
+    ageStyle: {
+      fontSize: 21,
+      fontWeight: '300',
+      marginBottom: -2
+    },
+    textStyle: {
+      color: 'white'
+    },
+    buttonStyle5: {
+      borderColor: '#2980b9',
+      backgroundColor: '#3498db',
+      height: 35,
+      marginLeft: 30,
+      marginRight: 30
+    },
+    customViewStyle: {
+      width: 120,
+      height: 40,
+      alignItems: 'center',
+      flexDirection: 'row'
+    },
+    contentContainerStyle: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 5
+    },
+    buttonParent: {
+      width: 200,
+       borderRadius: 5,
+       marginTop: 5
+    }
+  });
 
 
 export default Home;
