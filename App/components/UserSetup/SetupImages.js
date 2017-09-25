@@ -41,7 +41,9 @@ class SetupImage extends Component {
         componentWillMount() {
           axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
             console.log('this is what i need',response.data[0].photo1);
-            this.setState({photo1: response.data[0].photo1 });
+            if(response.data[0].photo1){
+              this.setState({photo1: response.data[0].photo1 });
+            }
             console.log(this.state.photo1)
           });
           axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
