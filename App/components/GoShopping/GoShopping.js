@@ -243,9 +243,9 @@ export default class Shopping extends Component {
 
 
   render() {
-    if (!_.max(this.state.cards)) {
-      return <AppLoading />;
-    }
+    // if (!_.max(this.state.cards)) {
+    //   return <AppLoading />;
+    // }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);
