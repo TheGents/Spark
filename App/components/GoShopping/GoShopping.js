@@ -142,30 +142,24 @@ export default class Shopping extends Component {
             this.props.navigation.navigate('ShowShop', {user: x});
           }}>
         <Image
-          source={{uri: x.image}}
+          source={{uri: x.image || 'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'}}
           resizeMode="contain"
           style={{ width: 350, height: 350 }}
         />
         </TouchableHighlight>
         <View
           style={{
-            width: 350,
+            width: 250,
             height: 70,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between'
           }}
         >
-          <View style={{ flexDirection: 'row', margin: 15, marginTop: 25 }}>
-            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>
-              {x.first_name},{' '}
-            </Text>
-            <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>
-              {x.age}
-            </Text>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <View
+          
+          {/* <View style={{ flexDirection: 'row' }}> */}
+            
+            {/* <View
               style={{
                 padding: 13,
                 borderLeftWidth: 1,
@@ -174,39 +168,12 @@ export default class Shopping extends Component {
                 justifyContent: 'space-between'
               }}
             >
-              <Image
-                source={require('../images/suit.png')}
-                name="people-outline"
-                size={20}
-                color="#777"
-                style={{ width: 25, height: 25, margin: 10 }}
-              />
-              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>
-                {x.friends}
-              </Text>
-            </View>
-            <View
-              style={{
-                padding: 13,
-                borderLeftWidth: 1,
-                borderColor: '#e3e3e3',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
-              <Image
-                source={require('../images/suit.png')}
-                name="import-contacts"
-                size={20}
-                color="#777"
-                style={{ width: 25, height: 25, margin: 10 }}
-              />
-              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>
-                {x.interests}
-              </Text>
-            </View>
-          </View>
+            </View> */}
+          {/* </View> */}
         </View>
+        <Text>
+              {x.first_name},{' '} {x.age}
+            </Text>
         <Text>Work: {x.occupation}</Text>
         <Text>Location: {x.location}</Text>
       </View>
@@ -244,7 +211,45 @@ export default class Shopping extends Component {
 
   render() {
     if (!_.max(this.state.cards)) {
-      return <AppLoading />;
+      return (
+        <View style={styles.container}>
+        <View style={styles.nav}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Home');
+            }}
+          >
+            <Image
+              source={require('../images/suit.png')}
+              name="ios-person"
+              color="#888"
+              size={25}
+              style={{ width: 30, height: 30, margin: 10 }}
+            />
+          </TouchableOpacity>
+          <Image
+            source={require('../images/logo.png')}
+            resizeMode="contain"
+            style={{ width: 100, height: 30 }}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+            }}
+          >
+            <Image
+              source={require('../images/suit.png')}
+              name="ios-chatboxes-outline"
+              color="#555"
+              size={25}
+              style={{ width: 30, height: 30, margin: 10 }}
+            />
+          </TouchableOpacity>
+        </View>
+        
+        <AppLoading />
+      </View>
+      )
     }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);

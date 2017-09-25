@@ -51,56 +51,22 @@ class SetupImage extends Component {
                 
               }
             ]}>
-            
-              <SharedElement id="image">
-                {animation => (
-                  <Animated.View
-                    style={[
-                      styles.headerShadow,
-                      {
-                        shadowRadius: 15,
-                        shadowOffset: { width: 0, height: 6 },
-                        shadowOpacity: 0.2,
-                        height: ITEM_SIZE,
-                        width: ITEM_SIZE,
-                        borderRadius: ITEM_SIZE / 2,
-                        backgroundColor: 'transparent',
-                        marginVertical: 10,
-                        transform: [
-                          //Here we curve the carousel
-                          {
-                            translateY: this.props.scrollX.interpolate({
-                              inputRange: this.props.inputRange,
-                              outputRange: [-ITEM_SIZE / 2, 0, -ITEM_SIZE / 2, 0],
-                              extrapolate: 'clamp'
-                            })
-                          }
-                        ]
-                      },
-                      animation
-                    ]}>
                     <Card>
-                    
-                    <TouchableOpacity>
                     <Animated.Image
                       key={image}
-                      source={{ uri: image || photo1 || photo2 || photo3 || photo4 }} style={{ width: 200, height: 200 }}
+                      source={{ uri: image || photo1 || photo2 || photo3 || photo4 }}
                       style={[
                         {
-                          height: ITEM_SIZE,
-                          width: ITEM_SIZE / 1.06,
-                          borderRadius: ITEM_SIZE / 2.2,
+                          height: 303,
+                          width: 303,
+                          flex: 1,
+                          borderRadius: 10,
                           backgroundColor: 'rgba(52, 52, 52, 0.2)',
                         }
                       ]}
                     />
-                    </TouchableOpacity>
-                    </Card>
                     
-                  </Animated.View>
-                )}
-              </SharedElement>
-            
+                    </Card>
           </Animated.View>
         
       );

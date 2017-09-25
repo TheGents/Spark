@@ -9,7 +9,6 @@ const styles = {
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: 'red',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -18,9 +17,9 @@ const styles = {
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 1,
-    marginBottom: 20,
-    padding: 1
+    padding: 1,
+    flex: 1,
+    flexDirection: 'row'
   }
 }
 
