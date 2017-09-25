@@ -20,8 +20,9 @@ import {
 import axios from 'axios'
 import { Avatar } from 'react-native-elements';
 import ITEMS from './data';
+import BioCard from './BioCard';
 import SetupImage from './MatchImage.js';
-import Card from './MatchCard';
+import ImageSectionCard from './ImageSectionCard';
 import UserCardSection from './MatchCardSection';
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -59,7 +60,7 @@ class ShowShop extends Component {
       gent[i] = new Animated.Value(0);
       
       let inputRange = [
-        (i - 2) * ITEM_SIZE,
+        (i - 1) * ITEM_SIZE,
         (i - 1) * ITEM_SIZE,
         i * ITEM_SIZE,
         (i + 1) * ITEM_SIZE
@@ -67,27 +68,30 @@ class ShowShop extends Component {
       
       // Ensure that we're leaving space for first and last item.
       
-      if (!item) {
-        return <View key={i} style={{ width: EMPTY_ITEM_SIZE / 2 }} />;
-      }
-      if(i===1){ 
+      
+      if (i===1) { 
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} images={{ image }} index={i} />
         );
       }
-      else if (i === 2) {
+      else if (i === 2 && photo1) {
         return (
           <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo1 }} />
         );
       }
-      else if (i === 3) {
+      else if (i === 3 && photo2) {
         return (
           <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo2 }} />
         );
       }
-      else if (i === 4) {
+      else if (i === 4 && photo3) {
         return (
           <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo3 }} />
+        );
+      }
+      else if (i === 5 && photo4) {
+        return (
+          <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo4 }} />
         );
       }
       
@@ -106,18 +110,12 @@ class ShowShop extends Component {
             <Text>Back</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView style={{backgroundColor: 'white', flex: 1}}>
-        <UserCardSection>
+        <ScrollView style={{backgroundColor: 'white', flex: 2}}>
+        <ImageSectionCard>
         <Animated.ScrollView
-        style={{ paddingTop: BAR_HEIGHT * 0.6 }}
-        contentContainerStyle={{
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          flexGrow: 1
-        }}
         horizontal={true}
         decelerationRate={0}
-        snapToInterval={ITEM_SIZE}
+        snapToInterval={313}
         scrollEventThrottle={16}
         snapToAlignment="start"
         showsHorizontalScrollIndicator={false}
@@ -132,13 +130,15 @@ class ShowShop extends Component {
         })
         }
       </Animated.ScrollView>
-      </UserCardSection>
+      </ImageSectionCard>
       <UserCardSection>
-      <Text>{this.state.match.first_name}</Text>
+        <BioCard>
+          <Text>{this.state.match.first_name}</Text>
           <Text>{this.state.match.age}</Text>
           <Text>Occupation: {this.state.match.occupation}</Text>
           <Text>Education: {this.state.match.school}</Text>
           <Text>Bio: {this.state.match.general_bio}</Text>
+        </BioCard>
       </UserCardSection>
       </ScrollView>
         </View>

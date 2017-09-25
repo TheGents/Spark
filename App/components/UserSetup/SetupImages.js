@@ -25,23 +25,35 @@ const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
 class SetupImage extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      photo1: '../images/bond.jpeg',
-      photo2: '../images/bond.jpeg',
-      photo3: '../images/bond.jpeg',
-      photo4: '../images/bond.jpeg'
-    };
-  }
-  componentWillMount() {
-    axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo1);
-        if (response.data[0].photo1) {
-          this.setState({ photo1: response.data[0].photo1 });
-          console.log(this.state.photo1);
-        }
+       super(props);
+        this.state = {
+          photo1: '../images/bond.jpeg',
+          photo2: '../images/bond.jpeg',
+          photo3: '../images/bond.jpeg',
+          photo4: '../images/bond.jpeg',
+        };
+      }
+        componentWillMount() {
+          axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+            console.log('this is what i need',response.data[0].photo1);
+            if(response.data[0].photo1){
+              this.setState({photo1: response.data[0].photo1 });
+            }
+            console.log(this.state.photo1)
+          });
+          axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+            console.log('this is what i need',response.data[0].photo2);
+            if(response.data[0].photo2){
+            this.setState({photo2: response.data[0].photo2 });
+            console.log(this.state.photo2)
+            }
+        });
+        axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+          console.log('this is what i need',response.data[0].photo3);
+          if(response.data[0].photo3){
+          this.setState({photo3: response.data[0].photo3 });
+          console.log(this.state.photo3)
+          }
       });
     axios
       .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
