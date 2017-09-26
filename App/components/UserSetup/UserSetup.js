@@ -40,84 +40,29 @@ class Setup extends Component {
         value: '',
       };
       this._pickImage = this._pickImage.bind(this);
-      this.renderItem = this.renderItem.bind(this);
       this.handleChange = this.handleChangeValue.bind(this);
     }
 
-    componentDidUpdate() {
-      // console.log(this.state.value);
-    }  
-
-    renderItem(item, i, gent) {
-      let { image, photo, third, fourth } = this.state;
-      // console.log('usersetup.js', this.state.user);
-      gent[i] = new Animated.Value(0);
-      
-      let inputRange = [
-        (i - 3) * ITEM_SIZE,
-        (i - 2) * ITEM_SIZE,
-        i * ITEM_SIZE,
-        (i + 2) * ITEM_SIZE
-      ];
       
       // Ensure that we're leaving space for first and last item.
-      
-      if (!item) {
-        return <View key={i} style={{ width: EMPTY_ITEM_SIZE / 2 }} />;
-      }
-      if(i===1){ 
-        return (
-          <SetupImage key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} images={ {image, photo, third, fourth }} index={i} user={ this.state.user } />
-        );
-      }
-      else if (i === 2) {
-        return (
-          <SetupBio key={i} inputRange={inputRange} ImagePicker={this._pickImage} scrollX={this.state.scrollX} gent={gent} index={i} user={ this.state.user } />
-        );
-      }
-      
-      
-    }
     
     
     render() {
-  
+      let { image, photo, third, fourth } = this.state;
       return (
         <View style={{backgroundColor: 'white', flex: 1}}>
           <View style={styles.nav}>
-          <TouchableOpacity
+            <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home') } 
-          >
-            <Text>Done</Text>
-          </TouchableOpacity>
-          <Text>Settings</Text>
-        </View>
+            >
+              <Text>Done</Text>
+            </TouchableOpacity>
+            <Text>Settings</Text>
+          </View>
         <ScrollView style={{backgroundColor: 'white', flex: 1}}>
         <UserCardSection>
-        <Animated.ScrollView
-        style={{ paddingTop: BAR_HEIGHT * 0.6 }}
-        contentContainerStyle={{
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          flexGrow: 1
-        }}
-        horizontal={true}
-        decelerationRate={0}
-        snapToInterval={ITEM_SIZE}
-        scrollEventThrottle={16}
-        snapToAlignment="start"
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: this.state.scrollX } } }],
-          { useNativeDriver: true }
-        )}>
-
-        {ITEMS.map((item, i) => {
-          const gent = {};
-          return this.renderItem(item, i, gent);
-        })
-        }
-      </Animated.ScrollView>
+          <SetupImage key={1}  ImagePicker={this._pickImage}  images={ {image, photo, third, fourth }} user={ this.state.user } />
+          <SetupBio key={2}  ImagePicker={this._pickImage} user={ this.state.user } />
       </UserCardSection>
       </ScrollView>
         </View>
