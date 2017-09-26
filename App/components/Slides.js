@@ -23,7 +23,7 @@ class Slides extends Component {
         }
          else if (index === this.props.data.length - 2){
           return(
-            <Image source={require('../images/sparkGent.jpg')} style={{width: 193, height: 200}}/>
+            <Image source={require('../images/gents.png')} style={{width: 193, height: 200}}/>
           );
         }
         return(

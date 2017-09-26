@@ -72,59 +72,7 @@ class SetupBio extends Component {
 };
         
     return (
-        
-          <Animated.View
-            style={[
-              {
-                transform: [
-                  {
-                    scale: this.props.scrollX.interpolate({
-                      inputRange: this.props.inputRange,
-                      outputRange: [0.7, 1, 0.7, 1],
-                      extrapolate: 'clamp'
-                    })
-                  },
-                  {
-                    translateY: this.props.gent[this.props.index].interpolate({
-                      inputRange: [-1, 0, 1],
-                      outputRange: [-200, 0, 200]
-                    })
-                  }
-                ]
-              }
-            ]}>
-            
-              <SharedElement id="image">
-                {animation => (
-                  <Animated.View
-                    style={[
-                      styles.headerShadow,
-                      {
-                        shadowRadius: 15,
-                        shadowOffset: { width: 0, height: 6 },
-                        shadowOpacity: 0.2,
-                        height: ITEM_SIZE,
-                        width: ITEM_SIZE,
-                        borderRadius: ITEM_SIZE / 2,
-                        backgroundColor: 'transparent',
-                        marginVertical: 10,
-                        transform: [
-                          //Here we curve the carousel
-                          {
-                            translateY: this.props.scrollX.interpolate({
-                              inputRange: this.props.inputRange,
-                              outputRange: [-ITEM_SIZE / 2, 0, -ITEM_SIZE / 2, 0],
-                              extrapolate: 'clamp'
-                            })
-                          }
-                        ]
-                      },
-                      animation
-                    ]}>
-                    <View> 
-                    <View>
-                      <Text>Bio</Text>
-                      <BioCard>
+        <View>
                       <TextInput 
                       multiline = {true}
                       maxLength = {250}
@@ -133,8 +81,7 @@ class SetupBio extends Component {
                       value={this.state.general_bio}
                       style={{...styles.textInput, height:50}}
                       />
-                      </BioCard>
-                      <BioCard>
+                      
                       <TextInput 
                       multiline = {true}
                       maxLength = {250}
@@ -143,8 +90,6 @@ class SetupBio extends Component {
                       value={this.state.occupation}
                       style={{...styles.textInput, height:50}}
                       />
-                      </BioCard>
-                      <BioCard>
                       <Button
                           title='ok'
                          onPress={() => {
@@ -152,19 +97,9 @@ class SetupBio extends Component {
                           axios.put('http://localhost:3000/putBio', {general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id, occupation: this.state.occupation}).then((response)=> console.log(response))
                         }}
                         />
-                        </BioCard>
+                        
                     </View>
-                    <Card>
-                      <Switch></Switch>
-                    </Card>
-                   
-                    
-                    </View>
-                  </Animated.View>
-                )}
-              </SharedElement>
-            
-          </Animated.View>
+                  
   
       );
     }
