@@ -144,7 +144,7 @@ class ChatRoom extends Component {
           }}/> */}
         </View>
         <GiftedChat
-          placeholder='Send this bad bitch a message...'
+          placeholder='Message...'
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
