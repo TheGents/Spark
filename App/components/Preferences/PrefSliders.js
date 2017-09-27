@@ -18,7 +18,7 @@ class PrefSliders extends React.Component {
   };
 
   sliderOneValuesChange = values => {
-    let newValues = [0];
+    const newValues = [0];
     newValues[0] = values[0];
     this.setState({
       sliderOneValue: newValues
@@ -44,12 +44,7 @@ class PrefSliders extends React.Component {
           {/* ----------- DISTANCE SLIDER ----------- */}
           <View style={styles.sliderOne}>
             <Text style={styles.titleText}>Distance</Text>
-            <Text
-              style={[
-                styles.sliderValueChange,
-                this.state.sliderOneChanging && {}
-              ]}
-            >
+            <Text style={[styles.sliderValueChange, this.state.sliderOneChanging && {}]}>
               {this.state.sliderOneValue}
               {' miles'}
             </Text>
@@ -63,6 +58,12 @@ class PrefSliders extends React.Component {
             min={1}
             max={100}
             step={1}
+            selectedStyle={{
+              backgroundColor: '#03A9F4'
+            }}
+            trackStyle={{
+              height: 3
+            }}
           />
           {/* ----------- AGE SLIDER ----------- */}
           <View style={styles.sliderOne}>
@@ -75,10 +76,7 @@ class PrefSliders extends React.Component {
           </View>
           <MultiSlider
             style={styles.sliderOne}
-            values={[
-              this.state.multiSliderValue[0],
-              this.state.multiSliderValue[1]
-            ]}
+            values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
             sliderLength={280}
             onValuesChange={this.multiSliderValuesChange}
             min={18}
@@ -86,6 +84,12 @@ class PrefSliders extends React.Component {
             step={1}
             allowOverlap
             snapped
+            selectedStyle={{
+              backgroundColor: '#0fb3ff'
+            }}
+            trackStyle={{
+              height: 3
+            }}
           />
         </View>
       </View>
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
     // backgroundColor: 'orange'
   },
   sliders: {

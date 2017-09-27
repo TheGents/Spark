@@ -217,8 +217,7 @@ const styles = StyleSheet.create({
     width: 50
   },
   homecardStyling: {
-    marginTop: 20,
-
+    marginTop: 20
   }
 });
 
