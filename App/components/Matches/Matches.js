@@ -249,9 +249,17 @@ export default class Messages extends Component {
             this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
           >
-          <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} />
+          <Image
+                source={require('../images/Spark.png')}
+                name="ios-chatboxes-outline"
+                size={25}
+                style={{ width: 30, height: 30, margin: 10 }}
+              />
+          {/* <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} /> */}
           </TouchableOpacity>
           <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+          <Text style={styles.titleText}>
+            </Text>
           {/* <TouchableOpacity 
             onPress={() => { this.props.navigation.navigate('Chat'); }}
           > */}
@@ -273,7 +281,7 @@ export default class Messages extends Component {
             />
           </View> */}
           <View style={{ margin: 10 }} onPress={console.log('Chat')}>
-            <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
+            <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>
               MATCHES
             </Text>
             <ListView
@@ -299,8 +307,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10
   },
+  titleText: {
+    width: 50
+  },
   nav: {
-    height:60,
+    height:70,
     flexDirection:'row',
     paddingTop:10,
     justifyContent: 'space-between',
@@ -312,7 +323,7 @@ const styles = StyleSheet.create({
   matches: {
     borderTopWidth: 1,
     paddingTop: 15,
-    borderTopColor: '#da533c',
+    borderTopColor: '#487cd6',
     borderBottomWidth: 1,
     paddingBottom: 15,
     borderBottomColor: '#e3e3e3'

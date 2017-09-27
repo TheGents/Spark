@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
-import Nav from '../global-widgets/nav';
+import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
+import Nav from '../global-widgets/nav';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
@@ -214,25 +215,23 @@ export default class Shopping extends Component {
       return (
         <View style={styles.container}>
         <View style={styles.nav}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Home');
-            }}
-          >
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-person"
-              color="#888"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </TouchableOpacity>
+          
+          <Icon
+          onPress={() => {
+            this.props.navigation.navigate('Home');
+          }}
+          name={'ios-home'}
+          type={'ionicon'}
+          color={'#03A9F4'}
+          underlayColor={'white'}
+          
+        />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
             style={{ width: 100, height: 30 }}
           />
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('Messages', {user: this.state.userInfo});
             }}
@@ -244,7 +243,17 @@ export default class Shopping extends Component {
               size={25}
               style={{ width: 30, height: 30, margin: 10 }}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+                  }}
+                  name={'ios-chatboxes'}
+                  type={'ionicon'}
+                  color={'#03A9F4'}
+                  underlayColor={'white'}
+                  
+                />
         </View>
         
         <AppLoading />
@@ -257,37 +266,35 @@ export default class Shopping extends Component {
     return (
       <View style={styles.container}>
       <View style={styles.nav}>
-        <TouchableOpacity
+        
+          <Image
+          style={styles.icon}
           onPress={() => {
             this.props.navigation.navigate('Home');
           }}
-        >
-          <Image
-            source={require('../images/suit.png')}
+            source={require('../images/bg-copy.png')}
             name="ios-person"
             color="#888"
             size={25}
-            style={{ width: 30, height: 30, margin: 10 }}
+            style={{ width: 30, height: 30, margin: 20 }}
           />
-        </TouchableOpacity>
+        
         <Image
           source={require('../images/logo.png')}
           resizeMode="contain"
           style={{ width: 100, height: 30 }}
         />
-        <TouchableOpacity
+          <Image
           onPress={() => {
             this.props.navigation.navigate('Messages', {user: this.state.userInfo});
           }}
-        >
-          <Image
             source={require('../images/suit.png')}
             name="ios-chatboxes-outline"
             color="#555"
             size={25}
-            style={{ width: 30, height: 30, margin: 10 }}
+            style={{ width: 30, height: 30, margin: 20 }}
           />
-        </TouchableOpacity>
+        
       </View>
     <SwipeCards
       ref = {'swiper'}
@@ -318,11 +325,11 @@ export default class Shopping extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    padding: 10,
     backgroundColor: '#f7f7f7'
   },
   nav: {
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
@@ -348,6 +355,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25
+  },
+  icon: {
+    margin: 20
   },
   card: {
     flex: 1,

@@ -30,7 +30,6 @@ const BAR_HEIGHT = Constants.statusBarHeight * 5;
 class Setup extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       scrollX: new Animated.Value(0),
       user: props.navigation.state.params.user,

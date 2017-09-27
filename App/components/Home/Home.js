@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Font } from 'expo';
 import {
   StyleSheet,
   Image,
@@ -20,6 +21,7 @@ import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
+
 
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
@@ -91,26 +93,28 @@ class Home extends Component {
       <View style={container}>
         <ScrollView>
           <View style={styles.nav}>
+            <Text style={styles.titleText}>
+            </Text>
             <Image
-              source={require('../images/logo.png')}
-              resizeMode="contain"
-              style={{ width: 100, height: 30 }}
-            />
-            <TouchableHighlight>
-              <View>
-                <Icon
-                  onPress={() => {
-                    this.props.navigation.navigate('Shopping', { user: this.state.user });
-                  }}
-                  name={'md-heart'}
-                  type={'ionicon'}
-                  color={'#03A9F4'}
-                  underlayColor={'white'}
-                  reverse
-                  size={16}
-                />
-              </View>
-            </TouchableHighlight>
+                source={require('../images/logo.png')}
+                name="ios-chatboxes-outline"
+                color="red"
+                size={25}
+                style={{ width: 100, height: 40, margin: 10 }}
+              />  
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Shopping', { user: this.state.user });
+              }}
+            >
+              <Image
+                source={require('../images/Spark.png')}
+                name="ios-chatboxes-outline"
+                color="red"
+                size={25}
+                style={{ width: 30, height: 30, margin: 10 }}
+              />
+            </TouchableOpacity>
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -167,12 +171,15 @@ class Home extends Component {
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  
   nav: {
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
@@ -205,6 +212,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 30
+  },
+  titleText: {
+    width: 50
   },
   homecardStyling: {
     marginTop: 20
