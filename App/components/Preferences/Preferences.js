@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center'
   },
   nav: {
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
