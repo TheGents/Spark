@@ -266,36 +266,46 @@ export default class Shopping extends Component {
     return (
       <View style={styles.container}>
       <View style={styles.nav}>
-        
-          <Image
-          style={styles.icon}
-          onPress={() => {
-            this.props.navigation.navigate('Home');
-          }}
-            source={require('../images/bg-copy.png')}
-            name="ios-person"
-            color="#888"
-            size={25}
-            style={{ width: 30, height: 30, margin: 20 }}
-          />
-        
+      
+      <Icon
+      onPress={() => {
+        this.props.navigation.navigate('Home');
+      }}
+      name={'ios-home'}
+      type={'ionicon'}
+      color={'#03A9F4'}
+      underlayColor={'white'}
+      
+    />
+      <Image
+        source={require('../images/logo.png')}
+        resizeMode="contain"
+        style={{ width: 100, height: 30 }}
+      />
+      {/* <TouchableOpacity
+        onPress={() => {
+          this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+        }}
+      >
         <Image
-          source={require('../images/logo.png')}
-          resizeMode="contain"
-          style={{ width: 100, height: 30 }}
+          source={require('../images/suit.png')}
+          name="ios-chatboxes-outline"
+          color="#555"
+          size={25}
+          style={{ width: 30, height: 30, margin: 10 }}
         />
-          <Image
-          onPress={() => {
-            this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-          }}
-            source={require('../images/suit.png')}
-            name="ios-chatboxes-outline"
-            color="#555"
-            size={25}
-            style={{ width: 30, height: 30, margin: 20 }}
-          />
-        
-      </View>
+      </TouchableOpacity> */}
+      <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+              }}
+              name={'ios-chatboxes'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              
+            />
+    </View>
     <SwipeCards
       ref = {'swiper'}
       cards={this.state.cards}
