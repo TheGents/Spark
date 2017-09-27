@@ -111,26 +111,31 @@ class Setup extends Component {
     const { image, photo, third, fourth } = this.state;
     return (
       <View style={styles.container}>
-        {/* <View contentContainerStyle={styles.contentContainerStyle}> */}
-        <View style={styles.nav}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-            <Text>Done</Text>
-          </TouchableOpacity>
-          <Text>Settings</Text>
-        </View>
-        <ScrollView>
-          <SetupImage
-            key={1}
-            ImagePicker={this._pickImage}
-            images={{ image, photo, third, fourth }}
-            user={this.state.user}
-          />
-          <SetupBio
-            key={2}
-            ImagePicker={this._pickImage}
-            user={this.state.user}
-            style={styles.bioStyle}
-          />
+        <ScrollView style={styles.scrollViewStyle}>
+          {/* <View contentContainerStyle={styles.contentContainerStyle}> */}
+          <View style={styles.nav}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+              <Text style={{ alignItems: 'flex-start' }}>Done</Text>
+            </TouchableOpacity>
+            <Text>Settings</Text>
+            <Text>{'          '}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <SetupImage
+              key={1}
+              ImagePicker={this._pickImage}
+              images={{ image, photo, third, fourth }}
+              user={this.state.user}
+            />
+          </View>
+          <View style={styles.bioStyle}>
+            <SetupBio
+              key={2}
+              ImagePicker={this._pickImage}
+              user={this.state.user}
+              style={styles.bioStyle}
+            />
+          </View>
         </ScrollView>
       </View>
     );
@@ -139,9 +144,6 @@ class Setup extends Component {
 
 const styles = {
   container: {
-    flex: 1
-  },
-  contentContainerStyle: {
     flex: 1
   },
   nav: {
@@ -154,16 +156,14 @@ const styles = {
     borderColor: 'rgba(0, 0, 0, 0.1)'
   },
   bioStyle: {
-    // bottom: 0,
-    // left: 0,
-    // right: 0
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    marginTop: 180
+  },
+  scrollViewStyle: {
+    // flex: 1
+    height: 400
   }
-  // galleryStyle: {
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   padding: 2
-  // }
 };
 
 export default Setup;
