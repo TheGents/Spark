@@ -73,6 +73,7 @@ class SetupBio extends Component {
             value={this.state.occupation}
             style={{ ...styles.occupationTextInput, height: 40 }}
             backgroundColor={'transparent'}
+            editable
           />
           <Button
             title="Save"
@@ -100,8 +101,7 @@ class SetupBio extends Component {
 const styles = {
   container: {
     flex: 1,
-    position: 'absolute',
-    bottom: 0,
+    // bottom: 0,
     width: '100%'
   },
   nameStyle: {
