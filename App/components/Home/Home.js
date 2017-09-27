@@ -96,19 +96,21 @@ class Home extends Component {
               resizeMode="contain"
               style={{ width: 100, height: 30 }}
             />
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Shopping', { user: this.state.user });
-              }}
-            >
-              <Image
-                source={require('../images/suit.png')}
-                name="ios-chatboxes-outline"
-                color="#555"
-                size={25}
-                style={{ width: 30, height: 30, margin: 10 }}
-              />
-            </TouchableOpacity>
+            <TouchableHighlight>
+              <View>
+                <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Shopping', { user: this.state.user });
+                  }}
+                  name={'md-heart'}
+                  type={'ionicon'}
+                  color={'#03A9F4'}
+                  underlayColor={'white'}
+                  reverse
+                  size={16}
+                />
+              </View>
+            </TouchableHighlight>
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -205,8 +207,7 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   homecardStyling: {
-    marginTop: 20,
-
+    marginTop: 20
   }
 });
 

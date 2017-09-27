@@ -15,95 +15,130 @@ import {
   ScrollView,
   Button
 } from 'react-native';
-import {
-  SharedElement,
-  SharedElementGroup
-} from '@expo/ex-navigation';
+import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
 import ITEMS from './data';
 import Card from './UserCard';
-import BioCard from './BioCard'
+import BioCard from './BioCard';
 import axios from 'axios';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 5;
 
 class SetupBio extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        general_bio: 'Looking for Gents',
-        occupation: 'Dog Catcher'
-      };
-    }
-    componentWillMount() {
-      axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
-        this.setState({general_bio: response.data[0].general_bio, occupation: response.data[0].occupation})
+  constructor(props) {
+    super(props);
+    this.state = {
+      general_bio: '',
+      occupation: ''
+    };
+  }
+
+  componentWillMount() {
+    axios
+      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .then(response => {
+        this.setState({
+          general_bio: response.data[0].general_bio,
+          occupation: response.data[0].occupation
+        });
         // console.log(this.state);
-      })
-    }  
-    
-    render() {
+      });
+  }
 
-      const styles = {
-        headerShadow: {
-            shadowOpacity: 0.6,
-            shadowColor: 'blue',
-            shadowOffset: {
-              width: 0,
-              height: 1
-            }
-            },
-        nameStyle: {
-            fontSize: 29,
-            fontWeight: '400'
-            },
-        ageStyle: {
-            fontSize: 19,
-            fontWeight: '400'
-            },    
-        textInput: {
-            fontSize: 29,
-            fontWeight: '400',
-            height: 90  
-            }       
-    
-};
-        
+  render() {
+    const { general_bio, occupation, height } = this.state;
+
     return (
-        <View>
-                      <TextInput 
-                      multiline = {true}
-                      maxLength = {250}
-                      numberOfLines = {5}
-                      onChangeText={(general_bio) => this.setState({ general_bio })}
-                      value={this.state.general_bio}
-                      style={{...styles.textInput, height:50}}
-                      />
-                      
-                      <TextInput 
-                      multiline = {true}
-                      maxLength = {250}
-                      numberOfLines = {5}
-                      onChangeText={(occupation) => this.setState({ occupation })}
-                      value={this.state.occupation}
-                      style={{...styles.textInput, height:50}}
-                      />
-                      <Button
-                          title='ok'
-                         onPress={() => {
-                          {/* console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id}); */}
-                          axios.put('http://localhost:3000/putBio', {general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id, occupation: this.state.occupation}).then((response)=> console.log(response))
-                        }}
-                        />
-                        
-                    </View>
-                  
-  
-      );
-    }
+      <View style={styles.container}>
+        <View style={styles.bottomContainer}>
+          <TextInput
+            multiline
+            placeholder="About me"
+            maxLength={250}
+            numberOfLines={5}
+            onChangeText={general_bio => this.setState({ general_bio })}
+            value={this.state.general_bio}
+            style={{ ...styles.bioTextInput, height: 80 }}
+            backgroundColor={'transparent'}
+            editable
+          />
+          <TextInput
+            multiline
+            placeholder="Work"
+            maxLength={250}
+            numberOfLines={5}
+            onChangeText={occupation => this.setState({ occupation })}
+            value={this.state.occupation}
+            style={{ ...styles.occupationTextInput, height: 40 }}
+            backgroundColor={'transparent'}
+          />
+          <Button
+            title="Save"
+            style={{ height: 40 }}
+            backgroundColor={'transparent'}
+            onPress={() => {
+              {
+                /* console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id}); */
+              }
+              axios
+                .put('http://localhost:3000/putBio', {
+                  general_bio: this.state.general_bio,
+                  facebook_auth_id: this.props.user.facebook_auth_id,
+                  occupation: this.state.occupation
+                })
+                .then(response => console.log(response));
+            }}
+          />
+        </View>
+      </View>
+    );
+  }
 }
-        
 
-            export default SetupBio;
+const styles = {
+  container: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  },
+  nameStyle: {
+    fontSize: 29,
+    fontWeight: '400'
+  },
+  ageStyle: {
+    fontSize: 19,
+    fontWeight: '400'
+  },
+  textInput: {
+    fontSize: 29,
+    fontWeight: '400',
+    borderWidth: 1
+  },
+  bottomContainer: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  },
+  bioTextInput: {
+    fontSize: 20,
+    fontWeight: '400',
+    borderTopWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)',
+    width: '100%',
+    paddingLeft: 5
+  },
+  occupationTextInput: {
+    fontSize: 20,
+    fontWeight: '400',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)',
+    paddingLeft: 5
+  }
+};
+
+export default SetupBio;
