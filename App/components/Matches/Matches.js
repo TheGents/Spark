@@ -230,7 +230,7 @@ export default class Messages extends Component {
             style={{ fontWeight: '400', color: '#888', width: 200 }}
           >
             {/* {x.message} */}
-            I'm a bad bitch.
+            New match!
           </Text>
         </View>
       </TouchableOpacity>
