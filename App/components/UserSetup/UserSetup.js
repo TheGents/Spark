@@ -55,7 +55,11 @@ class Setup extends Component {
             <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home') } 
             >
-              <Text>Done</Text>
+            <Image
+              source={require('../images/back.png')}
+              resizeMode="contain"
+              style={{ width: 90, height: 30 }}
+            />
             </TouchableOpacity>
             <Text>Settings</Text>
           </View>
@@ -131,7 +135,7 @@ class Setup extends Component {
       backgroundColor: '#fff'
     },
     nav: {
-      height:60,
+      height:70,
       flexDirection:'row',
       paddingTop:10,
       justifyContent: 'space-between',

@@ -157,7 +157,7 @@ class ShowShop extends Component {
       backgroundColor: '#fff'
     },
     nav: {
-      height:60,
+      height:70,
       flexDirection:'row',
       paddingTop:10,
       justifyContent: 'space-between',

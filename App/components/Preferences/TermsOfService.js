@@ -490,7 +490,7 @@ const styles = StyleSheet.create({
     fontWeight: '900'
   },
   nav: {
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
