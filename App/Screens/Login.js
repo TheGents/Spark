@@ -13,7 +13,7 @@ class Login extends React.Component {
     //   this.props.facebookLogin();
     //   tthis.onAuthComplete(this.props);
     // })
-    AsyncStorage.removeItem('fb_token');
+    //AsyncStorage.removeItem('fb_token');
     this.props.facebookLogin();
     this.onAuthComplete(this.props);
   }
