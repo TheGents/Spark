@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 // want stack
 
@@ -8,17 +9,22 @@ class TermsOfService extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.nav}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Preferences')}>
-            <Image
-              source={require('../images/suit.png')}
-              style={{ width: 25, height: 25, margin: 10 }}
-            />
-          </TouchableOpacity>
+          <Icon
+            onPress={() => {
+              this.props.navigation.navigate('Preferences');
+            }}
+            name={'md-settings'}
+            type={'ionicon'}
+            color={'#009FF2'}
+            underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+          />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
             style={{ width: 100, height: 30 }}
           />
+          <Text>{'         '}</Text>
         </View>
         <View style={styles.termsLegalese}>
           <Text style={styles.heading}>Sparks Terms and Conditions of Use{'\n'}</Text>

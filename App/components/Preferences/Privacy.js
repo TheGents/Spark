@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Linking } from 'react-native';
 const Privacy = () => (
   <View style={styles.container}>
     <Text
-      style={{ color: 'gray' }}
+      style={{ color: 'gray', marginVertical: 5 }}
       onPress={() =>
         Linking.openURL('https://termsfeed.com/privacy-policy/9a7bb3100733d69b15346a792e6c7282')}
     >
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     marginTop: 5,
-    marginBottom: 5
+    height: 30
   }
 });
 

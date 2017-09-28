@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     // marginRight: 10,
     position: 'absolute',
     right: 0,
-    bottom: '10%',
+    bottom: '20%',
     left: 0,
     flexDirection: 'row',
     justifyContent: 'space-around'
