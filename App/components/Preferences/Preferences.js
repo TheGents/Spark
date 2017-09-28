@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
@@ -12,17 +13,22 @@ class Preferences extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-            <Image
-              source={require('../images/suit.png')}
-              style={{ width: 25, height: 25, margin: 10 }}
-            />
-          </TouchableOpacity>
+          <Icon
+            onPress={() => {
+              this.props.navigation.navigate('Home');
+            }}
+            name={'ios-home'}
+            type={'ionicon'}
+            color={'#03A9F4'}
+            underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+          />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
             style={{ width: 100, height: 30 }}
           />
+          <Text>{'      '}</Text>
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
         <PrefSliders />

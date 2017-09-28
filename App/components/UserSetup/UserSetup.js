@@ -14,6 +14,7 @@ import {
   Button,
   KeyboardAvoidingView
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
 import axios from 'axios';
 import ITEMS from './data';
@@ -112,11 +113,17 @@ class Setup extends Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollViewStyle}>
-          {/* <View contentContainerStyle={styles.contentContainerStyle}> */}
           <View style={styles.nav}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-              <Text style={{ alignItems: 'flex-start' }}>Done</Text>
-            </TouchableOpacity>
+            <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Home');
+              }}
+              name={'ios-home'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              iconStyle={{ marginLeft: 10 }}
+            />
             <Text>Settings</Text>
             <Text>{'          '}</Text>
           </View>
@@ -161,7 +168,7 @@ const styles = {
     marginTop: 180
   },
   scrollViewStyle: {
-    // flex: 1
+    flex: 1,
     height: 400
   }
 };

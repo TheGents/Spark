@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
