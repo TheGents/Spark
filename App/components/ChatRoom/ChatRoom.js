@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
+import Rating from './RateMeBabe/Rate'
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -108,6 +109,10 @@ class ChatRoom extends Component {
     // console.log('This is userInfo',this.state.userInfo);
     console.log('This is matchedInfo',this.state.matched);
     // console.log('This is getRequest',this.state.kitkats);
+    //We are rendering two if statements.
+    //To make this more clear, should make this into a separate component and then render it here.
+    //Also, have to make star activations ratings in a different file later.
+    if(this.state.userInfo.gender === '0') {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
@@ -134,6 +139,8 @@ class ChatRoom extends Component {
             color: '#487cd6'
           }}
           >{ this.state.matched.name }</Text>
+          <TouchableOpacity
+            onPress={() => { this.props.navigation.navigate('Rating', {userInfo: this.state.userInfo, matched: this.state.matched})}}>
           <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
@@ -141,6 +148,7 @@ class ChatRoom extends Component {
                   underlayColor={'white'}
                   
                 />
+          </TouchableOpacity>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
@@ -160,6 +168,54 @@ class ChatRoom extends Component {
         }}/>
       </View>
     );
+  }
+  if(this.state.userInfo.gender === '1') {
+    return (
+      <View style={styles.container}>
+        <View style={styles.nav}>
+          <TouchableOpacity
+            onPress={() => {
+            this
+              .props
+              .navigation
+              .navigate('Messages');
+          }}>
+            <Image
+              source={require('../images/back.png')}
+              name="ios-person"
+              color="#888"
+              size={25}
+              style={{
+              width: 20,
+              height: 20,
+              margin: 10
+            }}/>
+          </TouchableOpacity>
+          <Text
+          style={{
+            color: '#487cd6'
+          }}
+          >{ this.state.matched.name }</Text>
+          {/* This will display her picture in the center zomgz */}
+          {/* <Image
+            source={{uri: this.state.matched.image}}
+            resizeMode="contain"
+            style={{
+            width: 100,
+            height: 100,
+            borderRadius:15,
+          }}/> */}
+        </View>
+        <GiftedChat
+          placeholder='Message...'
+          messages={this.state.messages}
+          onSend={messages => this.onSend(messages)}
+          user={{
+          _id: this.state.userInfo.facebook_auth_id,
+        }}/>
+      </View>
+    );
+  }
   }
 }
 
