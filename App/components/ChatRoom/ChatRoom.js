@@ -137,20 +137,18 @@ class ChatRoom extends Component {
               .navigation
               .navigate('Messages');
           }}>
-            <Image
-              source={require('../images/back.png')}
-              name="ios-person"
-              color="#888"
-              size={25}
-              style={{
-              width: 20,
-              height: 20,
-              margin: 10
-            }}/>
+          <Icon
+          name={'ios-arrow-back'}
+          type={'ionicon'}
+          color={'#03A9F4'}
+          underlayColor={'white'}
+          iconStyle={{ marginRight: 10 }}
+          size={40}
+        />
           </TouchableOpacity>
           <Text
           style={{
-            color: '#487cd6'
+            color: '#03A9F4'
           }}
           >{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
@@ -158,7 +156,7 @@ class ChatRoom extends Component {
           <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
-                  color={'#487cd6'}
+                  color={'#03A9F4'}
                   underlayColor={'white'}
                   
                 />
@@ -194,20 +192,18 @@ class ChatRoom extends Component {
               .navigation
               .navigate('Messages');
           }}>
-            <Image
-              source={require('../images/back.png')}
-              name="ios-person"
-              color="#888"
-              size={25}
-              style={{
-              width: 20,
-              height: 20,
-              margin: 10
-            }}/>
+          <Icon
+          name={'ios-arrow-back'}
+          type={'ionicon'}
+          color={'#03A9F4'}
+          underlayColor={'white'}
+          iconStyle={{ marginRight: 10 }}
+          size={40}
+        />
           </TouchableOpacity>
           <Text
           style={{
-            color: '#487cd6'
+            color: '#03A9F4'
           }}
           >{ this.state.matched.name }</Text>
           {/* This will display her picture in the center zomgz */}

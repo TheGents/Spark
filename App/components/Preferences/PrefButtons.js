@@ -25,7 +25,7 @@ class PrefButtons extends React.Component {
         <Button
           style={styles.buttonStyle8}
           textStyle={styles.textStyle8}
-          onPress={() => this.props.navigation.navigate('Welcome')}
+          onPress={() => this.props.logout()}
         >
           <View style={styles.customViewStyle}>
             <Text style={{ fontFamily: 'Avenir' }}>Logout</Text>
