@@ -36,78 +36,87 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),
-      oldUser: '',
       user: ''
     };
   }
-  componentWillMount() {
-    // console.log('response', this.state.userToken());
-    axios
-      .get(
-        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,photos,birthday,work,gender&access_token=${this.state.userToken()}`
-      )
-      .then(response => {
-        this.setState({ oldUser: response.data });
-        // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
-        // console.log(this.state.user);
-        // console.log(response.data);
-
-        // console.log('Asyncstorage', AsyncStorage.getItem('fb_token').then(function(results){
-        //   console.log(results);
-        //   return results;
-        // }));
-        // console.log('initial shit',response.data.id)
-
-        return axios.get(`http://localhost:3000/getHome/${this.state.oldUser.id}`);
-      })
-      .then(response => {
-        // console.log('sup hoe',response.data[0], this.state.user)
-
-        if (response.data[0] === undefined) {
-          return axios.post('http://localhost:3000/adduser', this.state.oldUser);
-        }
-        return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
-      })
-      .then(response => {
-        this.setState({ user: response.data[0] });
-      });
-    //we call this.setState when we want to update what a component shows
-  }
+ 
   componentDidMount() {
     console.log('componentDidMount');
-    if (this.state.oldUser.photos.data[0].id) {
-          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('picture', res.data.picture);
-            console.log('picture', this.state.user.id);
-            axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-        }
-        if (this.state.oldUser.photos.data[1].id) {
-          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('2', res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          }
-        if (this.state.oldUser.photos.data[2].id) {
-          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log(res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          
-        }
-        if (this.state.oldUser.photos.data[3].id) {
-          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('4', res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          }
+    axios
+    .get(
+      `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture,photos,birthday,work,gender&access_token=${this.state.userToken()}`
+    )
+    .then(response => {
+
+      this.setState({ user: response.data });
+      // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
+      // console.log(this.state.user);
+      // console.log(response.data);
+
+      return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
+    })
+    .then(response => {
+      // console.log('sup hoe',response.data[0], this.state.user)
+
+      if (response.data[0] === undefined) {
+        console.log('componentdidmount in axios.get(getHome)', this.state.user);
+        axios.post('http://localhost:3000/adduser', this.state.user)
+        .then(response => {
+          this.setState({ user: this.state.user });
+        });
+
+        // axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`)
+        // .then(response => {
+        //   this.setState({ user: response.data[0] });
+        // });
+
+        if (this.state.user.photos.data[0].id) {
+          console.log('pictures here');
+              axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
+              .then(res => {
+                console.log('id', this.state.user.id);
+                axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
+              });
+            }
+            if (this.state.user.photos.data[1].id) {
+              axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
+              .then(res => {
+                console.log('2', res.data.picture);
+                axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
+              });
+              }
+            if (this.state.user.photos.data[2].id) {
+              axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
+              .then(res => {
+                console.log(res.data.picture);
+                axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
+              });
+              
+            }
+            if (this.state.user.photos.data[3].id) {
+              axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
+              .then(res => {
+                console.log('4', res.data.picture);
+                axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
+              });
+              }
+              console.log('before post', this.state.user);
+        
+      }
+      else { 
+        axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`)
+    .then(resp => {
+      this.setState({ user: resp.data[0] });
+    });
   }
+  })
+}
+                  // axios.post(`https://graph.facebook.com/${this.state.user
+                  // .facebook_auth_id}/picture?type=large`)
+
 
   render() {
+    console.log('render');
     // if (_.isLength(this.state.user)) {
     //   return <AppLoading />;
     // }

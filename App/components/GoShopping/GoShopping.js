@@ -227,6 +227,7 @@ export default class Shopping extends Component {
   }
 
   render() {
+
     if (!_.max(this.state.cards)) {
       return (
         <View style={styles.container}>
@@ -278,6 +279,7 @@ export default class Shopping extends Component {
         </View>
       );
     }
+
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);

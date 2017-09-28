@@ -142,7 +142,7 @@ class ChatRoom extends Component {
           <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', {userInfo: this.state.userInfo, matched: this.state.matched})}}>
           <Icon
-                  name={'ios-star-half'}
+                  name={'ios-star-outline'}
                   type={'ionicon'}
                   color={'#487cd6'}
                   underlayColor={'white'}
