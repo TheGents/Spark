@@ -151,9 +151,9 @@ export default class Messages extends Component {
             size={40}
           />
           <Image
-            source={require('../images/sparkLogo.png')}
+            source={require('../images/logo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 40, margin: 10, marginLeft: 30 }}
+            style={{ width: 100, height: 40, margin: 10 }}
           />
           <Text style={styles.titleText} />
           {/* <TouchableOpacity 
