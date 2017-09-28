@@ -13,18 +13,22 @@ class Rating extends Component {
             matched: props.navigation.state.params.matched,
             value: 'Rating',
             butt0n: false,
-            kitReturn: false,
         }
     }
     onSelect(value, label) {
         this.setState({ value : value });
         this.setState({ butt0n: true })
         
-      }
-    setRating() {
-      Axios.put('http://localhost:3000/putRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0]}).then((response)=>console.log(response))
-      this.setState({ kitReturn: true })
     }
+    setRating() {
+      Axios.post('http://localhost:3000/postRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0]}).then((response)=>{
+        console.log(response)
+        this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+      })
+    }
+
+  
+
 
     render() {
         console.log(this.state.matched);
@@ -33,7 +37,7 @@ class Rating extends Component {
                 <View  style={styles.nav}>
                     <TouchableOpacity 
                     onPress={() => {
-                    this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
+                    this.props.navigation.navigate('Messages', { user: this.state.userInfo });
                     }}>
                         <Image
                         source={require('../../images/Spark.png')}
@@ -71,12 +75,7 @@ class Rating extends Component {
             {this.state.butt0n && <Button 
             buttonStyle= {{backgroundColor: '#009FF2'}}
             title='Confirm' 
-            onPress={this.setRating()}
-            />}
-            {this.state.kitReturn && <Button 
-            buttonStyle= {{backgroundColor: '#009FF2'}}
-            title='Return' 
-            onPress={this.props.navigation.navigate('Shopping', { user: this.state.userInfo })}
+            onPress={() => this.setRating()}
             />}
             </View>
             </View>
