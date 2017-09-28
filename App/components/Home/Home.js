@@ -22,7 +22,6 @@ import Card from './Card';
 import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
 
-
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
 
@@ -49,35 +48,62 @@ class Home extends Component {
       .then(response => {
         this.setState({ user: response.data });
         if (response.data.photos.data[0].id) {
-          axios.get(`https://graph.facebook.com/${response.data.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('picture', res.data.picture);
-            console.log('picture', this.state.user.id);
-            axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
+          axios
+            .get(
+              `https://graph.facebook.com/${response.data.photos.data[0]
+                .id}?fields=picture&access_token=${this.state.userToken()}`
+            )
+            .then(res => {
+              console.log('picture', res.data.picture);
+              console.log('picture', this.state.user.id);
+              axios.put('http://localhost:3000/putPics', {
+                photo1: res.data.picture,
+                facebook_auth_id: this.state.user.id
+              });
+            });
         }
         if (response.data.photos.data[1].id) {
-          axios.get(`https://graph.facebook.com/${response.data.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('2', res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          }
+          axios
+            .get(
+              `https://graph.facebook.com/${response.data.photos.data[1]
+                .id}?fields=picture&access_token=${this.state.userToken()}`
+            )
+            .then(res => {
+              console.log('2', res.data.picture);
+              axios.put('http://localhost:3000/putPics', {
+                photo2: res.data.picture,
+                facebook_auth_id: this.state.user.id
+              });
+            });
+        }
         if (response.data.photos.data[2].id) {
-          axios.get(`https://graph.facebook.com/${response.data.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log(res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          
+          axios
+            .get(
+              `https://graph.facebook.com/${response.data.photos.data[2]
+                .id}?fields=picture&access_token=${this.state.userToken()}`
+            )
+            .then(res => {
+              console.log(res.data.picture);
+              axios.put('http://localhost:3000/putPics', {
+                photo3: res.data.picture,
+                facebook_auth_id: this.state.user.id
+              });
+            });
         }
         if (response.data.photos.data[3].id) {
-          axios.get(`https://graph.facebook.com/${response.data.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
-          .then(res => {
-            console.log('4', res.data.picture);
-            axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
-          });
-          }
+          axios
+            .get(
+              `https://graph.facebook.com/${response.data.photos.data[3]
+                .id}?fields=picture&access_token=${this.state.userToken()}`
+            )
+            .then(res => {
+              console.log('4', res.data.picture);
+              axios.put('http://localhost:3000/putPics', {
+                photo4: res.data.picture,
+                facebook_auth_id: this.state.user.id
+              });
+            });
+        }
         // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
@@ -92,7 +118,7 @@ class Home extends Component {
       })
       .then(response => {
         // console.log('sup hoe',response.data[0], this.state.user)
-        
+
         if (response.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);
         }
@@ -123,27 +149,24 @@ class Home extends Component {
       <View style={container}>
         <ScrollView>
           <View style={styles.nav}>
-            <Text style={styles.titleText}>
-            </Text>
+            <Text style={styles.titleText} />
             <Image
-                source={require('../images/logo.png')}
-                name="ios-chatboxes-outline"
-                size={25}
-                style={{ width: 100, height: 40, margin: 10 }}
-              />  
-            <TouchableOpacity
+              source={require('../images/logo.png')}
+              name="ios-chatboxes-outline"
+              size={25}
+              style={{ width: 100, height: 40, margin: 10 }}
+            />
+            <Icon
               onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.user });
               }}
-            >
-              <Image
-                source={require('../images/Spark.png')}
-                name="ios-chatboxes-outline"
-                color="#487cd6"
-                size={25}
-                style={{ width: 30, height: 30, margin: 10 }}
-              />
-            </TouchableOpacity>
+              name={'ios-flash'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              iconStyle={{ marginRight: 10 }}
+              size={30}
+            />
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -200,13 +223,11 @@ class Home extends Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  
+
   nav: {
     height: 70,
     flexDirection: 'row',
