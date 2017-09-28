@@ -137,10 +137,10 @@ class Home extends Component {
           <View style={styles.nav}>
             <Text style={styles.titleText} />
             <Image
-              source={require('../images/logo.png')}
+              source={require('../images/sparkLogo.png')}
               name="ios-chatboxes-outline"
               size={25}
-              style={{ width: 100, height: 40, margin: 10 }}
+              style={{ width: 150, height: 40, margin: 10, marginRight: 25 }}
             />
             <Icon
               onPress={() => {
