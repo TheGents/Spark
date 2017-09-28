@@ -21,9 +21,9 @@ class Rating extends Component {
         
     }
     setRating() {
-      Axios.post('http://localhost:3000/postRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0]}).then((response)=>{
+      Axios.post('http://localhost:3000/postRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0], room_id: this.state.matched.chatRoom}).then((response)=>{
         console.log(response)
-        this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+        this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: this.state.matched, showRatingButton: false });
       })
     }
 
