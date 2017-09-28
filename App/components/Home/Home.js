@@ -128,7 +128,6 @@ class Home extends Component {
             <Image
                 source={require('../images/logo.png')}
                 name="ios-chatboxes-outline"
-                color="red"
                 size={25}
                 style={{ width: 100, height: 40, margin: 10 }}
               />  
@@ -140,7 +139,7 @@ class Home extends Component {
               <Image
                 source={require('../images/Spark.png')}
                 name="ios-chatboxes-outline"
-                color="red"
+                color="#487cd6"
                 size={25}
                 style={{ width: 30, height: 30, margin: 10 }}
               />
@@ -174,7 +173,7 @@ class Home extends Component {
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#487cd6'}
                   underlayColor={'white'}
                   reverse
                 />
@@ -188,7 +187,7 @@ class Home extends Component {
                   }}
                   name={'md-settings'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#487cd6'}
                   underlayColor={'white'}
                   reverse
                 />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 
 class ChatRoom extends Component {
@@ -118,21 +119,28 @@ class ChatRoom extends Component {
               .navigate('Messages');
           }}>
             <Image
-              source={require('../images/suit.png')}
+              source={require('../images/back.png')}
               name="ios-person"
               color="#888"
               size={25}
               style={{
-              width: 30,
-              height: 30,
+              width: 20,
+              height: 20,
               margin: 10
             }}/>
           </TouchableOpacity>
           <Text
           style={{
-            color: 'royalblue'
+            color: '#487cd6'
           }}
           >{ this.state.matched.name }</Text>
+          <Icon
+                  name={'ios-star-half'}
+                  type={'ionicon'}
+                  color={'#487cd6'}
+                  underlayColor={'white'}
+                  
+                />
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
@@ -161,7 +169,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   nav: {
-    height: 100,
+    height: 70,
     backgroundColor: 'blue',
     flexDirection: 'row',
     paddingTop: 10,

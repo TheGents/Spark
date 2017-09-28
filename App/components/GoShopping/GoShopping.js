@@ -222,7 +222,7 @@ export default class Shopping extends Component {
           }}
           name={'ios-home'}
           type={'ionicon'}
-          color={'#03A9F4'}
+          color={'#487cd6'}
           underlayColor={'white'}
           
         />
@@ -250,7 +250,7 @@ export default class Shopping extends Component {
                   }}
                   name={'ios-chatboxes'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#487cd6'}
                   underlayColor={'white'}
                   
                 />
