@@ -34,7 +34,7 @@ const image8 = require('../images/dylan.jpeg');
 const image9 = require('../images/franklin.png');
 const image10 = require('../images/mitchell.jpeg');
 const image11 = require('../images/shea.jpeg');
-let convos = [];
+const convos = [];
 // var convos = [
 //   {
 //     id: 1,
@@ -152,7 +152,7 @@ let convos = [];
 //   }
 // ];
 
-var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 export default class Messages extends Component {
   constructor(props) {
@@ -166,32 +166,35 @@ export default class Messages extends Component {
     };
   }
   componentWillMount() {
-    Axios.get(`http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
-    //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.  
-    this.setState({ kitkats: response.data })
-    let matchedUsers = response.data;
-    if(this.state.userInfo.gender === '0') {
-      matchedUsers.map((x)=> {
-        convos.push({
-          id: x.dude_id,
-          name: x.first_name,
-          image: x.facebook_pic,
-          chatRoom: x.id,
-        })
-      })
-    }
-    if(this.state.userInfo.gender === '1') {
-      matchedUsers.map((x)=> {
-        convos.push({
-          id: x.chick_id,
-          name: x.first_name,
-          image: x.facebook_pic,
-          chatRoom: x.id,
-        })
-      })
-    }
-    this.setState({ convoData: ds.cloneWithRows(convos) });
-    })
+    Axios.get(
+      `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
+        .userInfo.gender}`
+    ).then(response => {
+      //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.
+      this.setState({ kitkats: response.data });
+      const matchedUsers = response.data;
+      if (this.state.userInfo.gender === '0') {
+        matchedUsers.map(x => {
+          convos.push({
+            id: x.dude_id,
+            name: x.first_name,
+            image: x.facebook_pic,
+            chatRoom: x.id
+          });
+        });
+      }
+      if (this.state.userInfo.gender === '1') {
+        matchedUsers.map(x => {
+          convos.push({
+            id: x.chick_id,
+            name: x.first_name,
+            image: x.facebook_pic,
+            chatRoom: x.id
+          });
+        });
+      }
+      this.setState({ convoData: ds.cloneWithRows(convos) });
+    });
   }
 
   // eachPic(x) {
@@ -217,18 +220,17 @@ export default class Messages extends Component {
           borderBottomWidth: 1,
           borderColor: '#e3e3e3'
         }}
-      onPress={() => { this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: x }); }}
+        onPress={() => {
+          this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: x });
+        }}
       >
         <Image
-          source={{uri: x.image}}
+          source={{ uri: x.image }}
           style={{ width: 70, height: 70, borderRadius: 35, margin: 10 }}
         />
         <View>
           <Text style={{ fontWeight: '600', color: '#111' }}>{x.name}</Text>
-          <Text
-            numberOfLines={1}
-            style={{ fontWeight: '400', color: '#888', width: 200 }}
-          >
+          <Text numberOfLines={1} style={{ fontWeight: '400', color: '#888', width: 200 }}>
             {/* {x.message} */}
             New match!
           </Text>
@@ -243,23 +245,38 @@ export default class Messages extends Component {
     // console.log('convoData: ',this.state.convoData);
     return (
       <View style={{ flex: 1 }}>
-        <View  style={styles.nav}>
-          <TouchableOpacity 
+        <View style={styles.nav}>
+          {/* <TouchableOpacity
             onPress={() => {
-            this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
+              this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
           >
+            <Image
+              source={require('../images/Spark.png')}
+              name="ios-chatboxes-outline"
+              size={25}
+              style={{ width: 30, height: 30, margin: 10 }}
+            />
+
+            {/* <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} /> */}
+          {/* </TouchableOpacity>  */}
+          <Icon
+            onPress={() => {
+              this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
+            }}
+            name={'ios-flash'}
+            type={'ionicon'}
+            color={'#03A9F4'}
+            underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+            size={30}
+          />
           <Image
-                source={require('../images/Spark.png')}
-                name="ios-chatboxes-outline"
-                size={25}
-                style={{ width: 30, height: 30, margin: 10 }}
-              />
-          {/* <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} /> */}
-          </TouchableOpacity>
-          <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
-          <Text style={styles.titleText}>
-            </Text>
+            source={require('../images/logo.png')}
+            resizeMode="contain"
+            style={{ width: 100, height: 30 }}
+          />
+          <Text style={styles.titleText} />
           {/* <TouchableOpacity 
             onPress={() => { this.props.navigation.navigate('Chat'); }}
           > */}
@@ -267,7 +284,7 @@ export default class Messages extends Component {
           </TouchableOpacity> */}
         </View>
         {/* <ScrollView style={styles.container}> */}
-          {/* <TextInput style={{ height: 50 }} placeholder="Search" />
+        {/* <TextInput style={{ height: 50 }} placeholder="Search" />
           <View style={styles.matches}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
               THESE GENTS NEED SOME BAD BITCHES!
@@ -280,21 +297,18 @@ export default class Messages extends Component {
               renderRow={rowData => this.eachPic(rowData)}
             />
           </View> */}
-          <View style={{ margin: 10 }} onPress={console.log('Chat')}>
-            <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>
-              MATCHES
-            </Text>
-            <ListView
-              enableEmptySections={true}
-              horizontal={false}
-              scrollEnabled={false}
-              showsHorizontalScrollIndicator={false}
-              dataSource={this.state.convoData}
-              pageSize={5}
-              renderRow={rowData => this.convoRender(rowData)}
-            >
-            </ListView>     
-          </View>
+        <View style={{ margin: 10 }} onPress={console.log('Chat')}>
+          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>MATCHES</Text>
+          <ListView
+            enableEmptySections
+            horizontal={false}
+            scrollEnabled={false}
+            showsHorizontalScrollIndicator={false}
+            dataSource={this.state.convoData}
+            pageSize={5}
+            renderRow={rowData => this.convoRender(rowData)}
+          />
+        </View>
         {/* </ScrollView> */}
       </View>
     );
@@ -311,14 +325,14 @@ const styles = StyleSheet.create({
     width: 50
   },
   nav: {
-    height:70,
-    flexDirection:'row',
-    paddingTop:10,
+    height: 70,
+    flexDirection: 'row',
+    paddingTop: 10,
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomWidth:1,
-    borderColor:'rgba(0,0,0,0.1)'
+    borderBottomWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)'
   },
   matches: {
     borderTopWidth: 1,
