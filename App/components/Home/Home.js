@@ -47,7 +47,6 @@ class Home extends Component {
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
-
         this.setState({ oldUser: response.data });
         // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
@@ -174,7 +173,8 @@ class Home extends Component {
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#009FF2'}
+
                   underlayColor={'white'}
                   reverse
                 />
@@ -188,7 +188,7 @@ class Home extends Component {
                   }}
                   name={'md-settings'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#009FF2'}
                   underlayColor={'white'}
                   reverse
                 />

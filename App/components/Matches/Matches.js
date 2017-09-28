@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -20,8 +14,6 @@ import { Icon } from 'react-native-elements';
 import Nav from '../global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
-//import Icon from 'react-native-vector-icons/MaterialIcons';
-//import Iconz from 'react-native-vector-icons/Ionicons';
 
 const image1 = require('../images/eric.jpeg');
 const image2 = require('../images/danish.jpeg');
@@ -34,123 +26,8 @@ const image8 = require('../images/dylan.jpeg');
 const image9 = require('../images/franklin.png');
 const image10 = require('../images/mitchell.jpeg');
 const image11 = require('../images/shea.jpeg');
-const convos = [];
-// var convos = [
-//   {
-//     id: 1,
-//     name: 'Eric',
-//     message: 'Suspendisse accumsan tortor quis turpis.',
-//     image: image1
-//   },
-//   {
-//     id: 2,
-//     name: 'Daanish',
-//     message:
-//       'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
-//     image: image2
-//   },
-//   {
-//     id: 3,
-//     name: 'Christopher',
-//     message: 'Duis bibendum.',
-//     image: image3
-//   },
-//   {
-//     id: 4,
-//     name: 'Terri',
-//     message: 'Praesent blandit.',
-//     image: image4
-//   },
-//   {
-//     id: 5,
-//     name: 'Andy',
-//     message: 'Mauris enim leo, rhoncus sed, vestibulum, cursus id, turpis.',
-//     image: image5
-//   },
-//   {
-//     id: 6,
-//     name: 'Stven',
-//     message: 'Aliquam sit amet diam in magna bibendum imperdiet.',
-//     image: image6
-//   },
-//   {
-//     id: 7,
-//     name: 'David',
-//     message: 'Phasellus sit amet erat.',
-//     image: image7
-//   },
-//   {
-//     id: 8,
-//     name: 'Dylan',
-//     message: 'Vestibulum ante ipsum bilia Curae; Duis faucibus accumsan odio.',
-//     image: image8
-//   },
-//   {
-//     id: 9,
-//     name: 'Frank',
-//     message: 'Aliquam non mauris.',
-//     image: image9
-//   },
-//   {
-//     id: 10,
-//     name: 'Mitchell',
-//     message: 'Nulla ac enim.',
-//     image: image10
-//   }
-// ];
 
-// var newMatches = [
-//   {
-//     id: 1,
-//     first_name: 'David',
-//     image: image7
-//   },
-//   {
-//     id: 2,
-//     first_name: 'Dylan',
-//     image: image8
-//   },
-//   {
-//     id: 3,
-//     first_name: 'Frank',
-//     image: image9
-//   },
-//   {
-//     id: 4,
-//     first_name: 'Mitchell',
-//     image: image10
-//   },
-//   {
-//     id: 5,
-//     first_name: 'Shea',
-//     image: image11
-//   },
-//   {
-//     id: 6,
-//     first_name: 'Andy',
-//     image: image5
-//   },
-//   {
-//     id: 7,
-//     first_name: 'Steven',
-//     image: image6
-//   },
-//   {
-//     id: 8,
-//     first_name: 'David',
-//     image: image7
-//   },
-//   {
-//     id: 9,
-//     first_name: 'Eric',
-//     image: image1
-//   },
-//   {
-//     id: 10,
-//     first_name: 'Shea',
-//     image: image11
-//   }
-// ];
+let convos = [];
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -314,7 +191,6 @@ export default class Messages extends Component {
     );
   }
 }
-//onPress = {() => this.renderNope()}
 
 const styles = StyleSheet.create({
   container: {

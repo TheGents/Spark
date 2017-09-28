@@ -16,6 +16,7 @@ import Setup from './App/components/UserSetup/UserSetup';
 import ChatRoom from './App/components/ChatRoom/ChatRoom';
 import TermsOfService from './App/components/Preferences/TermsOfService';
 import ShowShop from './App/components/GoShopping/ShowShop.js';
+import Rating from './App/components/ChatRoom/RateMeBabe/Rate';
 
 class App extends Component {
   // static navigationOptions = {   header: null };
@@ -57,6 +58,9 @@ class App extends Component {
         },
         TermsOfService: {
           screen: TermsOfService
+        },
+        Rating: {
+          screen: Rating
         }
       },
       {
