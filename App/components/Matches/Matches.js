@@ -16,7 +16,7 @@ import {
   Button,
   View
 } from 'react-native';
-
+import { Icon } from 'react-native-elements';
 import Nav from '../global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   matches: {
     borderTopWidth: 1,
     paddingTop: 15,
-    borderTopColor: '#487cd6',
+    borderTopColor: '#e3e3e3',
     borderBottomWidth: 1,
     paddingBottom: 15,
     borderBottomColor: '#e3e3e3'

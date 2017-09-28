@@ -230,22 +230,25 @@ export default class Shopping extends Component {
     if (!_.max(this.state.cards)) {
       return (
         <View style={styles.container}>
-          <View style={styles.nav}>
-            <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Home');
-              }}
-              name={'ios-home'}
-              type={'ionicon'}
-              color={'#03A9F4'}
-              underlayColor={'white'}
-            />
-            <Image
-              source={require('../images/logo.png')}
-              resizeMode="contain"
-              style={{ width: 100, height: 30 }}
-            />
-            {/* <TouchableOpacity
+
+        <View style={styles.nav}>
+          
+          <Icon
+          onPress={() => {
+            this.props.navigation.navigate('Home');
+          }}
+          name={'ios-home'}
+          type={'ionicon'}
+          color={'#487cd6'}
+          underlayColor={'white'}
+          
+        />
+          <Image
+            source={require('../images/logo.png')}
+            resizeMode="contain"
+            style={{ width: 100, height: 30 }}
+          />
+          {/* <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('Messages', {user: this.state.userInfo});
             }}
@@ -258,6 +261,7 @@ export default class Shopping extends Component {
               style={{ width: 30, height: 30, margin: 10 }}
             />
           </TouchableOpacity> */}
+
             <Icon
               onPress={() => {
                 this.props.navigation.navigate('Messages', { user: this.state.userInfo });
@@ -270,6 +274,7 @@ export default class Shopping extends Component {
           </View>
 
           <AppLoading />
+
         </View>
       );
     }

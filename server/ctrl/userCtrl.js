@@ -16,9 +16,15 @@ module.exports = {
         const db = req.app.get('db');
         let { id, name, birthday, work, gender } = req.body;
         console.log(id, name, birthday, work, gender);
+        function first(val) {
+            val = val.split(' ')[0];
+            return val;
+          }
+          
+          name = first(name);
         // console.log(work[0].position.name, id);
         let newBirthday = new Date(birthday);
-        let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)))
+        let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)));
         // console.log(katkatAge);
         let works = null;
         if(gender === 'male') {
