@@ -8,13 +8,12 @@ import Nav from '../global-widgets/nav';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
-
-var image1 = require('../images/eric.jpeg');
-var image2 = require('../images/danish.jpeg');
-var image3 = require('../images/terri.jpeg');
-var image4 = require('../images/shea.jpeg');
-var image5 = require('../images/seven.jpeg');
-var image6 = require('../images/andy.jpeg');
+const image1 = require('../images/eric.jpeg');
+const image2 = require('../images/danish.jpeg');
+const image3 = require('../images/terri.jpeg');
+const image4 = require('../images/shea.jpeg');
+const image5 = require('../images/seven.jpeg');
+const image6 = require('../images/andy.jpeg');
 
 // let Cards = [
 //   {
@@ -67,36 +66,38 @@ var image6 = require('../images/andy.jpeg');
 //   }
 // ];
 
-
-
-
 export default class Shopping extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       cards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
-      filtered: "check to see if state changes and console log before render",
+      filtered: 'check to see if state changes and console log before render'
     };
   }
   componentDidMount() {
-    Axios.get(`http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`).then((responseD)=> {
-      Axios.get(`http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
-        let filteredx = response.data;
-        this.setState({ filtered: response.data })
-        let swipedPeople = response.data;
-        let person = responseD.data;
-        swipedPeople.map((x)=> {
-          person.map((y,i)=> {
-            if(x === y.facebook_auth_id) {
-              person.splice(i,1);
+    Axios.get(
+      `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
+    ).then(responseD => {
+      Axios.get(
+        `http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
+          .userInfo.gender}`
+      ).then(response => {
+        const filteredx = response.data;
+        this.setState({ filtered: response.data });
+        const swipedPeople = response.data;
+        const person = responseD.data;
+        swipedPeople.map(x => {
+          person.map((y, i) => {
+            if (x === y.facebook_auth_id) {
+              person.splice(i, 1);
             }
-          })
-        })
-        let cardInfo = [];
-        person.map((x)=> { 
-          cardInfo.push({ 
+          });
+        });
+        const cardInfo = [];
+        person.map(x => {
+          cardInfo.push({
             id: x.id,
             first_name: x.first_name,
             age: x.age,
@@ -110,43 +111,60 @@ export default class Shopping extends Component {
             occupation: x.occupation,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id
-          }) 
-        })
-        this.setState({ cards: cardInfo })
-      })
-    })
-    Axios.get(`http://localhost:3000/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}`).then((response)=> {
-      this.setState({ matches: response.data })
-    })
+          });
+        });
+        this.setState({ cards: cardInfo });
+      });
+    });
+    Axios.get(
+      `http://localhost:3000/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
+        .userInfo.gender}`
+    ).then(response => {
+      this.setState({ matches: response.data });
+    });
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
-      let FoundMatch = [];
-      for(let i = 0; i<this.state.matches.length; i++) {
-        if(card.facebook_auth_id === this.state.matches[i]) {
+      const FoundMatch = [];
+      for (let i = 0; i < this.state.matches.length; i++) {
+        if (card.facebook_auth_id === this.state.matches[i]) {
           FoundMatch.push(this.state.matches[i]);
         }
       }
-      if(FoundMatch.length == 0) {
-        Axios.post('http://localhost:3000/postMatch', {gender: this.state.userInfo.gender, matchID: card.facebook_auth_id, ID: this.state.userInfo.facebook_auth_id, SwipeMatch: SwipeMatch }).then((response)=>console.log(response));
+      if (FoundMatch.length == 0) {
+        Axios.post('http://localhost:3000/postMatch', {
+          gender: this.state.userInfo.gender,
+          matchID: card.facebook_auth_id,
+          ID: this.state.userInfo.facebook_auth_id,
+          SwipeMatch
+        }).then(response => console.log(response));
       }
-      if(FoundMatch.length > 0) {
-        Axios.put(`http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`).then((response)=> console.log(response));
+      if (FoundMatch.length > 0) {
+        Axios.put(
+          `http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo
+            .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
+        ).then(response => console.log(response));
       }
-    }
+    };
   }
   componentWillUnmount() {
     this.serverRequest.abort();
   }
- Card(x) {
+  Card(x) {
     return (
       <View style={styles.card}>
-        <TouchableHighlight onPress={() => {
-            this.props.navigation.navigate('ShowShop', {user: x});
-          }}>
-        <Image
-          source={{uri: x.image || 'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'}}
-          resizeMode="contain"
-          style={{ width: 350, height: 350 }}
-        />
+        <TouchableHighlight
+          onPress={() => {
+            this.props.navigation.navigate('ShowShop', { user: x });
+          }}
+        >
+          <Image
+            source={{
+              uri:
+                x.image ||
+                'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'
+            }}
+            resizeMode="contain"
+            style={{ width: 350, height: 350 }}
+          />
         </TouchableHighlight>
         <View
           style={{
@@ -157,10 +175,9 @@ export default class Shopping extends Component {
             justifyContent: 'space-between'
           }}
         >
-          
           {/* <View style={{ flexDirection: 'row' }}> */}
-            
-            {/* <View
+
+          {/* <View
               style={{
                 padding: 13,
                 borderLeftWidth: 1,
@@ -173,21 +190,21 @@ export default class Shopping extends Component {
           {/* </View> */}
         </View>
         <Text>
-              {x.first_name},{' '} {x.age}
-            </Text>
+          {x.first_name},  {x.age}
+        </Text>
         <Text>Work: {x.occupation}</Text>
         <Text>Location: {x.location}</Text>
       </View>
     );
   }
   handleYup(card) {
-    let SwipeMatch = true;
+    const SwipeMatch = true;
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
-    let SwipeMatch = false;
+    const SwipeMatch = false;
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
@@ -200,38 +217,35 @@ export default class Shopping extends Component {
   }
 
   yup() {
-    console.log(this.refs['swiper']);
-    this.refs['swiper']._goToNextCard();
+    console.log(this.refs.swiper);
+    this.refs.swiper._goToNextCard();
   }
 
   nope() {
-    console.log(this.refs['swiper']);
-    this.refs['swiper']._goToNextCard();
-  }   
-
+    console.log(this.refs.swiper);
+    this.refs.swiper._goToNextCard();
+  }
 
   render() {
     if (!_.max(this.state.cards)) {
       return (
         <View style={styles.container}>
-        <View style={styles.nav}>
-          
-          <Icon
-          onPress={() => {
-            this.props.navigation.navigate('Home');
-          }}
-          name={'ios-home'}
-          type={'ionicon'}
-          color={'#03A9F4'}
-          underlayColor={'white'}
-          
-        />
-          <Image
-            source={require('../images/logo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 30 }}
-          />
-          {/* <TouchableOpacity
+          <View style={styles.nav}>
+            <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Home');
+              }}
+              name={'ios-home'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+            />
+            <Image
+              source={require('../images/logo.png')}
+              resizeMode="contain"
+              style={{ width: 100, height: 30 }}
+            />
+            {/* <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('Messages', {user: this.state.userInfo});
             }}
@@ -244,45 +258,42 @@ export default class Shopping extends Component {
               style={{ width: 30, height: 30, margin: 10 }}
             />
           </TouchableOpacity> */}
-          <Icon
-                  onPress={() => {
-                    this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-                  }}
-                  name={'ios-chatboxes'}
-                  type={'ionicon'}
-                  color={'#03A9F4'}
-                  underlayColor={'white'}
-                  
-                />
+            <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+              }}
+              name={'ios-chatboxes'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+            />
+          </View>
+
+          <AppLoading />
         </View>
-        
-        <AppLoading />
-      </View>
-      )
+      );
     }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);
     return (
       <View style={styles.container}>
-      <View style={styles.nav}>
-      
-      <Icon
-      onPress={() => {
-        this.props.navigation.navigate('Home');
-      }}
-      name={'ios-home'}
-      type={'ionicon'}
-      color={'#03A9F4'}
-      underlayColor={'white'}
-      
-    />
-      <Image
-        source={require('../images/logo.png')}
-        resizeMode="contain"
-        style={{ width: 100, height: 30 }}
-      />
-      {/* <TouchableOpacity
+        <View style={styles.nav}>
+          <Icon
+            onPress={() => {
+              this.props.navigation.navigate('Home');
+            }}
+            name={'ios-home'}
+            type={'ionicon'}
+            color={'#03A9F4'}
+            underlayColor={'white'}
+          />
+          <Image
+            source={require('../images/logo.png')}
+            resizeMode="contain"
+            style={{ width: 100, height: 30 }}
+          />
+          {/* <TouchableOpacity
         onPress={() => {
           this.props.navigation.navigate('Messages', {user: this.state.userInfo});
         }}
@@ -295,27 +306,27 @@ export default class Shopping extends Component {
           style={{ width: 30, height: 30, margin: 10 }}
         />
       </TouchableOpacity> */}
-      <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-              }}
-              name={'ios-chatboxes'}
-              type={'ionicon'}
-              color={'#03A9F4'}
-              underlayColor={'white'}
-              
-            />
-    </View>
-    <SwipeCards
-      ref = {'swiper'}
-      cards={this.state.cards}
-      containerStyle = {{  backgroundColor: '#f7f7f7', alignItems:'center', margin:20}}
-      renderCard={(cardData) => this.Card(cardData)}
-      renderNoMoreCards={() => this.noMore()}
-      handleYup={this.handleYup}
-      handleNope={this.handleNope} />
-      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-      {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
+          <Icon
+            onPress={() => {
+              this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+            }}
+            name={'ios-chatboxes'}
+            type={'ionicon'}
+            color={'#03A9F4'}
+            underlayColor={'white'}
+          />
+        </View>
+        <SwipeCards
+          ref={'swiper'}
+          cards={this.state.cards}
+          containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
+          renderCard={cardData => this.Card(cardData)}
+          renderNoMoreCards={() => this.noMore()}
+          handleYup={this.handleYup}
+          handleNope={this.handleNope}
+        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
       <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
       </TouchableOpacity>
       <TouchableOpacity style = {styles.buttonSmall}>
@@ -324,8 +335,8 @@ export default class Shopping extends Component {
       <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
       <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
       </TouchableOpacity> */}
+        </View>
       </View>
-    </View>
     );
   }
 }
@@ -346,7 +357,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   buttons: {
     width: 80,
