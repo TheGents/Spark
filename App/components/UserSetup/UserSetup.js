@@ -125,8 +125,14 @@ class Setup extends Component {
               color={'#03A9F4'}
               underlayColor={'white'}
               iconStyle={{ marginLeft: 10 }}
+              size={30}
             />
-            <Text>Settings</Text>
+            {/* <Text>Settings</Text> */}
+            <Image
+              source={require('../images/logo.png')}
+              resizeMode="contain"
+              style={{ width: 100, height: 40, margin: 10 }}
+            />
             <Text>{'          '}</Text>
           </View>
           <View style={{ flex: 1 }}>
