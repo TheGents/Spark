@@ -165,7 +165,7 @@ class Home extends Component {
               color={'#03A9F4'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
-              size={30}
+              size={40}
             />
           </View>
           <View style={styles.contentContainerStyle}>
@@ -184,8 +184,8 @@ class Home extends Component {
           <HomeCard style={styles.homecardStyling}>
             <Text style={nameStyle}>{this.state.user.first_name}</Text>
             <Text style={ageStyle}>{this.state.user.age}</Text>
-            <Text>Occupation: {this.state.user.occupation}</Text>
-            <Text>Education: {this.state.user.school}</Text>
+            <Text>{this.state.user.occupation}</Text>
+            <Text>{this.state.user.school}</Text>
           </HomeCard>
           <View style={styles.buttonContainer}>
             <TouchableHighlight>
@@ -196,7 +196,7 @@ class Home extends Component {
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
-                  color={'#487cd6'}
+                  color={'#03A9F4'}
                   underlayColor={'white'}
                   reverse
                 />
@@ -210,7 +210,7 @@ class Home extends Component {
                   }}
                   name={'md-settings'}
                   type={'ionicon'}
-                  color={'#487cd6'}
+                  color={'#03A9F4'}
                   underlayColor={'white'}
                   reverse
                 />
@@ -256,12 +256,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    // flex: 1,
-    // alignItems: 'flex-end',
-    // position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30
+    marginTop: 30,
   },
   titleText: {
     width: 50

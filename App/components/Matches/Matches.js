@@ -269,12 +269,12 @@ export default class Messages extends Component {
             color={'#03A9F4'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
-            size={30}
+            size={40}
           />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 30 }}
+            style={{ width: 100, height: 40, margin: 10 }}
           />
           <Text style={styles.titleText} />
           {/* <TouchableOpacity 
