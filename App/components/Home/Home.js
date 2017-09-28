@@ -180,7 +180,7 @@ class Home extends Component {
                 />
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style={styles.buttonParent}>
+            <TouchableHighlight>
               <View>
                 <Icon
                   onPress={() => {

@@ -22,17 +22,18 @@ class Preferences extends Component {
             color={'#03A9F4'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
-            size={30}
           />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 40, margin: 10 }}
+            style={{ width: 100, height: 30 }}
           />
           <Text>{'      '}</Text>
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
-        <PrefSliders />
+        <View style={styles.sliderStyles}>
+          <PrefSliders />
+        </View>
         <PrefButtons />
         <View style={styles.privacyAndTerms}>
           <View style={styles.borderPrivacy}>
@@ -92,8 +93,14 @@ const styles = StyleSheet.create({
   textLegalese: {
     color: 'gray',
     marginLeft: 10,
-    marginTop: 5,
-    marginBottom: 5
+    marginTop: 10,
+    height: 30
+  },
+  sliderStyles: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: '10%'
   }
 });
 

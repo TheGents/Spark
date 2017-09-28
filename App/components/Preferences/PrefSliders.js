@@ -7,7 +7,7 @@ import MultiSlider from './SliderJS/MultiSlider';
 class PrefSliders extends React.Component {
   state = {
     sliderOneChanging: false,
-    sliderOneValue: [5],
+    sliderOneValue: [1],
     multiSliderValue: [18, 60]
   };
 
@@ -105,12 +105,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
-    // backgroundColor: 'orange'
   },
   sliders: {
     marginTop: 10,
     marginBottom: 10
-    // width: 280,
   },
   text: {
     alignSelf: 'flex-start',
