@@ -190,7 +190,7 @@ export default class Shopping extends Component {
           {/* </View> */}
         </View>
         <Text>
-          {x.first_name},  {x.age}
+          {x.first_name}, {x.age}
         </Text>
         <Text>Work: {x.occupation}</Text>
         <Text>Location: {x.location}</Text>
@@ -227,57 +227,59 @@ export default class Shopping extends Component {
   }
 
   render() {
-    // if (!_.max(this.state.cards)) {
-    //   return (
-    //     <View style={styles.container}>
 
-    //     <View style={styles.nav}>
-          
-    //       <Icon
-    //       onPress={() => {
-    //         this.props.navigation.navigate('Home');
-    //       }}
-    //       name={'ios-home'}
-    //       type={'ionicon'}
-    //       color={'#487cd6'}
-    //       underlayColor={'white'}
-          
-    //     />
-    //       <Image
-    //         source={require('../images/logo.png')}
-    //         resizeMode="contain"
-    //         style={{ width: 100, height: 30 }}
-    //       />
-    //       {/* <TouchableOpacity
-    //         onPress={() => {
-    //           this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-    //         }}
-    //       >
-    //         <Image
-    //           source={require('../images/suit.png')}
-    //           name="ios-chatboxes-outline"
-    //           color="#555"
-    //           size={25}
-    //           style={{ width: 30, height: 30, margin: 10 }}
-    //         />
-    //       </TouchableOpacity> */}
+    if (!_.max(this.state.cards)) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.nav}>
+            <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Home');
+              }}
+              name={'ios-home'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              iconStyle={{ marginLeft: 10 }}
+              size={30}
+            />
+            <Image
+              source={require('../images/logo.png')}
+              resizeMode="contain"
+              style={{ width: 100, height: 40, margin: 10 }}
+            />
+            {/* <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+            }}
+          >
+            <Image
+              source={require('../images/suit.png')}
+              name="ios-chatboxes-outline"
+              color="#555"
+              size={25}
+              style={{ width: 30, height: 30, margin: 10 }}
+            />
+          </TouchableOpacity> */}
 
-    //         <Icon
-    //           onPress={() => {
-    //             this.props.navigation.navigate('Messages', { user: this.state.userInfo });
-    //           }}
-    //           name={'ios-chatboxes'}
-    //           type={'ionicon'}
-    //           color={'#03A9F4'}
-    //           underlayColor={'white'}
-    //         />
-    //       </View>
+            <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+              }}
+              name={'ios-chatboxes'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              iconStyle={{ marginRight: 10 }}
+              size={30}
+            />
+          </View>
 
-    //       <AppLoading />
+          <AppLoading />
+        </View>
+      );
+    }
 
-    //     </View>
-    //   );
-    // }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);
@@ -292,11 +294,13 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#03A9F4'}
             underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+            size={30}
           />
           <Image
             source={require('../images/logo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 30 }}
+            style={{ width: 100, height: 40, margin: 10 }}
           />
           {/* <TouchableOpacity
         onPress={() => {
@@ -319,6 +323,8 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#03A9F4'}
             underlayColor={'white'}
+            iconStyle={{ marginRight: 10 }}
+            size={30}
           />
         </View>
         <SwipeCards
@@ -351,7 +357,7 @@ export default class Shopping extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    // padding: 10,
     backgroundColor: '#f7f7f7'
   },
   nav: {
@@ -362,7 +368,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
+    borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
     width: 80,
