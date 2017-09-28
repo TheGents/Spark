@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableNativeFeedback,
-  Platform
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
 import Button from 'apsl-react-native-button';
 
 console.ignoredYellowBox = ['Remote debugger'];
@@ -19,7 +13,7 @@ class PrefButtons extends React.Component {
   }
 
   render() {
-    var onPressProps;
+    let onPressProps;
     if (this.state.isOnPressing) {
       onPressProps = styles.buttonStylePressing;
     } else {
@@ -43,9 +37,7 @@ class PrefButtons extends React.Component {
           onPress={() => console.log('Delete Account')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ textAlign: 'center', fontFamily: 'Avenir' }}>
-              Delete Account
-            </Text>
+            <Text style={{ textAlign: 'center', fontFamily: 'Avenir' }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -63,20 +55,19 @@ const styles = StyleSheet.create({
     bottom: '10%',
     left: 0,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
     // backgroundColor: 'black'
   },
   buttonStyle8: {
-    backgroundColor: 'white',
+    backgroundColor: '#03A9F4',
     borderColor: '#333',
-    borderWidth: 2,
     borderRadius: 22
   },
   textStyle8: {
     width: 200,
     fontFamily: 'Avenir Next',
     fontWeight: '500',
-    color: '#333'
+    color: 'white'
   },
   customViewStyle: {
     width: 120,
