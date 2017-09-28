@@ -22,8 +22,10 @@ class Rating extends Component {
     }
     setRating() {
       Axios.post('http://localhost:3000/postRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0], room_id: this.state.matched.chatRoom}).then((response)=>{
-        console.log(response)
-        this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: this.state.matched, showRatingButton: false });
+        let newMatched = this.state.matched;
+        newMatched.rated = 'true';
+        this.setState({ matched: newMatched })
+        this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: newMatched });
       })
     }
 
@@ -31,7 +33,15 @@ class Rating extends Component {
 
 
     render() {
-        console.log(this.state.matched);
+        console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
+        // console.log('hey man this is it',this.state.matched);
         return (
                 <View style={{ flex: 1 }}>
                 <View  style={styles.nav}>

@@ -10,11 +10,13 @@ class ChatRoom extends Component {
     super(props);
     this.state = {
       messages: [],
+      all: props.navigation.state.params,
       roomID: props.navigation.state.params.match.chatRoom,
       userInfo: props.navigation.state.params.user,
       matched: props.navigation.state.params.match,
       kitkats: 'This is a test to console log the return from axios',
       showRatingButton: true,
+      fucker: 'hi',
     };
   }
  
@@ -22,6 +24,14 @@ class ChatRoom extends Component {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })
     this.setState({ matched: nextProps.navigation.state.params.match })
     this.setState({ messages: [] })
+    if(this.state.matched.rated == 'true') {
+      this.setState({ showRatingButton: false })
+      this.setState({ fucker: true })
+    }
+    else {
+      this.setState({ showRatingButton: true })
+      this.setState({ fucker: false })
+    }
     Axios.get(`http://localhost:3000/getmessage/${nextProps.navigation.state.params.match.chatRoom}`).then((response)=> {
       this.setState({ kitkats: response.data });
       let katkat = response.data;
@@ -46,12 +56,6 @@ class ChatRoom extends Component {
       })
       messageDB = messageDB.reverse();
       this.setState({ messages: messageDB});
-      if(this.state.matched.rated == 'true') {
-        this.setState({ showRatingButton: false })
-      }
-      else {
-        this.setState({ showRatingButton: true })
-      }
     })
   }
 
@@ -121,7 +125,13 @@ class ChatRoom extends Component {
   render() {
     // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
     // console.log('This is userInfo',this.state.userInfo);
-    console.log('This is matchedInfo',this.state.matched);
+    // console.log('This is matchedInfo',this.state.matched);
+    // console.log('this is rating passback from rate', this.state.checkRating)
+    console.log('allllllll', this.state.all)
+    console.log('button', this.state.showRatingButton)
+    console.log('fudge',this.state.fucker)
+    console.log('wow', this.state.matched.rated == 'true');
+    
     // console.log('This is getRequest',this.state.kitkats);
     //We are rendering two if statements.
     //To make this more clear, should make this into a separate component and then render it here.
