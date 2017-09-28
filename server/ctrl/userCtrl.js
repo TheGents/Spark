@@ -12,6 +12,12 @@ module.exports = {
             db.post_match_his([matchID, ID, SwipeMatch]).then(()=>res.status('200').send()).catch(()=> res.status.send('404'));
         }
     },
+    post_rate: (req,res) => {
+        const db = req.app.get('db');
+        const { chick_id, dude_id, rating } = req.body;
+        console.log(chick_id, dude_id, rating);
+        db.post_rate([chick_id, dude_id, rating]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+    },
     post_user: (req,res) => {
         const db = req.app.get('db');
         let { id, name, birthday, work, gender, picture } = req.body;
@@ -126,7 +132,7 @@ module.exports = {
         let { room_id } = req.params;
         console.log(room_id);
         db.get_message([room_id]).then((response)=>{
-            console.log(response);
+            console.log('this is response for get_message', response);
             res.status('200').send(response)}).catch((error)=>res.status('404').send(error));
     },
     put_user_profile: (req,res) => {
@@ -171,12 +177,6 @@ module.exports = {
         if(gender === '0') {
             db.put_match_hers([matchedID, id, SwipeMatch]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
         }
-    },
-    put_rate: (req,res) => {
-        const db = req.app.get('db');
-        const { chick_id, dude_id, rating } = req.body;
-        console.log(chick_id, dude_id, rating);
-        db.put_rate([chick_id, dude_id, rating]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
     },
     delete_match: (req,res) => {
         const db = req.app.get('db');

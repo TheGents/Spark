@@ -28,6 +28,7 @@ app.use(session({
 app.post('/postMatch', userCtrl.post_match);
 app.post('/addUser', userCtrl.post_user);
 app.post('/postmessage', userCtrl.post_message);
+app.post('/postRate', userCtrl.post_rate);
 
 app.get('/getHome/:id', userCtrl.get_user_profile);
 app.get('/getPreferences', userCtrl.get_user_preferences);
@@ -42,7 +43,6 @@ app.put('/putHome', userCtrl.put_user_profile);
 app.put('/putBio', userCtrl.put_user_bio);
 app.put('/putPreferences', userCtrl.put_user_preferences);
 app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
-app.put('/putRate', userCtrl.put_rate);
 
 app.delete('/deleteMatch', userCtrl.delete_match);
 app.delete('/deleteUserAccount', userCtrl.delete_user_account);
