@@ -13,7 +13,8 @@ class ChatRoom extends Component {
       roomID: props.navigation.state.params.match.chatRoom,
       userInfo: props.navigation.state.params.user,
       matched: props.navigation.state.params.match,
-      kitkats: 'This is a test to console log the return from axios'
+      kitkats: 'This is a test to console log the return from axios',
+      showRatingButton: true,
     };
   }
  
@@ -45,6 +46,12 @@ class ChatRoom extends Component {
       })
       messageDB = messageDB.reverse();
       this.setState({ messages: messageDB});
+      if(this.state.matched.rated == 'true') {
+        this.setState({ showRatingButton: false })
+      }
+      else {
+        this.setState({ showRatingButton: true })
+      }
     })
   }
 
@@ -74,6 +81,12 @@ class ChatRoom extends Component {
       })
       messageDB = messageDB.reverse();
       this.setState({ messages: messageDB});
+      if(this.state.matched.rated == 'true') {
+        this.setState({ showRatingButton: false })
+      }
+      else {
+        this.setState({ showRatingButton: true })
+      }
     })
     
     
@@ -106,6 +119,7 @@ class ChatRoom extends Component {
   }
 
   render() {
+    // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
     // console.log('This is userInfo',this.state.userInfo);
     console.log('This is matchedInfo',this.state.matched);
     // console.log('This is getRequest',this.state.kitkats);
@@ -139,16 +153,16 @@ class ChatRoom extends Component {
             color: '#487cd6'
           }}
           >{ this.state.matched.name }</Text>
-          <TouchableOpacity
+          {this.state.showRatingButton && <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', {userInfo: this.state.userInfo, matched: this.state.matched})}}>
           <Icon
-                  name={'ios-star-outline'}
+                  name={'ios-star-half'}
                   type={'ionicon'}
                   color={'#487cd6'}
                   underlayColor={'white'}
                   
                 />
-          </TouchableOpacity>
+          </TouchableOpacity>}
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}

@@ -39,7 +39,7 @@ export default class Messages extends Component {
       // dataSource: ds.cloneWithRows(newMatches),
       convoData: ds.cloneWithRows(convos),
       kitkats: true,
-      userInfo: props.navigation.state.params.user
+      userInfo: props.navigation.state.params.user,
     };
   }
   componentWillMount() {
@@ -56,7 +56,8 @@ export default class Messages extends Component {
             id: x.dude_id,
             name: x.first_name,
             image: x.facebook_pic,
-            chatRoom: x.id
+            chatRoom: x.id,
+            rated: x.rated
           });
         });
       }
@@ -66,7 +67,8 @@ export default class Messages extends Component {
             id: x.chick_id,
             name: x.first_name,
             image: x.facebook_pic,
-            chatRoom: x.id
+            chatRoom: x.id,
+            rated: x.rated
           });
         });
       }
@@ -118,7 +120,7 @@ export default class Messages extends Component {
 
   render() {
     // console.log('userInfo: ',this.state.userInfo);
-    // console.log('kitkats: ',this.state.kitkats);
+    console.log('kitkats: ',this.state.kitkats);
     // console.log('convoData: ',this.state.convoData);
     return (
       <View style={{ flex: 1 }}>

@@ -14,9 +14,14 @@ module.exports = {
     },
     post_rate: (req,res) => {
         const db = req.app.get('db');
-        const { chick_id, dude_id, rating } = req.body;
-        console.log(chick_id, dude_id, rating);
-        db.post_rate([chick_id, dude_id, rating]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+        const { chick_id, dude_id, rating, room_id } = req.body;
+        // console.log(chick_id, dude_id, rating, room_id);
+        db.post_rate([chick_id, dude_id, rating]).then((response)=>{
+            console.log('something');
+            db.put_rating(['true', room_id]).then((response)=>console.log('this is it man',response));
+            res.status('200').send(response)
+        })
+        .catch((error)=>res.status('404').send(error));
     },
     post_user: (req,res) => {
         const db = req.app.get('db');
