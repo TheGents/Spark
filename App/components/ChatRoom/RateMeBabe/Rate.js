@@ -12,11 +12,16 @@ class Rating extends Component {
             userInfo: props.navigation.state.params.userInfo,
             matched: props.navigation.state.params.matched,
             value: 'Rating',
+            butt0n: false,
         }
     }
     onSelect(value, label) {
-        this.setState({value : value});
+        this.setState({ value : value });
+        this.setState({ butt0n: true })
       }
+    setRating() {
+      Axios.put('http://localhost:3000/putRate', {chick_id : this.state.userInfo.facebook_id, dude_id : this.state.matched.id, rating: this.state.value}).then((response)=>console.log(response))
+    }
 
     render() {
         console.log(this.state.matched);
@@ -60,10 +65,10 @@ class Rating extends Component {
               <Option value = { '🌟🌟🌟🌟' } >4 - Great! </Option>
               <Option value = { '🌟🌟🌟🌟🌟' } >5 - Soulmate </Option>
             </Select>
-            <Button 
+            {this.state.butt0n && <Button 
             buttonStyle= {{backgroundColor: '#009FF2'}}
             title='Confirm' 
-            />
+            />}
             </View>
             </View>
         )

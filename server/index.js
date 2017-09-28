@@ -42,6 +42,7 @@ app.put('/putHome', userCtrl.put_user_profile);
 app.put('/putBio', userCtrl.put_user_bio);
 app.put('/putPreferences', userCtrl.put_user_preferences);
 app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
+app.put('/putRate', userCtrl.put_rating)
 
 app.delete('/deleteMatch', userCtrl.delete_match);
 app.delete('/deleteUserAccount', userCtrl.delete_user_account);

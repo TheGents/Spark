@@ -171,6 +171,11 @@ module.exports = {
             db.put_match_hers([matchedID, id, SwipeMatch]).then((data)=>res.status('200').send(data)).catch(()=> res.status.send('404'));
         }
     },
+    put_rate: (req,res) => {
+        const db = req.app.get('db')
+        const { chick_id, dude_id, rating } = req.body;
+        db.put_rate([chick_id, dude_id, rating]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
+    },
     delete_match: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;
