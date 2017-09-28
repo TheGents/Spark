@@ -12,10 +12,12 @@ import {
   Easing,
   ScrollView,
   Button,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  TextInput
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import axios from 'axios';
 import ITEMS from './data';
 import SetupImage from './SetupImages.js';
@@ -143,6 +145,9 @@ class Setup extends Component {
               style={styles.bioStyle}
             />
           </View>
+          <View style={styles.massiveHeight}>
+            <Text>{''}</Text>
+          </View>
         </ScrollView>
       </View>
     );
@@ -168,8 +173,10 @@ const styles = {
     marginTop: 180
   },
   scrollViewStyle: {
-    flex: 1,
-    height: 400
+    flex: 1
+  },
+  massiveHeight: {
+    height: 260
   }
 };
 

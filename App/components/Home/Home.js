@@ -41,7 +41,7 @@ class Home extends Component {
     };
   }
   componentWillMount() {
-    console.log('response', this.state.userToken());
+    // console.log('response', this.state.userToken());
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,photos,birthday,work,gender&access_token=${this.state.userToken()}`
