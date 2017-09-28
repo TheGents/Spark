@@ -5,15 +5,17 @@ const HomeCard = props => <View style={styles.containerStyle}>{props.children}</
 
 const styles = StyleSheet.create({
   containerStyle: {
-    borderWidth: 1,
-    borderRadius: 6,
-    borderColor: '#ddd',
-    borderBottomWidth: 1,
+    // borderWidth: 1,
+    // borderRadius: 6,
+    // borderColor: '#ddd',
+    // borderBottomWidth: 1,
     elevation: 1,
     marginLeft: 25,
     marginRight: 25,
     padding: 2,
-    marginBottom: 30
+    marginBottom: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

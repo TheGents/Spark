@@ -22,7 +22,6 @@ import Card from './Card';
 import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
 
-
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
 
@@ -37,6 +36,7 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),
+      oldUser: '',
       user: ''
     };
   }
@@ -47,39 +47,7 @@ class Home extends Component {
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
-        this.setState({ user: response.data });
-        // if(response.data.photos.data) {
-        // if (response.data.photos.data[0].id) {
-        //   axios.get(`https://graph.facebook.com/${response.data.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
-        //   .then(res => {
-        //     console.log('picture', res.data.picture);
-        //     console.log('picture', this.state.user.id);
-        //     axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
-        //   });
-        // }
-        // if (response.data.photos.data[1].id) {
-        //   axios.get(`https://graph.facebook.com/${response.data.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
-        //   .then(res => {
-        //     console.log('2', res.data.picture);
-        //     axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
-        //   });
-        //   }
-        // if (response.data.photos.data[2].id) {
-        //   axios.get(`https://graph.facebook.com/${response.data.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
-        //   .then(res => {
-        //     console.log(res.data.picture);
-        //     axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
-        //   });
-          
-        // }
-        // if (response.data.photos.data[3].id) {
-        //   axios.get(`https://graph.facebook.com/${response.data.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
-        //   .then(res => {
-        //     console.log('4', res.data.picture);
-        //     axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
-        //   });
-        //   }
-        // }
+        this.setState({ oldUser: response.data });
         // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
@@ -90,13 +58,13 @@ class Home extends Component {
         // }));
         // console.log('initial shit',response.data.id)
 
-        return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
+        return axios.get(`http://localhost:3000/getHome/${this.state.oldUser.id}`);
       })
       .then(response => {
         // console.log('sup hoe',response.data[0], this.state.user)
-        
+
         if (response.data[0] === undefined) {
-          return axios.post('http://localhost:3000/adduser', this.state.user);
+          return axios.post('http://localhost:3000/adduser', this.state.oldUser);
         }
         return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
       })
@@ -104,6 +72,39 @@ class Home extends Component {
         this.setState({ user: response.data[0] });
       });
     //we call this.setState when we want to update what a component shows
+  }
+  componentDidMount() {
+    console.log('componentDidMount');
+    if (this.state.oldUser.photos.data[0].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('picture', res.data.picture);
+            console.log('picture', this.state.user.id);
+            axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+        }
+        if (this.state.oldUser.photos.data[1].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('2', res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          }
+        if (this.state.oldUser.photos.data[2].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log(res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          
+        }
+        if (this.state.oldUser.photos.data[3].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('4', res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          }
   }
 
   render() {
@@ -125,27 +126,24 @@ class Home extends Component {
       <View style={container}>
         <ScrollView>
           <View style={styles.nav}>
-            <Text style={styles.titleText}>
-            </Text>
+            <Text style={styles.titleText} />
             <Image
-                source={require('../images/logo.png')}
-                name="ios-chatboxes-outline"
-                size={25}
-                style={{ width: 100, height: 40, margin: 10 }}
-              />  
-            <TouchableOpacity
+              source={require('../images/logo.png')}
+              name="ios-chatboxes-outline"
+              size={25}
+              style={{ width: 100, height: 40, margin: 10 }}
+            />
+            <Icon
               onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.user });
               }}
-            >
-              <Image
-                source={require('../images/Spark.png')}
-                name="ios-chatboxes-outline"
-                color="#487cd6"
-                size={25}
-                style={{ width: 30, height: 30, margin: 10 }}
-              />
-            </TouchableOpacity>
+              name={'ios-flash'}
+              type={'ionicon'}
+              color={'#03A9F4'}
+              underlayColor={'white'}
+              iconStyle={{ marginRight: 10 }}
+              size={40}
+            />
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -163,8 +161,8 @@ class Home extends Component {
           <HomeCard style={styles.homecardStyling}>
             <Text style={nameStyle}>{this.state.user.first_name}</Text>
             <Text style={ageStyle}>{this.state.user.age}</Text>
-            <Text>Occupation: {this.state.user.occupation}</Text>
-            <Text>Education: {this.state.user.school}</Text>
+            <Text>{this.state.user.occupation}</Text>
+            <Text>{this.state.user.school}</Text>
           </HomeCard>
           <View style={styles.buttonContainer}>
             <TouchableHighlight>
@@ -176,6 +174,7 @@ class Home extends Component {
                   name={'ios-create'}
                   type={'ionicon'}
                   color={'#009FF2'}
+
                   underlayColor={'white'}
                   reverse
                 />
@@ -202,13 +201,11 @@ class Home extends Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  
+
   nav: {
     height: 70,
     flexDirection: 'row',
@@ -237,12 +234,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    // flex: 1,
-    // alignItems: 'flex-end',
-    // position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30
+    marginTop: 30,
   },
   titleText: {
     width: 50
