@@ -36,6 +36,7 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),
+      oldUser: '',
       user: ''
     };
   }
@@ -46,64 +47,8 @@ class Home extends Component {
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
-        this.setState({ user: response.data });
-        if (response.data.photos.data[0].id) {
-          axios
-            .get(
-              `https://graph.facebook.com/${response.data.photos.data[0]
-                .id}?fields=picture&access_token=${this.state.userToken()}`
-            )
-            .then(res => {
-              console.log('picture', res.data.picture);
-              console.log('picture', this.state.user.id);
-              axios.put('http://localhost:3000/putPics', {
-                photo1: res.data.picture,
-                facebook_auth_id: this.state.user.id
-              });
-            });
-        }
-        if (response.data.photos.data[1].id) {
-          axios
-            .get(
-              `https://graph.facebook.com/${response.data.photos.data[1]
-                .id}?fields=picture&access_token=${this.state.userToken()}`
-            )
-            .then(res => {
-              console.log('2', res.data.picture);
-              axios.put('http://localhost:3000/putPics', {
-                photo2: res.data.picture,
-                facebook_auth_id: this.state.user.id
-              });
-            });
-        }
-        if (response.data.photos.data[2].id) {
-          axios
-            .get(
-              `https://graph.facebook.com/${response.data.photos.data[2]
-                .id}?fields=picture&access_token=${this.state.userToken()}`
-            )
-            .then(res => {
-              console.log(res.data.picture);
-              axios.put('http://localhost:3000/putPics', {
-                photo3: res.data.picture,
-                facebook_auth_id: this.state.user.id
-              });
-            });
-        }
-        if (response.data.photos.data[3].id) {
-          axios
-            .get(
-              `https://graph.facebook.com/${response.data.photos.data[3]
-                .id}?fields=picture&access_token=${this.state.userToken()}`
-            )
-            .then(res => {
-              console.log('4', res.data.picture);
-              axios.put('http://localhost:3000/putPics', {
-                photo4: res.data.picture,
-                facebook_auth_id: this.state.user.id
-              });
-            });
-        }
+
+        this.setState({ oldUser: response.data });
         // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
         // console.log(this.state.user);
         // console.log(response.data);
@@ -114,13 +59,13 @@ class Home extends Component {
         // }));
         // console.log('initial shit',response.data.id)
 
-        return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
+        return axios.get(`http://localhost:3000/getHome/${this.state.oldUser.id}`);
       })
       .then(response => {
         // console.log('sup hoe',response.data[0], this.state.user)
 
         if (response.data[0] === undefined) {
-          return axios.post('http://localhost:3000/adduser', this.state.user);
+          return axios.post('http://localhost:3000/adduser', this.state.oldUser);
         }
         return axios.get(`http://localhost:3000/getHome/${response.data[0].facebook_auth_id}`);
       })
@@ -128,6 +73,39 @@ class Home extends Component {
         this.setState({ user: response.data[0] });
       });
     //we call this.setState when we want to update what a component shows
+  }
+  componentDidMount() {
+    console.log('componentDidMount');
+    if (this.state.oldUser.photos.data[0].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[0].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('picture', res.data.picture);
+            console.log('picture', this.state.user.id);
+            axios.put('http://localhost:3000/putPics', { photo1: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+        }
+        if (this.state.oldUser.photos.data[1].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[1].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('2', res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo2: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          }
+        if (this.state.oldUser.photos.data[2].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[2].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log(res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo3: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          
+        }
+        if (this.state.oldUser.photos.data[3].id) {
+          axios.get(`https://graph.facebook.com/${this.state.oldUser.photos.data[3].id}?fields=picture&access_token=${this.state.userToken()}`)
+          .then(res => {
+            console.log('4', res.data.picture);
+            axios.put('http://localhost:3000/putPics', { photo4: res.data.picture, facebook_auth_id: this.state.user.id }); 
+          });
+          }
   }
 
   render() {
