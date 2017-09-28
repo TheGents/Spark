@@ -80,6 +80,7 @@ export default class Shopping extends Component {
     Axios.get(
       `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
+      console.log(responseD);
       Axios.get(
         `http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
@@ -229,6 +230,7 @@ export default class Shopping extends Component {
   render() {
 
     if (!_.max(this.state.cards)) {
+      console.log(this.state.cards);
       return (
         <View style={styles.container}>
           <View style={styles.nav}>
@@ -244,7 +246,7 @@ export default class Shopping extends Component {
               size={30}
             />
             <Image
-              source={require('../images/logo.png')}
+              source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               style={{ width: 100, height: 40, margin: 10 }}
             />

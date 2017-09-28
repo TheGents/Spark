@@ -129,7 +129,7 @@ class Setup extends Component {
             />
             {/* <Text>Settings</Text> */}
             <Image
-              source={require('../images/logo.png')}
+              source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               style={{ width: 100, height: 40, margin: 10 }}
             />
