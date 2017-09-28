@@ -13,14 +13,17 @@ class Rating extends Component {
             matched: props.navigation.state.params.matched,
             value: 'Rating',
             butt0n: false,
+            kitReturn: false,
         }
     }
     onSelect(value, label) {
         this.setState({ value : value });
         this.setState({ butt0n: true })
+        
       }
     setRating() {
-      Axios.put('http://localhost:3000/putRate', {chick_id : this.state.userInfo.facebook_id, dude_id : this.state.matched.id, rating: this.state.value}).then((response)=>console.log(response))
+      Axios.put('http://localhost:3000/putRate', {chick_id : this.state.userInfo.facebook_auth_id, dude_id : this.state.matched.id, rating: this.state.value[0]}).then((response)=>console.log(response))
+      this.setState({ kitReturn: true })
     }
 
     render() {
@@ -59,15 +62,21 @@ class Rating extends Component {
             backdropStyle  = {{backgroundColor : "#009FF2"}}
             optionListStyle = {{backgroundColor : "#F5FCFF"}}
             >
-              <Option value = { '🌟' } >1 - Jackass </Option>
-              <Option value = { '🌟🌟' } >2 - Intolerable </Option>
-              <Option value = { '🌟🌟🌟' } >3 - Average </Option>
-              <Option value = { '🌟🌟🌟🌟' } >4 - Great! </Option>
-              <Option value = { '🌟🌟🌟🌟🌟' } >5 - Soulmate </Option>
+              <Option value = { [1,'🌟'] } >1 - Jackass </Option>
+              <Option value = { [2,'🌟🌟'] } >2 - Intolerable </Option>
+              <Option value = { [3,'🌟🌟🌟'] } >3 - Average </Option>
+              <Option value = { [4,'🌟🌟🌟🌟'] } >4 - Great! </Option>
+              <Option value = { [5,'🌟🌟🌟🌟🌟'] } >5 - Soulmate </Option>
             </Select>
             {this.state.butt0n && <Button 
             buttonStyle= {{backgroundColor: '#009FF2'}}
             title='Confirm' 
+            onPress={this.setRating()}
+            />}
+            {this.state.kitReturn && <Button 
+            buttonStyle= {{backgroundColor: '#009FF2'}}
+            title='Return' 
+            onPress={this.props.navigation.navigate('Shopping', { user: this.state.userInfo })}
             />}
             </View>
             </View>
