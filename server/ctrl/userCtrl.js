@@ -129,7 +129,7 @@ module.exports = {
     },
     put_user_pics: (req,res) => {
                 const db = req.app.get('db');
-                const { facebook_auth_id , photo1, photo2, photo3, photo4 } = req.body;
+                const { facebook_auth_id, photo1, photo2, photo3, photo4 } = req.body;
                 console.log(facebook_auth_id, photo1);
                 if(photo1){
                     db.put_user_pics([facebook_auth_id , photo1]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
