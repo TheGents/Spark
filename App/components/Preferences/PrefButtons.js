@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'black'
   },
   buttonStyle8: {
-    backgroundColor: '#03A9F4',
+    backgroundColor: 'white',
     borderColor: '#333',
     borderRadius: 22
   },
