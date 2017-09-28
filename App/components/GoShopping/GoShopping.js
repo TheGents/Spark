@@ -227,57 +227,57 @@ export default class Shopping extends Component {
   }
 
   render() {
-    if (!_.max(this.state.cards)) {
-      return (
-        <View style={styles.container}>
+    // if (!_.max(this.state.cards)) {
+    //   return (
+    //     <View style={styles.container}>
 
-        <View style={styles.nav}>
+    //     <View style={styles.nav}>
           
-          <Icon
-          onPress={() => {
-            this.props.navigation.navigate('Home');
-          }}
-          name={'ios-home'}
-          type={'ionicon'}
-          color={'#487cd6'}
-          underlayColor={'white'}
+    //       <Icon
+    //       onPress={() => {
+    //         this.props.navigation.navigate('Home');
+    //       }}
+    //       name={'ios-home'}
+    //       type={'ionicon'}
+    //       color={'#487cd6'}
+    //       underlayColor={'white'}
           
-        />
-          <Image
-            source={require('../images/logo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 30 }}
-          />
-          {/* <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-            }}
-          >
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-chatboxes-outline"
-              color="#555"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </TouchableOpacity> */}
+    //     />
+    //       <Image
+    //         source={require('../images/logo.png')}
+    //         resizeMode="contain"
+    //         style={{ width: 100, height: 30 }}
+    //       />
+    //       {/* <TouchableOpacity
+    //         onPress={() => {
+    //           this.props.navigation.navigate('Messages', {user: this.state.userInfo});
+    //         }}
+    //       >
+    //         <Image
+    //           source={require('../images/suit.png')}
+    //           name="ios-chatboxes-outline"
+    //           color="#555"
+    //           size={25}
+    //           style={{ width: 30, height: 30, margin: 10 }}
+    //         />
+    //       </TouchableOpacity> */}
 
-            <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Messages', { user: this.state.userInfo });
-              }}
-              name={'ios-chatboxes'}
-              type={'ionicon'}
-              color={'#03A9F4'}
-              underlayColor={'white'}
-            />
-          </View>
+    //         <Icon
+    //           onPress={() => {
+    //             this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+    //           }}
+    //           name={'ios-chatboxes'}
+    //           type={'ionicon'}
+    //           color={'#03A9F4'}
+    //           underlayColor={'white'}
+    //         />
+    //       </View>
 
-          <AppLoading />
+    //       <AppLoading />
 
-        </View>
-      );
-    }
+    //     </View>
+    //   );
+    // }
     // console.log('hey there this is goshopping',this.state.userInfo);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);

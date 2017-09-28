@@ -135,7 +135,7 @@ class ChatRoom extends Component {
           }}
           >{ this.state.matched.name }</Text>
           <Icon
-                  name={'ios-star-half'}
+                  name={'ios-star-outline'}
                   type={'ionicon'}
                   color={'#487cd6'}
                   underlayColor={'white'}
