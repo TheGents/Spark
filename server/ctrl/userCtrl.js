@@ -172,8 +172,9 @@ module.exports = {
         }
     },
     put_rate: (req,res) => {
-        const db = req.app.get('db')
+        const db = req.app.get('db');
         const { chick_id, dude_id, rating } = req.body;
+        console.log(chick_id, dude_id, rating);
         db.put_rate([chick_id, dude_id, rating]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
     },
     delete_match: (req,res) => {
