@@ -7,12 +7,12 @@ import ImageHeader from 'react-native-image-header';
 
 const Header = (props) => {
   const { textStyle, vincentStyle } = styles;
-  const backgroundImage = require('./images/logo.png');
+  const backgroundImage = require('./images/sparkLogo.png');
   return (
     <ImageHeader 
       headerChildren={
       <View style={vincentStyle}>
-        <Image source ={require('./images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+        <Image source ={require('./images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
       </View>
       } >
     </ImageHeader>
