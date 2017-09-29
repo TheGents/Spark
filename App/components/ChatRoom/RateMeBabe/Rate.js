@@ -78,28 +78,32 @@ class Rating extends Component {
           <Text>{'        '}</Text>
           {/* <Text style={styles.titleText} /> */}
         </View>
-        <Text>Rate {this.state.matched.name}</Text>
-        <Avatar
-          rounded
-          source={{ uri: this.state.matched.image }}
-          activeOpacity={0.7}
-          width={330}
-          height={330}
-        />
+        <View style={styles.matchedName}>
+          <Text>Rate {this.state.matched.name}</Text>
+        </View>
+        <View style={styles.avatarStyles}>
+          <Avatar
+            rounded
+            source={{ uri: this.state.matched.image }}
+            activeOpacity={0.7}
+            width={330}
+            height={330}
+          />
+        </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Select
             onSelect={this.onSelect.bind(this)}
             defaultText={this.state.value}
-            style={{ borderWidth: 0 }}
+            style={{ borderWidth: 0, marginLeft: '35%', marginBottom: 75 }}
             textStyle={{}}
             backdropStyle={{ backgroundColor: '#009FF2' }}
             optionListStyle={{ backgroundColor: '#F5FCFF' }}
           >
-            <Option value={[1, '🌟']}>1 - Jackass </Option>
+            <Option value={[1, '🌟']}>1 - Jerk </Option>
             <Option value={[2, '🌟🌟']}>2 - Intolerable </Option>
             <Option value={[3, '🌟🌟🌟']}>3 - Average </Option>
             <Option value={[4, '🌟🌟🌟🌟']}>4 - Great! </Option>
-            <Option value={[5, '🌟🌟🌟🌟🌟']}>5 - Soulmate </Option>
+            <Option value={[5, '🌟🌟🌟🌟🌟']}>5 - Spark! </Option>
           </Select>
           {this.state.butt0n && (
             <Button
@@ -149,6 +153,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25
+  },
+  matchedName: {
+    marginVertical: '10%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  avatarStyles: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
