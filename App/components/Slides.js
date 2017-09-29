@@ -10,7 +10,7 @@ class Slides extends Component {
             return (
               
                 <View style={styles.container}>
-                <Image source={require('../images/Spark.png')} style={{width: 210, height: 219, marginLeft: 70 }}/>
+                <Image source={require('../images/Spark.png')} style={{width: 190, height: 200, marginLeft: 70 }}/>
                 <Button 
                 title="Login To Spark" 
                 raised buttonStyle={styles.buttonStyle} 
