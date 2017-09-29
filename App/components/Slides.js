@@ -10,9 +10,9 @@ class Slides extends Component {
             return (
               
                 <View style={styles.container}>
-                <Image source={require('../images/gents.png')} style={{width: 193, height: 200}}/>
+                <Image source={require('../images/Spark.png')} style={{width: 210, height: 219, marginLeft: 70 }}/>
                 <Button 
-                title="Login To Gent" 
+                title="Login To Spark" 
                 raised buttonStyle={styles.buttonStyle} 
                 onPress={this.props.onComplete}
                 />
@@ -23,11 +23,11 @@ class Slides extends Component {
         }
          else if (index === this.props.data.length - 2){
           return(
-            <Image source={require('../images/gents.png')} style={{width: 193, height: 200}}/>
+            <Image source={require('../images/welcomeSecond.png')} style={{width: 240, height: 250}}/>
           );
         }
         return(
-          <Image source={require('../images/welcomeSpark.png')} style={{width: 193, height: 200}}/>
+          <Image source={require('../images/welcomeSpark.png')} style={{width: 230, height: 240}}/>
         );
     }
 
