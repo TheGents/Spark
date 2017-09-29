@@ -7,8 +7,8 @@ import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
     { text: 'Welcome to Sparks', color: '#223d5a' },
-    { text: 'A Place for Modern Dating', color: '#009688' },
-    { text: null, color: '#b5b8bf' }
+    { text: 'Find Your Match!', color: '#4fa7dd' },
+    { text: null, color: 'white' }
   ];
 
   class WelcomeScreen extends Component {

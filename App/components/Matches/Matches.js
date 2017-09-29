@@ -42,6 +42,7 @@ export default class Messages extends Component {
       userInfo: props.navigation.state.params.user,
     };
   }
+
   componentWillMount() {
     Axios.get(
       `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
@@ -75,6 +76,8 @@ export default class Messages extends Component {
       this.setState({ convoData: ds.cloneWithRows(convos) });
     });
   }
+
+
 
   // eachPic(x) {
   //   return (
