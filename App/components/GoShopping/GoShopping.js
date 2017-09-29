@@ -110,6 +110,7 @@ export default class Shopping extends Component {
             photo3: x.photo3,
             photo4: x.photo4,
             occupation: x.occupation,
+            general_bio: x.general_bio,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id
           });
