@@ -10,9 +10,9 @@ class Slides extends Component {
             return (
               
                 <View style={styles.container}>
-                <Image source={require('../images/Spark.png')} style={{width: 190, height: 200, marginLeft: 70 }}/>
+                <Image source={require('../images/Spark.png')} style={{width: 190, height: 200, marginLeft: 60 }}/>
                 <Button 
-                title="Login To Spark" 
+                title="Login" 
                 raised buttonStyle={styles.buttonStyle} 
                 onPress={this.props.onComplete}
                 />
@@ -26,11 +26,12 @@ class Slides extends Component {
             <Image source={require('../images/welcomeSecond.png')} style={{width: 240, height: 250}}/>
           );
         }
-        return(
+          else if (index === this.props.data.length - 3){
+          return(
           <Image source={require('../images/welcomeSpark.png')} style={{width: 230, height: 240}}/>
         );
     }
-
+  }
     renderSlides() {
         return this.props.data.map((slide, index) => {
             return (

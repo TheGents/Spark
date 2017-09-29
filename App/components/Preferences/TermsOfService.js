@@ -27,16 +27,16 @@ class TermsOfService extends Component {
           <Text>{'         '}</Text>
         </View>
         <View style={styles.termsLegalese}>
-          <Text style={styles.heading}>Sparks Terms and Conditions of Use{'\n'}</Text>
+          <Text style={styles.heading}>Spark Terms and Conditions of Use{'\n'}</Text>
           <Text>
-            Hey guys! Welcome to Sparks's Terms and Conditions of Use (these "Terms"). Our lawyers
+            Hey guys! Welcome to Spark's Terms and Conditions of Use (these "Terms"). Our lawyers
             insist that we impose rules on users to protect all of our hard work. This is a contract
-            between you and Sparks Trading Inc and we want you to know yours and our rights before
-            you use the Sparks application ("App"). Please take a few moments to read these Terms
+            between you and Spark Trading Inc and we want you to know yours and our rights before
+            you use the Spark application ("App"). Please take a few moments to read these Terms
             before enjoying the App, because once you access, view or use the App, you are going to
             be legally bound by these Terms (so probably best to read them first!).{'\n'}
           </Text>
-          <Text style={styles.heading}>1. Sparks RULES{'\n'}</Text>
+          <Text style={styles.heading}>1. Spark RULES{'\n'}</Text>
           <Text>
             Before you can use our awesome App, you will need to register for an account
             ("Account"). In order to create an Account you must: have a Facebook account (and who
@@ -46,13 +46,13 @@ class TermsOfService extends Component {
             relationship status, location and information about Facebook friends). For more
             information about what information we use and how we use it, please check out our
             Privacy Policy. Unfortunately, we cannot allow you to use another person's Account
-            without permission - that just wouldn't be fair! You'll have great fun on Sparks, but if
+            without permission - that just wouldn't be fair! You'll have great fun on Spark, but if
             you feel the need to leave, you can delete your Account at any time by going to the
             'Settings' page when you are logged in and clicking on the 'Delete account' link. Your
             Account will be deleted immediately but it may take a little while for Your Content to
             be completely removed from the App. We will save your profile information in case you
             realise you miss us and you decide to restore your Account (which you can do within 30
-            days of de-activating your Account). Sparks Trading Inc reserve the right at our sole
+            days of de-activating your Account). Spark Trading Inc reserve the right at our sole
             discretion to terminate or suspend any Account, or make use of any operational,
             technological, legal or other means available to enforce the Terms (including without
             limitation blocking specific IP addresses), at any time without liability and without
@@ -65,9 +65,9 @@ class TermsOfService extends Component {
             {'\n'}
             There are three types of content that you will be able to access on the App: content
             that you upload and provide ("Your Content"); content that members provide ("Member
-            Content"); and content that Sparks Trading Inc provide ("Our Content"). There is certain
-            content we can't allow on Sparks We want our users to be able express themselves as much
-            as possible and post all sorts of things on Sparks, but we have to impose restrictions
+            Content"); and content that Spark Trading Inc provide ("Our Content"). There is certain
+            content we can't allow on Spark We want our users to be able express themselves as much
+            as possible and post all sorts of things on Spark, but we have to impose restrictions
             on certain content which: contains language which could be deemed offensive or is likely
             to harass, upset, embarrass, alarm or annoy any other person; is obscene, pornographic
             or otherwise may offend human dignity; is abusive, insulting or threatening,
@@ -81,10 +81,10 @@ class TermsOfService extends Component {
             malicious code designed to interrupt, damage or limit the functionality of or disrupt
             any software, hardware, telecommunications, networks, servers or other equipment, Trojan
             horse or any other material designed to damage, interfere with, wrongly intercept or
-            expropriate any data or personal information whether from Sparks or otherwise; itself,
+            expropriate any data or personal information whether from Spark or otherwise; itself,
             or the posting of which, infringes any third party's rights (including, without
             limitation, intellectual property rights and privacy rights); shows another person which
-            was created or distributed without that person’s consent. Sparks operates a
+            was created or distributed without that person’s consent. Spark operates a
             zero-tolerance policy for this kind of content. Your Content As Your Content is unique,
             you are responsible and liable for Your Content and will indemnify, defend, release, and
             hold us harmless from any claims made in connection with Your Content. Sorry that was a
@@ -95,12 +95,12 @@ class TermsOfService extends Component {
             any personal information about yourself to other users, whether via email or otherwise,
             it is at your own risk. We encourage you to use the same caution in disclosing details
             about yourself to third parties online as you would under any other circumstances. As
-            Sparks is a public community, Your Content will be visible to other users of the App all
+            Spark is a public community, Your Content will be visible to other users of the App all
             around the world instantly - so make sure you are comfortable sharing Your Content
             before you post. As such, you agree that Your Content may be viewed by other users and
             any person visiting, participating in or who is sent a link to the App (e.g. individuals
-            who receive a link to a user’s profile or shared content from other Sparks Users). By
-            uploading Your Content on Sparks, you represent and warrant to us that you have all
+            who receive a link to a user’s profile or shared content from other Spark Users). By
+            uploading Your Content on Spark, you represent and warrant to us that you have all
             necessary rights and licences to do so, and automatically grant us a non-exclusive,
             royalty free, perpetual, worldwide licence to use Your Content in any way (including,
             without limitation, editing, copying, modifying, adapting, translating, reformatting,
@@ -110,21 +110,21 @@ class TermsOfService extends Component {
             future). We may assign and/or sub-licence the above licence to our affiliates and
             successors without any further approval by you. We have the right to remove, edit, limit
             or block access to any of Your Content at any time, and we have no obligation to display
-            or review Your Content. Member Content Other members of Sparks will also share content
+            or review Your Content. Member Content Other members of Spark will also share content
             via the App. Member Content belongs to the user who posted the content and is stored on
             our servers and displayed via the App at the direction of the user providing the Member
             Content. You do not have any rights in relation to other users' Member Content, and you
-            may only use other Sparks users' personal information to the extent that your use of it
-            matches Sparks's purpose of allowing people to meet one another. You may not use other
+            may only use other Spark users' personal information to the extent that your use of it
+            matches Spark's purpose of allowing people to meet one another. You may not use other
             users' information for commercial purposes, to spam, to harass, or to make unlawful
             threats. We reserve the right to terminate your Account if you misuse other users'
             information. Member Content is subject to the terms and conditions of Sections 512(c)
             and/or 512(d) of the Digital Millennium Copyright Act 1998. If you have a complaint
             about Member Content, please see the Digital Millennium Copyright Act section below for
             more information. Our Content You may be wondering what happens to the rest of the
-            Content on Sparks. Well, it belongs to us! Any other text, content, graphics, user
+            Content on Spark. Well, it belongs to us! Any other text, content, graphics, user
             interfaces, trademarks, logos, sounds, artwork, and other intellectual property
-            appearing on Sparks are owned, controlled or licensed by us and are protected by
+            appearing on Spark are owned, controlled or licensed by us and are protected by
             copyright, trademark and other intellectual property law rights. All right, title and
             interest in and to Our Content remains with us at all times. We grant you a
             non-exclusive, limited, personal, non-transferable, revocable, license to access and use
@@ -146,11 +146,11 @@ class TermsOfService extends Component {
             current or previous positions, qualifications or affiliations with a person or entity;
             disclose information that you do not have the consent to disclose; create or operate a
             pyramid scheme, fraud or other similar practice. We don't like users misbehaving in the
-            Sparks community – users should not do bad things to other users. Therefore, you can
+            Spark community – users should not do bad things to other users. Therefore, you can
             report any abuse or complain about Member Content by contacting us, outlining the abuse
             and/or complaint. You can also report a user directly from a profile or in chat by
             clicking the 'Block & Report' link. Also, we don't appreciate users doing bad things to
-            Sparks - we've worked hard on our creation, so scraping or replicating any part of the
+            Spark - we've worked hard on our creation, so scraping or replicating any part of the
             App without our prior consent is expressly prohibited. This includes by any means
             (automated or otherwise) other than through our currently available, published
             interfaces - unless you have been specifically allowed to do so in a separate agreement
@@ -160,9 +160,9 @@ class TermsOfService extends Component {
           <Text style={styles.heading}>4. PRIVACY</Text>
           <Text>
             {'\n'}
-            For information about how Sparks Trading Inc collects, uses, and shares your personal
+            For information about how Spark Trading Inc collects, uses, and shares your personal
             data, please check out our Privacy Policy – this is important stuff, and makes for great
-            bedtime reading! By using Sparks, you agree that we can use such data in accordance with
+            bedtime reading! By using Spark, you agree that we can use such data in accordance with
             our Privacy Policy.{'\n'}
           </Text>
 
@@ -199,10 +199,10 @@ class TermsOfService extends Component {
             payment settings option under your profile or by contacting your mobile service
             provider. If your chosen Premium Payment Method is via your mobile service provider,
             then please check with them about their payment terms, as their payment terms will
-            govern how payments to Sparks Trading Inc are made as well as how such payments may be
-            changed or cancelled. Your subscription to Sparks Trading Inc’s Premium Services will
+            govern how payments to Spark Trading Inc are made as well as how such payments may be
+            changed or cancelled. Your subscription to Spark Trading Inc’s Premium Services will
             automatically renew until you decide to cancel in accordance with such terms, except in
-            the case of SparksCoins where there shall be no automatic renewal. In the event of a
+            the case of SparkCoins where there shall be no automatic renewal. In the event of a
             conflict between a Third Party Store’s terms and conditions and these Terms, the terms
             and conditions of the Third Party Store or service provider shall govern and control. We
             are not responsible and have no liability whatsoever for goods or services you obtain
@@ -219,7 +219,7 @@ class TermsOfService extends Component {
             subscriptions (e.g., a one-month subscription, three-month subscription, six-month
             subscription, etc.) to additional account features. At the end of the free trial period
             (if any), you will be charged the price of the subscription and will continue to be
-            charged until you cancel your subscription, except in the case of SparksCoins where
+            charged until you cancel your subscription, except in the case of SparkCoins where
             there shall be no automatic renewal. Please note that for Premium Services and In-App
             Products made on a subscription basis, your subscription will automatically renew for
             the same subscription period as you initially purchased (e.g., if you made an In-App
@@ -237,11 +237,11 @@ class TermsOfService extends Component {
             processing, identity verification, analysis and regulatory compliance) or fees or other
             service-related issues, including those issues that may arise from inaccurate account
             information, or products or goods you obtain through your Mobile Platform Account or
-            Third Party Stores. Further, Sparks Trading Inc does not guarantee that product
+            Third Party Stores. Further, Spark Trading Inc does not guarantee that product
             descriptions or other content and products will be available, accurate, complete,
             reliable, current or error-free. Descriptions and images of, and references to, products
             or services (including Premium Services or In-App Products) do not imply our or any of
-            our affiliates' endorsement of such products or services. Moreover, Sparks Trading Inc
+            our affiliates' endorsement of such products or services. Moreover, Spark Trading Inc
             and its third party operational service providers reserve the right, with or without
             prior notice, for any or no reason, to change product descriptions, images, and
             references; to limit the available quantity of any product; to honor, or impose
@@ -259,7 +259,7 @@ class TermsOfService extends Component {
             {' '}
             {'\n'}
             We may provide you with emails, text messages, push notifications, alerts and other
-            messages related to the App and/or the Sparks services, such as enhancements, offers,
+            messages related to the App and/or the Spark services, such as enhancements, offers,
             products, events, and other promotions. After downloading the App, you will be asked to
             accept or deny push notifications/alerts. If you deny, you will not receive any push
             notifications/alerts. If you accept, push notifications/alerts will be automatically
@@ -268,7 +268,7 @@ class TermsOfService extends Component {
             respect to other types of messaging or communications, such as emails, text messages,
             etc., you can unsubscribe or opt out by either following the specific instructions
             included in such communications, or by emailing us with your request at
-            feedback@team.Sparks.com . The App may allow access to or make available opportunities
+            feedback@team.Spark.com . The App may allow access to or make available opportunities
             for you to view certain content and receive other products, services and/or other
             materials based on your location. To make these opportunities available to you, the App
             will determine your location using one or more reference points, such as GPS, Bluetooth
@@ -295,7 +295,7 @@ class TermsOfService extends Component {
             SITE WILL MEET YOUR EXPECTATIONS, OR THAT THE APP, SITE, OUR CONTENT, ANY MEMBER
             CONTENT, OR ANY PORTION THEREOF, IS CORRECT, ACCURATE, OR RELIABLE. YOUR USE OF THE APP
             OR SITE IS AT YOUR OWN RISK. YOU ARE SOLELY RESPONSIBLE FOR YOUR INTERACTIONS WITH OTHER
-            MEMBERS. Sparks TRADING INC IS NOT RESPONSIBLE FOR THE CONDUCT OF ANY USER. Sparks DOES
+            MEMBERS. Spark TRADING INC IS NOT RESPONSIBLE FOR THE CONDUCT OF ANY USER. Spark DOES
             NOT CONDUCT CRIMINAL BACKGROUND CHECKS ON ITS MEMBERS. NEITHER US NOR ANY OWNER WILL BE
             LIABLE FOR ANY DAMAGES, DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR
             PUNITIVE, INCLUDING, WITHOUT LIMITATION, LOSS OF DATA, INCOME, PROFIT OR GOODWILL, LOSS
@@ -319,7 +319,7 @@ class TermsOfService extends Component {
           <Text style={styles.heading}>8. INDEMNITY</Text>
           <Text>
             {'\n'}
-            All the actions you make and information you post on Sparks remain your responsibility.
+            All the actions you make and information you post on Spark remain your responsibility.
             Therefore, you agree to indemnify, defend, release, and hold us, and our partners,
             licensors, affiliates, contractors, officers, directors, employees, representatives and
             agents, harmless, from and against any third party claims, damages (actual and/or
@@ -338,7 +338,7 @@ class TermsOfService extends Component {
           <Text>
             {' '}
             {'\n'}
-            Sparks Trading Inc has adopted the following policy towards copyright infringement in
+            Spark Trading Inc has adopted the following policy towards copyright infringement in
             accordance with the Digital Millennium Copyright Act (the "DMCA"). If you believe any
             Member Content or Our Content infringes upon your intellectual property rights, please
             submit a notification alleging such infringement ("DMCA Takedown Notice")including the
@@ -355,7 +355,7 @@ class TermsOfService extends Component {
             by the copyright owner, its agent, or the law; and A statement that, under penalty of
             perjury, the information in the notification is accurate and you are authorized to act
             on behalf of the owner of the exclusive right that is allegedly infringed. Any DMCA
-            Takedown Notices should be sent to: feedback@team.Sparks.com {'\n'}
+            Takedown Notices should be sent to: feedback@team.Spark.com {'\n'}
           </Text>
 
           <Text style={styles.heading}>10. THIRD PARTY APP STORE </Text>
@@ -366,19 +366,19 @@ class TermsOfService extends Component {
             are less restrictive than, or otherwise conflict with, the terms and conditions of this
             Section, the more restrictive or conflicting terms and conditions in this Section will
             apply, but solely with respect to the App and the Third Party Store. You acknowledge and
-            agree that: These Terms are concluded solely between you and Sparks Trading Inc. and not
-            with the providers of the Third Party Store, and Sparks Trading Inc. (and not the Third
+            agree that: These Terms are concluded solely between you and Spark Trading Inc. and not
+            with the providers of the Third Party Store, and Spark Trading Inc. (and not the Third
             Party Store providers) is solely responsible for the App and the content thereof. To the
             extent that these Terms provide for usage rules for the App which are less restrictive
             or in conflict with the applicable terms of service of the Third Party Store from which
             you obtain the App, the more restrictive or conflicting term of the Third Party Store
             will take precedence and will apply. The Third Party Store provider has no obligation
             whatsoever to provide any maintenance and support services with respect to the App.
-            Sparks Trading Inc. is solely responsible for any product warranties, whether express or
+            Spark Trading Inc. is solely responsible for any product warranties, whether express or
             implied by law, to the extent not effectively disclaimed. The Third Party Store provider
             will have no warranty obligation whatsoever with respect to the App, and any other
             claims, losses, liabilities, damages, costs or expenses attributable to any failure to
-            conform to any warranty will be the sole responsibility of Sparks Trading Inc. Sparks
+            conform to any warranty will be the sole responsibility of Spark Trading Inc. Spark
             Trading Inc., not the Third Party Store provider, is responsible for addressing any
             claims you or any third party may have relating to the App or your possession and/or use
             of the App, including, but not limited to: (i) product liability claims; (ii) any claim
@@ -395,38 +395,38 @@ class TermsOfService extends Component {
           <Text>
             {' '}
             {'\n'}
-            There are a few more things we need to mention before you can use Sparks. Please bear
+            There are a few more things we need to mention before you can use Spark. Please bear
             with us, we're nearly done! Firstly, those standard clauses at the end of most contracts
             (boring, we know) These Terms, which we may amend from time to time, constitute the
-            entire agreement between you and Sparks Trading Inc. The Terms supersede all previous
+            entire agreement between you and Spark Trading Inc. The Terms supersede all previous
             agreements, representations and arrangements between us (written or oral). Nothing in
             this clause shall limit or exclude any liability for fraudulent misrepresentation.
-            Sparks Trading Inc has taken reasonable steps to ensure the currency, availability,
-            correctness and completeness of the information contained on Sparks and provides that
-            information on an "as is", "as available" basis. Sparks Trading Inc does not give or
+            Spark Trading Inc has taken reasonable steps to ensure the currency, availability,
+            correctness and completeness of the information contained on Spark and provides that
+            information on an "as is", "as available" basis. Spark Trading Inc does not give or
             make any warranty or representation of any kind about the information contained on
-            Sparks, whether express or implied. Use of Sparks and the materials available on it is
-            at your sole risk. Sparks Trading Inc can not be held responsible for any loss arising
+            Spark, whether express or implied. Use of Spark and the materials available on it is
+            at your sole risk. Spark Trading Inc can not be held responsible for any loss arising
             from the transmission, use of data, or inaccurate User Content. You are responsible for
-            taking all necessary precautions to ensure that any material you may obtain from Sparks
-            is free of viruses or other harmful components. You accept that Sparks will not be
-            provided uninterrupted or error free, that defects may not be corrected or that Sparks
+            taking all necessary precautions to ensure that any material you may obtain from Spark
+            is free of viruses or other harmful components. You accept that Spark will not be
+            provided uninterrupted or error free, that defects may not be corrected or that Spark
             Trading Inc, or the server that makes it available, are free of viruses or bugs,
-            spyware, Trojan horse or any similar malicious software. Sparks Trading Inc is not
+            spyware, Trojan horse or any similar malicious software. Spark Trading Inc is not
             responsible for any damage to your computer hardware, computer software, or other
             equipment or technology including, but without limitation damage from any security
             breach or from any virus, bugs, tampering, fraud, error, omission, interruption, defect,
             delay in operation or transmission, computer line or network failure or any other
             technical or other malfunction. We know our Terms are awesome, but we may have to change
-            them now and again As Sparks grows, we might have to make changes to these Terms so we
+            them now and again As Spark grows, we might have to make changes to these Terms so we
             reserve the right to modify, amend or change the Terms at any time (a "Change"). If we
             do this then the Changes will be posted on this page and we will indicate the Effective
             Date of the updates at the bottom of the Terms. In certain circumstances, we may send an
             email to you notifying you of a Change. You should regularly check this page for notice
             of any Changes – we want our users to be as informed as possible. Your continued use of
-            Sparks following any Change constitutes your acceptance of the Change and you will be
+            Spark following any Change constitutes your acceptance of the Change and you will be
             legally bound by the new updated Terms. If you do not accept any Changes to the Terms,
-            you should stop using Sparks immediately (uh oh, that's going to be hard!). Some more
+            you should stop using Spark immediately (uh oh, that's going to be hard!). Some more
             legal mumbo jumbo If, for any reason, any of the Terms are declared illegal, invalid or
             otherwise unenforceable by a court of a competent jurisdiction, then to the extent that
             term is illegal, invalid or unenforceable, it shall be severed and deleted from the
@@ -439,12 +439,12 @@ class TermsOfService extends Component {
             not located in a country that is subject to a U.S. Government embargo, or that has been
             designated by the U.S. Government as a "terrorist supporting" country; and you are not
             listed on any U.S. Government list of prohibited or restricted parties. By using the
-            App, you agree and acknowledge that Sparks is a global app operating through servers
+            App, you agree and acknowledge that Spark is a global app operating through servers
             located in a number of countries around the world, including the United States. If you
             live in a country with data protection laws, the storage of your personal data may not
             provide you with the same protections as you enjoy in your country of residence. By
             submitting your personal information, or by choosing to upgrade the services you use, or
-            by making use of the applications available on Sparks, you agree to the transfer of your
+            by making use of the applications available on Spark, you agree to the transfer of your
             personal information to, and storage and processing of your personal information in, any
             such countries and destinations. The App may contain links to third-party websites or
             resources. In such cases, you acknowledge and agree that we are not responsible or
@@ -471,9 +471,9 @@ class TermsOfService extends Component {
             objection based on inconvenient forum. You agree that you will not file or participate
             in a class action against us. In the event there is a discrepancy between this English
             language version and any translated copies of the Terms, the English version shall
-            prevail. Sparks Trading Inc is registered in the United States under company number
+            prevail. Spark Trading Inc is registered in the United States under company number
             5600774. Our registered address is 1209 Orange Street, Wilmington, Delaware, 19801.
-            Sparks Trading Inc collaborates with its group company Social Online Payments Limited (a
+            Spark Trading Inc collaborates with its group company Social Online Payments Limited (a
             company incorporated in Ireland under company number 496494), Social Online Payments,
             Inc (a company incorporated in Delaware under company number 5214252) from time to time
             in order to facilitate the delivery of content to you and to collect payments. Effective
