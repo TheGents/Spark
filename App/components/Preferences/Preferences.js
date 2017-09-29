@@ -11,15 +11,14 @@ import TermsOfService from './TermsOfService';
 class Preferences extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
     this.logout = this.logout.bind(this);
   }
 
   logout = () => {
     AsyncStorage.removeItem('fb_token');
     this.props.navigation.navigate('Welcome');
-  }
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -42,10 +41,10 @@ class Preferences extends Component {
           <Text>{'      '}</Text>
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
-        <PrefSliders />
-        <PrefButtons 
-        logout={this.logout} 
-        />
+        <View style={styles.sliderStyles}>
+          <PrefSliders />
+        </View>
+        <PrefButtons logout={this.logout} />
         <View style={styles.privacyAndTerms}>
           <View style={styles.borderPrivacy}>
             <Privacy />
