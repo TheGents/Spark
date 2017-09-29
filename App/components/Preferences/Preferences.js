@@ -42,7 +42,6 @@ class Preferences extends Component {
           <Text>{'      '}</Text>
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
-
         <PrefSliders />
         <PrefButtons 
         logout={this.logout} 
