@@ -20,7 +20,7 @@
 //       <TouchableOpacity onPress ={this.props.toProfile}>
 //       <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} />
 //       </TouchableOpacity>
-//       <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//       <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //       <TouchableOpacity onPress ={this.props.chat}>
 //       <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
 //       </TouchableOpacity>
@@ -30,7 +30,7 @@
 //   home() {
 //     return (
 //       <View  style={styles.container}>
-//       <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//       <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //       <TouchableOpacity onPress={() => {
 //             this.props.navigation.navigate('Shopping');
 //           }}>
@@ -43,7 +43,7 @@
 //     return (
 //       <View  style={styles.container}>
 //       <View style = {{width:25, height:25, margin:10}}/>
-//       <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//       <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //      <TouchableOpacity onPress ={this.props.onPress}>
 //       <Image source = {require('../images/suit.png')} style = {{width:25, height:25, margin:10}}/>
 //       </TouchableOpacity>
@@ -57,7 +57,7 @@
 //       <TouchableOpacity onPress ={this.props.onPress}>
 //       <Image source = {require('../images/suit.png')} style = {{width:25, height:25, margin:10}}/>
 //       </TouchableOpacity>
-//       <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//       <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //       <View style = {{width:25, height:25, margin:10}}/>
 //       </View>
 //     );
@@ -68,7 +68,7 @@
 //         <TouchableOpacity onPress ={this.props.onPress}>
 //         <Image source = {require('../images/suit.png')} style = {{width:25, height:25, margin:10}}/>
 //         </TouchableOpacity>
-//         <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//         <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //         <View style = {{width:25, height:25, margin:10}}/>
 //         </View>
 //       );
@@ -79,7 +79,7 @@
 //           <TouchableOpacity onPress ={this.props.onPress}>
 //           <Image source = {require('../images/suit.png')} style = {{width:25, height:25, margin:10}}/>
 //           </TouchableOpacity>
-//           <Image source ={require('../images/logo.png')} resizeMode = "contain" style={{width:100, height:30}} />
+//           <Image source ={require('../images/sparkLogo.png')} resizeMode = "contain" style={{width:100, height:30}} />
 //           <View style = {{width:25, height:25, margin:10}}/>
 //           </View>
 //         );

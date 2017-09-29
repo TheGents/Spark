@@ -73,9 +73,10 @@ class Rating extends Component {
             source={require('../../images/sparkLogo.png')}
             name="ios-chatboxes-outline"
             size={25}
-            style={{ width: 150, height: 40, margin: 10, marginRight: 25 }}
+            style={{ width: 150, height: 40, marginVertical: 10 }}
           />
-          <Text style={styles.titleText} />
+          <Text>{'        '}</Text>
+          {/* <Text style={styles.titleText} /> */}
         </View>
         <Text>Rate {this.state.matched.name}</Text>
         <Avatar
