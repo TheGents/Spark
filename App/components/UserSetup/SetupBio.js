@@ -53,6 +53,7 @@ class SetupBio extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
+        <Text style={{ marginLeft: 5, color: '#34799b', }}>Bio</Text>
           <TextInput
             multiline
             placeholder="About me"
@@ -64,6 +65,7 @@ class SetupBio extends Component {
             backgroundColor={'transparent'}
             editable
           />
+          <Text style={{ marginLeft: 5, color: '#34799b', }}>Occupation</Text>
           <TextInput
             multiline
             placeholder="Work"
@@ -127,6 +129,7 @@ const styles = {
     fontSize: 20,
     fontWeight: '400',
     borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     width: '100%',
     paddingLeft: 5

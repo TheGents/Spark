@@ -2,7 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const UserCardSection = (props) => {
+const BioCardSection = (props) => {
   return (
     <View style={styles.containerStyle}>{props.children}</View>
   );
@@ -10,17 +10,14 @@ const UserCardSection = (props) => {
 
 const styles = {
   containerStyle: {
-    height: 295,
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: 'blue',
-    borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    flex: 1,
+    height: 300,
     // marginLeft: 1,
     // marginRight: 1,
     // marginTop: 1,
@@ -39,4 +36,4 @@ const styles = {
   }
 };
 
-export default UserCardSection;
+export default BioCardSection;

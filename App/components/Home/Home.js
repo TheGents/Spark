@@ -40,7 +40,7 @@ class Home extends Component {
     };
   }
  
-  componentDidMount() {
+  componentWillMount() {
     console.log('componentDidMount');
     axios
     .get(
@@ -148,7 +148,7 @@ class Home extends Component {
               }}
               name={'ios-flash'}
               type={'ionicon'}
-              color={'#03A9F4'}
+              color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
               size={40}
@@ -182,7 +182,7 @@ class Home extends Component {
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
-                  color={'#009FF2'}
+                  color={'#34799b'}
 
                   underlayColor={'white'}
                   reverse
@@ -197,7 +197,7 @@ class Home extends Component {
                   }}
                   name={'md-settings'}
                   type={'ionicon'}
-                  color={'#009FF2'}
+                  color={'#34799b'}
                   underlayColor={'white'}
                   reverse
                 />

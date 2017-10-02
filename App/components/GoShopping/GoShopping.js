@@ -15,56 +15,6 @@ const image4 = require('../images/shea.jpeg');
 const image5 = require('../images/seven.jpeg');
 const image6 = require('../images/andy.jpeg');
 
-// let Cards = [
-//   {
-//     id: 1,
-//     first_name: 'Eric',
-//     age: 26,
-//     friends: 9,
-//     interests: 38,
-//     image: image1
-//   },
-//   {
-//     id: 2,
-//     first_name: 'Daanish',
-//     age: 26,
-//     friends: 16,
-//     interests: 49,
-//     image: image2
-//   },
-//   {
-//     id: 3,
-//     first_name: 'Terri',
-//     age: 24,
-//     friends: 2,
-//     interests: 39,
-//     image: image3
-//   },
-//   {
-//     id: 4,
-//     first_name: 'Shea',
-//     age: 33,
-//     friends: 18,
-//     interests: 50,
-//     image: image4
-//   },
-//   {
-//     id: 5,
-//     first_name: 'Steven',
-//     age: 25,
-//     friends: 2,
-//     interests: 13,
-//     image: image5
-//   },
-//   {
-//     id: 6,
-//     first_name: 'Andy',
-//     age: 32,
-//     friends: 12,
-//     interests: 44,
-//     image: image6
-//   }
-// ];
 
 export default class Shopping extends Component {
   constructor(props) {
@@ -164,38 +114,16 @@ export default class Shopping extends Component {
                 x.image ||
                 'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'
             }}
-            resizeMode="contain"
-            style={{ width: 350, height: 350 }}
-          />
+            resizeMode='cover'
+            style={{ borderRadius: 15, flex: 1, width: 300, alignItems: 'center', justifyContent: 'flex-end' }}
+          >
+              <View style={styles.imageContainer}>
+                <Text style={styles.name}>{x.first_name}, {x.age}</Text>
+                <Text style={styles.occupation}>{x.occupation}</Text>
+                <Text>{x.location}</Text>
+              </View>
+          </Image>
         </TouchableHighlight>
-        <View
-          style={{
-            width: 250,
-            height: 70,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          {/* <View style={{ flexDirection: 'row' }}> */}
-
-          {/* <View
-              style={{
-                padding: 13,
-                borderLeftWidth: 1,
-                borderColor: '#e3e3e3',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
-            </View> */}
-          {/* </View> */}
-        </View>
-        <Text>
-          {x.first_name}, {x.age}
-        </Text>
-        <Text>Work: {x.occupation}</Text>
-        <Text>Location: {x.location}</Text>
       </View>
     );
   }
@@ -213,7 +141,7 @@ export default class Shopping extends Component {
   noMore() {
     return (
       <View style={styles.card}>
-        <Text>No more matches, please check back later.</Text>
+        <Text>There are no more matches, please check back later.</Text>
       </View>
     );
   }
@@ -241,7 +169,7 @@ export default class Shopping extends Component {
               }}
               name={'ios-home'}
               type={'ionicon'}
-              color={'#03A9F4'}
+              color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginLeft: 10 }}
               size={30}
@@ -271,7 +199,7 @@ export default class Shopping extends Component {
               }}
               name={'ios-chatboxes'}
               type={'ionicon'}
-              color={'#03A9F4'}
+              color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
               size={30}
@@ -295,7 +223,7 @@ export default class Shopping extends Component {
             }}
             name={'ios-home'}
             type={'ionicon'}
-            color={'#03A9F4'}
+            color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
             size={30}
@@ -324,7 +252,7 @@ export default class Shopping extends Component {
             }}
             name={'ios-chatboxes'}
             type={'ionicon'}
-            color={'#03A9F4'}
+            color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginRight: 10 }}
             size={30}
@@ -339,17 +267,6 @@ export default class Shopping extends Component {
           handleYup={this.handleYup}
           handleNope={this.handleNope}
         />
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          {/* <TouchableOpacity style = {styles.buttons} onPress = {() => this.nope()}>
-      <Image source = {require('../images/suit.png')} name='ios-close' size={45} color="#888" style={{width:25, height:25, margin:10}} />
-      </TouchableOpacity>
-      <TouchableOpacity style = {styles.buttonSmall}>
-      <Image source = {require('../images/suit.png')} name='ios-information' size={5} color="#888" style={{width:25, height:25, margin:10}} />
-      </TouchableOpacity>
-      <TouchableOpacity style = {styles.buttons} onPress = {() => this.yup()}>
-      <Image source = {require('../images/suit.png')} name='ios-heart-outline' size={36} color="#888" style={{width:25, height:25, margin:5}} />
-      </TouchableOpacity> */}
-        </View>
       </View>
     );
   }
@@ -363,6 +280,34 @@ const styles = StyleSheet.create({
     // padding: 10,
     backgroundColor: '#f7f7f7'
   },
+  imageContainer: {
+    borderWidth: 3,
+    borderRadius: 20,
+    borderColor: '#34799b',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+    marginBottom: 7,
+    padding: 1,
+    alignItems: 'center',
+    
+    width: 270,
+    backgroundColor: 'rgba(222,222,222, 9)'
+},
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'Cochin'
+  },
+  occupation: {
+    fontWeight: 'normal',
+    fontStyle: 'italic'
+  },
   nav: {
     height: 70,
     flexDirection: 'row',
@@ -373,34 +318,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)'
   },
-  buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40
-  },
-  buttonSmall: {
-    width: 50,
-    height: 50,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25
-  },
   icon: {
     margin: 20
   },
   card: {
     flex: 1,
     alignItems: 'center',
-    alignSelf: 'center',
+    justifyContent: 'center',
     borderWidth: 2,
     borderColor: '#e3e3e3',
-    width: 350,
-    height: 420
+    borderRadius: 15,
+    margin: 9
   }
 });
