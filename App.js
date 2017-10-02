@@ -35,9 +35,6 @@ class App extends Component {
         Home: {
           screen: Home
         },
-        Settings: {
-          screen: Preferences
-        },
         Messages: {
           screen: Messages
         },

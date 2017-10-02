@@ -1,4 +1,6 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
+import AppLoading from 'expo';
 import {
   StyleSheet,
   Image,
@@ -125,6 +127,9 @@ export default class Messages extends Component {
     // console.log('userInfo: ',this.state.userInfo);
     console.log('kitkats: ',this.state.kitkats);
     // console.log('convoData: ',this.state.convoData);
+    if (_.isNull(this.state.convoData)) {
+      return <AppLoading />;
+    }
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
@@ -169,7 +174,7 @@ export default class Messages extends Component {
         {/* <TextInput style={{ height: 50 }} placeholder="Search" />
           <View style={styles.matches}>
             <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
-              THESE GENTS NEED SOME BAD BITCHES!
+             
             </Text>
             <ListView
               horizontal={true}

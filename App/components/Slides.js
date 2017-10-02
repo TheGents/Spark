@@ -10,12 +10,15 @@ class Slides extends Component {
             return (
               
                 <View style={styles.container}>
-                <Image source={require('../images/Spark.png')} style={{width: 190, height: 200, marginLeft: 60 }}/>
-                <Button 
-                title="Login" 
-                raised buttonStyle={styles.buttonStyle} 
-                onPress={this.props.onComplete}
-                />
+                  <Image 
+                  resizeMode='contain'
+                  source={require('../images/sparkLogo.png')} style={{width: 310 }}/>
+                  <Image source={require('../images/Spark.png')} style={{width: 160, height: 168, marginLeft: 60 }}/>
+                  <Button 
+                  title="Login" 
+                  raised buttonStyle={styles.buttonStyle} 
+                  onPress={this.props.onComplete}
+                  />
                 </View>
                
                 
@@ -26,7 +29,14 @@ class Slides extends Component {
             <Image source={require('../images/welcomeSecond.png')} style={{width: 240, height: 250}}/>
           );
         }
-          else if (index === this.props.data.length - 3){
+        else if (index === this.props.data.length - 3){
+          return(
+            <Image 
+            resizeMode='contain'
+            source={require('../images/Measage.png')} style={{width: 320, height: 280}}/>
+          );
+        }
+          else if (index === this.props.data.length - 4){
           return(
           <Image source={require('../images/welcomeSpark.png')} style={{width: 230, height: 240}}/>
         );
@@ -80,7 +90,8 @@ const styles = {
 },
   buttonStyle: {
     backgroundColor: '#0288D1',
-    marginTop: 15
+    marginTop: 15,
+    width: 100
   }
 };
 

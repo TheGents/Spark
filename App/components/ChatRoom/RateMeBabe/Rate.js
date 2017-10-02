@@ -11,7 +11,7 @@ class Rating extends Component {
     this.state = {
       userInfo: props.navigation.state.params.userInfo,
       matched: props.navigation.state.params.matched,
-      value: 'Rating',
+      value: 'Rate ',
       butt0n: false
     };
   }
@@ -62,7 +62,7 @@ class Rating extends Component {
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo });
             }}
-            name={'ios-flash'}
+            name={'ios-arrow-back'}
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
@@ -78,9 +78,6 @@ class Rating extends Component {
           <Text>{'        '}</Text>
           {/* <Text style={styles.titleText} /> */}
         </View>
-        <View style={styles.matchedName}>
-          <Text>Rate {this.state.matched.name}</Text>
-        </View>
         <View style={styles.avatarStyles}>
           <Avatar
             rounded
@@ -93,9 +90,9 @@ class Rating extends Component {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Select
             onSelect={this.onSelect.bind(this)}
-            defaultText={this.state.value}
-            style={{ borderWidth: 0, marginLeft: '35%', marginBottom: 75 }}
-            textStyle={{}}
+            defaultText={this.state.value + this.state.matched.name}
+            style={ styles.buttons }
+            textStyle={ styles.textStyle8 }
             backdropStyle={{ backgroundColor: '#009FF2' }}
             optionListStyle={{ backgroundColor: '#F5FCFF' }}
           >
@@ -107,11 +104,14 @@ class Rating extends Component {
           </Select>
           {this.state.butt0n && (
             <Button
+              style={styles.buttons}
               buttonStyle={{ backgroundColor: '#009FF2' }}
               title="Confirm"
               onPress={() => this.setRating()}
-            />
+            >
+            hey</Button>
           )}
+          
         </View>
       </View>
     );
@@ -137,19 +137,25 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
-    borderColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderColor: '#333',
+    borderRadius: 22,
+    borderWidth: 1,
     alignItems: 'center',
-    borderRadius: 40
+    justifyContent: 'center'
+  },
+  textStyle8: {
+    fontFamily: 'Avenir Next',
+    fontWeight: '500',
+    color: 'black',
+    fontSize: 18
+    
   },
   buttonSmall: {
     width: 50,
     height: 50,
     borderWidth: 10,
-    borderColor: '#e7e7e7',
+    borderColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25

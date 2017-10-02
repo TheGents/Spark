@@ -148,17 +148,21 @@ module.exports = {
     put_user_pics: (req,res) => {
                 const db = req.app.get('db');
                 const { facebook_auth_id, photo1, photo2, photo3, photo4 } = req.body;
-                console.log(facebook_auth_id, photo1);
-                if(photo1){
+                
+                if (photo1) {
+                    console.log('1',facebook_auth_id, photo1);
                     db.put_user_pics([facebook_auth_id , photo1]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }
                 else if(photo2){
+                    console.log('2',facebook_auth_id, photo2);
                     db.put_user_pics2([facebook_auth_id , photo2]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }
                 else if(photo3){
+                    console.log('3',facebook_auth_id, photo3);
                     db.put_user_pics3([facebook_auth_id , photo3]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }
                 else if (photo4){
+                    console.log('4',facebook_auth_id, photo4);
                     db.put_user_pics4([facebook_auth_id , photo4]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }      
             },
