@@ -64,7 +64,7 @@ class Rating extends Component {
             }}
             name={'ios-flash'}
             type={'ionicon'}
-            color={'#03A9F4'}
+            color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
             size={40}

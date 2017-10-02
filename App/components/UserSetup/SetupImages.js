@@ -185,7 +185,7 @@ const styles = {
     margin: 2,
     width: width / 2 - 6,
     height: width / 2 - 6,
-    backgroundColor: '#03A9F4',
+    backgroundColor: '#34799b',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20

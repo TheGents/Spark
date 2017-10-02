@@ -148,7 +148,7 @@ export default class Messages extends Component {
             }}
             name={'ios-flash'}
             type={'ionicon'}
-            color={'#03A9F4'}
+            color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
             size={40}
@@ -156,7 +156,7 @@ export default class Messages extends Component {
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 40, margin: 10 }}
+            style={{ width: 100, height: 40, margin: 10, marginLeft: 30 }}
           />
           <Text style={styles.titleText} />
           {/* <TouchableOpacity 
@@ -179,7 +179,7 @@ export default class Messages extends Component {
               renderRow={rowData => this.eachPic(rowData)}
             />
           </View> */}
-        <View style={{ margin: 10 }} onPress={console.log('Chat')}>
+        <ScrollView style={{ margin: 10 }} onPress={console.log('Chat')}>
           <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>MATCHES</Text>
           <ListView
             enableEmptySections
@@ -190,7 +190,7 @@ export default class Messages extends Component {
             pageSize={5}
             renderRow={rowData => this.convoRender(rowData)}
           />
-        </View>
+        </ScrollView>
         {/* </ScrollView> */}
       </View>
     );

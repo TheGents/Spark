@@ -59,7 +59,7 @@ class PrefSliders extends React.Component {
             max={100}
             step={1}
             selectedStyle={{
-              backgroundColor: '#03A9F4'
+              backgroundColor: '#34799b'
             }}
             trackStyle={{
               height: 3

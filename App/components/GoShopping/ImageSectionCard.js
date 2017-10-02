@@ -20,7 +20,6 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    flex: 1,
     // marginLeft: 1,
     // marginRight: 1,
     // marginTop: 1,

@@ -150,24 +150,21 @@ class ChatRoom extends Component {
           <Icon
           name={'ios-arrow-back'}
           type={'ionicon'}
-          color={'#03A9F4'}
+          color={'#34799b'}
           underlayColor={'white'}
-          iconStyle={{ marginRight: 10 }}
+          iconStyle={{ marginLeft: 5 }}
           size={40}
         />
           </TouchableOpacity>
-          <Text
-          style={{
-            color: '#03A9F4'
-          }}
-          >{ this.state.matched.name }</Text>
+          <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', {userInfo: this.state.userInfo, matched: this.state.matched})}}>
           <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
-                  color={'#03A9F4'}
+                  color={'#34799b'}
                   underlayColor={'white'}
+                  iconStyle={{ marginRight: 5 }}
                   
                 />
           </TouchableOpacity>}
@@ -205,17 +202,14 @@ class ChatRoom extends Component {
           <Icon
           name={'ios-arrow-back'}
           type={'ionicon'}
-          color={'#03A9F4'}
+          color={'#34799b'}
           underlayColor={'white'}
-          iconStyle={{ marginRight: 10 }}
+          iconStyle={{ marginLeft: 5 }}
           size={40}
         />
           </TouchableOpacity>
-          <Text
-          style={{
-            color: '#03A9F4'
-          }}
-          >{ this.state.matched.name }</Text>
+          
+          <Text style={styles.name}>{ this.state.matched.name }</Text>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
@@ -254,7 +248,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)'
-  }
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Cochin',
+    color: '#34799b',
+    marginRight: 5
+  },
 });
 
 export default ChatRoom;

@@ -18,12 +18,11 @@ import {
   SharedElementGroup
 } from '@expo/ex-navigation';
 import axios from 'axios'
-import { Avatar } from 'react-native-elements';
+import { Avatar, Icon } from 'react-native-elements';
 import ITEMS from './data';
-import BioCard from './BioCard';
 import SetupImage from './MatchImage.js';
 import ImageSectionCard from './ImageSectionCard';
-import UserCardSection from './MatchCardSection';
+import BioCardSection from './BioCardSection';
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
@@ -76,22 +75,22 @@ class ShowShop extends Component {
       }
       else if (i === 2 && photo1) {
         return (
-          <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo1 }} />
+          <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo1 }} />
         );
       }
       else if (i === 3 && photo2) {
         return (
-          <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo2 }} />
+          <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo2 }} />
         );
       }
       else if (i === 4 && photo3) {
         return (
-          <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo3 }} />
+          <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo3 }} />
         );
       }
       else if (i === 5 && photo4) {
         return (
-          <SetupImage key={i} inputRange={inputRange}  scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo4 }} />
+          <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo4 }} />
         );
       }
       
@@ -104,43 +103,51 @@ class ShowShop extends Component {
       return (
         <View style={{backgroundColor: 'white', flex: 1}}>
           <View style={styles.nav}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Shopping') } 
-          >
-            <Text>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView style={{backgroundColor: 'white', flex: 2}}>
-        <ImageSectionCard>
-        <Animated.ScrollView
-        horizontal={true}
-        decelerationRate={0}
-        snapToInterval={313}
-        scrollEventThrottle={16}
-        snapToAlignment="start"
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: this.state.scrollX } } }],
-          { useNativeDriver: true }
-        )}>
+              <Icon
+              onPress={() => {
+                this.props.navigation.navigate('Shopping', { user: this.state.user });
+              }}
+              name={'ios-arrow-back'}
+              type={'ionicon'}
+              color={'#34799b'}
+              underlayColor={'white'}
+              iconStyle={{ marginRight: 10 }}
+              size={40}
+            />
+          </View>
+          <ScrollView style={{backgroundColor: 'white', flex: 2}}>
+            <ImageSectionCard>
+              <Animated.ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={318}
+              scrollEventThrottle={16}
+              snapToAlignment="start"
+              showsHorizontalScrollIndicator={false}
+              onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: this.state.scrollX } } }],
+              { useNativeDriver: true }
+              )}>
 
-        {ITEMS.map((item, i) => {
-          const gent = {};
-          return this.renderItem(item, i, gent);
-        })
-        }
-      </Animated.ScrollView>
-      </ImageSectionCard>
-      <UserCardSection>
-        <BioCard>
-          <Text>{this.state.match.first_name}</Text>
-          <Text>{this.state.match.age}</Text>
-          <Text>Occupation: {this.state.match.occupation}</Text>
-          <Text>Education: {this.state.match.school}</Text>
-          <Text>Bio: {this.state.match.general_bio}</Text>
-        </BioCard>
-      </UserCardSection>
-      </ScrollView>
+              {ITEMS.map((item, i) => {
+                const gent = {};
+                return this.renderItem(item, i, gent);
+                })
+              }
+              </Animated.ScrollView>
+            </ImageSectionCard>
+            <BioCardSection>
+              <View style={styles.containerStyle}>
+                <Text style={styles.name}>{this.state.match.first_name}, {this.state.match.age}</Text>
+                <Text style={styles.occupation}>{this.state.match.occupation}</Text>
+              </View>
+              <Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', }}>Bio</Text>
+              <View style={styles.bioStyle}>
+                {/* <Text>Education: {this.state.match.school}</Text> */}
+                <Text>{this.state.match.general_bio}</Text>
+              </View>
+            </BioCardSection>
+          </ScrollView>
         </View>
       );
     }
@@ -149,17 +156,53 @@ class ShowShop extends Component {
   }
 
   const styles = {
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: BAR_HEIGHT,
-      backgroundColor: '#fff'
+      containerStyle: {
+        borderWidth: 1,
+        borderRadius: 10,
+        borderBottomWidth: 0.1,
+        borderColor: '#34799b',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 5,
+        padding: 1,
+        alignItems: 'center',
+        height: 55
+    },
+    bioStyle: {
+      borderWidth: 1,
+      borderRadius: 10,
+      borderColor: '#34799b',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+      elevation: 1,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 1,
+      marginBottom: 5,
+      padding: 9
+    },
+    name: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      fontFamily: 'Cochin'
+    },
+    occupation: {
+      fontWeight: 'normal',
+      fontStyle: 'italic'
     },
     nav: {
       height:70,
       flexDirection:'row',
       paddingTop:10,
+      marginLeft: 10,
       justifyContent: 'space-between',
       alignItems:'center',
       backgroundColor: '#fff',
