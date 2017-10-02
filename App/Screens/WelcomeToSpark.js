@@ -8,6 +8,7 @@ import Slides from '../components/Slides';
 const SLIDE_DATA = [
     { text: 'Welcome to Spark', color: '#223d5a' },
     { text: 'Find Your Match!', color: '#4fa7dd' },
+    { text: 'Guys Message First!', color: '#34799b' },
     { text: 'Girls Rate the Guys!', color: '#4ac6dd' },
     { text: null, color: 'white' }
   ];
@@ -24,8 +25,8 @@ const SLIDE_DATA = [
       // console.log("token from async storage", token)
       if (token) {
         //Home
-               this.setState({ token });
         this.props.navigation.navigate('Home', { userToken: token });
+        this.setState({ token });
  
       } else {
         this.setState({ token: false });
