@@ -140,6 +140,7 @@ class ShowShop extends Component {
               <View style={styles.containerStyle}>
                 <Text style={styles.name}>{this.state.match.first_name}, {this.state.match.age}</Text>
                 <Text style={styles.occupation}>{this.state.match.occupation}</Text>
+                <Text style={styles.occupation}>{this.state.match.location}</Text>
               </View>
               <Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', }}>Bio</Text>
               <View style={styles.bioStyle}>
@@ -172,7 +173,7 @@ class ShowShop extends Component {
         marginBottom: 5,
         padding: 1,
         alignItems: 'center',
-        height: 55
+        height: 65
     },
     bioStyle: {
       borderWidth: 1,

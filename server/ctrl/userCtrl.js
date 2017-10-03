@@ -76,6 +76,12 @@ module.exports = {
             db.get_chicks([gender]).then((data)=>{res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
     },
+    get_rating: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+
+        db.get_dudes_rating(id).then((data) => { res.status('200').send(data) }).catch(()=> res.status('404').send());
+    },
     get_matches: (req,res) => {
         const db = req.app.get('db');
         const { id, gender } = req.params;

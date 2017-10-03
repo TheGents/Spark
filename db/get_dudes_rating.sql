@@ -1,0 +1,1 @@
+-- SELECT CAST(AVG (rating) AS DECIMAL(10,1)) from kk_rating WHERE dude_id = $1
