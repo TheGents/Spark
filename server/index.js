@@ -33,6 +33,7 @@ app.post('/postRate', userCtrl.post_rate);
 app.get('/getHome/:id', userCtrl.get_user_profile);
 app.get('/getPreferences', userCtrl.get_user_preferences);
 app.get('/shopTillYouDrop/:gender', userCtrl.get_shopping);
+app.get('/getRating/:id', userCtrl.get_rating);
 app.get('/getmatches/:id/:gender', userCtrl.get_matches);
 app.get('/shopFiltered/:id/:gender', userCtrl.get_filtered);
 app.get('/getPrematch/:id/:gender', userCtrl.get_prematch);

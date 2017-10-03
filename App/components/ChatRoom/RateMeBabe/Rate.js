@@ -36,13 +36,7 @@ class Rating extends Component {
   render() {
     console.log('hey man this is it', this.state.matched);
     // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
-    // console.log('hey man this is it',this.state.matched);
+    
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>

@@ -146,8 +146,8 @@ class Home extends Component {
               }}
               onPress={() => console.log('Profile pic pressed')}
               activeOpacity={0.7}
-              width={330}
-              height={330}
+              width={280}
+              height={280}
             />
           </View>
           <HomeCard style={styles.homecardStyling}>

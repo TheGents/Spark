@@ -62,7 +62,8 @@ export default class Shopping extends Component {
             occupation: x.occupation,
             general_bio: x.general_bio,
             location: x.location,
-            facebook_auth_id: x.facebook_auth_id
+            facebook_auth_id: x.facebook_auth_id,
+            rating: x.avg
           });
         });
         this.setState({ cards: cardInfo });
@@ -120,7 +121,7 @@ export default class Shopping extends Component {
               <View style={styles.imageContainer}>
                 <Text style={styles.name}>{x.first_name}, {x.age}</Text>
                 <Text style={styles.occupation}>{x.occupation}</Text>
-                <Text>{x.location}</Text>
+                <Text style={styles.occupation}>{x.rating}</Text>
               </View>
           </Image>
         </TouchableHighlight>
