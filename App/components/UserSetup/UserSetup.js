@@ -39,12 +39,24 @@ class Setup extends Component {
       value: ''
     };
     this._pickImage = this._pickImage.bind(this);
-    this.handleChange = this.handleChangeValue.bind(this);
+    this.handleChangeValue = this.handleChangeValue.bind(this);
+  }
+  componentDidUpdate() {
+    console.log('updating', this.state.user);
   }
 
-  handleChangeValue = e => {
+  handleChangeValue = (a, b, c) => {
     // console.log('d', this.state.value);
-    this.setState({ value: e.target.value });
+    // this.setState({ value: e.target.value });
+    axios
+    .put('http://localhost:3000/putBio', {
+      general_bio: a,
+      facebook_auth_id: b,
+      occupation: c
+    })
+    .then(response => {
+      this.setState({ user: response.data[0] })
+    })
   };
 
   _pickImage = async val => {
@@ -118,7 +130,7 @@ class Setup extends Component {
           <View style={styles.nav}>
             <Icon
               onPress={() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('Home', { setupUser: this.state.user });
               }}
               name={'ios-home'}
               type={'ionicon'}
@@ -147,6 +159,7 @@ class Setup extends Component {
             <SetupBio
               key={2}
               ImagePicker={this._pickImage}
+              handleChangeValue={this.handleChangeValue}
               user={this.state.user}
               style={styles.bioStyle}
             />

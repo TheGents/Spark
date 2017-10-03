@@ -36,27 +36,18 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),  
-      user: ''
+      user: props.navigation.state.params.setupUser || ''
     };
   }
  
   componentDidMount() {
+    console.log('this is the big one', this.state.user);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture,photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
         this.setState({ user: response.data });
-        
-        // console.log('Home.js axios.get', this.state.user.facebook_auth_id)
-        // console.log(this.state.user);
-        // console.log(response.data);
-
-        // console.log('Asyncstorage', AsyncStorage.getItem('fb_token').then(function(results){
-        //   console.log(results);
-        //   return results;
-        // }));
-        // console.log('initial shit',response.data.id)
 
         return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       })
@@ -65,9 +56,9 @@ class Home extends Component {
           
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-            console.log('this is it', res);
+            
             axios.put('http://localhost:3000/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
-            console.log('1', res);
+            
           });
         }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
@@ -79,18 +70,14 @@ class Home extends Component {
           });
           }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
-          console.log('3')
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-           
             axios.put('http://localhost:3000/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
         }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
-          console.log('4')
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-          
             axios.put('http://localhost:3000/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
@@ -108,10 +95,9 @@ class Home extends Component {
     //we call this.setState when we want to update what a component shows
   }
 
-
-                  // axios.post(`https://graph.facebook.com/${this.state.user
-                  // .facebook_auth_id}/picture?type=large`)
-
+  componentWillReceiveProps(nextProps) {
+    this.setState({ user: nextProps.navigation.state.params.setupUser });
+  }
 
   render() {
     if (_.isLength(this.state.user)) {
@@ -167,7 +153,7 @@ class Home extends Component {
           <HomeCard style={styles.homecardStyling}>
             <Text style={nameStyle}>{this.state.user.first_name}</Text>
             <Text style={ageStyle}>{this.state.user.age}</Text>
-            <Text>{this.state.user.occupation}</Text>
+            <Text>{ this.state.user.occupation}</Text>
             <Text>{this.state.user.school}</Text>
           </HomeCard>
           <View style={styles.buttonContainer}>

@@ -82,16 +82,7 @@ class SetupBio extends Component {
             style={{ height: 40 }}
             backgroundColor={'transparent'}
             onPress={() => {
-              {
-                /* console.log({general_bio: this.state.general_bio, facebook_auth_id:this.props.user.facebook_auth_id}); */
-              }
-              axios
-                .put('http://localhost:3000/putBio', {
-                  general_bio: this.state.general_bio,
-                  facebook_auth_id: this.props.user.facebook_auth_id,
-                  occupation: this.state.occupation
-                })
-                .then(response => console.log(response));
+              this.props.handleChangeValue(this.state.general_bio, this.props.user.facebook_auth_id, this.state.occupation);
             }}
           />
         </View>
