@@ -47,9 +47,9 @@ class ShowShop extends Component {
   //   }}
   // >
 
-    componentDidUpdate() {
-      // console.log(this.state.value);
-    }  
+  componentWillReceiveProps(nextProps) {
+    this.setState({ match: nextProps.navigation.state.params.user });
+  }
 
     renderItem(item, i, gent) {
       let { image, photo1, photo2, photo3, photo4 } = this.state.match;
