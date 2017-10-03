@@ -5,12 +5,12 @@ import {
   StyleSheet,
   Image,
   Text,
-  TouchableNativeFeedback,
   Platform,
   TouchableOpacity,
   Dimensions,
   AsyncStorage,
   View,
+  ActivityIndicator,
   ScrollView,
   TouchableHighlight
 } from 'react-native';
@@ -32,6 +32,7 @@ class Home extends Component {
     super(props);
     this.state = {
       isOnPressing: false,
+      homeLoaded: false,
       userToken: () =>
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
@@ -44,7 +45,7 @@ class Home extends Component {
     console.log('this is the big one', this.state.user);
     axios
       .get(
-        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture,photos,birthday,work,gender&access_token=${this.state.userToken()}`
+        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
         this.setState({ user: response.data });
@@ -90,7 +91,7 @@ class Home extends Component {
         return axios.get(`http://localhost:3000/getHome/${res.data[0].facebook_auth_id}`);
       })
       .then(res => {
-        this.setState({ user: res.data[0] });
+        this.setState({ user: res.data[0], homeLoaded: true });
       });
     //we call this.setState when we want to update what a component shows
   }
@@ -100,8 +101,12 @@ class Home extends Component {
   }
 
   render() {
-    if (_.isLength(this.state.user)) {
-      return <AppLoading />;
+    if (!this.state.homeLoaded) {
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicator size='large' color='#34799b' />
+        </View>
+      );
     }
 
     let onPressProps;
@@ -197,7 +202,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-
+  loading: {
+    flex: 1,
+    justifyContent: 'center'
+  },
   nav: {
     height: 70,
     flexDirection: 'row',

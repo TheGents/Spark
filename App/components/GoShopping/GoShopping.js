@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Image, Text, ActivityIndicator, View, TouchableHighlight } from 'react-native';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
@@ -98,9 +98,12 @@ export default class Shopping extends Component {
       }
     };
   }
+
   componentWillUnmount() {
     this.serverRequest.abort();
   }
+  
+
   Card(x) {
     return (
       <View style={styles.card}>
@@ -142,7 +145,8 @@ export default class Shopping extends Component {
   noMore() {
     return (
       <View style={styles.card}>
-        <Text>There are no more matches, please check back later.</Text>
+        <Text style={{ paddingBottom: 22 }}>There are no more matches, please check back later.</Text>
+        <ActivityIndicator size='large' color='#34799b' />
       </View>
     );
   }
@@ -206,8 +210,9 @@ export default class Shopping extends Component {
               size={30}
             />
           </View>
-
-          <AppLoading />
+          <View style={styles.loading}>
+            <ActivityIndicator size='large' color='#34799b' />
+          </View>    
         </View>
       );
     }
@@ -296,9 +301,12 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     padding: 1,
     alignItems: 'center',
-    
     width: 270,
     backgroundColor: 'rgba(222,222,222, 9)'
+},
+loading: {
+  flex: 1,
+  justifyContent: 'center'
 },
   name: {
     fontSize: 24,
@@ -329,6 +337,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#e3e3e3',
     borderRadius: 15,
-    margin: 9
+    margin: 9,
+    padding: 40
   }
 });
