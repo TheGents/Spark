@@ -85,7 +85,7 @@ class PrefSliders extends React.Component {
             allowOverlap
             snapped
             selectedStyle={{
-              backgroundColor: '#0fb3ff'
+              backgroundColor: '#34799b'
             }}
             trackStyle={{
               height: 3

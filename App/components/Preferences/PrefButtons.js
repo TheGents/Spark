@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
+import { LoginManager } from 'react-native-fbsdk';
 import Button from 'apsl-react-native-button';
 
 console.ignoredYellowBox = ['Remote debugger'];
@@ -25,7 +26,7 @@ class PrefButtons extends React.Component {
         <Button
           style={styles.buttonStyle8}
           textStyle={styles.textStyle8}
-          onPress={() => this.props.logout()}
+          onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
             <Text style={{ fontFamily: 'Avenir' }}>Logout</Text>

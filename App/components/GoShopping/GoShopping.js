@@ -184,19 +184,6 @@ export default class Shopping extends Component {
               resizeMode="contain"
               style={{ width: 100, height: 40, margin: 10 }}
             />
-            {/* <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-            }}
-          >
-            <Image
-              source={require('../images/suit.png')}
-              name="ios-chatboxes-outline"
-              color="#555"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </TouchableOpacity> */}
 
             <Icon
               onPress={() => {

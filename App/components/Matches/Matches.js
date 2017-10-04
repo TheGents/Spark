@@ -5,11 +5,10 @@ import {
   StyleSheet,
   Image,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ListView,
-  Button,
+  ActivityIndicator,
   View
 } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -42,10 +41,11 @@ export default class Messages extends Component {
       convoData: ds.cloneWithRows(convos),
       kitkats: true,
       userInfo: props.navigation.state.params.user,
+      matchesLoaded: false
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Axios.get(
       `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
         .userInfo.gender}`
@@ -75,13 +75,14 @@ export default class Messages extends Component {
           });
         });
       }
-      this.setState({ convoData: ds.cloneWithRows(convos) });
+      this.setState({ convoData: ds.cloneWithRows(convos), matchesLoaded: true });
     });
   }
-
-
-
-  // eachPic(x) {
+  componentWillReceiveProps(nextProps) {
+    this.setState({ userInfo: nextProps.navigation.state.params.user, y: nextProps.navigation.state.params.x });
+  }
+  
+  // eachPic(x) 
   //   return (
   //     <TouchableOpacity style={{ alignItems: 'center' }}>
   //       <Image
@@ -125,28 +126,18 @@ export default class Messages extends Component {
 
   render() {
     // console.log('userInfo: ',this.state.userInfo);
-    console.log('kitkats: ',this.state.kitkats);
+    console.log('kitkats: ', this.state.kitkats);
     // console.log('convoData: ',this.state.convoData);
-    if (_.isNull(this.state.convoData)) {
-      return <AppLoading />;
+    if (!this.state.matchesLoaded) {
+      return (
+        <View style={styles.loading} >
+          <ActivityIndicator type='large' color='#34799b' />
+        </View>
+      );
     }
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
-          {/* <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
-            }}
-          >
-            <Image
-              source={require('../images/Spark.png')}
-              name="ios-chatboxes-outline"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-
-            {/* <Image source ={require('../images/suit.png')} name="ios-person" color ="#888" size={25} style={{width:30, height:30, margin:10}} /> */}
-          {/* </TouchableOpacity>  */}
           <Icon
             onPress={() => {
               this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
@@ -209,6 +200,10 @@ const styles = StyleSheet.create({
   },
   titleText: {
     width: 50
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center'
   },
   nav: {
     height: 70,

@@ -1,7 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, AsyncStorage, Image } from 'react-native';
+import { LoginManager } from 'react-native-fbsdk';
+import { View, Text, StyleSheet, AlertIOS, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
@@ -15,10 +16,13 @@ class Preferences extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  logout = () => {
-    AsyncStorage.removeItem('fb_token');
-    this.props.navigation.navigate('Welcome');
-  };
+  logout = (val) => {
+    AsyncStorage.removeItem('fb_token').then(() => {
+    AlertIOS.alert('You Have Been Logged Out');
+    this.props.navigation.navigate(val);
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
