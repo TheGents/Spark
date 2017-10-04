@@ -12,15 +12,22 @@ import TermsOfService from './TermsOfService';
 class Preferences extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      agePreference: props.navigation.state.params.agePreference
+    };
     this.logout = this.logout.bind(this);
+    this.handleChangeValue = this.handleChangeValue.bind(this);
   }
 
-  logout = (val) => {
-    AsyncStorage.removeItem('fb_token').then(() => {
+  logout = async (val) => {
+    await AsyncStorage.removeItem('fb_token');
     AlertIOS.alert('You Have Been Logged Out');
     this.props.navigation.navigate(val);
-    });
+  }
+
+  handleChangeValue = (val) => {
+      this.setState({ agePreference: val });
+      console.log('age pref', this.state.agePreference);
   }
 
   render() {
@@ -29,7 +36,7 @@ class Preferences extends Component {
         <View style={styles.nav}>
           <Icon
             onPress={() => {
-              this.props.navigation.navigate('Home');
+              this.props.navigation.navigate('Home', { agePreference: this.state.agePreference });
             }}
             name={'ios-home'}
             type={'ionicon'}
@@ -46,7 +53,9 @@ class Preferences extends Component {
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
         <View style={styles.sliderStyles}>
-          <PrefSliders />
+          <PrefSliders 
+          handleChangeValue={this.handleChangeValue}
+          />
         </View>
         <PrefButtons logout={this.logout} />
         <View style={styles.privacyAndTerms}>

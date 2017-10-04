@@ -19,54 +19,66 @@ import ShowShop from './App/components/GoShopping/ShowShop.js';
 import Rating from './App/components/ChatRoom/RateMeBabe/Rate';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      change: true
+    };
+  }
   // static navigationOptions = {   header: null };
+  shouldComponentUpdate() {
+    this.setState({ change: false });
+    console.log('this welcome screen should update');
+  }
+
   render() {
     // const { navigation } = this.props; return <Register navigation={navigation}
     // />;
-
-    const MainNavigator = TabNavigator(
-      {
-        Welcome: {
-          screen: WelcomeScreen
-        },
-        auth: {
-          screen: Login
-        },
-        Home: {
-          screen: Home
-        },
-        Messages: {
-          screen: Messages
-        },
-        Shopping: {
-          screen: Shopping
-        },
-        ShowShop: {
-          screen: ShowShop
-        },
-        Setup: {
-          screen: Setup
-        },
-        Preferences: {
-          screen: Preferences
-        },
-        Chat: {
-          screen: ChatRoom
-        },
-        TermsOfService: {
-          screen: TermsOfService
-        },
-        Rating: {
-          screen: Rating
-        }
+ 
+  const MainNavigator = TabNavigator(
+    {
+      Welcome: {
+        screen: WelcomeScreen
       },
-      {
-        navigationOptions: {
-          tabBarVisible: false
-        },
-        lazy: true
+      auth: {
+        screen: Login
+      },
+      Home: {
+        screen: Home
+      },
+      Messages: {
+        screen: Messages
+      },
+      Shopping: {
+        screen: Shopping
+      },
+      ShowShop: {
+        screen: ShowShop
+      },
+      Setup: {
+        screen: Setup
+      },
+      Preferences: {
+        screen: Preferences
+      },
+      Chat: {
+        screen: ChatRoom
+      },
+      TermsOfService: {
+        screen: TermsOfService
+      },
+      Rating: {
+        screen: Rating
       }
-    );
+    },
+    {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: this.state.change,
+    }
+  );
+
 
     return (
       <Provider store={store}>
