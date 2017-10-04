@@ -23,10 +23,14 @@ export default class Shopping extends Component {
       cards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
+      agePreference: props.navigation.state.params.agePreference,
       filtered: 'check to see if state changes and console log before render'
     };
   }
+
   componentDidMount() {
+    console.log('age prefernce in shopping', this.state.agePreference);
+    console.log('userin shopping', this.state.userInfo);
     Axios.get(
       `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
@@ -48,6 +52,7 @@ export default class Shopping extends Component {
         });
         const cardInfo = [];
         person.map(x => {
+          if (x.age >= this.state.agePreference[0] ) {
           cardInfo.push({
             id: x.id,
             first_name: x.first_name,
@@ -65,6 +70,7 @@ export default class Shopping extends Component {
             facebook_auth_id: x.facebook_auth_id,
             rating: x.avg
           });
+        }
         });
         this.setState({ cards: cardInfo });
       });
@@ -97,6 +103,15 @@ export default class Shopping extends Component {
         ).then(response => console.log(response));
       }
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.navigation.state.params.user) {
+    this.setState({ userInfo: nextProps.navigation.state.params.user });
+    }
+    if (nextProps.navigation.state.params.agePreference) {
+      this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
+    }
   }
 
   componentWillUnmount() {

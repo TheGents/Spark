@@ -35,7 +35,7 @@ class SetupBio extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {

@@ -59,7 +59,7 @@ class ChatRoom extends Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     
     Axios.get(`http://localhost:3000/getmessage/${this.state.roomID}`).then((response)=> {
       this.setState({ kitkats: response.data });

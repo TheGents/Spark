@@ -37,7 +37,8 @@ class Home extends Component {
         (props.navigation.state.params.userToken === 'token'
           ? 'token'
           : props.navigation.state.params.userToken),  
-      user: props.navigation.state.params.setupUser || ''
+      user: '', 
+      agePreference: ''
     };
   }
  
@@ -97,7 +98,12 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.navigation.state.params.setupUser) {
     this.setState({ user: nextProps.navigation.state.params.setupUser });
+    }
+    if (nextProps.navigation.state.params.agePreference) {
+      this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
+    }
   }
 
   render() {
@@ -132,7 +138,7 @@ class Home extends Component {
             />
             <Icon
               onPress={() => {
-                this.props.navigation.navigate('Shopping', { user: this.state.user });
+                this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference });
               }}
               name={'ios-flash'}
               type={'ionicon'}
@@ -181,7 +187,7 @@ class Home extends Component {
               <View>
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Preferences', { user: this.state.user });
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference });
                   }}
                   name={'md-settings'}
                   type={'ionicon'}

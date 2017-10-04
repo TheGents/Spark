@@ -25,6 +25,7 @@ class Login extends React.Component {
   }
 
   onAuthComplete(props) {
+    console.log('props in auth', props);
     if (props.token) {
       //Home
       // console.log('onAuthComplete')
