@@ -11,7 +11,7 @@ class Rating extends Component {
     this.state = {
       userInfo: props.navigation.state.params.userInfo,
       matched: props.navigation.state.params.matched,
-      value: 'Rate ',
+      value: `Rate ${props.navigation.state.params.matched.name}`,
       butt0n: false
     };
   }
@@ -70,42 +70,44 @@ class Rating extends Component {
             style={{ width: 150, height: 40, marginVertical: 10 }}
           />
           <Text>{'        '}</Text>
-          {/* <Text style={styles.titleText} /> */}
         </View>
         <View style={styles.avatarStyles}>
+        <Text style={styles.titleText}>{this.state.matched.name}</Text> 
           <Avatar
             rounded
             source={{ uri: this.state.matched.image }}
             activeOpacity={0.7}
-            width={330}
-            height={330}
+            width={270}
+            height={270}
           />
-        </View>
+        
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Select
             onSelect={this.onSelect.bind(this)}
-            defaultText={this.state.value + this.state.matched.name}
+            defaultText={this.state.value}
             style={ styles.buttons }
             textStyle={ styles.textStyle8 }
             backdropStyle={{ backgroundColor: '#34799b' }}
             optionListStyle={{ backgroundColor: '#F5FCFF' }}
           >
-            <Option value={[1, '🌟']}>1 - Jerk </Option>
-            <Option value={[2, '🌟🌟']}>2 - Intolerable </Option>
-            <Option value={[3, '🌟🌟🌟']}>3 - Average </Option>
-            <Option value={[4, '🌟🌟🌟🌟']}>4 - Great! </Option>
-            <Option value={[5, '🌟🌟🌟🌟🌟']}>5 - Spark! </Option>
+            <Option value={['Change Rating of ', 1]}>1 - Jerk </Option>
+            <Option value={['Change Rating of ', 2]}>2 - Intolerable </Option>
+            <Option value={['Change Rating of ', 3]}>3 - Average </Option>
+            <Option value={['Change Rating of ', 4]}>4 - Great! </Option>
+            <Option value={['Change Rating of ', 5]}>5 - Spark! </Option>
           </Select>
           {this.state.butt0n && (
             <Button
-              style={styles.buttons}
-              buttonStyle={{ backgroundColor: '#F5FCFF' }}
-              title="Confirm"
+              textStyle={{ fontSize: 18 }}
+              buttonStyle={styles.buttonSmall}
+              title={'Confirm Rating'}
+              color='black'
               onPress={() => this.setRating()}
             />
             
           )}
           
+        </View>
         </View>
       </View>
     );
@@ -118,7 +120,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   titleText: {
-    width: 50
+    fontFamily: 'Cochin',
+    fontWeight: '500',
+    color: '#34799b',
+    fontSize: 26,
+    marginBottom: 10
   },
   nav: {
     height: 70,
@@ -131,12 +137,13 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
-    backgroundColor: 'white',
-    borderColor: '#333',
-    borderRadius: 22,
-    borderWidth: 1,
+    width: 350,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10,
+    backgroundColor: 'rgba(50,121,155,0.09)'
   },
   textStyle8: {
     fontFamily: 'Avenir Next',
@@ -146,13 +153,12 @@ const styles = StyleSheet.create({
     
   },
   buttonSmall: {
-    width: 50,
-    height: 50,
-    borderWidth: 10,
-    borderColor: 'blue',
+    width: 350,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25
+    backgroundColor: 'rgba(50,121,155,0.39)'
   },
   matchedName: {
     marginVertical: '10%',
@@ -160,8 +166,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   avatarStyles: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: 30
   }
 });
 

@@ -158,7 +158,7 @@ class ChatRoom extends Component {
           </TouchableOpacity>
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
-            onPress={() => { this.props.navigation.navigate('Rating', {userInfo: this.state.userInfo, matched: this.state.matched})}}>
+            onPress={() => { this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched })}}>
           <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
