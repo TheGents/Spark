@@ -16,7 +16,9 @@ const SLIDE_DATA = [
   class WelcomeScreen extends Component {
     constructor(props) {
       super(props)
-      this.state = { token: null };
+      this.state = { 
+        token: null
+      };
     }
   
     async componentWillMount() {
@@ -32,6 +34,7 @@ const SLIDE_DATA = [
         this.setState({ token: false });
       }
     }
+    
   
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login

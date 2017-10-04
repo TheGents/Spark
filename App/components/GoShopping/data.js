@@ -2,7 +2,6 @@ export default [
     null,
     {
       image: 'https://s-media-cache-ak0.pinimg.com/564x/bc/6d/d8/bc6dd84ab48f40e09f5b4f0409c5471c.jpg',
-      name: 'Miranda Kerr',
       age: 21,
       description: 'image'
     },

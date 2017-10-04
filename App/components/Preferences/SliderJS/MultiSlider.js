@@ -456,10 +456,10 @@ const styles = StyleSheet.create({
   selectedTrack: {
     ...Platform.select({
       ios: {
-        backgroundColor: '#095FFF'
+        backgroundColor: '#34799b'
       },
       android: {
-        backgroundColor: '#0D8675'
+        backgroundColor: '#34799b'
       }
     })
   },

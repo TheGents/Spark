@@ -87,7 +87,7 @@ class Rating extends Component {
             defaultText={this.state.value + this.state.matched.name}
             style={ styles.buttons }
             textStyle={ styles.textStyle8 }
-            backdropStyle={{ backgroundColor: '#009FF2' }}
+            backdropStyle={{ backgroundColor: '#34799b' }}
             optionListStyle={{ backgroundColor: '#F5FCFF' }}
           >
             <Option value={[1, '🌟']}>1 - Jerk </Option>
@@ -99,11 +99,11 @@ class Rating extends Component {
           {this.state.butt0n && (
             <Button
               style={styles.buttons}
-              buttonStyle={{ backgroundColor: '#009FF2' }}
+              buttonStyle={{ backgroundColor: '#F5FCFF' }}
               title="Confirm"
               onPress={() => this.setRating()}
-            >
-            hey</Button>
+            />
+            
           )}
           
         </View>
