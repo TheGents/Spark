@@ -28,7 +28,7 @@ import UserCardSection from './UserCardSection';
 const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
-const BAR_HEIGHT = Constants.statusBarHeight * 5;
+const BAR_HEIGHT = Constants.statusBarHeight * 1;
 
 class Setup extends Component {
   constructor(props) {
@@ -189,7 +189,7 @@ const styles = {
   bioStyle: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    marginTop: 180
+    marginTop: 195
   },
   scrollViewStyle: {
     flex: 1

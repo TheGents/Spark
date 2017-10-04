@@ -4,15 +4,13 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   Image,
-  Text,
   Animated,
   TouchableOpacity,
   Dimensions,
   View,
-  Easing,
-  ScrollView,
-  Button
+  ScrollView
 } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
 import axios from 'axios';
 import ITEMS from './data';
@@ -24,19 +22,19 @@ const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = 100;
 
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
-const BAR_HEIGHT = Constants.statusBarHeight * 5;
+const BAR_HEIGHT = Constants.statusBarHeight * 1;
 
 class SetupImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photo1: '../images/bond.jpeg',
-      photo2: '../images/bond.jpeg',
-      photo3: '../images/bond.jpeg',
-      photo4: '../images/bond.jpeg'
+      photo1: '',
+      photo2: '',
+      photo3: '',
+      photo4: ''
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
@@ -136,7 +134,12 @@ class SetupImage extends Component {
 
   render() {
     const { image, photo, third, fourth } = this.props.images;
-
+    console.log('third', this.state.photo3);
+    const firstLogo = image || this.state.photo1  ? require('../images/deletelogo.png') : require('../images/add.png')
+    const secondLogo = photo || this.state.photo2 ? require('../images/deletelogo.png') : require('../images/add.png')
+    const thirdLogo = third || this.state.photo3 ? require('../images/deletelogo.png') : require('../images/add.png')
+    const fourthLogo = fourth || this.state.photo4 ? require('../images/deletelogo.png') : require('../images/add.png')
+    
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -144,28 +147,56 @@ class SetupImage extends Component {
             this.onClick('first');
           }}
         >
-          <Animated.Image source={{ uri: image || this.state.photo1 }} style={styles.box} />
+          <Animated.Image 
+          source={{ uri: image || this.state.photo1 }} 
+          style={styles.box}>
+            <Image
+              source={firstLogo}
+              style={{ height: 30, width: 30 }}
+            />
+          </Animated.Image>  
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.onClick('second');
           }}
         >
-          <Animated.Image source={{ uri: photo || this.state.photo2 }} style={styles.box} />
+          <Animated.Image 
+          source={{ uri: photo || this.state.photo2 }} 
+          style={styles.box}
+          >
+            <Image
+            source={secondLogo}
+            style={{ height: 30, width: 30 }}
+            />
+          </Animated.Image>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.onClick('third');
           }}
         >
-          <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box} />
+          <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box}>
+            <Image
+            source={thirdLogo}
+            style={{ height: 30, width: 30 }}
+            />
+           </Animated.Image> 
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.onClick('fourth');
           }}
         >
-          <Animated.Image source={{ uri: fourth || this.state.photo4 }} style={styles.box} />
+          <Animated.Image 
+          source={{ uri: fourth || this.state.photo4 }} 
+          style={styles.box} 
+          >
+            <Image
+            source={fourthLogo}
+            style={{ height: 30, width: 30 }}
+            />
+          </Animated.Image>
         </TouchableOpacity>
       </View>
     );
@@ -178,17 +209,18 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 2,
-    marginTop: 50,
+    marginTop: 5,
   },
   box: {
     flex: 1,
     margin: 2,
     width: width / 2 - 6,
     height: width / 2 - 6,
-    backgroundColor: '#34799b',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20
+    backgroundColor: 'rgba(52,121,155,.3)',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    borderRadius: 20,
+    paddingRight: 0
   }
 };
 

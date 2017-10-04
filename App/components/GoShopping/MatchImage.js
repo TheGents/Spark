@@ -25,7 +25,7 @@ import Card from './MatchCard';
 const {height, width} = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
-const BAR_HEIGHT = Constants.statusBarHeight * 5;
+const BAR_HEIGHT = Constants.statusBarHeight * 1;
 
 class SetupImage extends Component {
 
