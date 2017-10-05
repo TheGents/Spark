@@ -52,7 +52,7 @@ export default class Shopping extends Component {
         });
         const cardInfo = [];
         person.map(x => {
-          if (x.age >= this.state.agePreference[0] ) {
+          if (x.age >= this.state.agePreference[0]) {
           cardInfo.push({
             id: x.id,
             first_name: x.first_name,
@@ -111,6 +111,15 @@ export default class Shopping extends Component {
     }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
+      console.log('cards are the deal', this.state.cards[0]);
+      const newCards = []
+      for (card of this.state.cards) {
+        if (card.age >= nextProps.navigation.state.params.agePreference[0]){
+          newCards.push(card)
+        }
+      }
+      this.setState({ newCards: newCards })
+      console.log('these cards are the deal', newCards);
     }
   }
 
@@ -268,7 +277,7 @@ export default class Shopping extends Component {
         </View>
         <SwipeCards
           ref={'swiper'}
-          cards={this.state.cards}
+          cards={this.state.newCards || this.state.cards}
           containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
           renderCard={cardData => this.Card(cardData)}
           renderNoMoreCards={() => this.noMore()}
