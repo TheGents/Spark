@@ -77,9 +77,58 @@ export default class Messages extends Component {
       }
       this.setState({ convoData: ds.cloneWithRows(convos), matchesLoaded: true });
     });
+
+    addNewMatch = () => {
+      Axios.get(
+        `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
+          .userInfo.gender}`
+      ).then(response => {
+        //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.
+        this.setState({ kitkats: response.data });
+        const newMatchedUsers = response.data;
+        if (this.state.userInfo.gender === '0') {
+          newMatchedUsers.map(x => {
+            for (objects of convos) {
+              if (objects.id === x.dude_id) {
+                return;
+              }
+            }
+                convos.push({
+                  id: x.dude_id,
+                  name: x.first_name,
+                  image: x.facebook_pic,
+                  chatRoom: x.id,
+                  rated: x.rated
+                });
+            })
+          }
+        else if (this.state.userInfo.gender === '1') {
+          newMatchedUsers.map(x => {
+            for (objects of convos) {
+              console.log('x', x)
+              console.log('objects', objects)
+              if (objects.id === x.chick_id) {
+                console.log('y', x)
+                return;
+              }
+            }
+            convos.push({
+              id: x.chick_id,
+              name: x.first_name,
+              image: x.facebook_pic,
+              chatRoom: x.id,
+              rated: x.rated
+            });
+          });
+        }
+        this.setState({ convoData: ds.cloneWithRows(convos), matchesLoaded: true });
+      });
+    };
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({ userInfo: nextProps.navigation.state.params.user, y: nextProps.navigation.state.params.x });
+    console.log('componentWillReceiveProps', nextProps.navigation.state.params.y);
+    this.setState({ userInfo: nextProps.navigation.state.params.user, y: nextProps.navigation.state.params.y });
+    addNewMatch()
   }
   
   // eachPic(x) 
@@ -126,7 +175,7 @@ export default class Messages extends Component {
 
   render() {
     // console.log('userInfo: ',this.state.userInfo);
-    console.log('kitkats: ', this.state.kitkats);
+    // console.log('kitkats: ', this.state.kitkats);
     // console.log('convoData: ',this.state.convoData);
     if (!this.state.matchesLoaded) {
       return (
