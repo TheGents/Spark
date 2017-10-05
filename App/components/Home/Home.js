@@ -38,12 +38,11 @@ class Home extends Component {
           ? 'token'
           : props.navigation.state.params.userToken),  
       user: '', 
-      agePreference: ''
+      agePreference: [18]
     };
   }
  
   componentDidMount() {
-    console.log('this is the big one', this.state.user);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken()}`
@@ -100,9 +99,11 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.setupUser) {
     this.setState({ user: nextProps.navigation.state.params.setupUser });
+    console.log('changing the user', this.state.user);
     }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
+      
     }
   }
 
