@@ -23,7 +23,7 @@ class Rating extends Component {
     Axios.post('http://localhost:3000/postRate', {
       chick_id: this.state.userInfo.facebook_auth_id,
       dude_id: this.state.matched.id,
-      rating: this.state.value[0],
+      rating: this.state.value[1],
       room_id: this.state.matched.chatRoom
     }).then(response => {
       const newMatched = this.state.matched;
@@ -34,7 +34,7 @@ class Rating extends Component {
   }
 
   render() {
-    console.log('hey man this is it', this.state.matched);
+    console.log('hey man this is it', this.state.userInfo);
     // console.log('hey man this is it',this.state.matched);
     
     return (
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(50,121,155,0.39)'
+    backgroundColor: 'rgba(50,121,155,0.09)'
   },
   matchedName: {
     marginVertical: '10%',

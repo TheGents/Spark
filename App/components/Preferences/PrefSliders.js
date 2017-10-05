@@ -34,9 +34,10 @@ class PrefSliders extends React.Component {
   multiSliderValuesChange = values => {
     this.setState({
       multiSliderValue: values
-    });
+    }, () => {
     this.props.handleChangeValue(this.state.multiSliderValue);
-  };
+  });
+}
   
 
   render() {

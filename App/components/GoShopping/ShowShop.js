@@ -53,8 +53,6 @@ class ShowShop extends Component {
 
     renderItem(item, i, gent) {
       let { image, photo1, photo2, photo3, photo4 } = this.state.match;
-      console.log('this.state.match', photo1)
-      console.log(i)
       // console.log('usersetup.js', this.state.user);
       gent[i] = new Animated.Value(0);
       

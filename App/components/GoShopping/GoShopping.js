@@ -21,20 +21,21 @@ export default class Shopping extends Component {
     super(props);
     this.state = {
       cards: [],
+      newCards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
-      agePreference: props.navigation.state.params.agePreference,
+      agePreference: [18, 60],
       filtered: 'check to see if state changes and console log before render'
     };
   }
 
   componentDidMount() {
     console.log('age prefernce in shopping', this.state.agePreference);
-    console.log('userin shopping', this.state.userInfo);
+    console.log('userin shopping', this.state.userInfo.length);
     Axios.get(
       `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
-      console.log(responseD);
+      console.log('responseD this might be reloading');
       Axios.get(
         `http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
@@ -72,7 +73,7 @@ export default class Shopping extends Component {
           });
         }
         });
-        this.setState({ cards: cardInfo });
+        this.setState({ cards: cardInfo, newCards: cardInfo });
       });
     });
     Axios.get(
@@ -82,6 +83,19 @@ export default class Shopping extends Component {
       this.setState({ matches: response.data });
     });
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
+      // console.log('old cards', this.state.cards);
+      
+      
+        const filteredCards = this.state.cards.filter((obj) => {
+          return obj !== card;
+        });
+        this.setState({ cards: filteredCards });
+      
+      console.log('!this.state.Cards', this.state.cards.length);
+      console.log(' newcards.length', this.state.newCards.length);
+    
+      // console.log('!this.state.newCards', this.state.newCards.length);
+      // this.setState({ cards: false })
       const FoundMatch = [];
       for (let i = 0; i < this.state.matches.length; i++) {
         if (card.facebook_auth_id === this.state.matches[i]) {
@@ -94,32 +108,33 @@ export default class Shopping extends Component {
           matchID: card.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
           SwipeMatch
-        }).then(response => console.log(response));
+        }).then(response => console.log('response'));
       }
       if (FoundMatch.length > 0) {
         Axios.put(
           `http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
-        ).then(response => console.log(response));
+        ).then(response => console.log('response'));
       }
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.user) {
-    this.setState({ userInfo: nextProps.navigation.state.params.user });
-    }
+      this.setState({ userInfo: nextProps.navigation.state.params.user });
+      console.log('changing the user');
+      }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
-      console.log('cards are the deal', this.state.cards[0]);
-      const newCards = []
+      console.log('cards are the deal', this.state.cards.length);
+      const newCardArray = []
       for (card of this.state.cards) {
-        if (card.age >= nextProps.navigation.state.params.agePreference[0]){
-          newCards.push(card)
+        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1]) {
+          newCardArray.push(card)
         }
       }
-      this.setState({ newCards: newCards })
-      console.log('these cards are the deal', newCards);
+      this.setState({ newCards: newCardArray });
+      console.log('these new cards are the deal', this.state.newCards.length);
     }
   }
 
@@ -157,12 +172,14 @@ export default class Shopping extends Component {
   }
   handleYup(card) {
     const SwipeMatch = true;
+    console.log('gege', card);
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
     const SwipeMatch = false;
+    console.log('nope nope');
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
@@ -176,19 +193,18 @@ export default class Shopping extends Component {
   }
 
   yup() {
-    console.log(this.refs.swiper);
+    console.log('this.refs.swiper');
     this.refs.swiper._goToNextCard();
   }
 
   nope() {
-    console.log(this.refs.swiper);
+    console.log('this.refs.swiper');
     this.refs.swiper._goToNextCard();
   }
 
   render() {
-
-    if (!_.max(this.state.cards)) {
-      console.log(this.state.cards);
+    if (!this.state.newCards.length) {
+      console.log('!_.max', this.state.cards);
       return (
         <View style={styles.container}>
           <View style={styles.nav}>
@@ -277,7 +293,7 @@ export default class Shopping extends Component {
         </View>
         <SwipeCards
           ref={'swiper'}
-          cards={this.state.newCards || this.state.cards}
+          cards={ this.state.newCards }
           containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
           renderCard={cardData => this.Card(cardData)}
           renderNoMoreCards={() => this.noMore()}
@@ -349,6 +365,6 @@ loading: {
     borderColor: '#e3e3e3',
     borderRadius: 15,
     margin: 9,
-    padding: 40
+    padding: 10
   }
 });
