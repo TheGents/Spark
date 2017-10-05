@@ -203,7 +203,7 @@ export default class Shopping extends Component {
   }
 
   render() {
-    if (!this.state.newCards.length) {
+    if (!this.state.newCards.length > 0) {
       console.log('!_.max', this.state.cards);
       return (
         <View style={styles.container}>
