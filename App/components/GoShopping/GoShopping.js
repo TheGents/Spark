@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, ActivityIndicator, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHighlight } from 'react-native';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
@@ -100,6 +100,7 @@ export default class Shopping extends Component {
       for (let i = 0; i < this.state.matches.length; i++) {
         if (card.facebook_auth_id === this.state.matches[i]) {
           FoundMatch.push(this.state.matches[i]);
+          AlertIOS.alert(`You and ${card.first_name} Have Matched!`);
         }
       }
       if (FoundMatch.length == 0) {
