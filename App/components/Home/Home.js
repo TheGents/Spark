@@ -38,7 +38,7 @@ class Home extends Component {
           ? 'token'
           : props.navigation.state.params.userToken),  
       user: '', 
-      agePreference: [18]
+      agePreference: [18, 60]
     };
   }
  
