@@ -172,7 +172,7 @@ export default class Shopping extends Component {
   }
   handleYup(card) {
     const SwipeMatch = true;
-    console.log('gege', card);
+    // console.log('gege', card);
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
@@ -203,7 +203,7 @@ export default class Shopping extends Component {
   }
 
   render() {
-    if (!this.state.newCards.length) {
+    if (!this.state.newCards.length > 0) {
       console.log('!_.max', this.state.cards);
       return (
         <View style={styles.container}>
@@ -227,7 +227,7 @@ export default class Shopping extends Component {
 
             <Icon
               onPress={() => {
-                this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+                this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
               }}
               name={'ios-chatboxes'}
               type={'ionicon'}
@@ -281,7 +281,7 @@ export default class Shopping extends Component {
       </TouchableOpacity> */}
           <Icon
             onPress={() => {
-              this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+              this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
             name={'ios-chatboxes'}
             type={'ionicon'}
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 10,
     marginBottom: 7,
-    padding: 1,
+    padding: 0.1,
     alignItems: 'center',
     width: 270,
     backgroundColor: 'rgba(222,222,222, 9)'
@@ -361,9 +361,6 @@ loading: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: '#e3e3e3',
-    borderRadius: 15,
     margin: 9,
     padding: 10
   }

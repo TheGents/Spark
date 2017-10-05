@@ -14,7 +14,7 @@ class Slides extends Component {
                   <Image 
                   resizeMode='contain'
                   source={require('../images/sparkLogo.png')} style={{width: 310 }}/>
-                  <Image source={require('../images/Spark.png')} style={{width: 160, height: 168, marginLeft: 60 }}/>
+                  <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/>
                   <Button 
                   title="Login" 
                   raised buttonStyle={styles.buttonStyle} 
@@ -90,7 +90,7 @@ const styles = {
     width: null,
 },
   buttonStyle: {
-    backgroundColor: '#0288D1',
+    backgroundColor: '#34799b',
     marginTop: 15,
     width: 100
   }
