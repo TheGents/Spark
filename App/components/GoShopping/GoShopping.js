@@ -100,7 +100,6 @@ export default class Shopping extends Component {
       for (let i = 0; i < this.state.matches.length; i++) {
         if (card.facebook_auth_id === this.state.matches[i]) {
           FoundMatch.push(this.state.matches[i]);
-          AlertIOS.alert(`You and ${card.first_name} Have Matched!`);
         }
       }
       if (FoundMatch.length == 0) {
@@ -109,13 +108,18 @@ export default class Shopping extends Component {
           matchID: card.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
           SwipeMatch
-        }).then(response => console.log('response'));
+        }).then(response => console.log('0', response));
       }
       if (FoundMatch.length > 0) {
         Axios.put(
           `http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
-        ).then(response => console.log('response'));
+        ).then(response => {
+          console.log('this', response.data[0]);
+          if (response.data[0].chick_swipe == response.data[0].dude_swipe) {
+            AlertIOS.alert(`You and ${card.first_name} Have Matched!`);
+          }
+        });
       }
     };
   }
