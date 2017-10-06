@@ -14,7 +14,7 @@ class Slides extends Component {
                   <Image 
                   resizeMode='contain'
                   source={require('../images/sparkLogo.png')} style={{width: 310 }}/>
-                  <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/>
+                  {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Login" 
                   raised buttonStyle={styles.buttonStyle} 
@@ -24,21 +24,30 @@ class Slides extends Component {
                 
             );
         }
-         else if (index === this.props.data.length - 2){
-          return(
-            <Image source={require('../images/welcomeSecond.png')} style={{width: 240, height: 250}}/>
+         else if (index === this.props.data.length - 2) {
+          return (
+            <View style={styles.container}>
+              <Text style={{ fontSize: 25 }} >Girls Rate the Guys</Text>
+              <Image source={require('../images/welcomeSecond.png')} style={{ width: 272, height: 280 }}/>
+            </View>  
           );
         }
-        else if (index === this.props.data.length - 3){
-          return(
-            <Image 
-            resizeMode='contain'
-            source={require('../images/Measage.png')} style={{width: 320, height: 280}}/>
+        else if (index === this.props.data.length - 3) {
+          return (
+            <View style={styles.container}>
+              <Text style={{ fontSize: 25 }} >Guys Message First</Text>
+              <Image 
+              resizeMode='contain'
+              source={require('../images/Measage.png')} style={{width: 320, height: 280}}/>
+            </View>  
           );
         }
-          else if (index === this.props.data.length - 4){
-          return(
-          <Image source={require('../images/welcomeSpark.png')} style={{width: 230, height: 240}}/>
+          else if (index === this.props.data.length - 4) {
+          return (
+            <View style={styles.container}>  
+              <Text style={{ fontSize: 25 }}>Find Your Match</Text>
+              <Image source={require('../images/welcomeSpark.png')} style={{width: 265, height: 280}}/>
+            </View>  
         );
     }
   }
