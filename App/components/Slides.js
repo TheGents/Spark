@@ -27,36 +27,48 @@ class Slides extends Component {
          else if (index === this.props.data.length - 2) {
           return (
             <View style={styles.container}>
-              <Text style={{ fontSize: 25 }} >Girls Rate the Guys</Text>
-              <Image source={require('../images/welcomeSecond.png')} style={{ width: 272, height: 280 }}/>
+              <Text style={styles.textStyle} >Girls Rate the Guys</Text>
+              <Image 
+              resizeMode='contain'
+              source={require('../images/Ratings.gif')} style={{ marginTop: 25, height: 320 }}/>
             </View>  
           );
         }
         else if (index === this.props.data.length - 3) {
           return (
             <View style={styles.container}>
-              <Text style={{ fontSize: 25 }} >Guys Message First</Text>
+              <Text style={styles.textStyle} >Guys Message First</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/Measage.png')} style={{width: 320, height: 280}}/>
+              source={require('../images/MessagesGif.gif')} style={{ marginTop: 25, height: 320 }}/>
             </View>  
           );
         }
           else if (index === this.props.data.length - 4) {
           return (
             <View style={styles.container}>  
-              <Text style={{ fontSize: 25 }}>Find Your Match</Text>
-              <Image source={require('../images/welcomeSpark.png')} style={{width: 265, height: 280}}/>
+              <Text style={styles.textStyle}>Find Your Match</Text>
+              <Image 
+              resizeMode='contain'
+              source={require('../images/Swipe.gif')} style={{ marginTop: 25,  height: 320}}/>
             </View>  
         );
     }
+        return (
+          <View style={styles.container}>  
+          <Text style={styles.textStyle}>Welcome to Spark</Text>
+          <Image 
+          resizeMode='contain'
+          source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/>
+        </View> 
+        )
   }
     renderSlides() {
         return this.props.data.map((slide, index) => {
           console.log('index', index);
             return (
             <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
-                <Text style={styles.textStyle}>{slide.text}</Text>
+                <Text style={styles.welcomeTextStyle}>{slide.text}</Text>
                 {this.renderLastSlide(index)}
             </View>
         );
@@ -84,6 +96,10 @@ const styles = {
     width: SPARK_WIDTH
   },
   textStyle: {
+    fontSize: 30,
+    color: '#34799b'
+  },
+  welcomeTextStyle: {
     fontSize: 30,
     color: 'white'
   },
