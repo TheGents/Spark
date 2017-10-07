@@ -6,7 +6,7 @@ import Slides from '../components/Slides';
 
 
 const SLIDE_DATA = [
-    { text: 'Welcome to Spark', color: '#34799b' },
+    { text: 'Welcome to Spark', color: 'white' },
     { text: 'Find Your Match!', color: 'white' },
     { text: 'Guys Message First!', color: 'white' },
     { text: 'Girls Rate the Guys!', color: 'white' },
