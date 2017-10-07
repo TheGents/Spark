@@ -5,6 +5,7 @@ import { Button, Avatar, Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { Select, Option } from 'react-native-chooser';
 
+
 class Rating extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class Rating extends Component {
     Axios.post('http://localhost:3000/postRate', {
       chick_id: this.state.userInfo.facebook_auth_id,
       dude_id: this.state.matched.id,
-      rating: this.state.value[1],
+      rating: this.state.value[0],
       room_id: this.state.matched.chatRoom
     }).then(response => {
       const newMatched = this.state.matched;
@@ -87,18 +88,19 @@ class Rating extends Component {
             defaultText={this.state.value}
             style={ styles.buttons }
             textStyle={ styles.textStyle8 }
-            backdropStyle={{ backgroundColor: '#34799b' }}
-            optionListStyle={{ backgroundColor: '#F5FCFF' }}
+            backdropStyle={{ backgroundColor: 'rgba(50,121,155,0.4)', alignItems: 'center' }}
+            optionListStyle={{ backgroundColor: '#F5FCFF', alignItems: 'center'}}
+            
           >
-            <Option value={['Change Rating of ', 1]}>1 - Jerk </Option>
-            <Option value={['Change Rating of ', 2]}>2 - Intolerable </Option>
-            <Option value={['Change Rating of ', 3]}>3 - Average </Option>
-            <Option value={['Change Rating of ', 4]}>4 - Great! </Option>
-            <Option value={['Change Rating of ', 5]}>5 - Spark! </Option>
+            <Option styleText={styles.ratingText} value={[1, ' - Jerk']}>1 - Jerk</Option>
+            <Option styleText={styles.ratingText} value={[2, ' - Intolerable']}>2 - Intolerable</Option>
+            <Option styleText={styles.ratingText} value={[3, ' - Average']}>3 - Average </Option>
+            <Option styleText={styles.ratingText} value={[4, ' - Great!']}>4 - Great! </Option>
+            <Option styleText={styles.ratingText} value={[5, ' - Spark!']}>5 - Spark! </Option>
           </Select>
           {this.state.butt0n && (
             <Button
-              textStyle={{ fontSize: 18 }}
+              textStyle={{ fontSize: 18, fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
               buttonStyle={styles.buttonSmall}
               title={'Confirm Rating'}
               color='black'
@@ -126,6 +128,11 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 10
   },
+  ratingText: {
+    fontSize: 24, 
+    color: 'black',
+    fontFamily: 'Cochin',
+  },
   nav: {
     height: 70,
     flexDirection: 'row',
@@ -143,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
-    backgroundColor: 'rgba(50,121,155,0.09)'
+    backgroundColor: 'rgba(50,121,155,0.05)'
   },
   textStyle8: {
     fontFamily: 'Avenir Next',
@@ -157,8 +164,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 1,
     justifyContent: 'center',
+    fontFamily: 'Cochin',
     alignItems: 'center',
-    backgroundColor: 'rgba(50,121,155,0.09)'
+    backgroundColor: 'rgba(50,121,155,0.05)'
   },
   matchedName: {
     marginVertical: '10%',
