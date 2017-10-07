@@ -30,7 +30,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/Ratings.gif')} style={{ marginTop: 25, height: 320 }}/>
+              source={require('../images/MessageFinal.gif')} style={{ marginTop: 25, height: 320 }}/>
             </View>  
           );
         }
