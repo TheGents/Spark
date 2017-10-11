@@ -4,6 +4,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { Select, Option } from 'react-native-chooser';
+// import { Select, Option } from 'react-native-select-list';
 
 
 class Rating extends Component {
@@ -67,8 +68,8 @@ class Rating extends Component {
           <Image
             source={require('../../images/sparkLogo.png')}
             name="ios-chatboxes-outline"
-            size={25}
-            style={{ width: 150, height: 40, marginVertical: 10 }}
+            resizeMode='contain'
+            style={{ width: 100, height: 40, marginVertical: 1 }}
           />
           <Text>{'        '}</Text>
         </View>
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#34799b',
     fontSize: 26,
-    marginBottom: 10
+    marginBottom: 5
   },
   ratingText: {
     fontSize: 24, 
@@ -169,7 +170,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(50,121,155,0.05)'
   },
   matchedName: {
-    marginVertical: '10%',
     alignItems: 'center',
     justifyContent: 'center'
   },

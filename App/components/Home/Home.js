@@ -49,10 +49,10 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-
         return axios.get(`http://localhost:3000/getHome/${this.state.user.id}`);
       })
       .then(res => {
+        console.log('this is the response.data', this.state.user.photos);
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
           
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
@@ -82,7 +82,7 @@ class Home extends Component {
             axios.put('http://localhost:3000/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
-        // console.log('sup hoe',response.data[0], this.state.user)
+         console.log('sup hoe', res.data[0], this.state.user);
         
         if (res.data[0] === undefined) {
           return axios.post('http://localhost:3000/adduser', this.state.user);

@@ -1,3 +1,5 @@
+// import Axios from 'axios';
+
 const dotenv = require('dotenv');
 require('dotenv').config();
 const express = require('express');
@@ -5,9 +7,28 @@ const { json } = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 const cors = require('cors');
+const io = require('socket.io')();
+
+
+// const port = 8000;
 // const passport = require('passport');
 // const Auth0Strategy = require('passport-auth0');
 
+
+// io.on('connection', (client) => {
+//     client.on('subscribeToTimer', (interval, roomID) => {
+//       console.log('client is subscribing to timer with interval ', interval);
+      
+//       setInterval(() => {
+//         client.emit('timer', Axios.get(`http://localhost:3000/getmessage/${roomID}`).then((response) => {
+//             return response.data;
+//         }));
+//       }, interval);
+//     });
+//   });
+
+// io.listen(port);
+// console.log(`listening on port ${port}`);
 
 // const config = require('./config/config.js');
 const userCtrl = require('./ctrl/userCtrl.js')

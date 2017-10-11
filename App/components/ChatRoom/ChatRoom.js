@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
-import Rating from './RateMeBabe/Rate'
+import { subscribeToTimer } from '../../Actions/api';
+import Rating from './RateMeBabe/Rate';
 
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
+      timestamp: 'no timestamp yet',
       all: props.navigation.state.params,
       roomID: props.navigation.state.params.match.chatRoom,
       userInfo: props.navigation.state.params.user,
@@ -18,9 +20,46 @@ class ChatRoom extends Component {
       showRatingButton: true,
       fucker: 'hi',
     };
+    // subscribeToTimer((err, timestamp) => this.setState({
+    //   timestamp
+    // }));
   }
- 
-  componentWillReceiveProps(nextProps){
+
+  componentDidMount() {
+    
+    Axios.get(`http://localhost:3000/getmessage/${this.state.roomID}`).then((response)=> {
+      this.setState({ kitkats: response.data });
+      let katkat = response.data;
+      let messageDB = [];
+      katkat.map((x)=> {
+        let avvy = "";
+        if(x.user_id == this.state.matched.id) {
+          avvy = this.state.matched.image;
+        }
+        if(x.user_id == this.state.userInfo.id) {
+          avvy = this.state.userInfo.facebook_pic;
+        }
+        messageDB.push({
+          _id: x.id,
+          text: x.message,
+          createdAt: new Date(x.created_at),
+          user: {
+            _id: x.user_id,
+            avatar: avvy
+          }
+        })
+      })
+      messageDB = messageDB.reverse();
+      this.setState({ messages: messageDB});
+      if(this.state.matched.rated == 'true') {
+        this.setState({ showRatingButton: false })
+      }
+      else {
+        this.setState({ showRatingButton: true })
+      }
+    })
+  }
+  componentWillReceiveProps(nextProps) {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })
     this.setState({ matched: nextProps.navigation.state.params.match })
     this.setState({ messages: [] })
@@ -58,57 +97,7 @@ class ChatRoom extends Component {
       this.setState({ messages: messageDB});
     })
   }
-
-  componentDidMount() {
-    
-    Axios.get(`http://localhost:3000/getmessage/${this.state.roomID}`).then((response)=> {
-      this.setState({ kitkats: response.data });
-      let katkat = response.data;
-      let messageDB = [];
-      katkat.map((x)=> {
-        let avvy = "";
-        if(x.user_id == this.state.matched.id) {
-          avvy = this.state.matched.image;
-        }
-        if(x.user_id == this.state.userInfo.id) {
-          avvy = this.state.userInfo.facebook_pic;
-        }
-        messageDB.push({
-          _id: x.id,
-          text: x.message,
-          createdAt: new Date(x.created_at),
-          user: {
-            _id: x.user_id,
-            avatar: avvy
-          }
-        })
-      })
-      messageDB = messageDB.reverse();
-      this.setState({ messages: messageDB});
-      if(this.state.matched.rated == 'true') {
-        this.setState({ showRatingButton: false })
-      }
-      else {
-        this.setState({ showRatingButton: true })
-      }
-    })
-    
-    
-    // this.setState({
-    //   // messages: [
-    //   //   // {
-    //   //   //   _id: 1,
-    //   //   //   text: 'This is grey while messager is blue',
-    //   //   //   createdAt: new Date(),
-    //   //   //   user: {
-    //   //   //     _id: 2,
-    //   //   //     name: 'React Native',
-    //   //   //     avatar: 'https://facebook.github.io/react/img/logo_og.png'
-    //   //   //   }
-    //   //   // }
-    //   // ]
-    // });
-  }
+  
 
   onSend(messages = []) {
     // console.log(messages);
@@ -136,7 +125,7 @@ class ChatRoom extends Component {
     //We are rendering two if statements.
     //To make this more clear, should make this into a separate component and then render it here.
     //Also, have to make star activations ratings in a different file later.
-    if(this.state.userInfo.gender === '0') {
+    if (this.state.userInfo.gender === '0') {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
@@ -156,6 +145,7 @@ class ChatRoom extends Component {
           size={40}
         />
           </TouchableOpacity>
+          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched })}}>
@@ -208,7 +198,8 @@ class ChatRoom extends Component {
           size={40}
         />
           </TouchableOpacity>
-          
+          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
+
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
