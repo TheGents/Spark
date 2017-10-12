@@ -38,8 +38,14 @@ module.exports = {
         let newBirthday = new Date(birthday);
         let katkatAge = Math.floor(((Date.now() - newBirthday) / (31557600000)));
         // console.log(katkatAge);
-        let works = null;
-        if(gender === 'male') {
+        console.log('this is work', work);
+        if (work) {
+         work = work[0].employer.name;
+        }
+        else if (!work) { 
+            work = null
+        }
+        if (gender === 'male') {
             gender = '1';
         }
         else {
@@ -48,7 +54,7 @@ module.exports = {
         // if(work) {
         //     works = work[0].position.name
         // }
-        db.post_user([id, name, katkatAge, works, gender, picture.data.url]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
+        db.post_user([id, name, katkatAge, work, gender, picture.data.url]).then((user)=>res.status('200').send(user)).catch(()=> res.status('200').send());
     },
     post_message: (req,res) => {
         const db = req.app.get('db');

@@ -45,7 +45,7 @@ class Home extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken()}`
+        `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
         this.setState({ user: response.data });

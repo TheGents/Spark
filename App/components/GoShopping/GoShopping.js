@@ -4,7 +4,6 @@ import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHi
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
-import Nav from '../global-widgets/nav';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
