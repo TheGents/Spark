@@ -53,7 +53,7 @@ class Home extends Component {
       .then(response => {
         this.setState({ user: response.data });
         console.log('this is the first response.data', this.state.user);
-        return axios.get(`http://localhost:8080/getHome/${this.state.user.id}`)
+        return axios.get(`https://mobilespark.herokuapp.com/getHome/${this.state.user.id}`)
         .catch(res => {
           console.log('this is the new res', res);
         });
@@ -65,7 +65,7 @@ class Home extends Component {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
             
-            axios.put('http://localhost:8080/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('https://mobilespark.herokuapp.com/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
             
           });
         }
@@ -74,28 +74,28 @@ class Home extends Component {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
             
-            axios.put('http://localhost:8080/putPics', { photo2: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('https://mobilespark.herokuapp.com/putPics', { photo2: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-            axios.put('http://localhost:8080/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('https://mobilespark.herokuapp.com/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
         }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-            axios.put('http://localhost:8080/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('https://mobilespark.herokuapp.com/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
          console.log('sup hoe', this.state.location);
         
         if (res.data[0] === undefined) {
-          return axios.post('http://localhost:8080/adduser', this.state.user, this.state.location);
+          return axios.post('https://mobilespark.herokuapp.com/adduser', this.state.user, this.state.location);
           
         }
-        return axios.get(`http://localhost:8080/getHome/${res.data[0].facebook_auth_id}`);
+        return axios.get(`https://mobilespark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
       })
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
