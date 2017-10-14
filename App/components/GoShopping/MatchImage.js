@@ -75,25 +75,25 @@ class SetupImage extends Component {
   //   onClick(val) {
   //     this.props.ImagePicker(val);
   //     if(val == 'first') {
-  //     axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+  //     axios.get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
   //       console.log('this is what i need',response.data[0].photo1);
   //       this.setState({photo1: response.data[0].photo1 });
   //     })
   //   }
   //   else if(val == 'second') {
-  //     axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+  //     axios.get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
   //       console.log('this is what i need',response.data[0].photo1);
   //       this.setState({photo2: response.data[0].photo2 });
   //     })
   //   }
   //   else if(val == 'third') {
-  //     axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+  //     axios.get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
   //       console.log('this is what i need',response.data[0].photo1);
   //       this.setState({photo3: response.data[0].photo3 });
   //     })
   //   }
   //   else  {
-  //     axios.get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
+  //     axios.get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`).then((response) => {
   //       console.log('this is what i need',response.data[0].photo1);
   //       this.setState({photo4: response.data[0].photo4 });
   //     })

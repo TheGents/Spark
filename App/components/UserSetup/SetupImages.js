@@ -36,7 +36,7 @@ class SetupImage extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo1);
         if (response.data[0].photo1) {
@@ -45,7 +45,7 @@ class SetupImage extends Component {
         console.log(this.state.photo1);
       });
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo2);
         if (response.data[0].photo2) {
@@ -54,7 +54,7 @@ class SetupImage extends Component {
         }
       });
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo3);
         if (response.data[0].photo3) {
@@ -63,7 +63,7 @@ class SetupImage extends Component {
         }
       });
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo2);
         if (response.data[0].photo2) {
@@ -72,7 +72,7 @@ class SetupImage extends Component {
         }
       });
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo3);
         if (response.data[0].photo3) {
@@ -81,7 +81,7 @@ class SetupImage extends Component {
         }
       });
     axios
-      .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+      .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
         console.log('this is what i need', response.data[0].photo4);
         if (response.data[0].photo4) {
@@ -95,7 +95,7 @@ class SetupImage extends Component {
     this.props.ImagePicker(val);
     if (val == 'first') {
       axios
-        .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+        .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
           console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo1) {
@@ -104,7 +104,7 @@ class SetupImage extends Component {
         });
     } else if (val == 'second') {
       axios
-        .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+        .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
           console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo2) {
@@ -113,7 +113,7 @@ class SetupImage extends Component {
         });
     } else if (val == 'third') {
       axios
-        .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+        .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
           console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo3) {
@@ -122,7 +122,7 @@ class SetupImage extends Component {
         });
     } else {
       axios
-        .get(`http://localhost:3000/getHome/${this.props.user.facebook_auth_id}`)
+        .get(`https://mobilespark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
           console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo4) {

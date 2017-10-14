@@ -20,7 +20,7 @@ const io = require('socket.io')();
 //       console.log('client is subscribing to timer with interval ', interval);
       
 //       setInterval(() => {
-//         client.emit('timer', Axios.get(`http://localhost:3000/getmessage/${roomID}`).then((response) => {
+//         client.emit('timer', Axios.get(`https://mobilespark.herokuapp.com/getmessage/${roomID}`).then((response) => {
 //             return response.data;
 //         }));
 //       }, interval);

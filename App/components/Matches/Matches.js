@@ -47,7 +47,7 @@ export default class Messages extends Component {
 
   componentDidMount() {
     Axios.get(
-      `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
+      `https://mobilespark.herokuapp.com/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
         .userInfo.gender}`
     ).then(response => {
       //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.
@@ -80,7 +80,7 @@ export default class Messages extends Component {
 
     addNewMatch = () => {
       Axios.get(
-        `http://localhost:3000/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
+        `https://mobilespark.herokuapp.com/getmatches/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
       ).then(response => {
         //This is a temporary variable to see if the response is pulled from the axios request to consolelog above the render.

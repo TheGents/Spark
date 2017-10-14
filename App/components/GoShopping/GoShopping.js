@@ -4,7 +4,6 @@ import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHi
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
 import SwipeCards from 'react-native-swipe-cards';
-import Nav from '../global-widgets/nav';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
@@ -33,11 +32,11 @@ export default class Shopping extends Component {
     console.log('age prefernce in shopping', this.state.agePreference);
     console.log('userin shopping', this.state.userInfo.length);
     Axios.get(
-      `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
+      `https://mobilespark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
       console.log('responseD this might be reloading');
       Axios.get(
-        `http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
+        `https://mobilespark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
       ).then(response => {
         const filteredx = response.data;
@@ -77,7 +76,7 @@ export default class Shopping extends Component {
       });
     });
     Axios.get(
-      `http://localhost:3000/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
+      `https://mobilespark.herokuapp.com/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
         .userInfo.gender}`
     ).then(response => {
       this.setState({ matches: response.data });
@@ -103,7 +102,7 @@ export default class Shopping extends Component {
         }
       }
       if (FoundMatch.length == 0) {
-        Axios.post('http://localhost:3000/postMatch', {
+        Axios.post('https://mobilespark.herokuapp.com/postMatch', {
           gender: this.state.userInfo.gender,
           matchID: card.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
@@ -112,7 +111,7 @@ export default class Shopping extends Component {
       }
       if (FoundMatch.length > 0) {
         Axios.put(
-          `http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo
+          `https://mobilespark.herokuapp.com/putMatch/${card.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
         ).then(response => {
           console.log('this', response.data[0]);
