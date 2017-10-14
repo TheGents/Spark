@@ -22,7 +22,7 @@ class Rating extends Component {
     this.setState({ butt0n: true });
   }
   setRating() {
-    Axios.post('http://mobilespark.herokuapp.com/postRate', {
+    Axios.post('http://webspark.herokuapp.com/postRate', {
       chick_id: this.state.userInfo.facebook_auth_id,
       dude_id: this.state.matched.id,
       rating: this.state.value[0],

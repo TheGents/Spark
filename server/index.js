@@ -7,7 +7,8 @@ const { json } = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 const cors = require('cors');
-const io = require('socket.io')();
+const path = require('path');
+// const io = require('socket.io')();
 
 
 // const port = 8000;
@@ -20,7 +21,7 @@ const io = require('socket.io')();
 //       console.log('client is subscribing to timer with interval ', interval);
       
 //       setInterval(() => {
-//         client.emit('timer', Axios.get(`http://mobilespark.herokuapp.com/getmessage/${roomID}`).then((response) => {
+//         client.emit('timer', Axios.get(`http://webspark.herokuapp.com/getmessage/${roomID}`).then((response) => {
 //             return response.data;
 //         }));
 //       }, interval);
@@ -31,12 +32,13 @@ const io = require('socket.io')();
 // console.log(`listening on port ${port}`);
 
 // const config = require('./config/config.js');
-const userCtrl = require('./ctrl/userCtrl.js')
-const loginCtrl = require('./ctrl/loginCtrl.js')
+const userCtrl = require('./ctrl/userCtrl');
+// const loginCtrl = require('./ctrl/loginCtrl.js')
 
 const app = express();
 app.use(json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: "VincentChrisVuGentApp007",
     saveUninitialized: false,

@@ -27,7 +27,7 @@ class ChatRoom extends Component {
 
   componentDidMount() {
     
-    Axios.get(`http://mobilespark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
+    Axios.get(`http://webspark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
       this.setState({ kitkats: response.data });
       let katkat = response.data;
       let messageDB = [];
@@ -71,7 +71,7 @@ class ChatRoom extends Component {
       this.setState({ showRatingButton: true })
       this.setState({ fucker: false })
     }
-    Axios.get(`http://mobilespark.herokuapp.com/getmessage/${nextProps.navigation.state.params.match.chatRoom}`).then((response)=> {
+    Axios.get(`http://webspark.herokuapp.com/getmessage/${nextProps.navigation.state.params.match.chatRoom}`).then((response)=> {
       this.setState({ kitkats: response.data });
       let katkat = response.data;
       let messageDB = [];
@@ -105,7 +105,7 @@ class ChatRoom extends Component {
     let user_id = messages[0].user._id;
     let created_at = messages[0].createdAt;
     let message = messages[0].text;
-    Axios.post('http://mobilespark.herokuapp.com/postmessage', { room_id: room_id, user_id: user_id, created_at: created_at, message: message  } ).then((response)=>console.log(response));
+    Axios.post('http://webspark.herokuapp.com/postmessage', { room_id: room_id, user_id: user_id, created_at: created_at, message: message  } ).then((response)=>console.log(response));
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages)
     }));
