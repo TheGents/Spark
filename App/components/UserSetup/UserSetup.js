@@ -49,7 +49,7 @@ class Setup extends Component {
     // console.log('d', this.state.value);
     // this.setState({ value: e.target.value });
     axios
-    .put('https://mobilespark.herokuapp.com/putBio', {
+    .put('http://mobilespark.herokuapp.com/putBio', {
       general_bio: a,
       facebook_auth_id: b,
       occupation: c
@@ -86,7 +86,7 @@ class Setup extends Component {
       if (val === 'first') {
         this.setState({ image: result.uri });
         axios
-          .put('https://mobilespark.herokuapp.com/putPics', {
+          .put('http://mobilespark.herokuapp.com/putPics', {
             photo1: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
@@ -94,7 +94,7 @@ class Setup extends Component {
       } else if (val === 'second') {
         this.setState({ photo: result.uri });
         axios
-          .put('https://mobilespark.herokuapp.com/putPics', {
+          .put('http://mobilespark.herokuapp.com/putPics', {
             photo2: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
@@ -102,7 +102,7 @@ class Setup extends Component {
       } else if (val === 'third') {
         this.setState({ third: result.uri });
         axios
-          .put('https://mobilespark.herokuapp.com/putPics', {
+          .put('http://mobilespark.herokuapp.com/putPics', {
             photo3: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
@@ -110,7 +110,7 @@ class Setup extends Component {
       } else {
         this.setState({ fourth: result.uri });
         axios
-          .put('https://mobilespark.herokuapp.com/putPics', {
+          .put('http://mobilespark.herokuapp.com/putPics', {
             photo4: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
