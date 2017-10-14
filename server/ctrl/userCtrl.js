@@ -62,9 +62,11 @@ module.exports = {
         db.post_message([room_id, user_id, created_at, message]).then((response)=>res.status('200').send(response)).catch((error)=>res.status('404').send(error));
     },
     get_user_profile: (req,res) => {
+        console.log('we are in the get_user_profile method');
         const db = req.app.get('db');
         const { id } = req.params;
-        db.get_user_profile([id]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+        console.log('we are in the get_user_profile method', id);
+        db.get_user_profile([id]).then((data)=>res.status('200').send(data)).catch((error) => res.status('404').send(error));
     },
     get_user_preferences: (req,res) => {
         const db = req.app.get('db');

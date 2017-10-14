@@ -22,7 +22,7 @@ class Rating extends Component {
     this.setState({ butt0n: true });
   }
   setRating() {
-    Axios.post('http://localhost:3000/postRate', {
+    Axios.post('http://localhost:8080/postRate', {
       chick_id: this.state.userInfo.facebook_auth_id,
       dude_id: this.state.matched.id,
       rating: this.state.value[0],

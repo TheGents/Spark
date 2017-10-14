@@ -32,11 +32,11 @@ export default class Shopping extends Component {
     console.log('age prefernce in shopping', this.state.agePreference);
     console.log('userin shopping', this.state.userInfo.length);
     Axios.get(
-      `http://localhost:3000/shopTillYouDrop/${this.state.userInfo.gender}`
+      `http://localhost:8080/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
       console.log('responseD this might be reloading');
       Axios.get(
-        `http://localhost:3000/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
+        `http://localhost:8080/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
       ).then(response => {
         const filteredx = response.data;
@@ -76,7 +76,7 @@ export default class Shopping extends Component {
       });
     });
     Axios.get(
-      `http://localhost:3000/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
+      `http://localhost:8080/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
         .userInfo.gender}`
     ).then(response => {
       this.setState({ matches: response.data });
@@ -102,7 +102,7 @@ export default class Shopping extends Component {
         }
       }
       if (FoundMatch.length == 0) {
-        Axios.post('http://localhost:3000/postMatch', {
+        Axios.post('http://localhost:8080/postMatch', {
           gender: this.state.userInfo.gender,
           matchID: card.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
@@ -111,7 +111,7 @@ export default class Shopping extends Component {
       }
       if (FoundMatch.length > 0) {
         Axios.put(
-          `http://localhost:3000/putMatch/${card.facebook_auth_id}/${this.state.userInfo
+          `http://localhost:8080/putMatch/${card.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
         ).then(response => {
           console.log('this', response.data[0]);

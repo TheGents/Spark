@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
 
@@ -57,9 +57,18 @@ class Slides extends Component {
         return (
           <View style={styles.container}>  
           <Text style={styles.textStyle}>Welcome to Spark</Text>
-          <Image 
+          {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
+          {/* <Icon
+              name={'ios-flash'}
+              type={'ionicon'}
+              color={'#34799b'}
+              underlayColor={'white'}
+              iconStyle={{ marginRight: 10 }}
+              size={40}
+          /> */}
+          {/* <Image 
           resizeMode='contain'
-          source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/>
+          source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/> */}
         </View> 
         )
   }
@@ -98,6 +107,11 @@ const styles = {
   textStyle: {
     fontSize: 30,
     color: '#34799b'
+  },
+  swipeStyle: {
+    fontSize: 24,
+    color: '#34799b',
+    marginTop: 40
   },
   welcomeTextStyle: {
     fontSize: 30,
