@@ -32,11 +32,11 @@ export default class Shopping extends Component {
     console.log('age prefernce in shopping', this.state.agePreference);
     console.log('userin shopping', this.state.userInfo.length);
     Axios.get(
-      `https://mobilespark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
+      `http://mobilespark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
       console.log('responseD this might be reloading');
       Axios.get(
-        `https://mobilespark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
+        `http://mobilespark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
       ).then(response => {
         const filteredx = response.data;
@@ -76,7 +76,7 @@ export default class Shopping extends Component {
       });
     });
     Axios.get(
-      `https://mobilespark.herokuapp.com/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
+      `http://mobilespark.herokuapp.com/getPrematch/${this.state.userInfo.facebook_auth_id}/${this.state
         .userInfo.gender}`
     ).then(response => {
       this.setState({ matches: response.data });
@@ -102,7 +102,7 @@ export default class Shopping extends Component {
         }
       }
       if (FoundMatch.length == 0) {
-        Axios.post('https://mobilespark.herokuapp.com/postMatch', {
+        Axios.post('http://mobilespark.herokuapp.com/postMatch', {
           gender: this.state.userInfo.gender,
           matchID: card.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
@@ -111,7 +111,7 @@ export default class Shopping extends Component {
       }
       if (FoundMatch.length > 0) {
         Axios.put(
-          `https://mobilespark.herokuapp.com/putMatch/${card.facebook_auth_id}/${this.state.userInfo
+          `http://mobilespark.herokuapp.com/putMatch/${card.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
         ).then(response => {
           console.log('this', response.data[0]);
