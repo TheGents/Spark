@@ -99,6 +99,7 @@ class Home extends Component {
       })
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
+        console.log('super hoe', this.state.user);
       });
     //we call this.setState when we want to update what a component shows
   }

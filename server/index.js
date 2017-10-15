@@ -46,7 +46,7 @@ app.use(session({
 }));
 // app.use(passport.initialize());
 // app.use(passport.session());
-// app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/postMatch', userCtrl.post_match);
 app.post('/addUser', userCtrl.post_user);
