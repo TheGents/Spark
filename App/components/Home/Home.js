@@ -53,7 +53,7 @@ class Home extends Component {
       .then(response => {
         this.setState({ user: response.data });
         console.log('this is the first response.data', this.state.user);
-        return axios.get(`http://mobilespark.herokuapp.com/getHome/${this.state.user.id}`)
+        return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
         .catch(res => {
           console.log('this is the new res', res);
         });
@@ -65,7 +65,7 @@ class Home extends Component {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
             
-            axios.put('http://mobilespark.herokuapp.com/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('http://webspark.herokuapp.com/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
             
           });
         }
@@ -74,31 +74,32 @@ class Home extends Component {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
             
-            axios.put('http://mobilespark.herokuapp.com/putPics', { photo2: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('http://webspark.herokuapp.com/putPics', { photo2: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-            axios.put('http://mobilespark.herokuapp.com/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('http://webspark.herokuapp.com/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
         }
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
           .then(res => {
-            axios.put('http://mobilespark.herokuapp.com/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
+            axios.put('http://webspark.herokuapp.com/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
          console.log('sup hoe', this.state.user);
         
         if (res.data[0] === undefined) {
-          return axios.post('http://mobilespark.herokuapp.com/adduser', this.state.user, this.state.location);
+          return axios.post('http://webspark.herokuapp.com/adduser', this.state.user, this.state.location);
           
         }
-        return axios.get(`http://mobilespark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
+        return axios.get(`http://webspark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
       })
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
+        console.log('super hoe', this.state.user);
       });
     //we call this.setState when we want to update what a component shows
   }
