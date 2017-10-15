@@ -39,14 +39,14 @@ const app = express();
 app.use(json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-    secret: "VincentChrisVuGentApp007",
-    saveUninitialized: false,
-    resave: true
-}));
+// app.use(session({
+//     secret: "VincentChrisVuGentApp007",
+//     saveUninitialized: false,
+//     resave: true
+// }));
 // app.use(passport.initialize());
 // app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.post('/postMatch', userCtrl.post_match);
 app.post('/addUser', userCtrl.post_user);
