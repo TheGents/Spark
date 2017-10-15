@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 require('dotenv').config();
 const express = require('express');
 const { json } = require('body-parser');
-const session = require('express-session');
+// const session = require('express-session');
 const massive = require('massive');
 const cors = require('cors');
 const path = require('path');
@@ -46,7 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // }));
 // app.use(passport.initialize());
 // app.use(passport.session());
-
+const connectionString = process.env.DATABASE_URL; //Connects to heroku bro
+massive(connectionString).then(db => app.set('db', db));
 
 app.post('/postMatch', userCtrl.post_match);
 app.post('/addUser', userCtrl.post_user);
@@ -71,8 +72,6 @@ app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
 app.delete('/deleteMatch', userCtrl.delete_match);
 app.delete('/deleteUserAccount', userCtrl.delete_user_account);
 
-const connectionString = process.env.DATABASE_URL; //Connects to heroku bro
-massive(connectionString).then(db => app.set('db', db));
 
 // passport.use(new Auth0Strategy(config.auth0, (accessToken, refreshToken, extraParams, profile, done) => {
 //     // console.log(profile)
@@ -95,4 +94,4 @@ massive(connectionString).then(db => app.set('db', db));
 
 // passport.deserializeUser(loginCtrl.deserialize);
 
-app.listen(process.env.PORT, () => { console.log(`Listening on port: ${process.env.PORT}`)});
+app.listen(process.env.PORT, () => { console.log('Listening on port: 3000')});
