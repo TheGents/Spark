@@ -8,7 +8,7 @@ import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
-import TermsOfService from './TermsOfService';
+// import TermsOfService from './TermsOfService';
 
 class Preferences extends Component {
   constructor(props) {
@@ -76,14 +76,14 @@ class Preferences extends Component {
             <Privacy />
           </View>
           <View style={styles.borderTerms}>
-            <Text
+            {/* <Text
               style={styles.textLegalese}
               onPress={() => {
                 this.props.navigation.navigate('TermsOfService');
               }}
             >
               Terms of Service
-            </Text>
+            </Text> */}
           </View>
         </View>
       </View>
