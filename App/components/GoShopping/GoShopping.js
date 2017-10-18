@@ -68,7 +68,7 @@ export default class Shopping extends Component {
             general_bio: x.general_bio,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id,
-            rating: x.avg
+            rating: x.round
           });
         }
         });

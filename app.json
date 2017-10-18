@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "spark3",
-    "description": "An empty new project",
+    "name": "Dallas Spark",
+    "description": "A dating app where guys message first and girls rate the guys.",
     "slug": "spark3",
     "privacy": "public",
     "sdkVersion": "21.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/app-icon.png",
+    "icon": "./assets/icons/SparkWithoutBG.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": false
@@ -18,10 +18,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.company.spark"
+      "bundleIdentifier": "com.dallas.spark"
     },
     "android": {
-      "package": "com.company.spark"
+      "package": "com.dallas.spark"
     }
   }
 }

@@ -35,7 +35,7 @@ class PrefButtons extends React.Component {
         <Button
           style={styles.buttonStyle8}
           textStyle={styles.textStyle8}
-          onPress={() => console.log('Delete Account')}
+          onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
             <Text style={{ textAlign: 'center', fontFamily: 'Avenir' }}>Delete Account</Text>

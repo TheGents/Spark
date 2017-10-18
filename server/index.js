@@ -70,7 +70,7 @@ app.put('/putPreferences', userCtrl.put_user_preferences);
 app.put('/putMatch/:matchedID/:id/:gender/:SwipeMatch', userCtrl.put_match);
 
 app.delete('/deleteMatch', userCtrl.delete_match);
-app.delete('/deleteUserAccount', userCtrl.delete_user_account);
+app.get('/deleteUserAccount/:id', userCtrl.delete_user_account);
 
 
 // passport.use(new Auth0Strategy(config.auth0, (accessToken, refreshToken, extraParams, profile, done) => {

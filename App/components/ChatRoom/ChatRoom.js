@@ -155,7 +155,7 @@ class ChatRoom extends Component {
                   color={'#34799b'}
                   underlayColor={'white'}
                   iconStyle={{ marginRight: 5 }}
-                  
+                  size={40}
                 />
           </TouchableOpacity>}
           {/* This will display her picture in the center zomgz */}
