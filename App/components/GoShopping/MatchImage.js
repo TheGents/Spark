@@ -58,7 +58,7 @@ class SetupImage extends Component {
                       style={[
                         {
                           height: 303,
-                          width: 303,
+                          width: width - 18,
                           flex: 1,
                           borderRadius: 10,
                           backgroundColor: 'rgba(52, 52, 52, 0.2)',

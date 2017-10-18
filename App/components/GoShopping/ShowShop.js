@@ -118,7 +118,7 @@ class ShowShop extends Component {
               <Animated.ScrollView
               horizontal={true}
               decelerationRate={0}
-              snapToInterval={318}
+              snapToInterval={373}
               scrollEventThrottle={16}
               snapToAlignment="start"
               showsHorizontalScrollIndicator={false}
