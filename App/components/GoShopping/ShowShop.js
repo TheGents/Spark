@@ -97,7 +97,7 @@ class ShowShop extends Component {
     
     
     render() {
-  
+      console.log('this is the width', width);
       return (
         <View style={{backgroundColor: 'white', flex: 1}}>
           <View style={styles.nav}>
@@ -117,8 +117,8 @@ class ShowShop extends Component {
             <ImageSectionCard>
               <Animated.ScrollView
               horizontal={true}
-              decelerationRate={0}
-              snapToInterval={373}
+              decelerationRate={0.1}
+              snapToInterval={width * 0.99}
               scrollEventThrottle={16}
               snapToAlignment="start"
               showsHorizontalScrollIndicator={false}

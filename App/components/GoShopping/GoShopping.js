@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHighlight } from 'react-native';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { Navigator } from 'react-native-deprecated-custom-components';
-import SwipeCards from 'react-native-swipe-cards';
+// import SwipeCards from 'react-native-swipe-cards';
+import SwipeCards from 'react-native-deck-swiper';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
@@ -68,7 +69,7 @@ export default class Shopping extends Component {
             general_bio: x.general_bio,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id,
-            rating: x.avg
+            rating: x.round
           });
         }
         });
@@ -83,10 +84,13 @@ export default class Shopping extends Component {
     });
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
       // console.log('old cards', this.state.cards);
-      
+      console.log('these are the newcards that i want', this.state.newCards);
+      const currentCard = this.state.newCards[card];
       
         const filteredCards = this.state.cards.filter((obj) => {
-          return obj !== card;
+          // console.log('this is obj', obj);
+          // console.log('this is deck Cards', this.state.cards[card]);
+          return obj !== currentCard;
         });
         this.setState({ cards: filteredCards });
       
@@ -97,26 +101,26 @@ export default class Shopping extends Component {
       // this.setState({ cards: false })
       const FoundMatch = [];
       for (let i = 0; i < this.state.matches.length; i++) {
-        if (card.facebook_auth_id === this.state.matches[i]) {
+        if (currentCard.facebook_auth_id === this.state.matches[i]) {
           FoundMatch.push(this.state.matches[i]);
         }
       }
       if (FoundMatch.length == 0) {
         Axios.post('http://webspark.herokuapp.com/postMatch', {
           gender: this.state.userInfo.gender,
-          matchID: card.facebook_auth_id,
+          matchID: currentCard.facebook_auth_id,
           ID: this.state.userInfo.facebook_auth_id,
           SwipeMatch
         }).then(response => console.log('0', response));
       }
       if (FoundMatch.length > 0) {
         Axios.put(
-          `http://webspark.herokuapp.com/putMatch/${card.facebook_auth_id}/${this.state.userInfo
+          `http://webspark.herokuapp.com/putMatch/${currentCard.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
         ).then(response => {
           console.log('this', response.data[0]);
           if (response.data[0].chick_swipe == response.data[0].dude_swipe) {
-            AlertIOS.alert(`You and ${card.first_name} Have Matched!`);
+            AlertIOS.alert(`You and ${currentCard.first_name} Have Matched!`);
           }
         });
       }
@@ -174,20 +178,22 @@ export default class Shopping extends Component {
       </View>
     );
   }
-  handleYup(card) {
+  handleYup(cardData, cards) {
     const SwipeMatch = true;
-    // console.log('gege', card);
-    PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
+    console.log('handleYup', cardData);
+    console.log('cards', cards);
+    PleaseShutYourMouthAndBeQuiet(cardData, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
-  handleNope(card) {
+  handleNope(card, ) {
     const SwipeMatch = false;
-    console.log('nope nope');
+    console.log('handleNope', card);
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
   noMore() {
+    console.log('the end of cards');
     return (
       <View style={styles.card}>
         <Text style={{ paddingBottom: 22 }}>There are no more matches, please check back later.</Text>
@@ -300,9 +306,13 @@ export default class Shopping extends Component {
           cards={ this.state.newCards }
           containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
           renderCard={cardData => this.Card(cardData)}
-          renderNoMoreCards={() => this.noMore()}
-          handleYup={this.handleYup}
-          handleNope={this.handleNope}
+          onSwipedAll={() => this.noMore()}
+          onSwipedRight={this.handleYup}
+          onSwipedLeft={this.handleNope}
+          backgroundColor={'transparent'}
+          disableBottomSwipe={'true'}
+          disableTopSwipe={'true'}
+          
         />
       </View>
     );

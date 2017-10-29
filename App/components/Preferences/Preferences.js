@@ -4,30 +4,43 @@ import React, { Component } from 'react';
 import { LoginManager } from 'react-native-fbsdk';
 import { View, Text, StyleSheet, AlertIOS, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
+import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
-import TermsOfService from './TermsOfService';
+// import TermsOfService from './TermsOfService';
 
 class Preferences extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      agePreference: props.navigation.state.params.agePreference
+      agePreference: props.navigation.state.params.agePreference,
+      user: props.navigation.state.params.user
     };
     this.logout = this.logout.bind(this);
+    this.delete = this.delete.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
+    console.log(this.state.user);
   }
-
+  
   logout = async (val) => {
     await AsyncStorage.removeItem('fb_token');
     AlertIOS.alert('You Have Been Logged Out');
     this.props.navigation.navigate(val);
   }
+  delete = async (val) => {
+    console.log('in ths delete', this.state.user.id);
+    Axios.delete(`http://webspark.herokuapp.com/deleteUserAccount/${this.state.user.id}`).then((res) => {
+      console.log('in delete', res);
+      AsyncStorage.removeItem('fb_token');
+      AlertIOS.alert('You Have Been Logged Out');
+      this.props.navigation.navigate(val);
+    });
+  }
 
   handleChangeValue = (val) => {
       this.setState({ agePreference: val });
-      console.log('age pref', this.state.agePreference);
+      console.log('age pref', this.state.user.facebook_auth_id);
   }
 
   render() {
@@ -57,20 +70,20 @@ class Preferences extends Component {
           handleChangeValue={this.handleChangeValue}
           />
         </View>
-        <PrefButtons logout={this.logout} />
+        <PrefButtons logout={this.logout} delete={this.delete} />
         <View style={styles.privacyAndTerms}>
           <View style={styles.borderPrivacy}>
             <Privacy />
           </View>
           <View style={styles.borderTerms}>
-            <Text
+            {/* <Text
               style={styles.textLegalese}
               onPress={() => {
                 this.props.navigation.navigate('TermsOfService');
               }}
             >
               Terms of Service
-            </Text>
+            </Text> */}
           </View>
         </View>
       </View>

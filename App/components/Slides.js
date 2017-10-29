@@ -30,7 +30,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/MessageFinal.gif')} style={{ marginTop: 25, height: 320 }}/>
+              source={require('../images/RatingShot.png')} style={{ marginTop: 25, height: 320 }}/>
             </View>  
           );
         }
@@ -40,7 +40,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Guys Message First</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/MessagesGif.gif')} style={{ marginTop: 25, height: 320 }}/>
+              source={require('../images/MessageShot.png')} style={{ marginTop: 25, height: 320 }}/>
             </View>  
           );
         }
@@ -50,7 +50,7 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/Swipe.gif')} style={{ marginTop: 25,  height: 320}}/>
+              source={require('../images/SparkScreen.png')} style={{ marginTop: 25,  height: 320}}/>
             </View>  
         );
     }

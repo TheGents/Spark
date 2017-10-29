@@ -209,7 +209,8 @@ module.exports = {
     delete_user_account: (req,res) => {
         const db = req.app.get('db');
         const { id } = req.params;
-        db.get_user_profile([id]).then(()=>res.status('200').send()).catch(()=> res.status('404').send());
+        console.log('id', id);
+        db.delete_user_account(id).then((data)=>res.status('200').send(data)).catch((error)=> res.status('404').send(error, id));
     },
     
 }
