@@ -93,7 +93,10 @@ export default class Shopping extends Component {
           return obj !== currentCard;
         });
         this.setState({ cards: filteredCards });
-      
+        //try if state for newcards
+        if (this.state.cards.length === 0) {
+          this.setState({ newCards: '' });
+        }
       console.log('!this.state.Cards', this.state.cards.length);
       console.log(' newcards.length', this.state.newCards.length);
     
@@ -312,7 +315,9 @@ export default class Shopping extends Component {
           backgroundColor={'transparent'}
           disableBottomSwipe={'true'}
           disableTopSwipe={'true'}
-          
+          onTapCardDeadZone={1}
+          marginTop={70}
+          cardVerticalMargin={10}
         />
       </View>
     );
@@ -376,6 +381,6 @@ loading: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 9,
-    padding: 10
+    padding: 10,
   }
 });
