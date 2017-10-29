@@ -1,19 +1,12 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHighlight } from 'react-native';
-import { Button, Avatar, Icon } from 'react-native-elements';
-import { Navigator } from 'react-native-deprecated-custom-components';
+import { Icon } from 'react-native-elements';
+// import { Navigator } from 'react-native-deprecated-custom-components';
 // import SwipeCards from 'react-native-swipe-cards';
-import SwipeCards from 'react-native-deck-swiper';
+import Swiper from 'react-native-deck-swiper';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
-
-const image1 = require('../images/eric.jpeg');
-const image2 = require('../images/danish.jpeg');
-const image3 = require('../images/terri.jpeg');
-const image4 = require('../images/shea.jpeg');
-const image5 = require('../images/seven.jpeg');
-const image6 = require('../images/andy.jpeg');
 
 
 export default class Shopping extends Component {
@@ -30,7 +23,7 @@ export default class Shopping extends Component {
   }
 
   componentDidMount() {
-    console.log('age prefernce in shopping', this.state.agePreference);
+    console.log('age prefernece in shopping', this.state.agePreference);
     console.log('userin shopping', this.state.userInfo.length);
     Axios.get(
       `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
@@ -84,7 +77,7 @@ export default class Shopping extends Component {
     });
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
       // console.log('old cards', this.state.cards);
-      console.log('these are the newcards that i want', this.state.newCards);
+      console.log('these are the newcards that i want', this.state.newCards.length);
       const currentCard = this.state.newCards[card];
       
         const filteredCards = this.state.cards.filter((obj) => {
@@ -155,6 +148,7 @@ export default class Shopping extends Component {
   
 
   Card(x) {
+    console.log('in card', x.first_name);
     return (
       <View style={styles.card}>
         <TouchableHighlight
@@ -181,15 +175,15 @@ export default class Shopping extends Component {
       </View>
     );
   }
-  handleYup(cardData, cards) {
+  handleYup(cards) {
     const SwipeMatch = true;
-    console.log('handleYup', cardData);
+    console.log('handleYup', cards);
     console.log('cards', cards);
-    PleaseShutYourMouthAndBeQuiet(cardData, SwipeMatch);
+    PleaseShutYourMouthAndBeQuiet(cards, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
-  handleNope(card, ) {
+  handleNope(card) {
     const SwipeMatch = false;
     console.log('handleNope', card);
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
@@ -205,15 +199,15 @@ export default class Shopping extends Component {
     );
   }
 
-  yup() {
-    console.log('this.refs.swiper');
-    this.refs.swiper._goToNextCard();
-  }
+  // yup() {
+  //   console.log('this.refs.swiper');
+  //   this.refs.swiper._goToNextCard();
+  // }
 
-  nope() {
-    console.log('this.refs.swiper');
-    this.refs.swiper._goToNextCard();
-  }
+  // nope() {
+  //   console.log('this.refs.swiper');
+  //   this.refs.swiper._goToNextCard();
+  // }
 
   render() {
     if (!this.state.newCards.length > 0) {
@@ -304,10 +298,10 @@ export default class Shopping extends Component {
             size={30}
           />
         </View>
-        <SwipeCards
-          ref={'swiper'}
+        <Swiper
+          /* ref={'swiper'} */
           cards={ this.state.newCards }
-          containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
+          /* containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }} */
           renderCard={cardData => this.Card(cardData)}
           onSwipedAll={() => this.noMore()}
           onSwipedRight={this.handleYup}
@@ -315,7 +309,7 @@ export default class Shopping extends Component {
           backgroundColor={'transparent'}
           disableBottomSwipe={'true'}
           disableTopSwipe={'true'}
-          onTapCardDeadZone={1}
+          /* onTapCardDeadZone={0} */
           marginTop={70}
           cardVerticalMargin={10}
         />
@@ -381,6 +375,6 @@ loading: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 9,
-    padding: 10,
+    padding: 10
   }
 });
