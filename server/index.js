@@ -8,28 +8,25 @@ const { json } = require('body-parser');
 const massive = require('massive');
 const cors = require('cors');
 const path = require('path');
-// const io = require('socket.io')();
+const io = require('socket.io')();
 
 
-// const port = 8000;
+ const port = 3000;
 // const passport = require('passport');
 // const Auth0Strategy = require('passport-auth0');
 
 
-// io.on('connection', (client) => {
-//     client.on('subscribeToTimer', (interval, roomID) => {
-//       console.log('client is subscribing to timer with interval ', interval);
-      
-//       setInterval(() => {
-//         client.emit('timer', Axios.get(`http://webspark.herokuapp.com/getmessage/${roomID}`).then((response) => {
-//             return response.data;
-//         }));
-//       }, interval);
-//     });
-//   });
+io.on('connection', (client) => {
+    client.on('subscribeToTimer', (interval) => {
+      console.log('client is subscribing to timer with interval ', interval);
+      setInterval(() => {
+        client.emit('timer', new Date());
+      }, interval);
+    });
+  });
 
-// io.listen(port);
-// console.log(`listening on port ${port}`);
+io.listen(port);
+console.log(`listening on port ${port}`);
 
 // const config = require('./config/config.js');
 const userCtrl = require('./ctrl/userCtrl');
@@ -94,4 +91,4 @@ app.get('/deleteUserAccount/:id', userCtrl.delete_user_account);
 
 // passport.deserializeUser(loginCtrl.deserialize);
 
-app.listen(process.env.PORT, () => { console.log('Listening on port: 3000')});
+//app.listen(process.env.PORT, () => { console.log('Listening on port: 3000')});

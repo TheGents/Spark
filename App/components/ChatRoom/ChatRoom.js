@@ -20,9 +20,9 @@ class ChatRoom extends Component {
       showRatingButton: true,
       fucker: 'hi',
     };
-    // subscribeToTimer((err, timestamp) => this.setState({
-    //   timestamp
-    // }));
+    subscribeToTimer((err, timestamp) => this.setState({
+      timestamp
+    }));
   }
 
   componentDidMount() {
@@ -145,8 +145,8 @@ class ChatRoom extends Component {
           size={40}
         />
           </TouchableOpacity>
-          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
-          <Text style={styles.name}>{ this.state.matched.name }</Text>
+          <Text style={styles.name}>{ this.state.timestamp }</Text>
+          {/* <Text style={styles.name}>{ this.state.matched.name }</Text> */}
           {this.state.showRatingButton && <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched })}}>
           <Icon
@@ -198,9 +198,9 @@ class ChatRoom extends Component {
           size={40}
         />
           </TouchableOpacity>
-          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
+          <Text style={styles.name}>{ this.state.timestamp }</Text>
 
-          <Text style={styles.name}>{ this.state.matched.name }</Text>
+          {/* <Text style={styles.name}>{ this.state.matched.name }</Text> */}
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
