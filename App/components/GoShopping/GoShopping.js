@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHighlight } from 'react-native';
 import { Icon } from 'react-native-elements';
 // import { Navigator } from 'react-native-deprecated-custom-components';
-// import SwipeCards from 'react-native-swipe-cards';
+import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
@@ -299,7 +299,7 @@ export default class Shopping extends Component {
           />
         </View>
         <Swiper
-          /* ref={'swiper'} */
+          ref={'swiper'}
           cards={ this.state.newCards }
           /* containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }} */
           renderCard={cardData => this.Card(cardData)}
@@ -312,6 +312,45 @@ export default class Shopping extends Component {
           /* onTapCardDeadZone={0} */
           marginTop={70}
           cardVerticalMargin={10}
+          overlayLabels={{
+            left: {
+              title: 'Pass',
+              style: {
+                label: {
+                backgroundColor: 'white',
+                borderColor: 'black',
+                color: 'black',
+                borderWidth: 1
+                },
+              wrapper: {
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
+                marginTop: 30,
+                marginRight: 30
+              }  
+              }
+            },
+            right: {
+              title: 'Like',
+              style: {
+                label: {
+                  backgroundColor: '#34799b',
+                  borderColor: 'black',
+                  color: 'white',
+                  borderWidth: 1
+                },
+                wrapper: {
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  marginTop: 30,
+                  marginLeft: 30
+                }
+              }
+            },
+
+          }}
         />
       </View>
     );
