@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30,
+    
   },
   titleText: {
     width: 50

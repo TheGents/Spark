@@ -1,13 +1,23 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, ActivityIndicator, View, AlertIOS, TouchableHighlight } from 'react-native';
+import { 
+  StyleSheet, 
+  Image, 
+  Text, 
+  ActivityIndicator, 
+  View, 
+  AlertIOS, 
+  TouchableHighlight,
+  Dimensions
+ } from 'react-native';
 import { Icon } from 'react-native-elements';
 // import { Navigator } from 'react-native-deprecated-custom-components';
-import SwipeCards from 'react-native-swipe-cards';
+// import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
 import Axios from 'axios';
 import { AppLoading } from 'expo';
 
+const {height, width} = Dimensions.get('window');
 
 export default class Shopping extends Component {
   constructor(props) {
@@ -163,7 +173,7 @@ export default class Shopping extends Component {
                 'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'
             }}
             resizeMode='cover'
-            style={{ borderRadius: 15, flex: 1, width: 300, alignItems: 'center', justifyContent: 'flex-end' }}
+            style={{ borderRadius: 15, flex: 1, width: width * 0.9, alignItems: 'center', justifyContent: 'flex-end' }}
           >
               <View style={styles.imageContainer}>
                 <Text style={styles.name}>{x.first_name}, {x.age}</Text>
@@ -210,6 +220,7 @@ export default class Shopping extends Component {
   // }
 
   render() {
+    console.log('height', height, width);
     if (!this.state.newCards.length > 0) {
       console.log('!_.max', this.state.cards);
       return (
@@ -318,16 +329,14 @@ export default class Shopping extends Component {
               style: {
                 label: {
                 backgroundColor: 'white',
-                borderColor: 'black',
                 color: 'black',
-                borderWidth: 1
+                marginRight: 30
                 },
               wrapper: {
                 flexDirection: 'column',
                 alignItems: 'flex-end',
                 justifyContent: 'flex-start',
-                marginTop: 30,
-                marginRight: 30
+                marginTop: 30
               }  
               }
             },
@@ -338,14 +347,13 @@ export default class Shopping extends Component {
                   backgroundColor: '#34799b',
                   borderColor: 'black',
                   color: 'white',
-                  borderWidth: 1
+                  marginLeft: 30,
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
-                  marginTop: 30,
-                  marginLeft: 30
+                  marginTop: 30
                 }
               }
             },
@@ -397,7 +405,7 @@ loading: {
     fontStyle: 'italic'
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
