@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',
-    marginRight: 5
+    marginLeft: 5
   },
 });
 
