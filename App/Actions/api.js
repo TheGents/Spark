@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:3000');
+const socket = openSocket('http://webspark.herokuapp.com');
 console.log('above socket', socket);
 function subscribeToTimer(cb) {
     console.log('socket', socket);
