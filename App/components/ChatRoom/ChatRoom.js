@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
+
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { subscribeToTimer } from '../../Actions/api';
 import Rating from './RateMeBabe/Rate';
+
+const socket = openSocket('http://localhost:3000');
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -116,10 +120,11 @@ class ChatRoom extends Component {
     // console.log('This is userInfo',this.state.userInfo);
     // console.log('This is matchedInfo',this.state.matched);
     // console.log('this is rating passback from rate', this.state.checkRating)
-    console.log('allllllll', this.state.all)
-    console.log('button', this.state.showRatingButton)
+    console.log('allllllll', socket)
+    console.log('button', socket)
     console.log('fudge',this.state.fucker)
     console.log('wow', this.state.matched.rated == 'true');
+    console.log('attllllllttll', socket);
     
     // console.log('This is getRequest',this.state.kitkats);
     //We are rendering two if statements.
@@ -145,8 +150,8 @@ class ChatRoom extends Component {
           size={40}
         />
           </TouchableOpacity>
-          <Text style={styles.name}>{ this.state.timestamp }</Text>
-          {/* <Text style={styles.name}>{ this.state.matched.name }</Text> */}
+          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
+          <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
             onPress={() => { this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched })}}>
           <Icon
@@ -196,11 +201,11 @@ class ChatRoom extends Component {
           underlayColor={'white'}
           iconStyle={{ marginLeft: 5 }}
           size={40}
-        />
+          />
           </TouchableOpacity>
-          <Text style={styles.name}>{ this.state.timestamp }</Text>
+          {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
 
-          {/* <Text style={styles.name}>{ this.state.matched.name }</Text> */}
+          <Text style={styles.name}>{ this.state.matched.name }</Text>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
