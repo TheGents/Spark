@@ -78,7 +78,7 @@ module.exports = {
         let gender = req.params.gender;
         // console.log(gender);
         if(gender === '0') {
-            db.get_dudes([gender]).then((data)=>{res.status('200').send(data) }).catch(()=> res.status('404').send());
+            db.get_dudes([gender]).then((data)=>{res.status('200').send(data)}).catch(()=> res.status('404').send());
         }
         if(gender === '1' ) {
             db.get_chicks([gender]).then((data)=>{res.status('200').send(data)}).catch(()=> res.status('404').send());

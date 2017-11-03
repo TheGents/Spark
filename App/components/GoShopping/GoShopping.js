@@ -148,7 +148,7 @@ export default class Shopping extends Component {
       console.log('cards are the deal', this.state.cards.length);
       const newCardArray = []
       for (card of this.state.cards) {
-        console.log('this is the cards location score', card.location_score);
+        console.log('this is the cards location score', card);
         let matchScore = Math.round((this.state.userInfo.location_score - card.location_score) * 71.9735137469);
         if (matchScore < 0) {
           matchScore *= -1; 

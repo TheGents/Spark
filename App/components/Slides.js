@@ -58,14 +58,14 @@ class Slides extends Component {
           <View style={styles.container}>  
           <Text style={styles.textStyle}>Welcome to Spark</Text>
           {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
-          {/* <Icon
-              name={'ios-flash'}
+          <Icon
+              name={'ios-arrow-round-back-outline'}
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
-              size={40}
-          /> */}
+              size={70}
+          />
           {/* <Image 
           resizeMode='contain'
           source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/> */}
