@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { subscribeToTimer } from '../../Actions/api';
 import Rating from './RateMeBabe/Rate';
 
+const { height, width } = Dimensions.get('window');
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class ChatRoom extends Component {
       kitkats: 'This is a test to console log the return from axios',
       showRatingButton: true,
       booleon: 'hi',
+      matchesLoaded: false
     };
     
   }
@@ -50,7 +52,7 @@ class ChatRoom extends Component {
           })
         })
         messageDB = messageDB.reverse();
-        this.setState({ messages: messageDB});
+        this.setState({ messages: messageDB, matchesLoaded: true });
         if(this.state.matched.rated == 'true') {
           this.setState({ showRatingButton: false })
         }
@@ -72,7 +74,7 @@ class ChatRoom extends Component {
       this.setState({ showRatingButton: true })
       this.setState({ booleon: false })
     }
-    updateMessage = () => {
+    
     Axios.get(`http://webspark.herokuapp.com/getmessage/${nextProps.navigation.state.params.match.chatRoom}`).then((response)=> {
       this.setState({ kitkats: response.data });
       let katkat = response.data;
@@ -98,7 +100,6 @@ class ChatRoom extends Component {
       messageDB = messageDB.reverse();
       this.setState({ messages: messageDB});
     })
-  }
   }
   
 
@@ -143,7 +144,7 @@ class ChatRoom extends Component {
           type={'ionicon'}
           color={'#34799b'}
           underlayColor={'white'}
-          iconStyle={{ marginLeft: 5 }}
+          iconStyle={{ marginLeft: 5 }} 
           size={40}
         />
           </TouchableOpacity>
@@ -157,7 +158,7 @@ class ChatRoom extends Component {
                   color={'#34799b'}
                   underlayColor={'white'}
                   iconStyle={{ marginRight: 5 }}
-                  size={40}
+                  size={39}
                 />
           </TouchableOpacity>}
           {/* This will display her picture in the center zomgz */}
@@ -172,11 +173,7 @@ class ChatRoom extends Component {
         </View>
         <GiftedChat
           placeholder='Message...'
-          messages={
-            setInterval(() => {
-       return this.state.messages;
-    }, 1000)
-    }
+          messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
           _id: this.state.userInfo.facebook_auth_id,
@@ -235,8 +232,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  loading: {
+    flex: 1,
+    justifyContent: 'center'
+  },
   nav: {
-    height: 70,
+    height: height / 8.114,
     backgroundColor: 'blue',
     flexDirection: 'row',
     paddingTop: 10,
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   name: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',

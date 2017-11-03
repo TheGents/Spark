@@ -55,6 +55,7 @@ class Home extends Component {
       });
     } else {
       console.log('componentwillmount user is', this.state.user);
+      console.log('height and width', height, width);
       this._getLocationAsync();
     }
   }
@@ -194,7 +195,7 @@ class Home extends Component {
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
-              size={40}
+              size={50}
             />
           </View>
           <View style={styles.contentContainerStyle}>
@@ -204,7 +205,6 @@ class Home extends Component {
                 uri: `https://graph.facebook.com/${this.state.user
                   .facebook_auth_id}/picture?type=large`
               }}
-              onPress={() => console.log('Profile pic pressed')}
               activeOpacity={0.7}
               width={280}
               height={280}
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',

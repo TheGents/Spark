@@ -46,7 +46,16 @@ class SetupBio extends Component {
         // console.log(this.state);
       });
   }
-
+  updateBio(general_bio) {
+    console.log('here', general_bio);
+    this.setState({ general_bio: general_bio })
+    this.props.handleChangeValue(general_bio, this.props.user.facebook_auth_id, this.state.occupation);
+  }
+  updateOccupation(occupation) {
+    console.log('here', occupation);
+    this.setState({ occupation: occupation })
+    this.props.handleChangeValue(this.state.bio, this.props.user.facebook_auth_id, occupation);
+  }
   render() {
     const { general_bio, occupation, height } = this.state;
 
@@ -59,7 +68,7 @@ class SetupBio extends Component {
             placeholder="About me"
             maxLength={250}
             numberOfLines={5}
-            onChangeText={general_bio => this.setState({ general_bio })}
+            onChangeText={(general_bio) => this.updateBio(general_bio)}
             value={this.state.general_bio}
             style={{ ...styles.bioTextInput, height: 80 }}
             backgroundColor={'transparent'}
@@ -71,19 +80,11 @@ class SetupBio extends Component {
             placeholder="Work"
             maxLength={250}
             numberOfLines={5}
-            onChangeText={occupation => this.setState({ occupation })}
+            onChangeText={(occupation) => this.updateOccupation(occupation)}
             value={this.state.occupation}
             style={{ ...styles.occupationTextInput, height: 40 }}
             backgroundColor={'transparent'}
             editable
-          />
-          <Button
-            title="Save"
-            style={{ height: 40 }}
-            backgroundColor={'transparent'}
-            onPress={() => {
-              this.props.handleChangeValue(this.state.general_bio, this.props.user.facebook_auth_id, this.state.occupation);
-            }}
           />
         </View>
       </View>

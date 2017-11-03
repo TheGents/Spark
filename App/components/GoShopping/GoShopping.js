@@ -266,7 +266,7 @@ export default class Shopping extends Component {
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginLeft: 10 }}
-              size={30}
+              size={40}
             />
             <Image
               source={require('../images/sparkLogo.png')}
@@ -283,7 +283,7 @@ export default class Shopping extends Component {
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
-              size={30}
+              size={40}
             />
           </View>
           <View style={styles.loading}>
@@ -308,8 +308,9 @@ export default class Shopping extends Component {
             color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
-            size={30}
+            size={40}
           />
+          
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
@@ -337,7 +338,7 @@ export default class Shopping extends Component {
             color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginRight: 10 }}
-            size={30}
+            size={40}
           />
         </View>
         <Swiper
