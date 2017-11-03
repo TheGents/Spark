@@ -22,6 +22,8 @@ class PrefSliders extends React.Component {
     newValues[0] = values[0];
     this.setState({
       sliderOneValue: newValues
+    }, () => {
+      this.props.handleLocationValue(this.state.sliderOneValue);
     });
   };
 

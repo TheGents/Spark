@@ -40,8 +40,10 @@ class Home extends Component {
       user: '', 
       // location: props.navigation.state.params.userLocation,
       agePreference: [18, 60],
+      locationPreference: 10,
       location: null,
       errorMessage: null,
+      city: null
     };
   }
  
@@ -52,6 +54,7 @@ class Home extends Component {
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
+      console.log('componentwillmount user is', this.state.user);
       this._getLocationAsync();
     }
   }
@@ -63,14 +66,15 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('this is the first response.data', this.state.user);
+        console.log('this is the first response.data', this.state.city);
         return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
         .catch(res => {
           console.log('this is the new res', res);
         });
       })
       .then(res => {
-        console.log('this is the response.data', this.state.user.photos);
+        axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.id }); 
+        console.log('this is the response.data', this.state.location);
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
           
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
@@ -111,6 +115,8 @@ class Home extends Component {
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
       });
+      console.log('this is where it is at', this.state.city)
+      
     //we call this.setState when we want to update what a component shows
   }
 
@@ -121,7 +127,9 @@ class Home extends Component {
     }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
-      
+    }
+    if (nextProps.navigation.state.params.locationPreference) {
+      this.setState({ locationPreference: nextProps.navigation.state.params.locationPreference });
     }
   }
 
@@ -136,12 +144,15 @@ class Home extends Component {
     let location = await Location.getCurrentPositionAsync({});
     console.log('latitude', location);
     console.log('longitude', location.coords.longitude);
+    
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
     .then(response => {
       console.log('response', response.data.results[0].address_components[3].long_name);
-      axios.put('http://webspark.herokuapp.com/putLocation', { user: this.state.user, city: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
+      console.log('user is', location.coords.latitude + location.coords.longitude );
+      
+      this.setState({ location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
+      console.log(this.state.location);
     });
-    this.setState({ location });
   };
 
   render() {
@@ -176,7 +187,7 @@ class Home extends Component {
             />
             <Icon
               onPress={() => {
-                this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference });
+                this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
               }}
               name={'ios-flash'}
               type={'ionicon'}

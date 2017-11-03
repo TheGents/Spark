@@ -27,6 +27,7 @@ export default class Shopping extends Component {
       newCards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
+      locationPreference: props.navigation.state.params.locationPreference,
       agePreference: [18, 60],
       filtered: 'check to see if state changes and console log before render'
     };
@@ -72,7 +73,8 @@ export default class Shopping extends Component {
             general_bio: x.general_bio,
             location: x.location,
             facebook_auth_id: x.facebook_auth_id,
-            rating: x.round
+            rating: x.round,
+            location_score: x.location_score
           });
         }
         });
@@ -138,12 +140,24 @@ export default class Shopping extends Component {
       this.setState({ userInfo: nextProps.navigation.state.params.user });
       console.log('changing the user');
       }
-    if (nextProps.navigation.state.params.agePreference) {
-      this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
+    if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
+      this.setState({ agePreference: nextProps.navigation.state.params.agePreference, locationPreference: nextProps.navigation.state.params.locationPreference[0] });
+      console.log('this is my info', this.state.userInfo.location_score);
+      
+
       console.log('cards are the deal', this.state.cards.length);
       const newCardArray = []
       for (card of this.state.cards) {
-        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1]) {
+        console.log('this is the cards location score', card.location_score);
+        let matchScore = Math.round((this.state.userInfo.location_score - card.location_score) * 71.9735137469);
+        if (matchScore < 0) {
+          matchScore *= -1; 
+        }
+        console.log('location preference', nextProps.navigation.state.params.locationPreference[0])
+        console.log('the match score', matchScore);
+        
+        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1] && matchScore <= nextProps.navigation.state.params.locationPreference) {
+          console.log('matchscore', card.first_name)
           newCardArray.push(card)
         }
       }
@@ -158,7 +172,14 @@ export default class Shopping extends Component {
   
 
   Card(x) {
-    console.log('in card');
+    console.log('here is the preference in card', this.state.locationPreference);
+    let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
+    if (matchScore < 0) {
+      matchScore *= -1; 
+    }
+    x.miles = matchScore;
+    console.log('in card', x.miles);
+    if (x.miles < this.state.locationPreference) {
     return (
       <View style={styles.card}>
         <TouchableHighlight
@@ -178,6 +199,7 @@ export default class Shopping extends Component {
               <View style={styles.imageContainer}>
                 <Text style={styles.name}>{x.first_name}, {x.age}</Text>
                 <Text style={styles.occupation}>{x.occupation}</Text>
+                <Text style={styles.occupation}>{x.miles} Miles Away</Text>
                 <Text style={styles.occupation}>{x.rating}</Text>
               </View>
           </Image>
@@ -185,6 +207,15 @@ export default class Shopping extends Component {
       </View>
     );
   }
+  
+    return (
+      <View style={styles.card}>
+        <Text style={{ paddingBottom: 22 }}>There are no more matches, please adjust your preference setting or check back later.</Text>
+        
+      </View>
+    );
+  }
+
   handleYup(cards) {
     const SwipeMatch = true;
     console.log('handleYup', cards);

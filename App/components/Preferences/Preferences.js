@@ -15,11 +15,13 @@ class Preferences extends Component {
     super(props);
     this.state = {
       agePreference: props.navigation.state.params.agePreference,
+      locationPreference: props.navigation.state.params.locationPreference,
       user: props.navigation.state.params.user
     };
     this.logout = this.logout.bind(this);
     this.delete = this.delete.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
+    this.handleLocationValue = this.handleLocationValue.bind(this);
     console.log(this.state.user);
   }
   
@@ -42,6 +44,10 @@ class Preferences extends Component {
       this.setState({ agePreference: val });
       console.log('age pref', this.state.user.facebook_auth_id);
   }
+  handleLocationValue = (val) => {
+    this.setState({ locationPreference: val });
+    console.log('location pref', val);
+}
 
   render() {
     return (
@@ -49,7 +55,7 @@ class Preferences extends Component {
         <View style={styles.nav}>
           <Icon
             onPress={() => {
-              this.props.navigation.navigate('Home', { agePreference: this.state.agePreference });
+              this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
             }}
             name={'ios-home'}
             type={'ionicon'}
@@ -68,6 +74,7 @@ class Preferences extends Component {
         <View style={styles.sliderStyles}>
           <PrefSliders 
           handleChangeValue={this.handleChangeValue}
+          handleLocationValue={this.handleLocationValue}
           />
         </View>
         <PrefButtons logout={this.logout} delete={this.delete} />

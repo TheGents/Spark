@@ -172,24 +172,27 @@ module.exports = {
                     db.put_user_pics2([facebook_auth_id , photo2]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }
                 else if(photo3){
-                    console.log('3 ',facebook_auth_id, photo3);
+                    // console.log('3 ',facebook_auth_id, photo3);
                     db.put_user_pics3([facebook_auth_id , photo3]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }
                 else if (photo4){
-                    console.log('4 ',facebook_auth_id, photo4);
+                    // console.log('4 ',facebook_auth_id, photo4);
                     db.put_user_pics4([facebook_auth_id , photo4]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
                 }      
+            },
+            put_user_location: (req,res) => {
+                console.log('Im in user location');
+                const db = req.app.get('db');
+                const { facebook_auth_id, location  } = req.body;
+                console.log('city', location);
+                // console.log('city', numLocation);
+                // console.log('city', facebook_auth_id);
+                db.put_user_location([facebook_auth_id, location]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
             },
     put_user_bio: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id , general_bio, occupation } = req.body;
         db.put_user_bio([facebook_auth_id , general_bio, occupation]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
-    },
-    put_user_location: (req,res) => {
-        const db = req.app.get('db');
-        const { facebook_auth_id, city, numLocation  } = req.body;
-        console.log(city);
-        db.put_user_location([facebook_auth_id , general_bio, occupation]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
     },
     put_user_preferences: (req,res) => {
         const db = req.app.get('db');
