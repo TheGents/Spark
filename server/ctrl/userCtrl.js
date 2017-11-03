@@ -185,6 +185,12 @@ module.exports = {
         const { facebook_auth_id , general_bio, occupation } = req.body;
         db.put_user_bio([facebook_auth_id , general_bio, occupation]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
     },
+    put_user_location: (req,res) => {
+        const db = req.app.get('db');
+        const { facebook_auth_id, city, numLocation  } = req.body;
+        console.log(city);
+        db.put_user_location([facebook_auth_id , general_bio, occupation]).then((data)=>res.status('200').send(data)).catch(()=> res.status('404').send());
+    },
     put_user_preferences: (req,res) => {
         const db = req.app.get('db');
         const { facebook_auth_id, dist_min, dist_max, age_min, age_max } = req.params;

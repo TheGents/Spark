@@ -15,7 +15,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { AppLoading } from 'expo';
+import { AppLoading, Constants, Location, Permissions } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
@@ -39,11 +39,22 @@ class Home extends Component {
           : props.navigation.state.params.userToken),  
       user: '', 
       // location: props.navigation.state.params.userLocation,
-      agePreference: [18, 60]
+      agePreference: [18, 60],
+      location: null,
+      errorMessage: null,
     };
   }
  
- 
+  componentWillMount() {
+    console.log(Location.getCurrentPositionAsync({}));
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
 
   componentDidMount() {
     axios
@@ -89,17 +100,16 @@ class Home extends Component {
             axios.put('http://webspark.herokuapp.com/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
           });
           }
-         console.log('sup hoe', this.state.user);
+         
         
         if (res.data[0] === undefined) {
-          return axios.post('http://webspark.herokuapp.com/adduser', this.state.user, this.state.location);
+          return axios.post('http://webspark.herokuapp.com/adduser', this.state.user);
           
         }
         return axios.get(`http://webspark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
       })
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
-        console.log('super hoe', this.state.user);
       });
     //we call this.setState when we want to update what a component shows
   }
@@ -114,6 +124,25 @@ class Home extends Component {
       
     }
   }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log('latitude', location);
+    console.log('longitude', location.coords.longitude);
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
+    .then(response => {
+      console.log('response', response.data.results[0].address_components[3].long_name);
+      axios.put('http://webspark.herokuapp.com/putLocation', { user: this.state.user, city: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
+    });
+    this.setState({ location });
+  };
 
   render() {
     if (!this.state.homeLoaded) {

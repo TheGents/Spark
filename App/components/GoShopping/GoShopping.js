@@ -11,7 +11,7 @@ import {
   Dimensions
  } from 'react-native';
 import { Icon } from 'react-native-elements';
-// import { Navigator } from 'react-native-deprecated-custom-components';
+import { Navigator } from 'react-native-deprecated-custom-components';
 // import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
 import Axios from 'axios';
@@ -158,7 +158,7 @@ export default class Shopping extends Component {
   
 
   Card(x) {
-    console.log('in card', x.first_name);
+    console.log('in card');
     return (
       <View style={styles.card}>
         <TouchableHighlight
