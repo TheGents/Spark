@@ -2,12 +2,13 @@
 
 import React, { Component } from 'react';
 import { LoginManager } from 'react-native-fbsdk';
-import { View, Text, StyleSheet, AlertIOS, AsyncStorage, Image } from 'react-native';
+import { View, Text, StyleSheet, AlertIOS, Dimensions, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
+const { height, width } = Dimensions.get('window');
 // import TermsOfService from './TermsOfService';
 
 class Preferences extends Component {
@@ -62,6 +63,7 @@ class Preferences extends Component {
             color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
+            size={40}
           />
           <Image
             source={require('../images/sparkLogo.png')}
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center'
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',

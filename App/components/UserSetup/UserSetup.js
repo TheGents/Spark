@@ -137,7 +137,7 @@ class Setup extends Component {
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginLeft: 10 }}
-              size={30}
+              size={40}
             />
             {/* <Text>Settings</Text> */}
             <Image
@@ -178,7 +178,7 @@ const styles = {
     flex: 1
   },
   nav: {
-    height: 60,
+    height: height / 8.114,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

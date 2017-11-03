@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
   ListView,
   ActivityIndicator,
   View
@@ -15,6 +16,9 @@ import { Icon } from 'react-native-elements';
 import Nav from '../global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
+
+const { height, width } = Dimensions.get('window');
+
 
 const image1 = require('../images/eric.jpeg');
 const image2 = require('../images/danish.jpeg');
@@ -196,7 +200,7 @@ export default class Messages extends Component {
             color={'#34799b'}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
-            size={40}
+            size={50}
           />
           <Image
             source={require('../images/sparkLogo.png')}
@@ -255,7 +259,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',

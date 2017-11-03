@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { Select, Option } from 'react-native-chooser';
 // import { Select, Option } from 'react-native-select-list';
-
+const { height, width } = Dimensions.get('window');
 
 class Rating extends Component {
   constructor(props) {
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
