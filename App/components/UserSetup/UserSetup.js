@@ -126,7 +126,6 @@ class Setup extends Component {
     const { image, photo, third, fourth } = this.state;
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollViewStyle}>
           <View style={styles.nav}>
             <Icon
               onPress={() => {
@@ -147,6 +146,7 @@ class Setup extends Component {
             />
             <Text>{'          '}</Text>
           </View>
+          <ScrollView style={styles.scrollViewStyle}>
           <View style={{ flex: 1 }}>
             <SetupImage
               key={1}
