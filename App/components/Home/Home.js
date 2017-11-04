@@ -11,7 +11,6 @@ import {
   AsyncStorage,
   View,
   ActivityIndicator,
-  ScrollView,
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
@@ -177,7 +176,6 @@ class Home extends Component {
 
     return (
       <View style={container}>
-        <ScrollView>
           <View style={styles.nav}>
             <Text style={styles.titleText} />
             <Image
@@ -247,7 +245,6 @@ class Home extends Component {
               </View>
             </TouchableHighlight>
           </View>
-        </ScrollView>
       </View>
     );
   }

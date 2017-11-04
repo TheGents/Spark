@@ -74,7 +74,7 @@ class SetupBio extends Component {
             backgroundColor={'transparent'}
             editable
           />
-          <Text style={{ marginLeft: 5, color: '#34799b', }}>Occupation</Text>
+          <Text style={{ marginLeft: 5, marginTop: 7, color: '#34799b', }}>Occupation</Text>
           <TextInput
             multiline
             placeholder="Work"
