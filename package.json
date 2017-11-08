@@ -13,7 +13,7 @@
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "eslint-config-rallycoding": "^3.2.0",
-    "expo": "^20.0.0",
+    "expo": "^21.0.0",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "http": "0.0.0",
