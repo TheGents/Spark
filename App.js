@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ScrollView from 'react-native';
 import { Provider } from 'react-redux';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 import Login from './App/Screens/Login';
 import store from './App/Store';
 import { notifications } from 'expo';

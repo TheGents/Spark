@@ -231,7 +231,7 @@ class Home extends Component {
               </View>
             </TouchableHighlight>
             <TouchableHighlight>
-              <View>
+              <View> 
                 <Icon
                   onPress={() => {
                     this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference });
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 30,
+    marginTop: 25,
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center'
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    
+    marginBottom: 10
   },
   titleText: {
     width: 50
