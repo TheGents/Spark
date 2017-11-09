@@ -9,7 +9,7 @@
     "version": "2.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/SparkWithoutBG.png",
+    "icon": "./assets/icons/SparkWithoutAP.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": false
