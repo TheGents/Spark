@@ -12,6 +12,7 @@ import {
   Easing,
   ScrollView,
   Button,
+  Keyboard,
   KeyboardAvoidingView,
   TextInput
 } from 'react-native';
@@ -40,6 +41,7 @@ class Setup extends Component {
     };
     this._pickImage = this._pickImage.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
+    this.dismiss = this.dismiss.bind(this);
   }
   componentDidUpdate() {
     console.log('updating', this.state.user);
@@ -120,23 +122,26 @@ class Setup extends Component {
     console.log('the facebook id', result.uri);
   };
 
+  dismiss = () => {
+    Keyboard.dismiss();
+    this.props.navigation.navigate('Home', { setupUser: this.state.user });
+  }
+
   // Ensure that we're leaving space for first and last item.
 
   render() {
     const { image, photo, third, fourth } = this.state;
     return (
       <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.nav}>
           <TouchableOpacity
             style={{ width: 80, alignItems: 'flex-start' }}
             onPress={() => {
-              this.props.navigation.navigate('Home', { setupUser: this.state.user });
+              this.dismiss();
             }}
           >  
             <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Home', { setupUser: this.state.user });
-              }}
               name={'ios-home'}
               type={'ionicon'}
               color={'#34799b'}
@@ -153,6 +158,7 @@ class Setup extends Component {
             />
             <Text style={{ width: 80, marginRight: 10 }}>{'          '}</Text>
           </View>
+          </TouchableWithoutFeedback>
           <ScrollView style={styles.scrollViewStyle}>
           <View style={{ flex: 1 }}>
             <SetupImage
