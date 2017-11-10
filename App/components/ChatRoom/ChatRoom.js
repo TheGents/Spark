@@ -5,6 +5,7 @@ import {
   Text, 
   StyleSheet, 
   Dimensions,  
+  ScrollView,
   TouchableOpacity, 
   TouchableWithoutFeedback,
   Keyboard 
@@ -31,6 +32,7 @@ class ChatRoom extends Component {
       matchesLoaded: false
     };
     this.dismiss = this.dismiss.bind(this);
+    this.dismissBack = this.dismissBack.bind(this);
   }
 
   componentDidMount() {
@@ -123,7 +125,11 @@ class ChatRoom extends Component {
 
   dismiss = () => {
     Keyboard.dismiss();
-    this.props.navigation.navigate('Home', { setupUser: this.state.user });
+    this.props.navigation.navigate('Messages');
+  }
+  dismissBack = () => {
+    Keyboard.dismiss();
+    this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched });
   }
 
   render() {
@@ -147,10 +153,7 @@ class ChatRoom extends Component {
           <TouchableOpacity
           style={{ width: 80 }}
             onPress={() => {
-            this
-              .props
-              .navigation
-              .navigate('Messages');
+            this.dismiss();
           }}>
           <Icon
           style={{ alignSelf: 'left' }}
@@ -164,7 +167,7 @@ class ChatRoom extends Component {
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
             style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
-            onPress={() => { this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched })}}>
+            onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
@@ -200,12 +203,9 @@ class ChatRoom extends Component {
         <View style={styles.nav}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 80,  }}
+          style={{ width: 80 }}
             onPress={() => {
-            this
-              .props
-              .navigation
-              .navigate('Messages');
+              this.dismiss();
           }}>
             <Icon
             style={{ alignSelf: 'end' }}
