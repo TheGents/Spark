@@ -4,16 +4,14 @@ import {
   View, 
   Text, 
   StyleSheet, 
-  Dimensions, 
-  ActivityIndicator, 
+  Dimensions,  
   TouchableOpacity, 
-  Image 
+  TouchableWithoutFeedback,
+  Keyboard 
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
-import { subscribeToTimer } from '../../Actions/api';
-import Rating from './RateMeBabe/Rate';
 
 const { height, width } = Dimensions.get('window');
 
@@ -32,7 +30,7 @@ class ChatRoom extends Component {
       booleon: 'hi',
       matchesLoaded: false
     };
-    
+    this.dismiss = this.dismiss.bind(this);
   }
 
   componentDidMount() {
@@ -123,6 +121,11 @@ class ChatRoom extends Component {
     }));
   }
 
+  dismiss = () => {
+    Keyboard.dismiss();
+    this.props.navigation.navigate('Home', { setupUser: this.state.user });
+  }
+
   render() {
     // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
     // console.log('This is userInfo',this.state.userInfo);
@@ -139,6 +142,7 @@ class ChatRoom extends Component {
     if (this.state.userInfo.gender === '0') {
     return (
       <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.nav}>
           <TouchableOpacity
           style={{ width: 80 }}
@@ -179,6 +183,7 @@ class ChatRoom extends Component {
             borderRadius:15,
           }}/> */}
         </View>
+        </TouchableWithoutFeedback>
         <GiftedChat
           placeholder='Message...'
           messages={this.state.messages}
@@ -193,7 +198,7 @@ class ChatRoom extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
-          <View>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
           style={{ width: 80,  }}
             onPress={() => {
@@ -211,7 +216,7 @@ class ChatRoom extends Component {
               size={40}
             />
           </TouchableOpacity>
-          </View>
+          </TouchableWithoutFeedback>
           {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
 
           <Text style={styles.name}>{ this.state.matched.name }</Text>
