@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   nav: {
     height: height / 8.114,
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',

@@ -11,13 +11,13 @@ import {
   Dimensions
  } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Navigator } from 'react-native-deprecated-custom-components';
+// import { Navigator } from 'react-native-deprecated-custom-components';
 // import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
 import Axios from 'axios';
-import { AppLoading } from 'expo';
+// import { AppLoading } from 'expo';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export default class Shopping extends Component {
   constructor(props) {
@@ -207,13 +207,6 @@ export default class Shopping extends Component {
       </View>
     );
   }
-  
-    return (
-      <View style={styles.card}>
-        <Text style={{ paddingBottom: 22 }}>There are no more matches, please adjust your preference setting or check back later.</Text>
-        
-      </View>
-    );
   }
 
   handleYup(cards) {
@@ -234,7 +227,7 @@ export default class Shopping extends Component {
     console.log('the end of cards');
     return (
       <View style={styles.card}>
-        <Text style={{ paddingBottom: 22 }}>There are no more matches, please check back later.</Text>
+        <Text style={{ paddingBottom: 22 }}>There are no matches, please check back later.</Text>
         <ActivityIndicator size='large' color='#34799b' />
       </View>
     );
@@ -351,7 +344,7 @@ export default class Shopping extends Component {
           onSwipedLeft={this.handleNope}
           backgroundColor={'transparent'}
           disableBottomSwipe={'true'}
-          disableTopSwipe={'true'}
+          disableTopSwipe='true'
           /* onTapCardDeadZone={0} */
           marginTop={70}
           cardVerticalMargin={10}
