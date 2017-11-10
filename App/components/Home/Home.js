@@ -180,9 +180,10 @@ class Home extends Component {
             <Text style={styles.titleText} />
             <Image
               source={require('../images/sparkLogo.png')}
+              resizeMode="contain"
               name="ios-chatboxes-outline"
               size={25}
-              style={{ width: 150, height: 40, margin: 10, marginRight: 25 }}
+              style={{ width: 130, height: 40, margin: 10 }}
             />
             <TouchableOpacity
             style={{ width: 80, alignItems: 'flex-end'}}

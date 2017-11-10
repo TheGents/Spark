@@ -63,6 +63,9 @@ class SetupBio extends Component {
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
         <Text style={{ marginLeft: 5, color: '#34799b', }}>Bio</Text>
+          <ScrollView
+            scrollEnabled={false}
+          >
           <TextInput
             multiline
             placeholder="About me"
@@ -74,6 +77,7 @@ class SetupBio extends Component {
             backgroundColor={'transparent'}
             editable
           />
+          </ScrollView>
           <Text style={{ marginLeft: 5, marginTop: 7, color: '#34799b', }}>Occupation</Text>
           <TextInput
             multiline
