@@ -42,36 +42,28 @@ class Rating extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
-          {/* <TouchableOpacity
+          <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo });
             }}
-          >
-            <Image
-              source={require('../../images/Spark.png')}
-              name="ios-chatboxes-outline"
-              size={25}
-              style={{ width: 30, height: 30, margin: 10 }}
+          >  
+            <Icon
+              name={'ios-arrow-back'}
+              type={'ionicon'}
+              color={'#34799b'}
+              underlayColor={'white'}
+              iconStyle={{ marginLeft: 10 }}
+              size={40}
             />
-          </TouchableOpacity> */}
-          <Icon
-            onPress={() => {
-              this.props.navigation.navigate('Messages', { user: this.state.userInfo });
-            }}
-            name={'ios-arrow-back'}
-            type={'ionicon'}
-            color={'#34799b'}
-            underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={40}
-          />
+          </TouchableOpacity>  
           <Image
             source={require('../../images/sparkLogo.png')}
             name="ios-chatboxes-outline"
             resizeMode='contain'
             style={{ width: 100, height: 40, marginVertical: 1 }}
           />
-          <Text>{'        '}</Text>
+          <Text style={{ width: 90 }}>{'        '}</Text>
         </View>
         <View style={styles.avatarStyles}>
         <Text style={styles.titleText}>{this.state.matched.name}</Text> 

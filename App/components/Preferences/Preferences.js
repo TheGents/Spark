@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { LoginManager } from 'react-native-fbsdk';
-import { View, Text, StyleSheet, AlertIOS, Dimensions, AsyncStorage, Image } from 'react-native';
+import { View, Text, StyleSheet, AlertIOS, TouchableOpacity, Dimensions, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 import PrefSliders from './PrefSliders';
@@ -54,10 +54,13 @@ class Preferences extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
-          <Icon
+        <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
             }}
+        >    
+          <Icon
             name={'ios-home'}
             type={'ionicon'}
             color={'#34799b'}
@@ -65,12 +68,13 @@ class Preferences extends Component {
             iconStyle={{ marginLeft: 10 }}
             size={40}
           />
+        </TouchableOpacity>  
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
             style={{ width: 100, height: 30 }}
           />
-          <Text>{'      '}</Text>
+          <Text style={{ width: 80, marginRight: 10 }}>{'      '}</Text>
         </View>
         <View style={{ width: 25, height: 25, margin: 10 }} />
         <View style={styles.sliderStyles}>

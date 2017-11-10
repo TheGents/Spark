@@ -8,6 +8,7 @@ import {
   View, 
   AlertIOS, 
   TouchableHighlight,
+  TouchableOpacity,
   Dimensions
  } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -207,7 +208,13 @@ export default class Shopping extends Component {
       </View>
     );
   }
-  }
+  // return (
+  //   <View style={styles.card}>
+  //     <Text style={{ paddingBottom: 22 }}>There are no matches, please check back later.</Text>
+  //     <ActivityIndicator size='large' color='#34799b' />
+  //   </View>  
+  // )
+   }
 
   handleYup(cards) {
     const SwipeMatch = true;
@@ -250,34 +257,41 @@ export default class Shopping extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.nav}>
-            <Icon
+            <TouchableOpacity
+              style={{ width: 80 }}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
-              name={'ios-home'}
-              type={'ionicon'}
-              color={'#34799b'}
-              underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 }}
-              size={40}
-            />
+            >
+          <Icon
+            style={{ alignSelf: 'right' }}
+            name={'ios-home'}
+            type={'ionicon'}
+            color={'#34799b'}
+            underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+            size={40}
+          />
+          </TouchableOpacity>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               style={{ width: 100, height: 40, margin: 10 }}
             />
-
+            <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+            onPress={() => {
+              this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
+            }}
+          >  
             <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
-              }}
               name={'ios-chatboxes'}
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 }}
-              size={40}
+              size={37}
             />
+          </TouchableOpacity>
           </View>
           <View style={styles.loading}>
             <ActivityIndicator size='large' color='#34799b' />
@@ -292,10 +306,14 @@ export default class Shopping extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
-          <Icon
+        <TouchableOpacity
+            style={{ width: 80 }}
             onPress={() => {
-              this.props.navigation.navigate('Home');
-            }}
+                this.props.navigation.navigate('Home');
+              }}
+            >
+          <Icon
+            style={{ alignSelf: 'right' }}
             name={'ios-home'}
             type={'ionicon'}
             color={'#34799b'}
@@ -303,36 +321,27 @@ export default class Shopping extends Component {
             iconStyle={{ marginLeft: 10 }}
             size={40}
           />
-          
+          </TouchableOpacity>
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
             style={{ width: 100, height: 40, margin: 10 }}
           />
-          {/* <TouchableOpacity
-        onPress={() => {
-          this.props.navigation.navigate('Messages', {user: this.state.userInfo});
-        }}
-      >
-        <Image
-          source={require('../images/suit.png')}
-          name="ios-chatboxes-outline"
-          color="#555"
-          size={25}
-          style={{ width: 30, height: 30, margin: 10 }}
-        />
-      </TouchableOpacity> */}
+          
+        <TouchableOpacity
+          style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+          onPress={() => {
+            this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
+          }}
+        >  
           <Icon
-            onPress={() => {
-              this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
-            }}
             name={'ios-chatboxes'}
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginRight: 10 }}
-            size={40}
+            size={37}
           />
+        </TouchableOpacity>
         </View>
         <Swiper
           ref={'swiper'}

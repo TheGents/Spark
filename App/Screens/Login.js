@@ -36,7 +36,7 @@ class Login extends React.Component {
   render() {
     return (
       <View>
-       Login Screen
+       <Text>Login Screen</Text>
       </View>  
     );
   }

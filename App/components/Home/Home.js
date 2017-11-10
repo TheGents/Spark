@@ -184,17 +184,21 @@ class Home extends Component {
               size={25}
               style={{ width: 150, height: 40, margin: 10, marginRight: 25 }}
             />
-            <Icon
-              onPress={() => {
-                this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
-              }}
-              name={'ios-flash'}
-              type={'ionicon'}
-              color={'#34799b'}
-              underlayColor={'white'}
-              iconStyle={{ marginRight: 10 }}
-              size={50}
-            />
+            <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-end'}}
+            onPress={() => {
+                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                }}
+            >
+              <Icon
+                name={'ios-flash'}
+                type={'ionicon'}
+                color={'#34799b'}
+                underlayColor={'white'}
+                iconStyle={{ marginRight: 10 }}
+                size={50}
+              />
+            </TouchableOpacity>
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -291,7 +295,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   titleText: {
-    width: 50
+    width: 80,
+    marginLeft: 10
   },
   homecardStyling: {
     marginTop: 20
