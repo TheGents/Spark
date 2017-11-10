@@ -20,18 +20,6 @@ import Axios from 'axios';
 const { height, width } = Dimensions.get('window');
 
 
-const image1 = require('../images/eric.jpeg');
-const image2 = require('../images/danish.jpeg');
-const image3 = require('../images/christopher.jpg');
-const image4 = require('../images/terri.jpeg');
-const image5 = require('../images/andy.jpeg');
-const image6 = require('../images/seven.jpeg');
-const image7 = require('../images/david.jpg');
-const image8 = require('../images/dylan.jpeg');
-const image9 = require('../images/franklin.png');
-const image10 = require('../images/mitchell.jpeg');
-const image11 = require('../images/shea.jpeg');
-
 let convos = [];
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
