@@ -172,13 +172,7 @@ export default class Messages extends Component {
     if (!this.state.matchesLoaded) {
       return (
         <View style={styles.loading} >
-          <ActivityIndicator type='large' color='#34799b' />
-        </View>
-      );
-    }
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.nav}>
+          {/* <View style={styles.nav}>
           <Icon
             onPress={() => {
               this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
@@ -196,26 +190,39 @@ export default class Messages extends Component {
             style={{ width: 100, height: 40, margin: 10, marginLeft: 30 }}
           />
           <Text style={styles.titleText} />
-          {/* <TouchableOpacity 
-            onPress={() => { this.props.navigation.navigate('Chat'); }}
-          > */}
-          {/* <Image source ={require('../images/suit.png')} name="ios-chatboxes-outline" color ="#555" size={25} style={{width:30, height:30, margin:10}} />
-          </TouchableOpacity> */}
+          
+        </View> */}
+          <ActivityIndicator type='large' color='#34799b' />
         </View>
-        {/* <ScrollView style={styles.container}> */}
-        {/* <TextInput style={{ height: 50 }} placeholder="Search" />
-          <View style={styles.matches}>
-            <Text style={{ color: '#da533c', fontWeight: '600', fontSize: 12 }}>
-             
-            </Text>
-            <ListView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              dataSource={this.state.dataSource}
-              pageSize={5}
-              renderRow={rowData => this.eachPic(rowData)}
+      );
+    }
+    return (
+      <View style={{ flex: 1 }}>
+        <View style={styles.nav}>
+          <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-start' }}
+            onPress={() => {
+                this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
+            }}
+          >   
+            <Icon
+              name={'ios-flash'}
+              type={'ionicon'}
+              color={'#34799b'}
+              underlayColor={'white'}
+              iconStyle={{ marginLeft: 10 }}
+              size={50}
             />
-          </View> */}
+        </TouchableOpacity>  
+          <Image
+            source={require('../images/sparkLogo.png')}
+            resizeMode="contain"
+            style={{ width: 100, height: 40 }}
+          />
+          <Text style={styles.titleText} />
+          
+        </View>
+        
         <ScrollView style={{ margin: 10 }} onPress={console.log('Chat')}>
           <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>MATCHES</Text>
           <ListView
@@ -240,7 +247,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   titleText: {
-    width: 50
+    width: 80
   },
   loading: {
     flex: 1,

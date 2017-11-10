@@ -127,6 +127,12 @@ class Setup extends Component {
     return (
       <View style={styles.container}>
           <View style={styles.nav}>
+          <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-start' }}
+            onPress={() => {
+              this.props.navigation.navigate('Home', { setupUser: this.state.user });
+            }}
+          >  
             <Icon
               onPress={() => {
                 this.props.navigation.navigate('Home', { setupUser: this.state.user });
@@ -138,13 +144,14 @@ class Setup extends Component {
               iconStyle={{ marginLeft: 10 }}
               size={40}
             />
+            </TouchableOpacity>
             {/* <Text>Settings</Text> */}
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               style={{ width: 100, height: 40, margin: 10 }}
             />
-            <Text>{'          '}</Text>
+            <Text style={{ width: 80, marginRight: 10 }}>{'          '}</Text>
           </View>
           <ScrollView style={styles.scrollViewStyle}>
           <View style={{ flex: 1 }}>
