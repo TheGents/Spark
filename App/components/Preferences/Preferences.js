@@ -1,13 +1,13 @@
 'use strict';
-
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { LoginManager } from 'react-native-fbsdk';
 import { View, Text, StyleSheet, AlertIOS, TouchableOpacity, Dimensions, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
+
 const { height, width } = Dimensions.get('window');
 // import TermsOfService from './TermsOfService';
 
@@ -27,10 +27,11 @@ class Preferences extends Component {
   }
   
   logout = async (val) => {
-    await AsyncStorage.removeItem('fb_token');
+    AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
     AlertIOS.alert('You Have Been Logged Out');
-    this.props.navigation.navigate(val);
+    this.props.navigation.navigate('Home', { token: 'logout' });
   }
+
   delete = async (val) => {
     console.log('in ths delete', this.state.user.id);
     Axios.delete(`http://webspark.herokuapp.com/deleteUserAccount/${this.state.user.id}`).then((res) => {

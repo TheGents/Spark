@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import { ImagePicker, Constants } from 'expo';
+import { Constants } from 'expo';
 import {
-  TouchableWithoutFeedback,
   StyleSheet,
   Image,
   Animated,
   TouchableOpacity,
   Dimensions,
-  View,
-  ScrollView
+  View
 } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
-import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
 import axios from 'axios';
-import ITEMS from './data';
-import Card from './UserCard';
 
 console.disableYellowBox = true;
 
@@ -135,7 +129,7 @@ class SetupImage extends Component {
   render() {
     const { image, photo, third, fourth } = this.props.images;
     console.log('third', this.state.photo3);
-    const firstLogo = image || this.state.photo1  ? require('../images/deletelogo.png') : require('../images/add.png')
+    const firstLogo = image || this.state.photo1 ? require('../images/deletelogo.png') : require('../images/add.png')
     const secondLogo = photo || this.state.photo2 ? require('../images/deletelogo.png') : require('../images/add.png')
     const thirdLogo = third || this.state.photo3 ? require('../images/deletelogo.png') : require('../images/add.png')
     const fourthLogo = fourth || this.state.photo4 ? require('../images/deletelogo.png') : require('../images/add.png')

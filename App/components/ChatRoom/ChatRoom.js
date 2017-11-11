@@ -36,17 +36,17 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    // setInterval(() => {
       Axios.get(`http://webspark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
         this.setState({ kitkats: response.data });
         let katkat = response.data;
         let messageDB = [];
         katkat.map((x)=> {
           let avvy = "";
-          if(x.user_id == this.state.matched.id) {
+          if (x.user_id == this.state.matched.id) {
             avvy = this.state.matched.image;
           }
-          if(x.user_id == this.state.userInfo.id) {
+          if (x.user_id == this.state.userInfo.id) {
             avvy = this.state.userInfo.facebook_pic;
           }
           messageDB.push({
@@ -68,7 +68,7 @@ class ChatRoom extends Component {
           this.setState({ showRatingButton: true })
         }
       });
-  }, 3000);
+  // }, 3000);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })

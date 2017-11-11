@@ -11,20 +11,13 @@ import {
   View,
   Easing,
   ScrollView,
-  Button,
   Keyboard,
-  KeyboardAvoidingView,
-  TextInput
+  KeyboardAvoidingView
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 import axios from 'axios';
-import ITEMS from './data';
 import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
-import Card from './UserCard';
-import UserCardSection from './UserCardSection';
 
 const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
@@ -133,6 +126,7 @@ class Setup extends Component {
     const { image, photo, third, fourth } = this.state;
     return (
       <View style={styles.container}>
+        <KeyboardAvoidingView behavior="position" style={{ alignItems: 'center' }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.nav}>
           <TouchableOpacity
@@ -181,6 +175,7 @@ class Setup extends Component {
             <Text>{''}</Text>
           </View>
         </ScrollView>
+        </KeyboardAvoidingView>
       </View>
     );
   }

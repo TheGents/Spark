@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
+import { View, Text, ScrollView, AsyncStorage, Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
@@ -7,7 +7,7 @@ const SPARK_WIDTH = Dimensions.get('window').width;
 class Slides extends Component {
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
-          
+          //  AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
             return (
               
                 <View style={styles.container}>
