@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { View, Text, StyleSheet, alert, TextInput, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { Select, Option } from 'react-native-chooser';
+import ModalPicker from 'react-native-modal-picker';
 // import { Select, Option } from 'react-native-select-list';
 const { height, width } = Dimensions.get('window');
 
@@ -14,10 +14,13 @@ class Rating extends Component {
       userInfo: props.navigation.state.params.userInfo,
       matched: props.navigation.state.params.matched,
       value: `Rate ${props.navigation.state.params.matched.name}`,
-      butt0n: false
+      butt0n: false,
+      textInputValue: ''
     };
   }
-  onSelect(value, label) {
+  onSelect(value) {
+    value = value.key;
+    console.log('onSelect value', value);
     this.setState({ value });
     this.setState({ butt0n: true });
   }
@@ -25,7 +28,7 @@ class Rating extends Component {
     Axios.post('http://webspark.herokuapp.com/postRate', {
       chick_id: this.state.userInfo.facebook_auth_id,
       dude_id: this.state.matched.id,
-      rating: this.state.value[0],
+      rating: this.state.value,
       room_id: this.state.matched.chatRoom
     }).then(response => {
       const newMatched = this.state.matched;
@@ -38,6 +41,13 @@ class Rating extends Component {
   render() {
     console.log('hey man this is it', this.state.userInfo);
     // console.log('hey man this is it',this.state.matched);
+    const data = [
+        { key: 1, section: true, label: '1 - Jerk' },
+        { key: 2, label: '2 - Intolerable' },
+        { key: 3, label: '3 - Average' },
+        { key: 4, label: '4 - Great!' },
+        { key: 5, label: '5 - Spark!' }
+    ];
     
     return (
       <View style={{ flex: 1 }}>
@@ -63,7 +73,7 @@ class Rating extends Component {
             resizeMode='contain'
             style={{ width: 100, height: 40, marginVertical: 1 }}
           />
-          <Text style={{ width: 90 }}>{'        '}</Text>
+          <Text style={{ width: 80 }}>{'        '}</Text>
         </View>
         <View style={styles.avatarStyles}>
         <Text style={styles.titleText}>{this.state.matched.name}</Text> 
@@ -76,12 +86,12 @@ class Rating extends Component {
           />
         
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Select
+          {/* <Select
             onSelect={this.onSelect.bind(this)}
             defaultText={this.state.value}
             style={ styles.buttons }
             textStyle={ styles.textStyle8 }
-            backdropStyle={{ backgroundColor: 'rgba(50,121,155,0.4)', alignItems: 'center' }}
+            backdropStyle={{ backgroundColor: 'transparent', alignItems: 'center' }}
             optionListStyle={{ backgroundColor: '#F5FCFF', alignItems: 'center'}}
             
           >
@@ -90,7 +100,18 @@ class Rating extends Component {
             <Option styleText={styles.ratingText} value={[3, ' - Average']}>3 - Average </Option>
             <Option styleText={styles.ratingText} value={[4, ' - Great!']}>4 - Great! </Option>
             <Option styleText={styles.ratingText} value={[5, ' - Spark!']}>5 - Spark! </Option>
-          </Select>
+          </Select> */}
+   
+ 
+                <ModalPicker
+                    data={data}
+                    initValue={'Provide Rating'}
+                    onChange={this.onSelect.bind(this)}
+                    style={ styles.buttons }
+                    selectStyle={{ width: 340, alignItems: 'center', justifyContent: 'center' }}
+                    selectTextStyle={styles.textStyle8}
+                    />
+
           {this.state.butt0n && (
             <Button
               textStyle={{ fontSize: 18, fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
@@ -143,7 +164,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
-    backgroundColor: 'rgba(50,121,155,0.05)'
+    backgroundColor: 'rgba(50,121,155,0.05)',
+    height: height / 11.114,
   },
   textStyle8: {
     fontFamily: 'Avenir Next',
@@ -159,7 +181,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'Cochin',
     alignItems: 'center',
-    backgroundColor: 'rgba(50,121,155,0.05)'
+    backgroundColor: 'rgba(50,121,155,0.05)',
+    height: height / 11.114,
   },
   matchedName: {
     alignItems: 'center',
