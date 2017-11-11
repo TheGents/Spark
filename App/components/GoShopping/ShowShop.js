@@ -101,17 +101,21 @@ class ShowShop extends Component {
       return (
         <View style={{backgroundColor: 'white', flex: 1}}>
           <View style={styles.nav}>
-              <Icon
-              onPress={() => {
+          <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-start' }}
+            onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.user });
               }}
+          >  
+              <Icon
               name={'ios-arrow-back'}
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
               iconStyle={{ marginRight: 10 }}
               size={40}
-            />
+              />
+            </TouchableOpacity>
           </View>
           <ScrollView style={{backgroundColor: 'white', flex: 2}}>
             <ImageSectionCard>
