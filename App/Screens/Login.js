@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../Actions';
-import { AppLoading } from 'expo';
 
 
 class Login extends React.Component {
@@ -25,7 +24,7 @@ class Login extends React.Component {
   }
 
   onAuthComplete(props) {
-    console.log('props in auth', props);
+    console.log('props in auth', AsyncStorage);
     if (props.token) {
       //Home
       // console.log('onAuthComplete')
@@ -36,7 +35,6 @@ class Login extends React.Component {
   render() {
     return (
       <View>
-       <Text>Login Screen</Text>
       </View>  
     );
   }

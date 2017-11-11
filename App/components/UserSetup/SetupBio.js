@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
-import { ImagePicker, Constants } from 'expo';
+import { Constants } from 'expo';
 import {
-  TouchableWithoutFeedback,
   StyleSheet,
-  Image,
   Text,
   TextInput,
-  Animated,
-  TouchableOpacity,
   Dimensions,
   View,
   Switch,
   Easing,
-  ScrollView,
-  Button
+  ScrollView
 } from 'react-native';
-import { SharedElement, SharedElementGroup } from '@expo/ex-navigation';
-import ITEMS from './data';
-import Card from './UserCard';
-import BioCard from './BioCard';
 import axios from 'axios';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
-const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
-const BAR_HEIGHT = Constants.statusBarHeight * 1;
 
 class SetupBio extends Component {
   constructor(props) {

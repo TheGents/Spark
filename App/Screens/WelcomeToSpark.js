@@ -30,7 +30,7 @@ const SLIDE_DATA = [
       //   this._getLocationAsync();
       // }
       let token = await AsyncStorage.getItem('fb_token');
-      console.log('token is', token);
+      console.log('token is', await AsyncStorage.getItem('fb_token'));
       // console.log("token from async storage", token)
       if (token) {
         //Home

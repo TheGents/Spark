@@ -8,13 +8,12 @@ import {
   Platform,
   TouchableOpacity,
   Dimensions,
-  AsyncStorage,
   View,
   ActivityIndicator,
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { AppLoading, Constants, Location, Permissions } from 'expo';
+import { Constants, Location, Permissions } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
@@ -130,6 +129,16 @@ class Home extends Component {
     }
     if (nextProps.navigation.state.params.locationPreference) {
       this.setState({ locationPreference: nextProps.navigation.state.params.locationPreference });
+    }
+    if (nextProps.navigation.state.params.token) {
+      this.setState({ 
+        locationPreference: null,
+        userToken: null,  
+      user: {}, 
+      location: null,
+      city: null
+      });
+      this.props.navigation.navigate('auth');
     }
   }
 

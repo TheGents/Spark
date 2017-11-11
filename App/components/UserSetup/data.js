@@ -6,12 +6,12 @@ export default [
       age: 21,
       description: 'image'
     },
-    {
-      image: 'https://s-media-cache-ak0.pinimg.com/564x/5c/a0/f1/5ca0f13dd50ed9f6d630d8a7d7da0f3e.jpg',
-      name: 'Janae Eliss',
-      age: 22,
-      description: 'input'
-    },
+    // {
+    //   image: 'https://s-media-cache-ak0.pinimg.com/564x/5c/a0/f1/5ca0f13dd50ed9f6d630d8a7d7da0f3e.jpg',
+    //   name: 'Janae Eliss',
+    //   age: 22,
+    //   description: 'input'
+    // },
     // {
     //   image: 'https://s-media-cache-ak0.pinimg.com/564x/c4/67/49/c467498720c056c241dc1226f7290597.jpg',
     //   name: 'Romee Strijd',
