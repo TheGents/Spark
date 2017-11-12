@@ -65,15 +65,14 @@ class Home extends Component {
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('this is the first response.data', this.state.city);
+        console.log('this is the first response.data', this.state.user);
         return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
         .catch(res => {
           console.log('this is the new res', res);
         });
       })
       .then(res => {
-        axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.id }); 
-        console.log('this is the response.data', this.state.location);
+        
         if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
           
           axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
@@ -122,7 +121,7 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.setupUser) {
     this.setState({ user: nextProps.navigation.state.params.setupUser });
-    console.log('changing the user', this.state.user);
+    console.log('componentWillReceiveProps changing the user', this.state.user);
     }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
@@ -130,38 +129,43 @@ class Home extends Component {
     if (nextProps.navigation.state.params.locationPreference) {
       this.setState({ locationPreference: nextProps.navigation.state.params.locationPreference });
     }
-    if (nextProps.navigation.state.params.token) {
-      this.setState({ 
-        locationPreference: null,
-        userToken: null,  
-      user: {}, 
-      location: null,
-      city: null
-      });
-      this.props.navigation.navigate('auth');
-    }
+    // if (nextProps.navigation.state.params.token) {
+    //   this.setState({ 
+    //     locationPreference: null,
+    //     userToken: null,  
+    //   user: {}, 
+    //   location: null,
+    //   city: null
+    //   });
+    //   this.props.navigation.navigate('auth');
+    // }
   }
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    console.log('_getLocationAsync this is the status', status);
     if (status !== 'granted') {
+      console.log('not granted');
       this.setState({
         errorMessage: 'Permission to access location was denied',
       });
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    console.log('latitude', location);
+    console.log('latitude', location.coords);
     console.log('longitude', location.coords.longitude);
     
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
     .then(response => {
       console.log('response', response.data.results[0].address_components[3].long_name);
-      console.log('user is', location.coords.latitude + location.coords.longitude );
-      
+      console.log('locationscore in get request', location.coords.latitude + location.coords.longitude );
+      console.log('this is the user id', this.state.user.id);
+      axios.put('http://webspark.herokuapp.com/putLocation', { location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude, facebook_auth_id: this.state.user.id });
       this.setState({ location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
-      console.log(this.state.location);
+      console.log('setting current location', this.state.location);
     });
+    console.log('this is the location in put request', this.state.location);
+    console.log('this is the numlocation in put request', this.state.numLocation);
   };
 
   render() {

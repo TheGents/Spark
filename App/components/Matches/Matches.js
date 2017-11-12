@@ -13,12 +13,9 @@ import {
   View
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Nav from '../global-widgets/nav';
-import SwipeCards from 'react-native-swipe-cards';
 import Axios from 'axios';
 
 const { height, width } = Dimensions.get('window');
-
 
 let convos = [];
 
@@ -46,6 +43,7 @@ export default class Messages extends Component {
       this.setState({ kitkats: response.data });
       const matchedUsers = response.data;
       if (this.state.userInfo.gender === '0') {
+        console.log('gender is zero in matches. Here is res.data', matchedUsers);
         matchedUsers.map(x => {
           convos.push({
             id: x.dude_id,
