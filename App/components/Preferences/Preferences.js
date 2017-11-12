@@ -29,7 +29,7 @@ class Preferences extends Component {
   logout = async (val) => {
     AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
     AlertIOS.alert('You Have Been Logged Out');
-    this.props.navigation.navigate('Home', { token: 'logout' });
+    this.props.navigation.navigate('Welcome', { token: 'logout' });
   }
 
   delete = async (val) => {

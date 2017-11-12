@@ -34,17 +34,17 @@ class Slides extends Component {
             </View>  
           );
         }
-        else if (index === this.props.data.length - 3) {
-          return (
-            <View style={styles.container}>
-              <Text style={styles.textStyle} >Guys Message First</Text>
-              <Image 
-              resizeMode='contain'
-              source={require('../images/MessageShot.png')} style={{ marginTop: 25, height: 320 }}/>
-            </View>  
-          );
-        }
-          else if (index === this.props.data.length - 4) {
+        // else if (index === this.props.data.length - 3) {
+        //   return (
+        //     <View style={styles.container}>
+        //       <Text style={styles.textStyle} >Guys Message First</Text>
+        //       <Image 
+        //       resizeMode='contain'
+        //       source={require('../images/MessageShot.png')} style={{ marginTop: 25, height: 320 }}/>
+        //     </View>  
+        //   );
+        // }
+          else if (index === this.props.data.length - 3) {
           return (
             <View style={styles.container}>  
               <Text style={styles.textStyle}>Find Your Match</Text>
