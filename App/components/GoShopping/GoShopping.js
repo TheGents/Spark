@@ -28,15 +28,63 @@ export default class Shopping extends Component {
       newCards: [],
       matches: [],
       userInfo: props.navigation.state.params.user,
-      locationPreference: props.navigation.state.params.locationPreference,
+      locationPreference: 10,
       agePreference: [18, 60],
-      filtered: 'check to see if state changes and console log before render'
+      filtered: 'check to see if state changes and console log before render',
+      outofCards: false
     };
   }
 
   componentDidMount() {
     console.log('age prefernece in shopping', this.state.agePreference);
     console.log('userin shopping', this.state.userInfo.length);
+    checkingForCards = () => {
+      Axios.get(
+        `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
+      ).then(responseD => {
+        console.log('responseD this might be reloading');
+        Axios.get(
+          `http://webspark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
+            .userInfo.gender}`
+        ).then(response => {
+          const filteredx = response.data;
+          this.setState({ filtered: response.data });
+          const swipedPeople = response.data;
+          const person = responseD.data;
+          swipedPeople.map(x => {
+            person.map((y, i) => {
+              if (x === y.facebook_auth_id) {
+                person.splice(i, 1);
+              }
+            });
+          });
+          const cardInfo = [];
+          person.map(x => {
+            if (x.age >= this.state.agePreference[0]) {
+            cardInfo.push({
+              id: x.id,
+              first_name: x.first_name,
+              age: x.age,
+              friends: 32,
+              interests: 32,
+              image: x.facebook_pic,
+              photo1: x.photo1,
+              photo2: x.photo2,
+              photo3: x.photo3,
+              photo4: x.photo4,
+              occupation: x.occupation,
+              general_bio: x.general_bio,
+              location: x.location,
+              facebook_auth_id: x.facebook_auth_id,
+              rating: x.round,
+              location_score: x.location_score
+            });
+          }
+          });
+          this.setState({ cards: cardInfo, newCards: cardInfo });
+        });
+      });
+    }
     Axios.get(
       `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
@@ -88,14 +136,13 @@ export default class Shopping extends Component {
     ).then(response => {
       this.setState({ matches: response.data });
     });
+  
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
       // console.log('old cards', this.state.cards);
       console.log('these are the newcards that i want', this.state.newCards.length);
       const currentCard = this.state.newCards[card];
       
         const filteredCards = this.state.cards.filter((obj) => {
-          // console.log('this is obj', obj);
-          // console.log('this is deck Cards', this.state.cards[card]);
           return obj !== currentCard;
         });
         this.setState({ cards: filteredCards });
@@ -139,10 +186,14 @@ export default class Shopping extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.user) {
       this.setState({ userInfo: nextProps.navigation.state.params.user });
+      checkingForCards();
       console.log('changing the user');
       }
-    if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
-      this.setState({ agePreference: nextProps.navigation.state.params.agePreference, locationPreference: nextProps.navigation.state.params.locationPreference[0] });
+    if (nextProps.navigation.state.params.locationPreference) {
+      this.setState({ location: nextProps.navigation.state.params.locationPreference });
+    } 
+    if (nextProps.navigation.state.params.agePreference) {
+      this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
       console.log('this is my info', this.state.userInfo.location_score);
       
 
@@ -154,10 +205,9 @@ export default class Shopping extends Component {
         if (matchScore < 0) {
           matchScore *= -1; 
         }
-        console.log('location preference', nextProps.navigation.state.params.locationPreference[0])
         console.log('the match score', matchScore);
         
-        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1] && matchScore <= nextProps.navigation.state.params.locationPreference) {
+        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1]) {
           console.log('matchscore', card.first_name)
           newCardArray.push(card)
         }
@@ -174,6 +224,7 @@ export default class Shopping extends Component {
 
   Card(x) {
     console.log('here is the preference in card', this.state.locationPreference);
+    console.log('here is the card', x);
     let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
     if (matchScore < 0) {
       matchScore *= -1; 
@@ -230,14 +281,10 @@ export default class Shopping extends Component {
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
-  noMore() {
+  noMore = () => {
     console.log('the end of cards');
-    return (
-      <View style={styles.card}>
-        <Text style={{ paddingBottom: 22 }}>There are no matches, please check back later.</Text>
-        <ActivityIndicator size='large' color='#34799b' />
-      </View>
-    );
+    this.setState({ newCards: 0 });
+    checkingForCards();
   }
 
   // yup() {
@@ -252,6 +299,54 @@ export default class Shopping extends Component {
 
   render() {
     console.log('height', height, width);
+    if (this.state.newCards === 0) {
+      console.log('we have 0 cards');
+      return (
+        <View style={styles.container}>
+          <View style={styles.nav}>
+            <TouchableOpacity
+              style={{ width: 80 }}
+              onPress={() => {
+                this.props.navigation.navigate('Home');
+              }}
+            >
+          <Icon
+            style={{ alignSelf: 'right' }}
+            name={'ios-home'}
+            type={'ionicon'}
+            color={'#34799b'}
+            underlayColor={'white'}
+            iconStyle={{ marginLeft: 10 }}
+            size={40}
+          />
+          </TouchableOpacity>
+            <Image
+              source={require('../images/sparkLogo.png')}
+              resizeMode="contain"
+              style={{ width: 100, height: 40, margin: 10 }}
+            />
+            <TouchableOpacity
+            style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+            onPress={() => {
+              this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
+            }}
+          >  
+            <Icon
+              name={'ios-chatboxes'}
+              type={'ionicon'}
+              color={'#34799b'}
+              underlayColor={'white'}
+              size={37}
+            />
+          </TouchableOpacity>
+          </View>
+          <View style={styles.card}>
+            <Text style={{ paddingBottom: 22 }}>There are no people in your area, please check back later.</Text>
+            <ActivityIndicator size='large' color='#34799b' />
+        </View>   
+        </View>
+      );
+    }
     if (!this.state.newCards.length > 0) {
       console.log('!_.max', this.state.cards);
       return (
@@ -293,8 +388,8 @@ export default class Shopping extends Component {
             />
           </TouchableOpacity>
           </View>
-          <View style={styles.loading}>
-            <ActivityIndicator size='large' color='#34799b' />
+          <View style={styles.card}>
+          <Text style={{ paddingBottom: 22 }}>There are no people in your area, please check back later.</Text>
           </View>    
         </View>
       );
@@ -348,7 +443,7 @@ export default class Shopping extends Component {
           cards={ this.state.newCards }
           /* containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }} */
           renderCard={cardData => this.Card(cardData)}
-          onSwipedAll={() => this.noMore()}
+          onSwipedAll={this.noMore}
           onSwipedRight={this.handleYup}
           onSwipedLeft={this.handleNope}
           backgroundColor={'transparent'}
