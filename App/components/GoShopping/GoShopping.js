@@ -217,9 +217,9 @@ export default class Shopping extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.serverRequest.abort();
-  }
+  // componentWillUnmount() {
+  //   this.serverRequest.abort();
+  // }
   
 
   Card(x) {

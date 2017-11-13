@@ -38,8 +38,9 @@ class Home extends Component {
       user: '', 
       // location: props.navigation.state.params.userLocation,
       agePreference: [18, 60],
-      locationPreference: 10,
+      locationPreference: 1000,
       location: null,
+      numLocation: null,
       errorMessage: null,
       city: null
     };
@@ -59,13 +60,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    console.log('this is location in componentdidmout', this.state.location);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken()}`
       )
       .then(response => {
         this.setState({ user: response.data });
-        console.log('this is the first response.data', this.state.user);
+        console.log('this is the first response.data', this.state.location);
         return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
         .catch(res => {
           console.log('this is the new res', res);
@@ -105,13 +107,25 @@ class Home extends Component {
          
         
         if (res.data[0] === undefined) {
+          console.log('adding new user', this.state.numLocation);
+          axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
+          .then(response => {
+            console.log('city', response.data.results[0].address_components[3].long_name);
+            console.log('this is the user id', this.state.user.id);
+            this.setState({ location: response.data.results[0].address_components[3].long_name });
+            console.log('setting current location in componentdidmount', this.state.location);
+          });
           return axios.post('http://webspark.herokuapp.com/adduser', this.state.user);
-          
         }
         return axios.get(`http://webspark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
       })
       .then(res => {
         this.setState({ user: res.data[0], homeLoaded: true });
+        console.log('city', this.state.location);
+        console.log('score', this.state.numLocation);
+        console.log('id', this.state.user.id);
+
+        axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.facebook_auth_id });
       });
       console.log('this is where it is at', this.state.city)
       
@@ -154,16 +168,17 @@ class Home extends Component {
     let location = await Location.getCurrentPositionAsync({});
     console.log('latitude', location.coords);
     console.log('longitude', location.coords.longitude);
-    
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
-    .then(response => {
-      console.log('response', response.data.results[0].address_components[3].long_name);
-      console.log('locationscore in get request', location.coords.latitude + location.coords.longitude );
-      console.log('this is the user id', this.state.user.id);
-      axios.put('http://webspark.herokuapp.com/putLocation', { location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude, facebook_auth_id: this.state.user.id });
-      this.setState({ location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
-      console.log('setting current location', this.state.location);
-    });
+    this.setState({ numLocation: location.coords.latitude + location.coords.longitude, location });
+    console.log('numLocation after setstate', this.state.numLocation);
+    // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
+    // .then(response => {
+    //   console.log('city', response.data.results[0].address_components[3].long_name);
+    //   console.log('locationscore in get request', location.coords.latitude + location.coords.longitude );
+    //   console.log('this is the user id', this.state.user);
+    //   axios.put('http://webspark.herokuapp.com/putLocation', { location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude, facebook_auth_id: this.state.user.id });
+    //   this.setState({ location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
+    //   console.log('setting current location', this.state.location);
+    // });
     console.log('this is the location in put request', this.state.location);
     console.log('this is the numlocation in put request', this.state.numLocation);
   };
