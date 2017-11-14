@@ -1,8 +1,10 @@
 'use strict';
 
 import React from 'react';
-import { StyleSheet, View, Text, Slider, Image, Platform } from 'react-native';
+import { StyleSheet, Dimensions, View, Text, Slider, Image, Platform } from 'react-native';
 import MultiSlider from './SliderJS/MultiSlider';
+
+const { height, width } = Dimensions.get('window');
 
 class PrefSliders extends React.Component {
   state = {
@@ -50,14 +52,14 @@ class PrefSliders extends React.Component {
           {/* ----------- DISTANCE SLIDER ----------- */}
           <View style={styles.sliderOne}>
             <Text style={styles.titleText}>Distance</Text>
-            <Text style={[styles.sliderValueChange, this.state.sliderOneChanging && {}]}>
+            <Text style={[styles.sliderValueChange, this.state.sliderOneChanging && styles.titleText, {}]}>
               {this.state.sliderOneValue}
               {' miles'}
             </Text>
           </View>
           <MultiSlider
             values={this.state.sliderOneValue}
-            sliderLength={280}
+            sliderLength={280 * (width / 375)}
             onValuesChangeStart={this.sliderOneValuesChangeStart}
             onValuesChange={this.sliderOneValuesChange}
             onValuesChangeFinish={this.sliderOneValuesChangeFinish}
@@ -68,7 +70,7 @@ class PrefSliders extends React.Component {
               backgroundColor: '#34799b'
             }}
             trackStyle={{
-              height: 3
+              height: 3 * (height / 667)
             }}
           />
           {/* ----------- AGE SLIDER ----------- */}
@@ -83,7 +85,7 @@ class PrefSliders extends React.Component {
           <MultiSlider
             style={styles.sliderOne}
             values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
-            sliderLength={280}
+            sliderLength={280 * (width / 375)}
             onValuesChange={this.multiSliderValuesChange}
             min={18}
             max={60}
@@ -94,7 +96,7 @@ class PrefSliders extends React.Component {
               backgroundColor: '#34799b'
             }}
             trackStyle={{
-              height: 3
+              height: 3 * (height / 667)
             }}
           />
         </View>
@@ -113,22 +115,30 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   sliders: {
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 10 * (height / 667),
+    marginBottom: 10 * (height / 667)
   },
   text: {
     alignSelf: 'flex-start',
-    paddingVertical: 20
+    paddingVertical: 20 * (height / 667)
   },
   sliderOne: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    fontSize: 20 * (height / 667),
   },
   titleText: {
     alignSelf: 'flex-start',
-    paddingVertical: 20
+    fontSize: 20 * (height / 667),
+    paddingVertical: 20 * (height / 667)
+  },
+  slideText: {
+    alignSelf: 'flex-start',
+    fontSize: 20 * (height / 667),
+    paddingVertical: 20 * (height / 667)
   },
   sliderValueChange: {
-    paddingVertical: 20,
-    marginLeft: 'auto'
+    paddingVertical: 20 * (height / 667),
+    marginLeft: 'auto',
+    fontSize: 20 * (height / 667),
   }
 });

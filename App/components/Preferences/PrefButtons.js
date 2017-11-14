@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import Button from 'apsl-react-native-button';
+
+const { height, width } = Dimensions.get('window');
 
 console.ignoredYellowBox = ['Remote debugger'];
 
@@ -29,7 +31,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir' }}>Logout</Text>
+            <Text style={{ fontFamily: 'Avenir', fontSize: 19 * (height / 667), }}>Logout</Text>
           </View>
         </Button>
         <Button
@@ -38,7 +40,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ textAlign: 'center', fontFamily: 'Avenir' }}>Delete Account</Text>
+            <Text style={{ textAlign: 'center', fontFamily: 'Avenir', fontSize: 19 * (height / 667), }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -62,17 +64,23 @@ const styles = StyleSheet.create({
   buttonStyle8: {
     backgroundColor: 'white',
     borderColor: '#333',
-    borderRadius: 22
+    borderWidth: 2,
+    borderRadius: 22 * (height / 667),
+    height: 50 * (height / 667),
+    width: 115 * (width / 357),
   },
   textStyle8: {
-    width: 200,
+    width: 150 * (width / 375),
+    borderColor: 'red',
+    borderWidth: 1,
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'white'
   },
   customViewStyle: {
-    width: 120,
-    height: 40,
+    fontSize: 24 * (height / 667),
+    width: 115 * (width / 375),
+    height: 55 * (height / 667),
     alignItems: 'center',
     justifyContent: 'center'
   }

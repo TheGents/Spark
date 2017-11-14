@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 const UserCardSection = (props) => {
   return (
@@ -8,9 +8,11 @@ const UserCardSection = (props) => {
   );
 };
 
+const { height, width } = Dimensions.get('window');
+
 const styles = {
   containerStyle: {
-    height: 900,
+    height: 900 * (height / 677),
     borderWidth: 1,
     borderRadius: 2,
     borderColor: 'blue',

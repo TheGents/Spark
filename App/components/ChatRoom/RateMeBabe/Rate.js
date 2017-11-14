@@ -53,7 +53,7 @@ class Rating extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo });
             }}
@@ -63,17 +63,17 @@ class Rating extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 }}
-              size={40}
+              iconStyle={{ marginLeft: 10 * (height / 677) }}
+              size={40 * (height / 667)}
             />
           </TouchableOpacity>  
           <Image
             source={require('../../images/sparkLogo.png')}
             name="ios-chatboxes-outline"
             resizeMode='contain'
-            style={{ width: 100, height: 40, marginVertical: 1 }}
+            style={{ width: 100 * (width / 375), height: 40 * (height / 667), marginVertical: 1 }}
           />
-          <Text style={{ width: 80 }}>{'        '}</Text>
+          <Text style={{ width: 80 * (width / 375) }}>{'        '}</Text>
         </View>
         <View style={styles.avatarStyles}>
         <Text style={styles.titleText}>{this.state.matched.name}</Text> 
@@ -81,8 +81,8 @@ class Rating extends Component {
             rounded
             source={{ uri: this.state.matched.image }}
             activeOpacity={0.7}
-            width={270}
-            height={270}
+            width={270 * (width / 375)}
+            height={270 * (height / 667)}
           />
         
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -108,13 +108,13 @@ class Rating extends Component {
                     initValue={'Provide Rating'}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 340, alignItems: 'center', justifyContent: 'center' }}
+                    selectStyle={{ width: 340 * (width / 375), alignItems: 'center', justifyContent: 'center' }}
                     selectTextStyle={styles.textStyle8}
                     />
 
           {this.state.butt0n && (
             <Button
-              textStyle={{ fontSize: 18, fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
+              textStyle={{ fontSize: 18 * (height / 667), fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
               buttonStyle={styles.buttonSmall}
               title={'Confirm Rating'}
               color='black'
@@ -133,24 +133,24 @@ class Rating extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    padding: 10 * (height / 677)
   },
   titleText: {
     fontFamily: 'Cochin',
     fontWeight: '500',
     color: '#34799b',
-    fontSize: 26,
+    fontSize: 26 * (height / 667),
     marginBottom: 5
   },
   ratingText: {
-    fontSize: 24, 
+    fontSize: 24 * (height / 667), 
     color: 'black',
     fontFamily: 'Cochin',
   },
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (width / 375),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -158,12 +158,12 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
-    width: 350,
+    width: 350 * (width / 375),
     borderBottomWidth: 1,
     borderTopWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 10 * (height / 677),
     backgroundColor: 'rgba(50,121,155,0.05)',
     height: height / 11.114,
   },
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'black',
-    fontSize: 18
+    fontSize: 18 * (height / 667)
     
   },
   buttonSmall: {
-    width: 350,
+    width: 350 * (width / 375),
     borderBottomWidth: 1,
     borderTopWidth: 1,
     justifyContent: 'center',
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 30
+    padding: 30 * (height / 677)
   }
 });
 

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { AsyncStorage, Platform } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { AppLoading, Location, Constants, Permissions } from 'expo';
 import Slides from '../components/Slides';
 
@@ -8,7 +8,7 @@ import Slides from '../components/Slides';
 const SLIDE_DATA = [
     { text: 'Welcome to Spark', color: 'white' },
     { text: 'Find Your Match!', color: 'white' },
-    { text: 'Guys Message First!', color: 'white' },
+    // { text: 'Guys Message First!', color: 'white' },
     { text: 'Girls Rate the Guys!', color: 'white' },
     { text: null, color: 'white' }
   ];
@@ -43,7 +43,7 @@ const SLIDE_DATA = [
     }
     
     // _getLocationAsync = async () => {
-    //   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    //   let { status } = await Permissios.askAsync(Permissions.LOCATION);
     //   if (status !== 'granted') {
     //     this.setState({
     //       errorMessage: 'Permission to access location was denied',

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
 
 class SetupBio extends Component {
@@ -51,7 +51,7 @@ class SetupBio extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
-        <Text style={{ marginLeft: 5, color: '#34799b', }}>Bio</Text>
+        <Text style={styles.textStyle}>Bio</Text>
           <ScrollView
             scrollEnabled={false}
           >
@@ -62,20 +62,19 @@ class SetupBio extends Component {
             numberOfLines={5}
             onChangeText={(general_bio) => this.updateBio(general_bio)}
             value={this.state.general_bio}
-            style={{ ...styles.bioTextInput, height: 80 }}
+            style={{ ...styles.bioTextInput }}
             backgroundColor={'transparent'}
             editable
           />
           </ScrollView>
-          <Text style={{ marginLeft: 5, marginTop: 7, color: '#34799b', }}>Occupation</Text>
+          <Text style={styles.textStyle}>Occupation</Text>
           <TextInput
-            multiline
             placeholder="Work"
-            maxLength={250}
-            numberOfLines={5}
+            maxLength={35}
+            numberOfLines={1}
             onChangeText={(occupation) => this.updateOccupation(occupation)}
             value={this.state.occupation}
-            style={{ ...styles.occupationTextInput, height: 40 }}
+            style={{ ...styles.occupationTextInput }}
             backgroundColor={'transparent'}
             editable
           />
@@ -92,40 +91,49 @@ const styles = {
     width: '100%'
   },
   nameStyle: {
-    fontSize: 29,
+    fontSize: 29 * (height / 677),
     fontWeight: '400'
   },
   ageStyle: {
-    fontSize: 19,
+    fontSize: 19 * (height / 677),
     fontWeight: '400'
   },
   textInput: {
-    fontSize: 29,
+    fontSize: 29 * (height / 677),
     fontWeight: '400',
     borderWidth: 1
   },
+  textStyle: {
+    fontSize: 20 * (height / 677), 
+    marginLeft: 5, 
+    marginTop: 7, 
+    color: '#34799b',
+  },
   bottomContainer: {
     flex: 1,
-    position: 'absolute',
     bottom: 0,
     width: '100%'
   },
   bioTextInput: {
-    fontSize: 20,
+    marginTop: 1,
+    fontSize: 20 * (height / 677),
     fontWeight: '400',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: 1 * (height / 677),
+    borderBottomWidth: 1 * (height / 677),
     borderColor: 'rgba(0,0,0,0.1)',
     width: '100%',
-    paddingLeft: 5
+    padding: 5 * (width / 357),
+    height: 100 * (height / 677)
   },
   occupationTextInput: {
-    fontSize: 20,
+    marginTop: 1,
+    fontSize: 20 * (height / 677),
     fontWeight: '400',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: 1 * (height / 677),
+    borderBottomWidth: 1 * (height / 677),
     borderColor: 'rgba(0,0,0,0.1)',
-    paddingLeft: 5
+    padding: 5 * (width / 357),
+    maxHeight: 50 * (height / 677),
   }
 };
 

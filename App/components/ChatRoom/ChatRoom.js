@@ -151,7 +151,7 @@ class ChatRoom extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.nav}>
           <TouchableOpacity
-          style={{ width: 80 }}
+          style={{ width: 80 * (width / 375) }}
             onPress={() => {
             this.dismiss();
           }}>
@@ -161,19 +161,20 @@ class ChatRoom extends Component {
           type={'ionicon'}
           color={'#34799b'}
           underlayColor={'white'}
-          size={40}
+          size={40 * (height / 667)}
+          iconStyle={{ marginLeft: 5 * (width / 375) }}
         />
           </TouchableOpacity>
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
             onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
                   color={'#34799b'}
                   underlayColor={'white'}
-                  size={39}
+                  size={39 * (height / 667)}
                 />
           </TouchableOpacity>}
           {/* This will display her picture in the center zomgz */}
@@ -203,7 +204,7 @@ class ChatRoom extends Component {
         <View style={styles.nav}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 80 }}
+          style={{ width: 80 * (width / 375) }}
             onPress={() => {
               this.dismiss();
           }}>
@@ -213,7 +214,8 @@ class ChatRoom extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              size={40}
+              size={40 * (height / 667)}
+              iconStyle={{ marginLeft: 5 * (width / 375) }}
             />
           </TouchableOpacity>
           </TouchableWithoutFeedback>
@@ -246,7 +248,7 @@ class ChatRoom extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 10 * (height / 667),
   },
   loading: {
     flex: 1,
@@ -256,7 +258,7 @@ const styles = StyleSheet.create({
     height: height / 8.114,
     // backgroundColor: 'blue',
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (height / 667),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -264,11 +266,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   name: {
-    fontSize: 22,
+    fontSize: 22 * (height / 667),
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',
-    marginLeft: 5
+    marginRight: 10 * (width / 375)
   },
 });
 

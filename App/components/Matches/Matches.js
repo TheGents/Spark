@@ -150,11 +150,11 @@ export default class Messages extends Component {
       >
         <Image
           source={{ uri: x.image }}
-          style={{ width: 70, height: 70, borderRadius: 35, margin: 10 }}
+          style={{ width: 70 * (width / 375), height: 70 * (height / 667), borderRadius: 35, margin: 10 * (height / 667) }}
         />
         <View>
-          <Text style={{ fontWeight: '600', color: '#111' }}>{x.name}</Text>
-          <Text numberOfLines={1} style={{ fontWeight: '400', color: '#888', width: 200 }}>
+          <Text style={{ fontSize: 20 * (height / 667), fontWeight: '600', color: '#111' }}>{x.name}</Text>
+          <Text numberOfLines={1} style={{ fontSize: 20 * (height / 667), fontWeight: '400', color: '#888', width: 200 * (width / 375) }}>
             {/* {x.message} */}
             New match!
           </Text>
@@ -198,7 +198,7 @@ export default class Messages extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
@@ -208,21 +208,21 @@ export default class Messages extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 }}
-              size={50}
+              iconStyle={{ marginLeft: 10 * (width / 375), }}
+              size={50 * (height / 667)}
             />
         </TouchableOpacity>  
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 40 }}
+            style={{ width: 100 * (width / 375), height: 40 * (height / 667) }}
           />
           <Text style={styles.titleText} />
           
         </View>
         
-        <ScrollView style={{ margin: 10 }} onPress={console.log('Chat')}>
-          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 }}>MATCHES</Text>
+        <ScrollView style={{ margin: 10 * (height / 667), }} onPress={console.log('Chat')}>
+          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 * (height / 667) }}>MATCHES</Text>
           <ListView
             enableEmptySections
             horizontal={false}
@@ -242,10 +242,10 @@ export default class Messages extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    padding: 10 * (height / 667),
   },
   titleText: {
-    width: 80
+    width: 80 * (width / 375),
   },
   loading: {
     flex: 1,
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (height / 667),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -263,29 +263,29 @@ const styles = StyleSheet.create({
   },
   matches: {
     borderTopWidth: 1,
-    paddingTop: 15,
+    paddingTop: 15 * (height / 667),
     borderTopColor: '#e3e3e3',
     borderBottomWidth: 1,
-    paddingBottom: 15,
+    paddingBottom: 15 * (height / 667),
     borderBottomColor: '#e3e3e3'
   },
   buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
+    width: 80 * (width / 375),
+    height: 80 * (height / 667),
+    borderWidth: 10 * (width / 375),
     borderColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 40
+    borderRadius: 40 * (height / 667),
   },
   buttonSmall: {
-    width: 50,
-    height: 50,
+    width: 50 * (width / 375),
+    height: 50 * (height / 667),
     borderWidth: 10,
     borderColor: '#e7e7e7',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25
+    borderRadius: 25 * (height / 667),
   },
   card: {
     flex: 1,
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 2,
     borderColor: '#e3e3e3',
-    width: 350,
-    height: 420
+    width: 350 * (width / 375),
+    height: 420 * (height / 667)
   }
 });

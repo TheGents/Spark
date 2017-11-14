@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 const BioCard = props => {
   return <View style={styles.containerStyle}>{props.children}</View>;
 };
+
+const { height, width } = Dimensions.get('window');
 
 const styles = {
   containerStyle: {
@@ -19,7 +21,7 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 1,
-    marginBottom: 20,
+    marginBottom: 20 * (height / 677),
     padding: 1,
   }
 };

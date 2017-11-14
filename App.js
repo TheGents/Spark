@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Login from './App/Screens/Login';
 import store from './App/Store';
-// import { notifications } from 'expo';
+
 
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
 import Shopping from './App/components/GoShopping/GoShopping.js';
@@ -20,8 +21,8 @@ class App extends Component {
   render() {
     // const { navigation } = this.props; return <Register navigation={navigation}
     // />;
- 
-  const MainNavigator = TabNavigator(
+    
+  let MainNavigator = TabNavigator(
     {
       Welcome: {
         screen: WelcomeScreen
@@ -61,6 +62,49 @@ class App extends Component {
       lazy: true
     }
   );
+  if (Platform.OS === 'android') {
+    console.log('its an android');
+      MainNavigator = StackNavigator({
+        Welcome: {
+          screen: WelcomeScreen
+        },
+        auth: {
+          screen: Login
+        },
+        Home: {
+          screen: Home
+        },
+        Messages: {
+          screen: Messages
+        },
+        Shopping: {
+          screen: Shopping
+        },
+        ShowShop: {
+          screen: ShowShop
+        },
+        Setup: {
+          screen: Setup
+        },
+        Preferences: {
+          screen: Preferences
+        },
+        Chat: {
+          screen: ChatRoom
+        },
+        Rating: {
+          screen: Rating
+        }
+      },
+      {
+        navigationOptions: {
+          tabBarVisible: true
+        },
+
+        lazy: true
+      }
+    );
+  }
 
 
     return (

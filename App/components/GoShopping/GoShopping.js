@@ -31,7 +31,8 @@ export default class Shopping extends Component {
       locationPreference: 10,
       agePreference: [18, 60],
       filtered: 'check to see if state changes and console log before render',
-      outofCards: false
+      outofCards: false,
+      secondCard: true
     };
   }
 
@@ -60,7 +61,11 @@ export default class Shopping extends Component {
           });
           const cardInfo = [];
           person.map(x => {
-            if (x.age >= this.state.agePreference[0]) {
+            let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
+            if (matchScore < 0) {
+              matchScore *= -1; 
+            }
+            if (x.age >= this.state.agePreference[0] && matchScore <= this.state.locationPreference) {
             cardInfo.push({
               id: x.id,
               first_name: x.first_name,
@@ -105,8 +110,13 @@ export default class Shopping extends Component {
           });
         });
         const cardInfo = [];
+        
         person.map(x => {
-          if (x.age >= this.state.agePreference[0]) {
+          let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
+          if (matchScore < 0) {
+            matchScore *= -1; 
+          }
+          if (x.age >= this.state.agePreference[0] && matchScore <= this.state.locationPreference) {
           cardInfo.push({
             id: x.id,
             first_name: x.first_name,
@@ -150,8 +160,8 @@ export default class Shopping extends Component {
         if (this.state.cards.length === 0) {
           this.setState({ newCards: '' });
         }
-      console.log('!this.state.Cards', this.state.cards.length);
-      console.log(' newcards.length', this.state.newCards.length);
+      // console.log('!this.state.Cards', this.state.cards.length);
+      // console.log(' newcards.length', this.state.newCards.length);
     
       // console.log('!this.state.newCards', this.state.newCards.length);
       // this.setState({ cards: false })
@@ -174,7 +184,7 @@ export default class Shopping extends Component {
           `http://webspark.herokuapp.com/putMatch/${currentCard.facebook_auth_id}/${this.state.userInfo
             .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
         ).then(response => {
-          console.log('this', response.data[0]);
+          // console.log('this', response.data[0]);
           if (response.data[0].chick_swipe == response.data[0].dude_swipe) {
             AlertIOS.alert(`You and ${currentCard.first_name} Have Matched!`);
           }
@@ -198,16 +208,16 @@ export default class Shopping extends Component {
       
 
       console.log('cards are the deal', this.state.cards.length);
-      const newCardArray = []
+      const newCardArray = [];
       for (card of this.state.cards) {
-        console.log('this is the cards location score', card);
+        // console.log('this is the cards location score', card);
         let matchScore = Math.round((this.state.userInfo.location_score - card.location_score) * 71.9735137469);
         if (matchScore < 0) {
           matchScore *= -1; 
         }
         console.log('the match score', matchScore);
-        
-        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1]) {
+        console.log('the match card score', card.location_score);
+        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1] && matchScore <= nextProps.navigation.state.params.locationPreference) {
           console.log('matchscore', card.first_name)
           newCardArray.push(card)
         }
@@ -217,21 +227,21 @@ export default class Shopping extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.serverRequest.abort();
-  }
+  // componentWillUnmount() {
+  //   this.serverRequest.abort();
+  // }
   
 
   Card(x) {
-    console.log('here is the preference in card', this.state.locationPreference);
-    console.log('here is the card', x);
+    // console.log('here is the preference in card', this.state.locationPreference);
+    // console.log('here is the card', x);
     let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
     if (matchScore < 0) {
       matchScore *= -1; 
     }
+    
     x.miles = matchScore;
     console.log('in card', x.miles);
-    if (x.miles < this.state.locationPreference) {
     return (
       <View style={styles.card}>
         <TouchableHighlight
@@ -258,7 +268,9 @@ export default class Shopping extends Component {
         </TouchableHighlight>
       </View>
     );
-  }
+  
+  
+  
   // return (
   //   <View style={styles.card}>
   //     <Text style={{ paddingBottom: 22 }}>There are no matches, please check back later.</Text>
@@ -299,13 +311,14 @@ export default class Shopping extends Component {
 
   render() {
     console.log('height', height, width);
+    console.log('dimensions ', Dimensions.get('window'));
     if (this.state.newCards === 0) {
       console.log('we have 0 cards');
       return (
         <View style={styles.container}>
           <View style={styles.nav}>
             <TouchableOpacity
-              style={{ width: 80 }}
+              style={{ width: 80 * (width / 375) }}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
@@ -316,17 +329,17 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={40}
+            iconStyle={{ marginLeft: 10 * (width / 375) }}
+            size={40 * (height / 667)}
           />
           </TouchableOpacity>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100, height: 40, margin: 10 }}
+              style={{ width: 100 * (width / 375), height: 40 * (height / 667), margin: 10 * (height / 667) }}
             />
             <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (width / 375) }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
@@ -336,12 +349,12 @@ export default class Shopping extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              size={37}
+              size={37 * (height / 667)}
             />
           </TouchableOpacity>
           </View>
           <View style={styles.card}>
-            <Text style={{ paddingBottom: 22 }}>There are no people in your area, please check back later.</Text>
+            <Text style={{ paddingBottom: 22 * (width / 375) }}>There are no people in your area, please check back later.</Text>
             <ActivityIndicator size='large' color='#34799b' />
         </View>   
         </View>
@@ -353,7 +366,7 @@ export default class Shopping extends Component {
         <View style={styles.container}>
           <View style={styles.nav}>
             <TouchableOpacity
-              style={{ width: 80 }}
+              style={{ width: 80 * (width / 375)}}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
@@ -364,17 +377,17 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={40}
+            iconStyle={{ marginLeft: 10 * (width / 375) }}
+            size={40 * (height / 667)}
           />
           </TouchableOpacity>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100, height: 40, margin: 10 }}
+              style={{ width: 100 * (width / 375), height: 40 * (height / 667), margin: 10 * (width / 375) }}
             />
             <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (width / 375) }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
@@ -384,12 +397,12 @@ export default class Shopping extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              size={37}
+              size={37 * (height / 667)}
             />
           </TouchableOpacity>
           </View>
           <View style={styles.card}>
-          <Text style={{ paddingBottom: 22 }}>There are no people in your area, please check back later.</Text>
+          <Text style={{ paddingBottom: 22 * (width / 375) }}>There are no people in your area, please check back later.</Text>
           </View>    
         </View>
       );
@@ -402,7 +415,7 @@ export default class Shopping extends Component {
       <View style={styles.container}>
         <View style={styles.nav}>
         <TouchableOpacity
-            style={{ width: 80 }}
+            style={{ width: 80 * (width / 375) }}
             onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
@@ -413,18 +426,18 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={40}
+            iconStyle={{ marginLeft: 10 * (width / 375) }}
+            size={40 * (height / 667)}
           />
           </TouchableOpacity>
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 40, margin: 10 }}
+            style={{ width: 100 * (width / 375), height: 40 * (height / 667), margin: 10 * (width / 375) }}
           />
           
         <TouchableOpacity
-          style={{ width: 80, alignItems: 'flex-end', paddingRight: 10 }}
+          style={{ width: 80 * (width / 375), alignItems: 'flex-end' }}
           onPress={() => {
             this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
           }}
@@ -434,7 +447,8 @@ export default class Shopping extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            size={37}
+            size={38 * (height / 667)}
+            iconStyle={{ marginRight: 10 * (width / 375) }}
           />
         </TouchableOpacity>
         </View>
@@ -449,9 +463,10 @@ export default class Shopping extends Component {
           backgroundColor={'transparent'}
           disableBottomSwipe={'true'}
           disableTopSwipe='true'
+          showSecondCard={this.state.secondCard}
           /* onTapCardDeadZone={0} */
-          marginTop={70}
-          cardVerticalMargin={10}
+          marginTop={70 * (height / 667)}
+          cardVerticalMargin={10 * (height / 667)}
           overlayLabels={{
             left: {
               title: 'Pass',
@@ -459,13 +474,13 @@ export default class Shopping extends Component {
                 label: {
                 backgroundColor: 'white',
                 color: 'black',
-                marginRight: 30
+                marginRight: 30 * (width / 375),
                 },
               wrapper: {
                 flexDirection: 'column',
                 alignItems: 'flex-end',
                 justifyContent: 'flex-start',
-                marginTop: 30
+                marginTop: 30 * (height / 667),
               }  
               }
             },
@@ -476,13 +491,13 @@ export default class Shopping extends Component {
                   backgroundColor: '#34799b',
                   borderColor: 'black',
                   color: 'white',
-                  marginLeft: 30,
+                  marginLeft: 30 * (width / 375),
                 },
                 wrapper: {
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
-                  marginTop: 30
+                  marginTop: 30 * (height / 667)
                 }
               }
             },
@@ -511,13 +526,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
-    marginBottom: 7,
-    padding: 0.1,
+    marginLeft: 5 * (width / 375),
+    marginRight: 5 * (width / 375),
+    marginTop: 10 * (height / 667),
+    marginBottom: 7 * (height / 667),
+    padding: 0.1 * (height / 667),
     alignItems: 'center',
-    width: 270,
+    width: 270 * (width / 375),
     backgroundColor: 'rgba(222,222,222, 9)'
 },
 loading: {
@@ -525,7 +540,7 @@ loading: {
   justifyContent: 'center'
 },
   name: {
-    fontSize: 24,
+    fontSize: 24 * (height / 667),
     fontWeight: 'bold',
     fontFamily: 'Cochin'
   },
@@ -536,7 +551,7 @@ loading: {
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (height / 667),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -544,13 +559,13 @@ loading: {
     borderColor: 'rgba(0,0,0,0.1)'
   },
   icon: {
-    margin: 20
+    margin: 20 * (height / 667)
   },
   card: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 9,
-    padding: 10
+    margin: 9 * (height / 667),
+    padding: 10 * (height / 667)
   }
 });

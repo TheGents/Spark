@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 const UserCard = props => {
   return <View style={styles.containerStyle}>{props.children}</View>;
 };
+
+const { height, width } = Dimensions.get('window');
 
 const styles = {
   containerStyle: {
@@ -16,10 +18,10 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 5 * (width / 375),
+    marginRight: 5 * (width / 375),
     marginTop: 1,
-    marginBottom: 20,
+    marginBottom: 20 * (height / 677),
     padding: 1
   }
 }
