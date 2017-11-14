@@ -38,7 +38,7 @@ class Home extends Component {
       user: '', 
       // location: props.navigation.state.params.userLocation,
       agePreference: [18, 60],
-      locationPreference: 1000,
+      locationPreference: 10,
       location: null,
       numLocation: null,
       errorMessage: null,
@@ -55,6 +55,7 @@ class Home extends Component {
     } else {
       console.log('componentwillmount user is', this.state.user);
       console.log('height and width', height, width);
+      console.log('size ', height * width);
       this._getLocationAsync();
     }
   }
@@ -74,68 +75,102 @@ class Home extends Component {
         });
       })
       .then(res => {
-        
-        if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
+        console.log('this.state.user');
+        if (res.data[0]) {
+          console.log('double success', this.state.user);
           
-          axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
-          .then(res => {
+              console.log('id', this.state.user.id);
+              if (this.state.user.photos && this.state.user.photos.data[0].id) {
+                console.log('this.state.user.photos.data[0].i', this.state.user.id);
+                axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
+                .then(response => {
+                  axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+                  console.log('response.data.source', response.data.source);
+                  console.log('response.data.source', this.state.user.photos.data[1]);
+                });
+              }
+              if (this.state.user.photos && this.state.user.photos.data[0].id) {
             
-            axios.put('http://webspark.herokuapp.com/putPics', { photo1: res.data.source, facebook_auth_id: this.state.user.id }); 
-            
-          });
-        }
-        if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
+                axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
+                .then(response => {
+                  
+                  axios.put('http://webspark.herokuapp.com/putPics', { photo2: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+                });
+                }
+              if (this.state.user.photos && this.state.user.photos.data[2].id) {
+                axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
+                .then(response => {
+                  axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+                });
+              }
+              if (this.state.user.photos && this.state.user.photos.data[3].id) {
+                axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
+                .then(response => {
+                  axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+                });  
+            }
           
-          axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
-          .then(res => {
-            
-            axios.put('http://webspark.herokuapp.com/putPics', { photo2: res.data.source, facebook_auth_id: this.state.user.id }); 
-          });
-          }
-        if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
-          axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
-          .then(res => {
-            axios.put('http://webspark.herokuapp.com/putPics', { photo3: res.data.source, facebook_auth_id: this.state.user.id }); 
-          });
+          this.setState({ user: res.data[0], homeLoaded: true });
         }
-        if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
-          axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
-          .then(res => {
-            axios.put('http://webspark.herokuapp.com/putPics', { photo4: res.data.source, facebook_auth_id: this.state.user.id }); 
-          });
-          }
-         
-        
-        if (res.data[0] === undefined) {
+        else if (res.data[0] === undefined) {
           console.log('adding new user', this.state.numLocation);
           axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
           .then(response => {
             console.log('city', response.data.results[0].address_components[3].long_name);
-            console.log('this is the user id', this.state.user.id);
             this.setState({ location: response.data.results[0].address_components[3].long_name });
-            console.log('setting current location in componentdidmount', this.state.location);
+            console.log('setting current location in componentdidmount', this.state.user);
+            this.setState({ homeLoaded: true });
+            axios.post('http://webspark.herokuapp.com/adduser', { user: this.state.user, location: response.data.results[0].address_components[3].long_name, numLocation: this.state.numLocation });
+            return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
+            .then(responses => {
+              this.setState({ user: responses.data[0], homeLoaded: true });
+              // console.log('setState city', this.state.location);
+              // console.log('setState score', this.state.numLocation);
+              // console.log('setState id', this.state.user.id);
+            });
           });
-          return axios.post('http://webspark.herokuapp.com/adduser', this.state.user);
+          if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
+            console.log('in the second .then at home.js', this.state.user.id);
+            axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
+            .then(response => {
+              console.log('in the third .then at home.js');
+              axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.id }); 
+              console.log('in the fourth .then at home.js', this.state.user.facebook_auth_id);
+            });
+          }
+          if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
+            
+            axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
+            .then(response => {
+              
+              axios.put('http://webspark.herokuapp.com/putPics', { photo2: response.data.source, facebook_auth_id: this.state.user.id }); 
+            });
+            }
+          if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
+            axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
+            .then(response => {
+              axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.id }); 
+            });
+          }
+          if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
+            axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
+            .then(response => {
+              axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.id }); 
+            });
+            }
+          // return axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.facebook_auth_id });
         }
-        return axios.get(`http://webspark.herokuapp.com/getHome/${res.data[0].facebook_auth_id}`);
-      })
-      .then(res => {
-        this.setState({ user: res.data[0], homeLoaded: true });
-        console.log('city', this.state.location);
-        console.log('score', this.state.numLocation);
-        console.log('id', this.state.user.id);
-
-        axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.facebook_auth_id });
-      });
-      console.log('this is where it is at', this.state.city)
-      
+        
+        console.log('in the first .then at home.js', this.state.user.id);
+        console.log('in the first .then at home.js', this.state.user.facebook_auth_id);
+        
+        });
     //we call this.setState when we want to update what a component shows
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.setupUser) {
     this.setState({ user: nextProps.navigation.state.params.setupUser });
-    console.log('componentWillReceiveProps changing the user', this.state.user);
     }
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
@@ -143,16 +178,7 @@ class Home extends Component {
     if (nextProps.navigation.state.params.locationPreference) {
       this.setState({ locationPreference: nextProps.navigation.state.params.locationPreference });
     }
-    // if (nextProps.navigation.state.params.token) {
-    //   this.setState({ 
-    //     locationPreference: null,
-    //     userToken: null,  
-    //   user: {}, 
-    //   location: null,
-    //   city: null
-    //   });
-    //   this.props.navigation.navigate('auth');
-    // }
+   
   }
 
   _getLocationAsync = async () => {
@@ -166,8 +192,8 @@ class Home extends Component {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    console.log('latitude', location.coords);
-    console.log('longitude', location.coords.longitude);
+    // console.log('latitude', location.coords);
+    // console.log('longitude', location.coords.longitude);
     this.setState({ numLocation: location.coords.latitude + location.coords.longitude, location });
     console.log('numLocation after setstate', this.state.numLocation);
     // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
@@ -179,8 +205,6 @@ class Home extends Component {
     //   this.setState({ location: response.data.results[0].address_components[3].long_name, numLocation: location.coords.latitude + location.coords.longitude });
     //   console.log('setting current location', this.state.location);
     // });
-    console.log('this is the location in put request', this.state.location);
-    console.log('this is the numlocation in put request', this.state.numLocation);
   };
 
   render() {
@@ -210,11 +234,11 @@ class Home extends Component {
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               name="ios-chatboxes-outline"
-              size={25}
-              style={{ width: 130, height: 40, margin: 10 }}
+              size={25 * (width / 375)}
+              style={{ width: 130 * (width / 375), height: height / 16.675, margin: 10 }}
             />
             <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-end'}}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                 }}
@@ -225,7 +249,7 @@ class Home extends Component {
                 color={'#34799b'}
                 underlayColor={'white'}
                 iconStyle={{ marginRight: 10 }}
-                size={50}
+                size={50 * (height / 667)}
               />
             </TouchableOpacity>
           </View>
@@ -237,15 +261,14 @@ class Home extends Component {
                   .facebook_auth_id}/picture?type=large`
               }}
               activeOpacity={0.7}
-              width={280}
-              height={280}
+              width={280 * (height / 677)}
+              height={280 * (height / 677)}
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <Text style={nameStyle}>{this.state.user.first_name}</Text>
-            <Text style={ageStyle}>{this.state.user.age}</Text>
-            <Text>{ this.state.user.occupation}</Text>
-            <Text>{this.state.user.school}</Text>
+            <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
+            <Text style={ageStyle}>{ this.state.user.occupation}</Text>
+            <Text style={ageStyle}>{this.state.user.school}</Text>
           </HomeCard>
           <View style={styles.buttonContainer}>
             <TouchableHighlight>
@@ -257,7 +280,7 @@ class Home extends Component {
                   name={'ios-create'}
                   type={'ionicon'}
                   color={'#34799b'}
-
+                  size={37 * (height / 667)}
                   underlayColor={'white'}
                   reverse
                 />
@@ -269,6 +292,7 @@ class Home extends Component {
                   onPress={() => {
                     this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference });
                   }}
+                  size={37 * (height / 667)}
                   name={'md-settings'}
                   type={'ionicon'}
                   color={'#34799b'}
@@ -294,7 +318,7 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (height / 667),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -302,33 +326,32 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   nameStyle: {
-    fontSize: 19,
+    fontSize: 23 * (height / 667),
     fontWeight: '400'
   },
   ageStyle: {
-    fontSize: 21,
+    fontSize: 21 * (height / 667),
     fontWeight: '300',
     marginBottom: -2
   },
   contentContainerStyle: {
-    flex: 1,
     backgroundColor: 'white',
-    marginTop: 25,
-    marginBottom: 10,
+    height: 1.1 * ( height / 2.382 ),
+    marginTop: 35 * (height / 667),
     alignItems: 'center',
-    justifyContent: 'center'
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 10
+    alignItems: 'center',
+    marginTop: 27 * (height / 677)
   },
   titleText: {
-    width: 80,
-    marginLeft: 10
+    width: width / 4.6875,
+    marginLeft: 10 
   },
   homecardStyling: {
-    marginTop: 20
+    marginTop: 3 * (height / 677)
   }
 });
 

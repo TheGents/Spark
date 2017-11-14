@@ -146,7 +146,7 @@ class SetupImage extends Component {
           style={styles.box}>
             <Image
               source={firstLogo}
-              style={{ height: 30, width: 30 }}
+              style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
             />
           </Animated.Image>  
         </TouchableOpacity>
@@ -161,7 +161,7 @@ class SetupImage extends Component {
           >
             <Image
             source={secondLogo}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
             />
           </Animated.Image>
         </TouchableOpacity>
@@ -173,7 +173,7 @@ class SetupImage extends Component {
           <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box}>
             <Image
             source={thirdLogo}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
             />
            </Animated.Image> 
         </TouchableOpacity>
@@ -188,7 +188,7 @@ class SetupImage extends Component {
           >
             <Image
             source={fourthLogo}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
             />
           </Animated.Image>
         </TouchableOpacity>

@@ -56,7 +56,7 @@ class Preferences extends Component {
       <View style={styles.container}>
         <View style={styles.nav}>
         <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
             }}
@@ -66,18 +66,18 @@ class Preferences extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={40}
+            iconStyle={{ marginLeft: 10 * (width / 375) }}
+            size={40 * (height / 667)}
           />
         </TouchableOpacity>  
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100, height: 30 }}
+            style={{ width: 100 * (width / 375), height: 30 * (height / 667) }}
           />
-          <Text style={{ width: 80, marginRight: 10 }}>{'      '}</Text>
+          <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375)}}>{'      '}</Text>
         </View>
-        <View style={{ width: 25, height: 25, margin: 10 }} />
+        <View style={{ width: 25 * (height / 667), height: 25 * (height / 667), margin: 10 * (height / 667) }} />
         <View style={styles.sliderStyles}>
           <PrefSliders 
           handleChangeValue={this.handleChangeValue}
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * (height / 667),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -142,9 +142,9 @@ const styles = StyleSheet.create({
   },
   textLegalese: {
     color: 'gray',
-    marginLeft: 10,
-    marginTop: 10,
-    height: 30
+    marginLeft: 10 * (height / 667),
+    marginTop: 10 * (height / 667),
+    height: 30 * (height / 667)
   },
   sliderStyles: {
     flexDirection: 'row',

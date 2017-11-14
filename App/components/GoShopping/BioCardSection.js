@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 const BioCardSection = (props) => {
   return (
@@ -8,11 +8,13 @@ const BioCardSection = (props) => {
   );
 };
 
+const { height, width } = Dimensions.get('window');
+
 const styles = {
   containerStyle: {
     
     elevation: 1,
-    height: 300,
+    height: 300 * (height / 677),
     // marginLeft: 1,
     // marginRight: 1,
     // marginTop: 1,

@@ -54,10 +54,11 @@ class SetupImage extends Component {
                     <Card>
                     <Animated.Image
                       key={image}
+                      resizeMode="contain"
                       source={{ uri: image || photo1 || photo2 || photo3 || photo4 }}
                       style={[
                         {
-                          height: 303,
+                          height: 303 * (height / 677),
                           width: width - 18,
                           flex: 1,
                           borderRadius: 10,

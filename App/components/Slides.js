@@ -4,6 +4,8 @@ import { Button, Icon } from 'react-native-elements';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
 
+const { height, width } = Dimensions.get('window');
+
 class Slides extends Component {
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
@@ -13,7 +15,7 @@ class Slides extends Component {
                 <View style={styles.container}>
                   <Image 
                   resizeMode='contain'
-                  source={require('../images/sparkLogo.png')} style={{width: 310 }}/>
+                  source={require('../images/sparkLogo.png')} style={{width: 310 * (width / 375) }}/>
                   {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Login" 
@@ -30,7 +32,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RatingShot.png')} style={{ marginTop: 25, height: 320 }}/>
+              source={require('../images/RatingShot.png')} style={{ marginTop: 25 * (height / 677), height: 320 * (height / 677)  }}/>
             </View>  
           );
         }
@@ -50,7 +52,7 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/SparkScreen.png')} style={{ marginTop: 25,  height: 320}}/>
+              source={require('../images/SparkScreen.png')} style={{ marginTop: 25 * (height / 677), height: 320 * (height / 677) }}/>
             </View>  
         );
     }
@@ -63,8 +65,8 @@ class Slides extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 }}
-              size={70}
+              iconStyle={{ marginRight: 10 * (width / 375) }}
+              size={70 * (height / 677)}
           />
           {/* <Image 
           resizeMode='contain'
@@ -105,16 +107,16 @@ const styles = {
     width: SPARK_WIDTH
   },
   textStyle: {
-    fontSize: 30,
+    fontSize: 30 * (height / 677),
     color: '#34799b'
   },
   swipeStyle: {
-    fontSize: 24,
+    fontSize: 24 * (height / 677),
     color: '#34799b',
-    marginTop: 40
+    marginTop: 40 * (height / 677)
   },
   welcomeTextStyle: {
-    fontSize: 30,
+    fontSize: 30 * (height / 677),
     color: 'white'
   },
   container: {
@@ -130,8 +132,8 @@ const styles = {
 },
   buttonStyle: {
     backgroundColor: '#34799b',
-    marginTop: 15,
-    width: 100
+    marginTop: 15 * (height / 677),
+    width: 100 * (width / 375)
   }
 };
 

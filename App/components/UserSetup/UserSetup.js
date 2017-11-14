@@ -130,7 +130,7 @@ class Setup extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
               this.dismiss();
             }}
@@ -140,17 +140,17 @@ class Setup extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 }}
-              size={40}
+              iconStyle={{ marginLeft: 10 * (width / 375) }}
+              size={40 * (height / 677)}
             />
             </TouchableOpacity>
             {/* <Text>Settings</Text> */}
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100, height: 40, margin: 10 }}
+              style={{ width: 100 * (width / 375), height: 40 * (height / 677), margin: 10 * (height / 677) }}
             />
-            <Text style={{ width: 80, marginRight: 10 }}>{'          '}</Text>
+            <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375) }}>{'          '}</Text>
           </View>
           </TouchableWithoutFeedback>
           <ScrollView style={styles.scrollViewStyle}>
@@ -190,20 +190,20 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10,
-    borderBottomWidth: 1,
+    paddingTop: 10 * (height / 677),
+    borderBottomWidth: 1 * (height / 677),
     borderColor: 'rgba(0, 0, 0, 0.1)'
   },
   bioStyle: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    marginTop: 195
+    marginTop: 15 * (height / 677)
   },
   scrollViewStyle: {
     flex: 1
   },
   massiveHeight: {
-    height: 260
+    height: 260 * (height / 677)
   }
 };
 

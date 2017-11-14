@@ -99,10 +99,10 @@ class ShowShop extends Component {
     render() {
       console.log('this is the width', width);
       return (
-        <View style={{backgroundColor: 'white', flex: 1}}>
+        <View style={{backgroundColor: 'white', flex: 1 }}>
           <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.user });
               }}
@@ -112,12 +112,12 @@ class ShowShop extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 }}
-              size={40}
+              iconStyle={{ marginRight: 10 * (width / 375) }}
+              size={40 * (height / 667)}
               />
             </TouchableOpacity>
           </View>
-          <ScrollView style={{backgroundColor: 'white', flex: 2}}>
+          <ScrollView style={{backgroundColor: 'white', flex: 2 }}>
             <ImageSectionCard>
               <Animated.ScrollView
               horizontal={true}
@@ -147,7 +147,7 @@ class ShowShop extends Component {
               <Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', }}>Bio</Text>
               <View style={styles.bioStyle}>
                 {/* <Text>Education: {this.state.match.school}</Text> */}
-                <Text>{this.state.match.general_bio}</Text>
+                <Text style={styles.textStyle}>{this.state.match.general_bio}</Text>
               </View>
             </BioCardSection>
           </ScrollView>
@@ -175,7 +175,7 @@ class ShowShop extends Component {
         marginBottom: 5,
         padding: 1,
         alignItems: 'center',
-        height: 65
+        height: 68 * (height / 667)
     },
     bioStyle: {
       borderWidth: 1,
@@ -193,21 +193,26 @@ class ShowShop extends Component {
       padding: 9
     },
     name: {
-      fontSize: 24,
+      fontSize: 24 * (height / 667),
       fontWeight: 'bold',
       fontFamily: 'Cochin'
     },
+    textStyle: {
+      fontSize: 20 * (height / 667),
+      fontFamily: 'Cochin'
+    },
     occupation: {
+      fontSize: 15 * (height / 667),
       fontWeight: 'normal',
       fontStyle: 'italic'
     },
     nav: {
-      height:70,
+      height: 70 * (height / 667),
       flexDirection:'row',
-      paddingTop:10,
-      marginLeft: 10,
+      paddingTop: 10 * (height / 667),
+      marginLeft: 10 * (width / 375),
       justifyContent: 'space-between',
-      alignItems:'center',
+      alignItems: 'center',
       backgroundColor: '#fff',
       borderBottomWidth:1,
       borderColor:'rgba(0, 0, 0, 0.1)'
