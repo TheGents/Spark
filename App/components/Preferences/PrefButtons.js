@@ -31,7 +31,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 19 * (height / 667), }}>Logout</Text>
+            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * (height / 667), }}>Logout</Text>
           </View>
         </Button>
         <Button
@@ -40,7 +40,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ textAlign: 'center', fontFamily: 'Avenir', fontSize: 19 * (height / 667), }}>Delete Account</Text>
+            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * (height / 667), }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -51,26 +51,26 @@ class PrefButtons extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginLeft: 10,
-    // marginRight: 10,
     position: 'absolute',
     right: 0,
     bottom: '20%',
     left: 0,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginRight: 10 * (height / 667),
+    marginLeft: 10 * (height / 667)
     // backgroundColor: 'black'
   },
   buttonStyle8: {
     backgroundColor: 'white',
-    borderColor: '#333',
+    borderColor: 'rgba(0,0,0,0.3)',
     borderWidth: 2,
     borderRadius: 22 * (height / 667),
     height: 50 * (height / 667),
-    width: 115 * (width / 357),
+    width: 128 * (width / 357),
   },
   textStyle8: {
-    width: 150 * (width / 375),
+    width: 153 * (width / 375),
     borderColor: 'red',
     borderWidth: 1,
     fontFamily: 'Avenir Next',
@@ -78,8 +78,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   customViewStyle: {
-    fontSize: 24 * (height / 667),
-    width: 115 * (width / 375),
+    width: 128 * (width / 375),
     height: 55 * (height / 667),
     alignItems: 'center',
     justifyContent: 'center'

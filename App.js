@@ -24,14 +24,18 @@ class App extends Component {
     
   let MainNavigator = TabNavigator(
     {
-      Welcome: {
-        screen: WelcomeScreen
-      },
-      auth: {
-        screen: Login
-      },
-      Home: {
-        screen: Home
+      main: {
+        screen: DrawerNavigator({
+          Welcome: {
+            screen: WelcomeScreen
+          },
+          auth: {
+            screen: Login
+          },
+          Home: {
+            screen: Home
+          },
+        })
       },
       Messages: {
         screen: Messages
@@ -53,7 +57,9 @@ class App extends Component {
       },
       Rating: {
         screen: Rating
-      }
+      },
+     
+      
     },
     {
       navigationOptions: {

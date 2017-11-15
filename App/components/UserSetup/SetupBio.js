@@ -101,7 +101,7 @@ const styles = {
   textInput: {
     fontSize: 29 * (height / 677),
     fontWeight: '400',
-    borderWidth: 1
+    borderWidth: 1 * (height / 677),
   },
   textStyle: {
     fontSize: 20 * (height / 677), 

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { AppLoading, Location, Constants, Permissions } from 'expo';
 import Slides from '../components/Slides';
 
@@ -13,11 +14,21 @@ const SLIDE_DATA = [
     { text: null, color: 'white' }
   ];
 
+  const setParamsAction = NavigationActions.setParams({
+    params: { userToken: 'Hello', user: null },
+    key: 'Home',
+  },
+  {
+    params: { user: null },
+    key: 'Preferences',
+  });
+
   class WelcomeScreen extends Component {
     constructor(props) {
       super(props);
       this.state = { 
-        token: null
+        token: null,
+        logout: null
       };
     }
   
@@ -29,6 +40,8 @@ const SLIDE_DATA = [
       // } else {
       //   this._getLocationAsync();
       // }
+      this.props.navigation.dispatch(setParamsAction);
+      console.log('we are in welcomescreen componentwillmount', this.props.navigation.state.params);
       let token = await AsyncStorage.getItem('fb_token');
       console.log('token is', await AsyncStorage.getItem('fb_token'));
       // console.log("token from async storage", token)
@@ -42,6 +55,13 @@ const SLIDE_DATA = [
       }
     }
     
+    componentWillReceiveProps(nextProps) {
+      console.log('nextProps in welcome to spark', nextProps.navigation.state.params);
+      if (nextProps.navigation.state.params.logout) {
+        console.log('nextProps.navigation.state.params.logout', nextProps.navigation.state.params.logout);
+        this.setState({ logout: nextProps.navigation.state.params.logout });
+      }
+    }
     // _getLocationAsync = async () => {
     //   let { status } = await Permissios.askAsync(Permissions.LOCATION);
     //   if (status !== 'granted') {
@@ -57,10 +77,15 @@ const SLIDE_DATA = [
 
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
+      if (this.state.logout) {
+        console.log('onSlidesComplete logout');
+        this.props.navigation.navigate('auth', { logout: 'ok' });
+      }
       this.props.navigation.navigate('auth');
     }
   
     render() {
+      console.log('render in welcome');
       if (_.isNull(this.state.token)) {
         return <AppLoading />;
       }

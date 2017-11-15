@@ -42,7 +42,7 @@ class Rating extends Component {
     console.log('hey man this is it', this.state.userInfo);
     // console.log('hey man this is it',this.state.matched);
     const data = [
-        { key: 1, section: true, label: '1 - Jerk' },
+        { key: 1, label: '1 - Jerk' },
         { key: 2, label: '2 - Intolerable' },
         { key: 3, label: '3 - Average' },
         { key: 4, label: '4 - Great!' },
@@ -82,7 +82,7 @@ class Rating extends Component {
             source={{ uri: this.state.matched.image }}
             activeOpacity={0.7}
             width={270 * (width / 375)}
-            height={270 * (height / 667)}
+            height={270 * (width / 375)}
           />
         
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -101,16 +101,20 @@ class Rating extends Component {
             <Option styleText={styles.ratingText} value={[4, ' - Great!']}>4 - Great! </Option>
             <Option styleText={styles.ratingText} value={[5, ' - Spark!']}>5 - Spark! </Option>
           </Select> */}
-   
- 
                 <ModalPicker
                     data={data}
                     initValue={'Provide Rating'}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 340 * (width / 375), alignItems: 'center', justifyContent: 'center' }}
+                    selectStyle={{ width: 350 * (width / 375), just: 'center', justifyContent: 'center', borderWidth: 0, }}
                     selectTextStyle={styles.textStyle8}
-                    />
+                    overlayStyle={{ borderWidth: 1.5, }}
+                    sectionStyle={{ borderWidth: 1.5, }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                />
 
           {this.state.butt0n && (
             <Button
@@ -133,14 +137,14 @@ class Rating extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10 * (height / 677)
+    // padding: 10 * (height / 677)
   },
   titleText: {
     fontFamily: 'Cochin',
     fontWeight: '500',
     color: '#34799b',
     fontSize: 26 * (height / 667),
-    marginBottom: 5
+    marginBottom: 5 * (height / 667)
   },
   ratingText: {
     fontSize: 24 * (height / 667), 
@@ -154,13 +158,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1 * (height / 667),
     borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
     width: 350 * (width / 375),
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
+    borderBottomWidth: 1 * (height / 667),
+    borderTopWidth: 1 * (height / 667),
+    borderColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10 * (height / 677),
@@ -172,17 +177,16 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: 'black',
     fontSize: 18 * (height / 667)
-    
   },
   buttonSmall: {
     width: 350 * (width / 375),
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
+    borderBottomWidth: 1 * (height / 667),
+    borderTopWidth: 1 * (height / 667),
     justifyContent: 'center',
     fontFamily: 'Cochin',
     alignItems: 'center',
     backgroundColor: 'rgba(50,121,155,0.05)',
-    height: height / 11.114,
+    height: height / 11.114
   },
   matchedName: {
     alignItems: 'center',
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 30 * (height / 677)
+    // padding: 30 * (height / 677)
   }
 });
 
