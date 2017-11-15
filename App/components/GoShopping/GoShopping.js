@@ -242,6 +242,7 @@ export default class Shopping extends Component {
     
     x.miles = matchScore;
     console.log('in card', x.miles);
+    if (x.rating) {
     return (
       <View style={styles.card}>
         <TouchableHighlight
@@ -262,12 +263,49 @@ export default class Shopping extends Component {
                 <Text style={styles.name}>{x.first_name}, {x.age}</Text>
                 <Text style={styles.occupation}>{x.occupation}</Text>
                 <Text style={styles.occupation}>{x.miles} Miles Away</Text>
-                <Text style={styles.occupation}>{x.rating}</Text>
+                <View style={{ alignContent: 'center', flexDirection: 'row' }}>
+                  <Text style={styles.occupation}>{x.rating}</Text>
+                  <Icon
+                    name={'ios-star-half'}
+                    type={'ionicon'}
+                    color={'#34799b'}
+                    underlayColor={'white'}
+                    size={21 * (height / 667)}
+                    iconStyle={{ marginLeft: 5 * (width / 375) }}
+                  />
+                </View>
               </View>
           </Image>
         </TouchableHighlight>
       </View>
     );
+  }
+  
+      return (
+        <View style={styles.card}>
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigation.navigate('ShowShop', { user: x });
+            }}
+          >
+            <Image
+              source={{
+                uri:
+                  x.image ||
+                  'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'
+              }}
+              resizeMode='cover'
+              style={{ borderRadius: 15, flex: 1, width: width * 0.9, alignItems: 'center', justifyContent: 'flex-end' }}
+            >
+                <View style={styles.imageContainer}>
+                  <Text style={styles.name}>{x.first_name}, {x.age}</Text>
+                  <Text style={styles.occupation}>{x.occupation}</Text>
+                  <Text style={styles.occupation}>{x.miles} Miles Away</Text>
+                </View>
+            </Image>
+          </TouchableHighlight>
+        </View>
+      );
   
   
   
@@ -320,7 +358,7 @@ export default class Shopping extends Component {
             <TouchableOpacity
               style={{ width: 80 * (width / 375) }}
               onPress={() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('Home', { userToken: 5 });
               }}
             >
           <Icon
@@ -354,7 +392,7 @@ export default class Shopping extends Component {
           </TouchableOpacity>
           </View>
           <View style={styles.card}>
-            <Text style={{ paddingBottom: 22 * (width / 375) }}>There are no people in your area, please check back later.</Text>
+            <Text style={{ paddingBottom: 22 * (width / 375), fontSize: 18 * (height / 667) }}>There are no people in your area, please check back later.</Text>
             <ActivityIndicator size='large' color='#34799b' />
         </View>   
         </View>
@@ -391,18 +429,18 @@ export default class Shopping extends Component {
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
-          >  
-            <Icon
-              name={'ios-chatboxes'}
-              type={'ionicon'}
-              color={'#34799b'}
-              underlayColor={'white'}
-              size={37 * (height / 667)}
-            />
+            >  
+              <Icon
+                name={'ios-chatboxes'}
+                type={'ionicon'}
+                color={'#34799b'}
+                underlayColor={'white'}
+                size={37 * (height / 667)}
+              />
           </TouchableOpacity>
           </View>
           <View style={styles.card}>
-          <Text style={{ paddingBottom: 22 * (width / 375) }}>There are no people in your area, please check back later.</Text>
+            <Text style={{ paddingBottom: 22 * (width / 375), fontSize: 18 * (height / 667) }}>There are no people in your area, please check back later.</Text>
           </View>    
         </View>
       );
@@ -475,6 +513,10 @@ export default class Shopping extends Component {
                 backgroundColor: 'white',
                 color: 'black',
                 marginRight: 30 * (width / 375),
+                width: 105 * (width / 375),
+                fontSize: 38 * (width / 375),
+                alignItems: 'center',
+                justifyContent: 'center'
                 },
               wrapper: {
                 flexDirection: 'column',
@@ -492,6 +534,11 @@ export default class Shopping extends Component {
                   borderColor: 'black',
                   color: 'white',
                   marginLeft: 30 * (width / 375),
+                  /* height: 80 * (height / 677), */
+                  width: 105 * (width / 375),
+                  fontSize: 38 * (width / 375),
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 },
                 wrapper: {
                   flexDirection: 'column',
@@ -545,6 +592,7 @@ loading: {
     fontFamily: 'Cochin'
   },
   occupation: {
+    fontSize: 18 * (height / 667),
     fontWeight: 'normal',
     fontStyle: 'italic'
   },

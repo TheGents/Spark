@@ -139,9 +139,9 @@ export default class Messages extends Component {
         style={{
           alignItems: 'center',
           flexDirection: 'row',
-          marginTop: 5,
-          marginBottom: 5,
-          borderBottomWidth: 1,
+          marginTop: 5 * (height / 667),
+          marginBottom: 5 * (height / 667),
+          borderBottomWidth: 1 * (height / 667),
           borderColor: '#e3e3e3'
         }}
         onPress={() => {
@@ -258,14 +258,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1 * (height / 667),
     borderColor: 'rgba(0,0,0,0.1)'
   },
   matches: {
-    borderTopWidth: 1,
+    borderTopWidth: 1 * (height / 667),
     paddingTop: 15 * (height / 667),
     borderTopColor: '#e3e3e3',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1 * (height / 667),
     paddingBottom: 15 * (height / 667),
     borderBottomColor: '#e3e3e3'
   },

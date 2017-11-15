@@ -3,12 +3,19 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, AlertIOS, TouchableOpacity, Dimensions, AsyncStorage, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
 
 const { height, width } = Dimensions.get('window');
+const resetAction = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'main' })
+  ]
+});
 // import TermsOfService from './TermsOfService';
 
 class Preferences extends Component {
@@ -23,13 +30,27 @@ class Preferences extends Component {
     this.delete = this.delete.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.handleLocationValue = this.handleLocationValue.bind(this);
-    console.log(this.state.user);
+    console.log('user age in preferences', this.state.user.age);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('this is next props in preference', nextProps.navigation.state.params.user);
+    this.setState({ user: nextProps.navigation.state.params.user });
   }
   
   logout = async (val) => {
     AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
-    AlertIOS.alert('You Have Been Logged Out');
-    this.props.navigation.navigate('Welcome', { token: 'logout' });
+    this.props.navigation.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({
+            routeName: 'Welcome',
+          })
+        ]
+      })
+    );
+    this.props.navigation.navigate('Welcome', { logout: 'logout' });
   }
 
   delete = async (val) => {
@@ -58,7 +79,7 @@ class Preferences extends Component {
         <TouchableOpacity
             style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
-              this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+              this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference, user: this.state.user });
             }}
         >    
           <Icon
