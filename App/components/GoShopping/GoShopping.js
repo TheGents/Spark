@@ -65,7 +65,7 @@ export default class Shopping extends Component {
             if (matchScore < 0) {
               matchScore *= -1; 
             }
-            if (x.age >= this.state.agePreference[0] && matchScore <= this.state.locationPreference) {
+            if (x.age >= this.state.agePreference[0] && x.age <= this.state.agePreference[1] && matchScore <= this.state.locationPreference) {
             cardInfo.push({
               id: x.id,
               first_name: x.first_name,
@@ -116,7 +116,7 @@ export default class Shopping extends Component {
           if (matchScore < 0) {
             matchScore *= -1; 
           }
-          if (x.age >= this.state.agePreference[0] && matchScore <= this.state.locationPreference) {
+          if (x.age >= this.state.agePreference[0] && x.age <= this.state.agePreference[1] && matchScore <= this.state.locationPreference) {
           cardInfo.push({
             id: x.id,
             first_name: x.first_name,
@@ -204,22 +204,26 @@ export default class Shopping extends Component {
     } 
     if (nextProps.navigation.state.params.agePreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
-      console.log('this is my info', this.state.userInfo.location_score);
-      
-
+      console.log('nextProps.navigation.state.params,  (location_score)', this.state.userInfo.location_score);
       console.log('cards are the deal', this.state.cards.length);
       const newCardArray = [];
+      console.log('newCardArray.length', newCardArray.length);
       for (card of this.state.cards) {
         // console.log('this is the cards location score', card);
         let matchScore = Math.round((this.state.userInfo.location_score - card.location_score) * 71.9735137469);
         if (matchScore < 0) {
           matchScore *= -1; 
         }
-        console.log('the match score', matchScore);
-        console.log('the match card score', card.location_score);
-        if (card.age >= nextProps.navigation.state.params.agePreference[0] && card.age <= nextProps.navigation.state.params.agePreference[1] && matchScore <= nextProps.navigation.state.params.locationPreference) {
-          console.log('matchscore', card.first_name)
-          newCardArray.push(card)
+        // console.log('the match score', matchScore);
+        // console.log('the match card score', card.location_score);
+        if (card.age >= nextProps.navigation.state.params.agePreference[0] && 
+          card.age <= nextProps.navigation.state.params.agePreference[1] && 
+          matchScore <= nextProps.navigation.state.params.locationPreference) {
+          console.log('nextProps.navigation.state.params.agePreference[0]', nextProps.navigation.state.params.agePreference[0]);
+          console.log('nextProps.navigation.state.params.agePreference[1]', nextProps.navigation.state.params.agePreference[1]);
+          console.log('card age', card.age);
+          newCardArray.push(card);
+          console.log('newcardarray', newCardArray.length);
         }
       }
       this.setState({ newCards: newCardArray });
@@ -239,7 +243,7 @@ export default class Shopping extends Component {
     if (matchScore < 0) {
       matchScore *= -1; 
     }
-    
+  
     x.miles = matchScore;
     console.log('in card', x.miles);
     if (x.rating) {
@@ -446,7 +450,7 @@ export default class Shopping extends Component {
       );
     }
 
-    // console.log('hey there this is goshopping',this.state.userInfo);
+    console.log('this.state.newcards', this.state.newCards);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);
     return (

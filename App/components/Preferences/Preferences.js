@@ -10,12 +10,11 @@ import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
 
 const { height, width } = Dimensions.get('window');
-const resetAction = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'main' })
-  ]
-});
+const setParamsAction = NavigationActions.setParams(
+  {
+    params: { user: null },
+    key: 'Preferences',
+  });
 // import TermsOfService from './TermsOfService';
 
 class Preferences extends Component {
@@ -40,16 +39,7 @@ class Preferences extends Component {
   
   logout = async (val) => {
     AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
-    this.props.navigation.dispatch(
-      NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({
-            routeName: 'Welcome',
-          })
-        ]
-      })
-    );
+    this.props.navigation.dispatch(setParamsAction);
     this.props.navigation.navigate('Welcome', { logout: 'logout' });
   }
 

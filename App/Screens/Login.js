@@ -28,12 +28,12 @@ class Login extends React.Component {
     console.log('props in auth', this.props.navigation);
     if (props.token && props.logout) {
       //Home
-      console.log('props.logout in login.js', props.logout)
+      console.log('props.token props.logout in login.js', props.logout, ' ', props.token);
       this.props.navigation.navigate('Home', { userToken: props.token, logout: 'ok' });
     }
-    if (props.token) {
+    else if (props.token) {
       //Home
-      // console.log('onAuthComplete')
+      console.log('else if (props.token) ', props.token);
       this.props.navigation.navigate('Home', { userToken: props.token });
     }
   }

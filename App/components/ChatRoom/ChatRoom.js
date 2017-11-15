@@ -156,7 +156,6 @@ class ChatRoom extends Component {
             this.dismiss();
           }}>
           <Icon
-          style={{ alignSelf: 'left' }}
           name={'ios-arrow-back'}
           type={'ionicon'}
           color={'#34799b'}
@@ -209,7 +208,6 @@ class ChatRoom extends Component {
               this.dismiss();
           }}>
             <Icon
-            style={{ alignSelf: 'end' }}
               name={'ios-arrow-back'}
               type={'ionicon'}
               color={'#34799b'}
