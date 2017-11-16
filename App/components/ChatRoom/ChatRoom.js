@@ -165,8 +165,8 @@ onSelect(value) {
     console.log('booleon',this.state.booleon);
     console.log('wow', this.state.matched.rated == 'true');
     const data = [
-      { key: 0, section: true, label: 'Report' },
-      { key: 1, label: 'Delete' },
+      { key: 0, section: true, label: 'Repor Usert' },
+      { key: 1, label: 'Delete User' },
       
   ];
     // console.log('This is getRequest',this.state.kitkats);
@@ -189,13 +189,14 @@ onSelect(value) {
           color={'#34799b'}
           underlayColor={'white'}
           size={40 * (height / 667)}
-          iconStyle={{ marginLeft: 5 * (width / 375) }}
+          iconStyle={{ marginRight: 20 * (width / 375) }}
         />
           </TouchableOpacity>
-          <Text style={styles.name}>{ this.state.matched.name }</Text>
-          {this.state.showRatingButton && <TouchableOpacity
-            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 5 * (height / 667) }}
-            onPress={() => { this.dismissBack(); }}>
+          <View style={{ width: 90 * (width / 375)}}>
+            <Text style={styles.name}>{ this.state.matched.name }</Text>
+            {this.state.showRatingButton && <TouchableOpacity
+              style={{ width: 40 * (width / 375), paddingRight: 1 * (height / 667) }}
+              onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
@@ -204,10 +205,12 @@ onSelect(value) {
                   size={39 * (height / 667)}
                 />
           </TouchableOpacity>}
-          <TouchableOpacity
+          </View>
+          {/* <TouchableOpacity
             style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
-            >
-            <ModalPicker
+            > */}
+            <View>
+          <ModalPicker
                     data={data}
                     initValue={'P'}
                     onChange={this.onSelect.bind(this)}
@@ -220,17 +223,20 @@ onSelect(value) {
                     optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
                     cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * (height / 677) }}
-                />
+                >
+                
               <Icon
-                  name={'ion-ios-flag'}
+                  name={'ios-flag'}
                   type={'ionicon'}
                   underlayColor={'white'}
                   size={39 * (height / 667)}
                   title="Email Me"
-                  color="#841584"
+                  color="#ce260a"
                   accessabilityLabel="Purple Email Me Button"
                 />
-          </TouchableOpacity>}
+          {/* </TouchableOpacity> */}
+                </ModalPicker>
+                </View>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
@@ -258,7 +264,7 @@ onSelect(value) {
         <View style={styles.nav}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 80 * (width / 375) }}
+          style={{ width: 70 * (width / 375) }}
             onPress={() => {
               this.dismiss();
           }}>
@@ -273,8 +279,9 @@ onSelect(value) {
           </TouchableOpacity>
           </TouchableWithoutFeedback>
           {/* <Text style={styles.name}>{ this.state.timestamp }</Text> */}
-
-          <Text style={styles.name}>{ this.state.matched.name }</Text>
+          <View style={styles.name}>
+            <Text style={styles.name}>{ this.state.matched.name }</Text>
+          </View>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
             source={{uri: this.state.matched.image}}
@@ -284,12 +291,13 @@ onSelect(value) {
             height: 100,
             borderRadius:15,
           }}/> */}
+          <View>
           <ModalPicker
                     data={data}
                     initValue={'P'}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 30 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
+                    selectStyle={{ width: 80 * (width / 375), justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
@@ -297,21 +305,22 @@ onSelect(value) {
                     optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
                     cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * (height / 677) }}
-                />
+                >
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
-            >
+            > */}
               <Icon
                   name={'ios-flag'}
                   type={'ionicon'}
                   underlayColor={'white'}
                   size={39 * (height / 667)}
-                  title="Email Me"
                   color="#ce260a"
-                  accessabilityLabel="Purple Email Me Button"
+                  iconStyle={{ marginRight: 5 * (width / 375) }}
                 />
-          </TouchableOpacity>
+          {/* </TouchableOpacity> */}
+          </ModalPicker>
+          </View>
         </View>
         <GiftedChat
           placeholder='Message...'
@@ -351,7 +360,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',
-    marginRight: 10 * (width / 375)
+    // marginRight: 10 * (width / 375)
   },
 });
 
