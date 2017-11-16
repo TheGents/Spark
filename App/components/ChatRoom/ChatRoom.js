@@ -179,7 +179,7 @@ onSelect(value) {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.nav}>
           <TouchableOpacity
-          style={{ width: 80 * (width / 375) }}
+          style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
             this.dismiss();
           }}>
@@ -189,10 +189,10 @@ onSelect(value) {
           color={'#34799b'}
           underlayColor={'white'}
           size={40 * (height / 667)}
-          iconStyle={{ marginRight: 20 * (width / 375) }}
+          iconStyle={{ marginLeft: 5 * (width / 375) }}
         />
           </TouchableOpacity>
-          <View style={{ width: 90 * (width / 375)}}>
+          <View >
             <Text style={styles.name}>{ this.state.matched.name }</Text>
             {this.state.showRatingButton && <TouchableOpacity
               style={{ width: 40 * (width / 375), paddingRight: 1 * (height / 667) }}
@@ -209,13 +209,13 @@ onSelect(value) {
           {/* <TouchableOpacity
             style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
             > */}
-            <View>
+            <View style={{ width: 70 * (width / 375), alignItems: 'flex-end' }}>
           <ModalPicker
                     data={data}
-                    initValue={'P'}
+                    initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 30 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
+                    selectStyle={{ width: 70 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
@@ -233,6 +233,7 @@ onSelect(value) {
                   title="Email Me"
                   color="#ce260a"
                   accessabilityLabel="Purple Email Me Button"
+                  iconStyle={{ marginRight: 5 * (width / 375) }}
                 />
           {/* </TouchableOpacity> */}
                 </ModalPicker>
@@ -264,7 +265,7 @@ onSelect(value) {
         <View style={styles.nav}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 70 * (width / 375) }}
+          style={{ width: 70 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
               this.dismiss();
           }}>
@@ -274,7 +275,7 @@ onSelect(value) {
               color={'#34799b'}
               underlayColor={'white'}
               size={40 * (height / 667)}
-              iconStyle={{ marginLeft: 5 * (width / 375) }}
+              iconStyle={{ marginLeft: 5 * (width / 375) }} 
             />
           </TouchableOpacity>
           </TouchableWithoutFeedback>
@@ -291,13 +292,13 @@ onSelect(value) {
             height: 100,
             borderRadius:15,
           }}/> */}
-          <View>
+          <View style={{ width: 70 * (width / 375), alignItems: 'flex-end' }}>
           <ModalPicker
                     data={data}
-                    initValue={'P'}
+                    initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 80 * (width / 375), justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
+                    selectStyle={{ width: 70 * (width / 375), justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
@@ -356,7 +357,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   name: {
-    fontSize: 22 * (height / 667),
+    fontSize: 26 * (height / 667),
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',
