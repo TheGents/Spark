@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { AppLoading, Location, Constants, Permissions } from 'expo';
 import Slides from '../components/Slides';
+import Terms from './Terms';
 
 
 const SLIDE_DATA = [
@@ -33,6 +34,7 @@ const SLIDE_DATA = [
     }
   
     async componentWillMount() {
+      console.log('alert', Alert);
       // if (Platform.OS === 'android' && !Constants.isDevice) {
       //   this.setState({
       //     errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
@@ -51,6 +53,7 @@ const SLIDE_DATA = [
         this.setState({ token });
  
       } else {
+        Alert.alert(Terms.terms);
         this.setState({ token: false });
       }
     }

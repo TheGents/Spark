@@ -7,11 +7,14 @@ import {
   Dimensions,  
   ScrollView,
   TouchableOpacity, 
+  Alert,
   TouchableWithoutFeedback,
   Keyboard 
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
+import Communications from 'react-native-communications';
+import ModalPicker from 'react-native-modal-picker';
 import Axios from 'axios';
 
 const { height, width } = Dimensions.get('window');
@@ -61,7 +64,7 @@ class ChatRoom extends Component {
         })
         messageDB = messageDB.reverse();
         this.setState({ messages: messageDB, matchesLoaded: true });
-        if(this.state.matched.rated == 'true') {
+        if (this.state.matched.rated == 'true') {
           this.setState({ showRatingButton: false })
         }
         else {
@@ -132,6 +135,27 @@ class ChatRoom extends Component {
     this.props.navigation.navigate('Rating', { userInfo: this.state.userInfo, matched: this.state.matched });
   }
 
+onSelect(value) {
+  console.log('onSelect value', value);
+  if (value.key === 0) {
+    Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.matched.id}`)
+  }
+
+  else if (value.key === 1) {
+    console.log('in ths matched', this.state.matched);
+    console.log('in ths userInfo', this.state.userInfo);
+    Axios.put(
+      `http://webspark.herokuapp.com/putMatch/${this.state.matched.id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${false}`
+    ).then(response => {
+      Alert.alert('Match Has Been Removed');
+      this.setState({ matched: '' });
+      this.props.navigation.navigate('Messages', { y: '' });
+      console.log(response);
+    });
+}
+}
+
+
   render() {
     // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
     // console.log('This is userInfo',this.state.userInfo);
@@ -140,7 +164,11 @@ class ChatRoom extends Component {
     
     console.log('booleon',this.state.booleon);
     console.log('wow', this.state.matched.rated == 'true');
-    
+    const data = [
+      { key: 0, section: true, label: 'Report' },
+      { key: 1, label: 'Delete' },
+      
+  ];
     // console.log('This is getRequest',this.state.kitkats);
     //We are rendering two if statements.
     //To make this more clear, should make this into a separate component and then render it here.
@@ -166,7 +194,7 @@ class ChatRoom extends Component {
           </TouchableOpacity>
           <Text style={styles.name}>{ this.state.matched.name }</Text>
           {this.state.showRatingButton && <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
+            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 5 * (height / 667) }}
             onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
@@ -174,6 +202,33 @@ class ChatRoom extends Component {
                   color={'#34799b'}
                   underlayColor={'white'}
                   size={39 * (height / 667)}
+                />
+          </TouchableOpacity>}
+          <TouchableOpacity
+            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
+            >
+            <ModalPicker
+                    data={data}
+                    initValue={'P'}
+                    onChange={this.onSelect.bind(this)}
+                    style={ styles.buttons }
+                    selectStyle={{ width: 30 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
+                    selectTextStyle={styles.textStyle8}
+                    overlayStyle={{ borderWidth: 1.5, }}
+                    sectionStyle={{ borderWidth: 1.5, }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                />
+              <Icon
+                  name={'ion-ios-flag'}
+                  type={'ionicon'}
+                  underlayColor={'white'}
+                  size={39 * (height / 667)}
+                  title="Email Me"
+                  color="#841584"
+                  accessabilityLabel="Purple Email Me Button"
                 />
           </TouchableOpacity>}
           {/* This will display her picture in the center zomgz */}
@@ -229,6 +284,34 @@ class ChatRoom extends Component {
             height: 100,
             borderRadius:15,
           }}/> */}
+          <ModalPicker
+                    data={data}
+                    initValue={'P'}
+                    onChange={this.onSelect.bind(this)}
+                    style={ styles.buttons }
+                    selectStyle={{ width: 30 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
+                    selectTextStyle={styles.textStyle8}
+                    overlayStyle={{ borderWidth: 1.5, }}
+                    sectionStyle={{ borderWidth: 1.5, }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                />
+
+          <TouchableOpacity
+            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
+            >
+              <Icon
+                  name={'ios-flag'}
+                  type={'ionicon'}
+                  underlayColor={'white'}
+                  size={39 * (height / 667)}
+                  title="Email Me"
+                  color="#ce260a"
+                  accessabilityLabel="Purple Email Me Button"
+                />
+          </TouchableOpacity>
         </View>
         <GiftedChat
           placeholder='Message...'

@@ -1,3 +1,4 @@
+
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { 
@@ -27,7 +28,7 @@ export default class Shopping extends Component {
       cards: [],
       newCards: [],
       matches: [],
-      userInfo: props.navigation.state.params.user,
+      userInfo: props.navigation.state.params.user || '',
       locationPreference: 10,
       agePreference: [18, 60],
       filtered: 'check to see if state changes and console log before render',
@@ -43,7 +44,7 @@ export default class Shopping extends Component {
       Axios.get(
         `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
       ).then(responseD => {
-        console.log('responseD this might be reloading');
+        console.log('responseD this might be reloading', this.state.userInfo.length);
         Axios.get(
           `http://webspark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
             .userInfo.gender}`
@@ -93,7 +94,7 @@ export default class Shopping extends Component {
     Axios.get(
       `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
-      console.log('responseD this might be reloading');
+      console.log('responseD this might be reloading 2', this.state.userInfo.length);
       Axios.get(
         `http://webspark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`

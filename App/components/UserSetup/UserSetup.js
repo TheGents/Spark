@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { ImagePicker, Constants } from 'expo';
 import {
@@ -21,8 +22,8 @@ import SetupBio from './SetupBio.js';
 
 const { height, width } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.68;
-const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
-const BAR_HEIGHT = Constants.statusBarHeight * 1;
+// const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
+// const BAR_HEIGHT = Constants.statusBarHeight * 1;
 
 class Setup extends Component {
   constructor(props) {
@@ -36,8 +37,9 @@ class Setup extends Component {
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.dismiss = this.dismiss.bind(this);
   }
-  componentDidUpdate() {
-    console.log('updating', this.state.user);
+  componentWillReceiveProps(nextProps) {
+    console.log('this is next props in preference', nextProps.navigation.state.params.user);
+    this.setState({ user: nextProps.navigation.state.params.user });
   }
 
   handleChangeValue = (a, b, c) => {
