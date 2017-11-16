@@ -77,6 +77,7 @@ export default class Messages extends Component {
         this.setState({ kitkats: response.data });
         const newMatchedUsers = response.data;
         if (this.state.userInfo.gender === '0') {
+          convos = [];
           newMatchedUsers.map(x => {
             for (objects of convos) {
               if (objects.id === x.dude_id) {
@@ -93,6 +94,7 @@ export default class Messages extends Component {
             })
           }
         else if (this.state.userInfo.gender === '1') {
+          convos = [];
           newMatchedUsers.map(x => {
             for (objects of convos) {
               console.log('x', x)
@@ -118,8 +120,9 @@ export default class Messages extends Component {
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps', nextProps.navigation.state.params.y);
     this.setState({ userInfo: nextProps.navigation.state.params.user, y: nextProps.navigation.state.params.y });
-    addNewMatch()
+    addNewMatch();
   }
+  
   
   // eachPic(x) 
   //   return (
