@@ -6,6 +6,8 @@ import { Select, Option } from 'react-native-chooser';
 import ModalPicker from 'react-native-modal-picker';
 // import { Select, Option } from 'react-native-select-list';
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 class Rating extends Component {
   constructor(props) {
@@ -20,7 +22,6 @@ class Rating extends Component {
   }
   onSelect(value) {
     value = value.key;
-    console.log('onSelect value', value);
     this.setState({ value });
     this.setState({ butt0n: true });
   }
@@ -39,8 +40,6 @@ class Rating extends Component {
   }
 
   render() {
-    console.log('hey man this is it', this.state.userInfo);
-    // console.log('hey man this is it',this.state.matched);
     const data = [
         { key: 1, label: '1 - Jerk' },
         { key: 2, label: '2 - Intolerable' },
@@ -53,7 +52,7 @@ class Rating extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo });
             }}
@@ -63,17 +62,17 @@ class Rating extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * (height / 677) }}
-              size={40 * (height / 667)}
+              iconStyle={{ marginLeft: 10 * responseHeight }}
+              size={40 * responseHeight}
             />
           </TouchableOpacity>  
           <Image
             source={require('../../images/sparkLogo.png')}
             name="ios-chatboxes-outline"
             resizeMode='contain'
-            style={{ width: 100 * (width / 375), height: 40 * (height / 667), marginVertical: 1 }}
+            style={{ width: 100 * responseWidth, height: 40 * responseHeight, marginVertical: 1 }}
           />
-          <Text style={{ width: 80 * (width / 375) }}>{'        '}</Text>
+          <Text style={{ width: 80 * responseWidth }}>{'        '}</Text>
         </View>
         <View style={styles.avatarStyles}>
         <Text style={styles.titleText}>{this.state.matched.name}</Text> 
@@ -81,8 +80,8 @@ class Rating extends Component {
             rounded
             source={{ uri: this.state.matched.image }}
             activeOpacity={0.7}
-            width={270 * (width / 375)}
-            height={270 * (width / 375)}
+            width={270 * responseWidth}
+            height={270 * responseWidth}
           />
         
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -106,19 +105,19 @@ class Rating extends Component {
                     initValue={'Provide Rating'}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 350 * (width / 375), just: 'center', justifyContent: 'center', borderWidth: 0, }}
+                    selectStyle={{ width: 350 * responseWidth, justifyContent: 'center', borderWidth: 0, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 />
 
           {this.state.butt0n && (
             <Button
-              textStyle={{ fontSize: 18 * (height / 667), fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
+              textStyle={{ fontSize: 18 * responseHeight, fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
               buttonStyle={styles.buttonSmall}
               title={'Confirm Rating'}
               color='black'
@@ -137,38 +136,38 @@ class Rating extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 10 * (height / 677)
+    // padding: 10 * responseHeight
   },
   titleText: {
     fontFamily: 'Cochin',
     fontWeight: '500',
     color: '#34799b',
-    fontSize: 26 * (height / 667),
-    marginBottom: 5 * (height / 667)
+    fontSize: 26 * responseHeight,
+    marginBottom: 5 * responseHeight
   },
   ratingText: {
-    fontSize: 24 * (height / 667), 
+    fontSize: 24 * responseHeight, 
     color: 'black',
     fontFamily: 'Cochin',
   },
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10 * (width / 375),
+    paddingTop: 10 * responseWidth,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomWidth: 1 * (height / 667),
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)'
   },
   buttons: {
-    width: 350 * (width / 375),
-    borderBottomWidth: 1 * (height / 667),
-    borderTopWidth: 1 * (height / 667),
+    width: 350 * responseWidth,
+    borderBottomWidth: 1 * responseHeight,
+    borderTopWidth: 1 * responseHeight,
     borderColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10 * (height / 677),
+    marginBottom: 10 * responseHeight,
     backgroundColor: 'rgba(50,121,155,0.05)',
     height: height / 11.114,
   },
@@ -176,12 +175,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'black',
-    fontSize: 18 * (height / 667)
+    fontSize: 18 * responseHeight
   },
   buttonSmall: {
-    width: 350 * (width / 375),
-    borderBottomWidth: 1 * (height / 667),
-    borderTopWidth: 1 * (height / 667),
+    width: 350 * responseWidth,
+    borderBottomWidth: 1 * responseHeight,
+    borderTopWidth: 1 * responseHeight,
     justifyContent: 'center',
     fontFamily: 'Cochin',
     alignItems: 'center',
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    // padding: 30 * (height / 677)
+    // padding: 30 * responseHeight
   }
 });
 

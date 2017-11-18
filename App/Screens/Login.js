@@ -20,20 +20,17 @@ class Login extends React.Component {
   // componentWillReceiveProps is a lifecycle method that is called just when a component 
   // is about to rerender. It is capturing the case when a user successfully logs in. 
   componentWillReceiveProps(nextProps) {
-    console.log('this is next props in login.js', nextProps);
     this.onAuthComplete(nextProps);
   }
 
   onAuthComplete(props) {
-    console.log('props in auth', this.props.navigation);
     if (props.token && props.logout) {
       //Home
-      console.log('props.token props.logout in login.js', props.logout, ' ', props.token);
+      // console.log('props.token props.logout in login.js', props.logout, ' ', props.token);
       this.props.navigation.navigate('Home', { userToken: props.token, logout: 'ok' });
     }
     else if (props.token) {
       //Home
-      console.log('else if (props.token) ', props.token);
       this.props.navigation.navigate('Home', { userToken: props.token });
     }
   }

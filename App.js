@@ -71,7 +71,6 @@ class App extends Component {
     }
   );
   if (Platform.OS === 'android') {
-    console.log('its an android');
       MainNavigator = DrawerNavigator({
         Welcome: {
           screen: WelcomeScreen
@@ -91,11 +90,11 @@ class App extends Component {
         ShowShop: {
           screen: ShowShop
         },
-        Setup: {
-          screen: Setup
-        },
         Preferences: {
           screen: Preferences
+        },
+        Setup: {
+          screen: Setup
         },
         Chat: {
           screen: ChatRoom

@@ -5,6 +5,8 @@ import { StyleSheet, Dimensions, View, Text, Slider, Image, Platform } from 'rea
 import MultiSlider from './SliderJS/MultiSlider';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 class PrefSliders extends React.Component {
   state = {
@@ -59,7 +61,7 @@ class PrefSliders extends React.Component {
           </View>
           <MultiSlider
             values={this.state.sliderOneValue}
-            sliderLength={280 * (width / 375)}
+            sliderLength={280 * responseWidth}
             onValuesChangeStart={this.sliderOneValuesChangeStart}
             onValuesChange={this.sliderOneValuesChange}
             onValuesChangeFinish={this.sliderOneValuesChangeFinish}
@@ -70,7 +72,7 @@ class PrefSliders extends React.Component {
               backgroundColor: '#34799b'
             }}
             trackStyle={{
-              height: 3 * (height / 667)
+              height: 3 * responseHeight
             }}
           />
           {/* ----------- AGE SLIDER ----------- */}
@@ -85,7 +87,7 @@ class PrefSliders extends React.Component {
           <MultiSlider
             style={styles.sliderOne}
             values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
-            sliderLength={280 * (width / 375)}
+            sliderLength={280 * responseWidth}
             onValuesChange={this.multiSliderValuesChange}
             min={18}
             max={60}
@@ -96,7 +98,7 @@ class PrefSliders extends React.Component {
               backgroundColor: '#34799b'
             }}
             trackStyle={{
-              height: 3 * (height / 667)
+              height: 3 * responseHeight
             }}
           />
         </View>
@@ -115,30 +117,30 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   sliders: {
-    marginTop: 10 * (height / 667),
-    marginBottom: 10 * (height / 667)
+    marginTop: 10 * responseHeight,
+    marginBottom: 10 * responseHeight
   },
   text: {
     alignSelf: 'flex-start',
-    paddingVertical: 20 * (height / 667)
+    paddingVertical: 20 * responseHeight
   },
   sliderOne: {
     flexDirection: 'row',
-    fontSize: 20 * (height / 667),
+    fontSize: 20 * responseHeight,
   },
   titleText: {
     alignSelf: 'flex-start',
-    fontSize: 20 * (height / 667),
-    paddingVertical: 20 * (height / 667)
+    fontSize: 20 * responseHeight,
+    paddingVertical: 20 * responseHeight
   },
   slideText: {
     alignSelf: 'flex-start',
-    fontSize: 20 * (height / 667),
-    paddingVertical: 20 * (height / 667)
+    fontSize: 20 * responseHeight,
+    paddingVertical: 20 * responseHeight
   },
   sliderValueChange: {
-    paddingVertical: 20 * (height / 667),
+    paddingVertical: 20 * responseHeight,
     marginLeft: 'auto',
-    fontSize: 20 * (height / 667),
+    fontSize: 20 * responseHeight,
   }
 });

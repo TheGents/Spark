@@ -11,6 +11,9 @@ import Privacy from './Privacy';
 import TermsOfService from './TermsOfService';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
+
 const setParamsAction = NavigationActions.setParams(
   {
     params: { user: null },
@@ -67,7 +70,7 @@ class Preferences extends Component {
       <View style={styles.container}>
         <View style={styles.nav}>
         <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
               this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference, user: this.state.user });
             }}
@@ -77,18 +80,18 @@ class Preferences extends Component {
             type={'ionicon'}
             color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 * (width / 375) }}
-            size={40 * (height / 667)}
+            iconStyle={{ marginLeft: 10 * responseWidth }}
+            size={40 * responseHeight}
           />
         </TouchableOpacity>  
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100 * (width / 375), height: 30 * (height / 667) }}
+            style={{ width: 100 * responseWidth, height: 30 * responseHeight }}
           />
-          <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375)}}>{'      '}</Text>
+          <Text style={{ width: 80 * responseWidth, marginRight: 10 * responseWidth}}>{'      '}</Text>
         </View>
-        <View style={{ width: 25 * (height / 667), height: 25 * (height / 667), margin: 10 * (height / 667) }} />
+        <View style={{ width: 25 * responseHeight, height: 25 * responseHeight, margin: 10 * responseHeight }} />
         <View style={styles.sliderStyles}>
           <PrefSliders 
           handleChangeValue={this.handleChangeValue}
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10 * (height / 667),
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -153,9 +156,9 @@ const styles = StyleSheet.create({
   },
   textLegalese: {
     color: 'gray',
-    marginLeft: 10 * (height / 667),
-    marginTop: 10 * (height / 667),
-    height: 30 * (height / 667)
+    marginLeft: 10 * responseHeight,
+    marginTop: 10 * responseHeight,
+    height: 30 * responseHeight
   },
   sliderStyles: {
     flexDirection: 'row',

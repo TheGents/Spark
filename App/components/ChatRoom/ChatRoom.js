@@ -18,6 +18,8 @@ import ModalPicker from 'react-native-modal-picker';
 import Axios from 'axios';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -115,12 +117,11 @@ class ChatRoom extends Component {
   
 
   onSend(messages = []) {
-    // console.log(messages);
     let room_id = this.state.roomID;
     let user_id = messages[0].user._id;
     let created_at = messages[0].createdAt;
     let message = messages[0].text;
-    Axios.post('http://webspark.herokuapp.com/postmessage', { room_id: room_id, user_id: user_id, created_at: created_at, message: message  } ).then((response)=>console.log(response));
+    Axios.post('http://webspark.herokuapp.com/postmessage', { room_id, user_id, created_at, message } ).then((response)=>console.log('response'));
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages)
     }));
@@ -136,40 +137,29 @@ class ChatRoom extends Component {
   }
 
 onSelect(value) {
-  console.log('onSelect value', value);
   if (value.key === 0) {
     Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.matched.id}`)
   }
 
   else if (value.key === 1) {
-    console.log('in ths matched', this.state.matched);
-    console.log('in ths userInfo', this.state.userInfo);
     Axios.put(
       `http://webspark.herokuapp.com/putMatch/${this.state.matched.id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${false}`
     ).then(response => {
       Alert.alert('Match Has Been Removed');
       this.setState({ matched: '' });
       this.props.navigation.navigate('Messages', { y: '' });
-      console.log(response);
+     
     });
 }
 }
 
 
   render() {
-    // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
-    // console.log('This is userInfo',this.state.userInfo);
-    // console.log('This is matchedInfo',this.state.matched);
-    // console.log('this is rating passback from rate', this.state.checkRating)
-    
-    console.log('booleon',this.state.booleon);
-    console.log('wow', this.state.matched.rated == 'true');
     const data = [
-      { key: 0, section: true, label: 'Repor Usert' },
+      { key: 0, label: 'Report User' },
       { key: 1, label: 'Delete User' },
       
   ];
-    // console.log('This is getRequest',this.state.kitkats);
     //We are rendering two if statements.
     //To make this more clear, should make this into a separate component and then render it here.
     //Also, have to make star activations ratings in a different file later.
@@ -179,7 +169,7 @@ onSelect(value) {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.nav}>
           <TouchableOpacity
-          style={{ width: 80 * (width / 375) }}
+          style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
             this.dismiss();
           }}>
@@ -188,51 +178,52 @@ onSelect(value) {
           type={'ionicon'}
           color={'#34799b'}
           underlayColor={'white'}
-          size={40 * (height / 667)}
-          iconStyle={{ marginRight: 20 * (width / 375) }}
+          size={40 * responseHeight}
+          iconStyle={{ marginLeft: 5 * responseWidth }}
         />
           </TouchableOpacity>
-          <View style={{ width: 90 * (width / 375)}}>
+          <View >
             <Text style={styles.name}>{ this.state.matched.name }</Text>
             {this.state.showRatingButton && <TouchableOpacity
-              style={{ width: 40 * (width / 375), paddingRight: 1 * (height / 667) }}
+              style={{ width: 40 * responseWidth, paddingRight: 1 * responseHeight }}
               onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
                   color={'#34799b'}
                   underlayColor={'white'}
-                  size={39 * (height / 667)}
+                  size={39 * responseHeight}
                 />
           </TouchableOpacity>}
           </View>
           {/* <TouchableOpacity
-            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
+            style={{ width: 40 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseHeight }}
             > */}
-            <View>
+            <View style={{ width: 70 * responseWidth, alignItems: 'flex-end' }}>
           <ModalPicker
                     data={data}
-                    initValue={'P'}
+                    initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 30 * (width / 375), justifyContent: 'center', borderWidth: 1, }}
+                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
                 
               <Icon
                   name={'ios-flag'}
                   type={'ionicon'}
                   underlayColor={'white'}
-                  size={39 * (height / 667)}
+                  size={39 * responseHeight}
                   title="Email Me"
                   color="#ce260a"
                   accessabilityLabel="Purple Email Me Button"
+                  iconStyle={{ marginRight: 5 * responseWidth }}
                 />
           {/* </TouchableOpacity> */}
                 </ModalPicker>
@@ -264,7 +255,7 @@ onSelect(value) {
         <View style={styles.nav}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 70 * (width / 375) }}
+          style={{ width: 70 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
               this.dismiss();
           }}>
@@ -273,8 +264,8 @@ onSelect(value) {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              size={40 * (height / 667)}
-              iconStyle={{ marginLeft: 5 * (width / 375) }}
+              size={40 * responseHeight}
+              iconStyle={{ marginLeft: 5 * responseWidth }} 
             />
           </TouchableOpacity>
           </TouchableWithoutFeedback>
@@ -291,32 +282,32 @@ onSelect(value) {
             height: 100,
             borderRadius:15,
           }}/> */}
-          <View>
+          <View style={{ width: 70 * responseWidth, alignItems: 'flex-end' }}>
           <ModalPicker
                     data={data}
-                    initValue={'P'}
+                    initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 80 * (width / 375), justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
+                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * (height / 677) }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * (height / 677), alignItems: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * (height / 677) }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
 
           {/* <TouchableOpacity
-            style={{ width: 40 * (width / 375), alignItems: 'flex-end', paddingRight: 10 * (height / 667) }}
+            style={{ width: 40 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseHeight }}
             > */}
               <Icon
                   name={'ios-flag'}
                   type={'ionicon'}
                   underlayColor={'white'}
-                  size={39 * (height / 667)}
+                  size={39 * responseHeight}
                   color="#ce260a"
-                  iconStyle={{ marginRight: 5 * (width / 375) }}
+                  iconStyle={{ marginRight: 5 * responseWidth }}
                 />
           {/* </TouchableOpacity> */}
           </ModalPicker>
@@ -338,7 +329,7 @@ onSelect(value) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10 * (height / 667),
+    padding: 10 * responseHeight,
   },
   loading: {
     flex: 1,
@@ -348,7 +339,7 @@ const styles = StyleSheet.create({
     height: height / 8.114,
     // backgroundColor: 'blue',
     flexDirection: 'row',
-    paddingTop: 10 * (height / 667),
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -356,11 +347,11 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   name: {
-    fontSize: 22 * (height / 667),
+    fontSize: 26 * responseHeight,
     fontWeight: 'bold',
     fontFamily: 'Cochin',
     color: '#34799b',
-    // marginRight: 10 * (width / 375)
+    // marginRight: 10 * responseWidth
   },
 });
 

@@ -22,6 +22,8 @@ import HomeCard from './HomeCard';
 
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 // after registering, settings link/pref settings link/profile setup link
 
@@ -74,38 +76,38 @@ class Home extends Component {
       .then(res => {
         console.log('this.state.user');
         if (res.data[0]) {
-          // console.log('double success', this.state.user);
+          console.log('double success', this.state.user);
           
-          //     console.log('id', this.state.user.id);
-          //     if (this.state.user.photos && this.state.user.photos.data[0].id) {
-          //       console.log('this.state.user.photos.data[0].i', this.state.user.id);
-          //       axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken()}`)
-          //       .then(response => {
-          //         axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
-          //         console.log('response.data.source', response.data.source);
-          //         console.log('response.data.source', this.state.user.photos.data[1]);
-          //       });
-          //     }
-          //     if (this.state.user.photos && this.state.user.photos.data[0].id) {
+              console.log('id', this.state.user.id);
+            //   if (this.state.user.photos && this.state.user.photos.data[0].id) {
+            //     console.log('this.state.user.photos.data[0].id', this.state.user.id);
+            //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
+            //     .then(response => {
+            //       axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+            //       console.log('response.data.source', response.data.source);
+            //       console.log('response.data.source', this.state.user.photos.data[1]);
+            //     });
+            //   }
+            //   if (this.state.user.photos && this.state.user.photos.data[0].id) {
             
-          //       axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken()}`)
-          //       .then(response => {
+            //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken}`)
+            //     .then(response => {
                   
-          //         axios.put('http://webspark.herokuapp.com/putPics', { photo2: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
-          //       });
-          //       }
-          //     if (this.state.user.photos && this.state.user.photos.data[2].id) {
-          //       axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken()}`)
-          //       .then(response => {
-          //         axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
-          //       });
-          //     }
-          //     if (this.state.user.photos && this.state.user.photos.data[3].id) {
-          //       axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken()}`)
-          //       .then(response => {
-          //         axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
-          //       });  
-          //   }
+            //       axios.put('http://webspark.herokuapp.com/putPics', { photo2: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+            //     });
+            //     }
+            //   if (this.state.user.photos && this.state.user.photos.data[2].id) {
+            //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken}`)
+            //     .then(response => {
+            //       axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+            //     });
+            //   }
+            //   if (this.state.user.photos && this.state.user.photos.data[3].id) {
+            //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken}`)
+            //     .then(response => {
+            //       axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.facebook_auth_id }); 
+            //     });  
+            // }
           
           this.setState({ user: res.data[0], homeLoaded: true });
         }
@@ -114,9 +116,8 @@ class Home extends Component {
           axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
           .then(response => {
             console.log('city', response.data.results[0].address_components[3].long_name);
-            this.setState({ location: response.data.results[0].address_components[3].long_name });
-            console.log('setting current location in componentdidmount', this.state.user);
-            this.setState({ homeLoaded: true });
+            this.setState({ location: response.data.results[0].address_components[3].long_name, homeLoaded: true });
+            
             axios.post('http://webspark.herokuapp.com/adduser', { user: this.state.user, location: response.data.results[0].address_components[3].long_name, numLocation: this.state.numLocation });
             return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
             .then(responses => {
@@ -127,15 +128,22 @@ class Home extends Component {
             });
           });
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
-            console.log('in the second .then at home.js', this.state.user.id);
-            console.log('in the token .then at home.js', this.state.user.id);
+            console.log('user.id  at home.js', this.state.user.id);
+            console.log('this.state.user.photos.data[0].id', this.state.user.photos.data[0].id);
+            console.log('this.state.user.userToken', this.state.userToken);
+
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
-              console.log('in the third .then at home.js');
-              axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.id }); 
-              console.log('in the fourth .then at home.js', this.state.user.facebook_auth_id);
+                console.log('response.data.source', response.data.source);
+                console.log('this.state.user.id ', this.state.user.id );
+
+              axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.id })
+              .then(put => {
+                console.log('put response', put);
+              });
             });
           }
+
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
             
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken}`)
@@ -158,10 +166,6 @@ class Home extends Component {
             }
           // return axios.put('http://webspark.herokuapp.com/putLocation', { location: this.state.location, numLocation: this.state.numLocation, facebook_auth_id: this.state.user.facebook_auth_id });
         }
-        
-        console.log('in the first .then at home.js', this.state.user.id);
-        console.log('in the first .then at home.js', this.state.user.facebook_auth_id);
-        
         });
     //we call this.setState when we want to update what a component shows
   }
@@ -169,7 +173,7 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.logout) {
       console.log('we have a logout in home.js');
-      console.log('we have a logout in home.js token', nextProps.navigation.state.params.userToken);
+      // console.log('we have a logout in home.js token', nextProps.navigation.state.params.userToken);
       this.setState({ userToken: nextProps.navigation.state.params.userToken, logout: null });
         
         console.log('nextprops in home');
@@ -178,9 +182,11 @@ class Home extends Component {
     this.setState({ user: nextProps.navigation.state.params.setupUser });
     }
     if (nextProps.navigation.state.params.agePreference) {
+      console.log('setting agepreference to ', nextProps.navigation.state.params.agePreference);
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference });
     }
     if (nextProps.navigation.state.params.locationPreference) {
+      console.log('setting locationpreference to ', nextProps.navigation.state.params.locationPreference);
       this.setState({ locationPreference: nextProps.navigation.state.params.locationPreference });
     }
    
@@ -239,11 +245,11 @@ class Home extends Component {
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               name="ios-chatboxes-outline"
-              size={25 * (width / 375)}
-              style={{ width: 130 * (width / 375), height: height / 16.675, margin: 10 }}
+              size={25 * responseWidth}
+              style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10 }}
             />
             <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-end' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                 }}
@@ -254,7 +260,7 @@ class Home extends Component {
                 color={'#34799b'}
                 underlayColor={'white'}
                 iconStyle={{ marginRight: 10 }}
-                size={50 * (height / 667)}
+                size={50 * responseHeight}
               />
             </TouchableOpacity>
           </View>
@@ -266,8 +272,8 @@ class Home extends Component {
                   .facebook_auth_id}/picture?type=large`
               }}
               activeOpacity={0.7}
-              width={280 * (height / 677)}
-              height={280 * (height / 677)}
+              width={280 * responseHeight}
+              height={280 * responseHeight}
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
@@ -285,7 +291,7 @@ class Home extends Component {
                   name={'ios-create'}
                   type={'ionicon'}
                   color={'#34799b'}
-                  size={37 * (height / 667)}
+                  size={37 * responseHeight}
                   underlayColor={'white'}
                   reverse
                 />
@@ -295,9 +301,9 @@ class Home extends Component {
               <View> 
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference });
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  size={37 * (height / 667)}
+                  size={37 * responseHeight}
                   name={'md-settings'}
                   type={'ionicon'}
                   color={'#34799b'}
@@ -323,7 +329,7 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10 * (height / 667),
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -331,32 +337,32 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)'
   },
   nameStyle: {
-    fontSize: 23 * (height / 667),
+    fontSize: 23 * responseHeight,
     fontWeight: '400'
   },
   ageStyle: {
-    fontSize: 21 * (height / 667),
+    fontSize: 21 * responseHeight,
     fontWeight: '300',
     marginBottom: -2
   },
   contentContainerStyle: {
     backgroundColor: 'white',
     height: 1.1 * ( height / 2.382 ),
-    marginTop: 35 * (height / 667),
+    marginTop: 35 * responseHeight,
     alignItems: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 27 * (height / 677)
+    marginTop: 27 * responseHeight
   },
   titleText: {
     width: width / 4.6875,
     marginLeft: 10 
   },
   homecardStyling: {
-    marginTop: 3 * (height / 677)
+    marginTop: 3 * responseHeight
   }
 });
 

@@ -10,6 +10,7 @@ import {
   Dimensions,
   View,
   Easing,
+  Alert,
   ScrollView,
   Button
 } from 'react-native';
@@ -17,13 +18,17 @@ import {
   SharedElement,
   SharedElementGroup
 } from '@expo/ex-navigation';
-import axios from 'axios'
-import { Avatar, Icon } from 'react-native-elements';
+import Communications from 'react-native-communications';
+import ModalPicker from 'react-native-modal-picker';
+import { Icon } from 'react-native-elements';
 import ITEMS from './data';
 import SetupImage from './MatchImage.js';
 import ImageSectionCard from './ImageSectionCard';
 import BioCardSection from './BioCardSection';
+
 const {height, width} = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 1;
@@ -51,6 +56,10 @@ class ShowShop extends Component {
     this.setState({ match: nextProps.navigation.state.params.user });
   }
 
+  onSelect(value) {
+      Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.match.id}`);
+  }
+
     renderItem(item, i, gent) {
       let { image, photo1, photo2, photo3, photo4 } = this.state.match;
       // console.log('usersetup.js', this.state.user);
@@ -62,7 +71,7 @@ class ShowShop extends Component {
         i * ITEM_SIZE,
         (i + 1) * ITEM_SIZE
       ];
-      
+
       // Ensure that we're leaving space for first and last item.
       
       
@@ -97,12 +106,14 @@ class ShowShop extends Component {
     
     
     render() {
-      console.log('this is the width', width);
+      const data = [
+        { key: 0, label: 'Report User' },
+    ];
       return (
         <View style={{backgroundColor: 'white', flex: 1 }}>
           <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.user });
               }}
@@ -112,12 +123,12 @@ class ShowShop extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 * (width / 375) }}
-              size={40 * (height / 667)}
+              iconStyle={{ marginRight: 10 * responseWidth }}
+              size={40 * responseHeight}
               />
             </TouchableOpacity>
           </View>
-          <ScrollView style={{backgroundColor: 'white', flex: 2 }}>
+          <ScrollView style={{backgroundColor: 'white', flex: 1 }}>
             <ImageSectionCard>
               <Animated.ScrollView
               horizontal={true}
@@ -138,7 +149,7 @@ class ShowShop extends Component {
               }
               </Animated.ScrollView>
             </ImageSectionCard>
-            <BioCardSection>
+            
               <View style={styles.containerStyle}>
                 <Text style={styles.name}>{this.state.match.first_name}, {this.state.match.age}</Text>
                 <Text style={styles.occupation}>{this.state.match.occupation}</Text>
@@ -149,7 +160,26 @@ class ShowShop extends Component {
                 {/* <Text>Education: {this.state.match.school}</Text> */}
                 <Text style={styles.textStyle}>{this.state.match.general_bio}</Text>
               </View>
-            </BioCardSection>
+              <View style={ styles.reportStyle }> 
+                <ModalPicker
+                data={data}
+                initValue={'Report User'}
+                onChange={this.onSelect.bind(this)}
+                style={ styles.buttons }
+                selectStyle={{ width: 350 * responseWidth, justifyContent: 'center', borderWidth: 0, }}
+                selectTextStyle={styles.textStyle8}
+                overlayStyle={{ borderWidth: 1.5, }}
+                sectionStyle={{ borderWidth: 1.5, }}
+                optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}
+                optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
+                cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                cancelTextStyle={{ fontSize: 24 * responseHeight }}
+            />
+              </View>
+              <View style={ styles.massiveHeight }>
+                <Text>{''}</Text>
+              </View>
+            
           </ScrollView>
         </View>
       );
@@ -175,7 +205,24 @@ class ShowShop extends Component {
         marginBottom: 5,
         padding: 1,
         alignItems: 'center',
-        height: 68 * (height / 667)
+        height: 68 * responseHeight
+    },
+    buttons: {
+      width: 350 * responseWidth,
+      borderBottomWidth: 1 * responseHeight,
+      borderTopWidth: 1 * responseHeight,
+      borderColor: 'black',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 10 * responseHeight,
+      backgroundColor: 'rgba(50,121,155,0.05)',
+      height: height / 11.114,
+    },
+    reportStyle: {
+      marginTop: 5,
+      marginBottom: 30,
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     bioStyle: {
       borderWidth: 1,
@@ -193,29 +240,37 @@ class ShowShop extends Component {
       padding: 9
     },
     name: {
-      fontSize: 24 * (height / 667),
+      fontSize: 24 * responseHeight,
       fontWeight: 'bold',
       fontFamily: 'Cochin'
     },
     textStyle: {
-      fontSize: 20 * (height / 667),
-      fontFamily: 'Cochin'
+      fontSize: 20 * responseHeight,
+      fontFamily: 'Cochin',
+    },
+    textStyle8: {
+      fontSize: 20 * responseHeight,
+      fontFamily: 'Cochin',
+      color: 'red'
     },
     occupation: {
-      fontSize: 15 * (height / 667),
+      fontSize: 15 * responseHeight,
       fontWeight: 'normal',
       fontStyle: 'italic'
     },
     nav: {
-      height: 70 * (height / 667),
+      height: 70 * responseHeight,
       flexDirection:'row',
-      paddingTop: 10 * (height / 667),
-      marginLeft: 10 * (width / 375),
+      paddingTop: 10 * responseHeight,
+      marginLeft: 10 * responseWidth,
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: '#fff',
       borderBottomWidth:1,
       borderColor:'rgba(0, 0, 0, 0.1)'
+    },
+    massiveHeight: {
+      height: 260 * responseHeight
     }
   };
 

@@ -5,6 +5,8 @@ import { Button, Icon } from 'react-native-elements';
 const SPARK_WIDTH = Dimensions.get('window').width;
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
     renderLastSlide(index) {
@@ -15,7 +17,7 @@ class Slides extends Component {
                 <View style={styles.container}>
                   <Image 
                   resizeMode='contain'
-                  source={require('../images/sparkLogo.png')} style={{width: 310 * (width / 375) }}/>
+                  source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth }}/>
                   {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Login" 
@@ -32,7 +34,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RatingShot.png')} style={{ marginTop: 25 * (height / 677), height: 320 * (height / 677)  }}/>
+              source={require('../images/RatingShot.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight  }}/>
             </View>  
           );
         }
@@ -52,7 +54,7 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/SparkScreen.png')} style={{ marginTop: 25 * (height / 677), height: 320 * (height / 677) }}/>
+              source={require('../images/SparkScreen.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
             </View>  
         );
     }
@@ -65,8 +67,8 @@ class Slides extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 * (width / 375) }}
-              size={70 * (height / 677)}
+              iconStyle={{ marginRight: 10 * responseWidth }}
+              size={70 * responseHeight}
           />
           {/* <Image 
           resizeMode='contain'
@@ -76,7 +78,6 @@ class Slides extends Component {
   }
     renderSlides() {
         return this.props.data.map((slide, index) => {
-          console.log('index', index);
             return (
             <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
                 <Text style={styles.welcomeTextStyle}>{slide.text}</Text>
@@ -107,16 +108,16 @@ const styles = {
     width: SPARK_WIDTH
   },
   textStyle: {
-    fontSize: 30 * (height / 677),
+    fontSize: 30 * responseHeight,
     color: '#34799b'
   },
   swipeStyle: {
-    fontSize: 24 * (height / 677),
+    fontSize: 24 * responseHeight,
     color: '#34799b',
-    marginTop: 40 * (height / 677)
+    marginTop: 40 * responseHeight
   },
   welcomeTextStyle: {
-    fontSize: 30 * (height / 677),
+    fontSize: 30 * responseHeight,
     color: 'white'
   },
   container: {
@@ -132,8 +133,8 @@ const styles = {
 },
   buttonStyle: {
     backgroundColor: '#34799b',
-    marginTop: 15 * (height / 677),
-    width: 100 * (width / 375)
+    marginTop: 15 * responseHeight,
+    width: 100 * responseWidth
   }
 };
 

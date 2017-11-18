@@ -1,7 +1,5 @@
 export default {
-            terms: `End-User License Agreement for Dallas Spark
-            
-            This End-User License Agreement (EULA) is a legal agreement between you (either an individual or a single entity) and the mentioned author (Dallas Spark) of this application for the software product identified above. 
+            terms: `This End-User License Agreement (EULA) is a legal agreement between you (either an individual or a single entity) and the mentioned author (Dallas Spark) of this application for the software product identified above. 
             
             By installing and using this application, you agree to be bounded by the terms of this EULA.
             If you do not agree to the terms of this EULA, do not use the SOFTWARE PRODUCT.
@@ -9,9 +7,7 @@ export default {
             SOFTWARE PRODUCT LICENSE
             Dallas Spark is being distributed for personal use.
             
-            1. GRANT OF LICENSE. This EULA grants you the following rights: Installation and Use. 
-            
-            Rights Dallas Spark Grants You.
+            1. GRANT OF LICENSE.  
             Dallas Spark grants you a personal, worldwide, royalty-free, non-assignable, nonexclusive, revocable, and non-sublicensable license to access and use the Services. This license is for the sole purpose of letting you use and enjoy the Services’ benefits as intended by Dallas Spark and permitted by this Agreement. Therefore, you agree not to:
             use the Service or any content contained in the Service for any commercial purposes without our written consent.
             copy, modify, transmit, create any derivative works from, make use of, or reproduce in any way any copyrighted material, images, trademarks, trade names, service marks, or other intellectual property, content or proprietary information accessible through the Service without Dallas Spark’s prior written consent.
@@ -28,7 +24,7 @@ export default {
             probe, scan or test the vulnerability of our Services or any system or network.
             encourage or promote any activity that violates this Agreement.
            
-            5. Community Rules. 
+            2. COMMUNITY RULES. 
             By using the Services, you agree that you will not:
             use the Service for any purpose that is illegal or prohibited by this Agreement.
             spam, solicit money from or defraud any users.
@@ -42,10 +38,10 @@ export default {
             create another account if we have already terminated your account, unless you have our permission.
             Dallas Spark reserves the right to investigate and/or terminate your account without a refund of any purchases if you have misused the Service or behaved in a way that Dallas Spark regards as inappropriate or unlawful, including actions or communications that occur off the Service but involve users you meet through the Service.
 
-            6. Indemnity by You.
+            3. INDEMNITY BY YOU.
             You agree, to the extent permitted under applicable law, to indemnify, defend and hold harmless Dallas Spark, our affiliates, and their and our respective officers, directors, agents, and employees from and against any and all complaints, demands, claims, damages, losses, costs, liabilities and expenses, including attorney’s fees, due to, arising out of, or relating in any way to your access to or use of the Services, your Content, or your breach of this Agreement.
             
-            7. Entire Agreement; Other.
+            4. ENTIRE AGREEMENT.
             This Agreement, with the Privacy Policy, the Safety Tips and any terms disclosed and agreed to by you if you purchase additional features, products or services we offer on the Service, contains the entire agreement between you and Dallas Spark regarding the use of the Service. If any provision of this Agreement is held invalid, the remainder of this Agreement shall continue in full force and effect. The failure of Dallas Spark to exercise or enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision. You agree that your Dallas Spark account is non-transferable and all of your rights to your account and its Content terminate upon your death. No agency, partnership, joint venture or employment is created as a result of this Agreement and you may not make any representations or bind Dallas Spark in any manner.
           `
   

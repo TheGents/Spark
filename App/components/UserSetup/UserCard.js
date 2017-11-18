@@ -6,6 +6,8 @@ const UserCard = props => {
 };
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 const styles = {
   containerStyle: {
@@ -18,10 +20,10 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5 * (width / 375),
-    marginRight: 5 * (width / 375),
+    marginLeft: 5 * responseWidth,
+    marginRight: 5 * responseWidth,
     marginTop: 1,
-    marginBottom: 20 * (height / 677),
+    marginBottom: 20 * responseHeight,
     padding: 1
   }
 }

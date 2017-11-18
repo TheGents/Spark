@@ -16,6 +16,8 @@ import { Icon } from 'react-native-elements';
 import Axios from 'axios';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 let convos = [];
 
@@ -142,9 +144,9 @@ export default class Messages extends Component {
         style={{
           alignItems: 'center',
           flexDirection: 'row',
-          marginTop: 5 * (height / 667),
-          marginBottom: 5 * (height / 667),
-          borderBottomWidth: 1 * (height / 667),
+          marginTop: 5 * responseHeight,
+          marginBottom: 5 * responseHeight,
+          borderBottomWidth: 1 * responseHeight,
           borderColor: '#e3e3e3'
         }}
         onPress={() => {
@@ -153,11 +155,11 @@ export default class Messages extends Component {
       >
         <Image
           source={{ uri: x.image }}
-          style={{ width: 70 * (width / 375), height: 70 * (height / 667), borderRadius: 35, margin: 10 * (height / 667) }}
+          style={{ width: 70 * responseWidth, height: 70 * responseHeight, borderRadius: 35, margin: 10 * responseHeight }}
         />
         <View>
-          <Text style={{ fontSize: 20 * (height / 667), fontWeight: '600', color: '#111' }}>{x.name}</Text>
-          <Text numberOfLines={1} style={{ fontSize: 20 * (height / 667), fontWeight: '400', color: '#888', width: 200 * (width / 375) }}>
+          <Text style={{ fontSize: 20 * responseHeight, fontWeight: '600', color: '#111' }}>{x.name}</Text>
+          <Text numberOfLines={1} style={{ fontSize: 20 * responseHeight, fontWeight: '400', color: '#888', width: 200 * responseWidth }}>
             {/* {x.message} */}
             New match!
           </Text>
@@ -201,7 +203,7 @@ export default class Messages extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
@@ -211,21 +213,21 @@ export default class Messages extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * (width / 375), }}
-              size={50 * (height / 667)}
+              iconStyle={{ marginLeft: 10 * responseWidth, }}
+              size={50 * responseHeight}
             />
         </TouchableOpacity>  
           <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
-            style={{ width: 100 * (width / 375), height: 40 * (height / 667) }}
+            style={{ width: 100 * responseWidth, height: 40 * responseHeight }}
           />
           <Text style={styles.titleText} />
           
         </View>
         
-        <ScrollView style={{ margin: 10 * (height / 667), }} onPress={console.log('Chat')}>
-          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 * (height / 667) }}>MATCHES</Text>
+        <ScrollView style={{ margin: 10 * responseHeight, }} onPress={console.log('Chat')}>
+          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 * responseHeight }}>MATCHES</Text>
           <ListView
             enableEmptySections
             horizontal={false}
@@ -245,10 +247,10 @@ export default class Messages extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10 * (height / 667),
+    padding: 10 * responseHeight,
   },
   titleText: {
-    width: 80 * (width / 375),
+    width: 80 * responseWidth,
   },
   loading: {
     flex: 1,
@@ -257,38 +259,38 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10 * (height / 667),
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomWidth: 1 * (height / 667),
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)'
   },
   matches: {
-    borderTopWidth: 1 * (height / 667),
-    paddingTop: 15 * (height / 667),
+    borderTopWidth: 1 * responseHeight,
+    paddingTop: 15 * responseHeight,
     borderTopColor: '#e3e3e3',
-    borderBottomWidth: 1 * (height / 667),
-    paddingBottom: 15 * (height / 667),
+    borderBottomWidth: 1 * responseHeight,
+    paddingBottom: 15 * responseHeight,
     borderBottomColor: '#e3e3e3'
   },
   buttons: {
-    width: 80 * (width / 375),
-    height: 80 * (height / 667),
-    borderWidth: 10 * (width / 375),
+    width: 80 * responseWidth,
+    height: 80 * responseHeight,
+    borderWidth: 10 * responseWidth,
     borderColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 40 * (height / 667),
+    borderRadius: 40 * responseHeight,
   },
   buttonSmall: {
-    width: 50 * (width / 375),
-    height: 50 * (height / 667),
+    width: 50 * responseWidth,
+    height: 50 * responseHeight,
     borderWidth: 10,
     borderColor: '#e7e7e7',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25 * (height / 667),
+    borderRadius: 25 * responseHeight,
   },
   card: {
     flex: 1,
@@ -296,7 +298,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 2,
     borderColor: '#e3e3e3',
-    width: 350 * (width / 375),
-    height: 420 * (height / 667)
+    width: 350 * responseWidth,
+    height: 420 * responseHeight
   }
 });

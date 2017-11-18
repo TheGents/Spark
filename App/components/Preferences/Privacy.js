@@ -6,7 +6,7 @@ const Privacy = () => (
     <Text
       style={{ color: 'gray', marginVertical: 5 }}
       onPress={() =>
-        Linking.openURL('https://termsfeed.com/privacy-policy/9a7bb3100733d69b15346a792e6c7282')}
+        Linking.openURL('https://webspark.herokuapp.com/')}
     >
       Privacy Policy
     </Text>

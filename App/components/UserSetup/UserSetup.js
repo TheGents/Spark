@@ -1,6 +1,6 @@
-
+'use strict';
 import React, { Component } from 'react';
-import { ImagePicker, Constants } from 'expo';
+import { ImagePicker } from 'expo';
 import {
   TouchableWithoutFeedback,
   StyleSheet,
@@ -21,6 +21,8 @@ import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
 // const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 // const BAR_HEIGHT = Constants.statusBarHeight * 1;
@@ -87,7 +89,7 @@ class Setup extends Component {
             photo1: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data.photo1));
+          .then(response => console.log('putPics first', response.data[0].photo1));
       } else if (val === 'second') {
         this.setState({ photo: result.uri });
         axios
@@ -95,7 +97,7 @@ class Setup extends Component {
             photo2: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data.photo2));
+          .then(response => console.log(response.data[0].photo2));
       } else if (val === 'third') {
         this.setState({ third: result.uri });
         axios
@@ -103,7 +105,7 @@ class Setup extends Component {
             photo3: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data.photo3));
+          .then(response => console.log(response.data[0].photo3));
       } else {
         this.setState({ fourth: result.uri });
         axios
@@ -111,7 +113,7 @@ class Setup extends Component {
             photo4: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data.photo4));
+          .then(response => console.log(response.data[0].photo4));
       }
     }
     console.log('the facebook id', result.uri);
@@ -132,7 +134,7 @@ class Setup extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
               this.dismiss();
             }}
@@ -142,17 +144,17 @@ class Setup extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * (width / 375) }}
-              size={40 * (height / 677)}
+              iconStyle={{ marginLeft: 10 * responseWidth }}
+              size={40 * responseHeight}
             />
             </TouchableOpacity>
             {/* <Text>Settings</Text> */}
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100 * (width / 375), height: 40 * (height / 677), margin: 10 * (height / 677) }}
+              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseHeight }}
             />
-            <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375) }}>{'          '}</Text>
+            <Text style={{ width: 80 * responseWidth, marginRight: 10 * responseWidth }}>{'          '}</Text>
           </View>
           </TouchableWithoutFeedback>
           <ScrollView style={styles.scrollViewStyle}>
@@ -183,7 +185,7 @@ class Setup extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1
   },
@@ -192,21 +194,21 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10 * (height / 677),
-    borderBottomWidth: 1 * (height / 677),
+    paddingTop: 10 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0, 0, 0, 0.1)'
   },
   bioStyle: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    marginTop: 15 * (height / 677)
+    marginTop: 15 * responseHeight
   },
   scrollViewStyle: {
     flex: 1
   },
   massiveHeight: {
-    height: 260 * (height / 677)
+    height: 260 * responseHeight
   }
-};
+});
 
 export default Setup;
