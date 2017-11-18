@@ -57,7 +57,7 @@ class ShowShop extends Component {
   }
 
   onSelect(value) {
-      Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.match.id}`);
+      Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user: ${this.state.match.first_name} with the id number: ${this.state.match.id}`);
   }
 
     renderItem(item, i, gent) {

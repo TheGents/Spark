@@ -78,37 +78,42 @@ class App extends Component {
         auth: {
           screen: Login
         },
-        Home: {
-          screen: Home
-        },
-        Messages: {
-          screen: Messages
-        },
-        Shopping: {
-          screen: Shopping
-        },
-        ShowShop: {
-          screen: ShowShop
-        },
-        Preferences: {
-          screen: Preferences
-        },
-        Setup: {
-          screen: Setup
-        },
-        Chat: {
-          screen: ChatRoom
-        },
-        Rating: {
-          screen: Rating
+        main: {
+          screen: TabNavigator({
+            Home: {
+              screen: Home,
+            },
+            Messages: {
+              screen: Messages
+            },
+            Shopping: {
+              screen: Shopping
+            },
+            ShowShop: {
+              screen: ShowShop
+            },
+            Preferences: {
+              screen: Preferences
+            },
+            Setup: {
+              screen: Setup
+            },
+            Chat: {
+              screen: ChatRoom
+            },
+            Rating: {
+              screen: Rating
+            }
+          })
         }
+        
       },
       {
         navigationOptions: {
-          tabBarVisible: false
+          tabBarVisible: true
         },
 
-        lazy: true
+        lazy: false
       }
     );
   }

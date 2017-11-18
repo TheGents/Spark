@@ -10,6 +10,7 @@ import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
 import TermsOfService from './TermsOfService';
 
+
 const { height, width } = Dimensions.get('window');
 const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
@@ -144,21 +145,23 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%'
   },
-  borderPrivacy: {
-    borderTopWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
-    width: '100%'
-  },
   borderTerms: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)'
+  },
+  borderPrivacy: {
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
+    borderColor: 'rgba(0,0,0,0.1)',
+    
+    width: '100%'
   },
   textLegalese: {
     color: 'gray',
     marginLeft: 10 * responseHeight,
     marginTop: 10 * responseHeight,
-    height: 30 * responseHeight
+    fontSize: 14 * responseHeight
   },
   sliderStyles: {
     flexDirection: 'row',

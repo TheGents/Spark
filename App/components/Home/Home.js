@@ -219,6 +219,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log('responsheight', responseHeight);
     if (!this.state.homeLoaded) {
       return (
         <View style={styles.loading}>
@@ -272,8 +273,8 @@ class Home extends Component {
                   .facebook_auth_id}/picture?type=large`
               }}
               activeOpacity={0.7}
-              width={280 * responseHeight}
-              height={280 * responseHeight}
+              height={230 * responseHeight}
+             
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
@@ -291,7 +292,7 @@ class Home extends Component {
                   name={'ios-create'}
                   type={'ionicon'}
                   color={'#34799b'}
-                  size={37 * responseHeight}
+                  size={36 * responseHeight}
                   underlayColor={'white'}
                   reverse
                 />
@@ -303,7 +304,7 @@ class Home extends Component {
                   onPress={() => {
                     this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  size={37 * responseHeight}
+                  size={36 * responseHeight}
                   name={'md-settings'}
                   type={'ionicon'}
                   color={'#34799b'}
@@ -343,23 +344,23 @@ const styles = StyleSheet.create({
   ageStyle: {
     fontSize: 21 * responseHeight,
     fontWeight: '300',
-    marginBottom: -2
+    marginBottom: -2 * responseHeight
   },
   contentContainerStyle: {
     backgroundColor: 'white',
-    height: 1.1 * ( height / 2.382 ),
-    marginTop: 35 * responseHeight,
+    height: 1.1 * (height / 2.382),
+    marginTop: 32 * responseHeight,
     alignItems: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 27 * responseHeight
+    marginTop: 25 * responseHeight
   },
   titleText: {
     width: width / 4.6875,
-    marginLeft: 10 
+    marginLeft: 10 * responseWidth
   },
   homecardStyling: {
     marginTop: 3 * responseHeight
