@@ -78,7 +78,6 @@ class Slides extends Component {
   }
     renderSlides() {
         return this.props.data.map((slide, index) => {
-          console.log('index', index);
             return (
             <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
                 <Text style={styles.welcomeTextStyle}>{slide.text}</Text>

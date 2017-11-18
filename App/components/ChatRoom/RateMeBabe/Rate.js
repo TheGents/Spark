@@ -22,7 +22,6 @@ class Rating extends Component {
   }
   onSelect(value) {
     value = value.key;
-    console.log('onSelect value', value);
     this.setState({ value });
     this.setState({ butt0n: true });
   }
@@ -41,8 +40,6 @@ class Rating extends Component {
   }
 
   render() {
-    console.log('hey man this is it', this.state.userInfo);
-    // console.log('hey man this is it',this.state.matched);
     const data = [
         { key: 1, label: '1 - Jerk' },
         { key: 2, label: '2 - Intolerable' },

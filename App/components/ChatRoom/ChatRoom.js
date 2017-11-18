@@ -117,12 +117,11 @@ class ChatRoom extends Component {
   
 
   onSend(messages = []) {
-    // console.log(messages);
     let room_id = this.state.roomID;
     let user_id = messages[0].user._id;
     let created_at = messages[0].createdAt;
     let message = messages[0].text;
-    Axios.post('http://webspark.herokuapp.com/postmessage', { room_id: room_id, user_id: user_id, created_at: created_at, message: message  } ).then((response)=>console.log(response));
+    Axios.post('http://webspark.herokuapp.com/postmessage', { room_id, user_id, created_at, message } ).then((response)=>console.log('response'));
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages)
     }));
@@ -138,40 +137,29 @@ class ChatRoom extends Component {
   }
 
 onSelect(value) {
-  console.log('onSelect value', value);
   if (value.key === 0) {
     Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.matched.id}`)
   }
 
   else if (value.key === 1) {
-    console.log('in ths matched', this.state.matched);
-    console.log('in ths userInfo', this.state.userInfo);
     Axios.put(
       `http://webspark.herokuapp.com/putMatch/${this.state.matched.id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${false}`
     ).then(response => {
       Alert.alert('Match Has Been Removed');
       this.setState({ matched: '' });
       this.props.navigation.navigate('Messages', { y: '' });
-      console.log(response);
+     
     });
 }
 }
 
 
   render() {
-    // console.log('hello this is the hidden rating butotn test', this.state.matched.rated == 'true')
-    // console.log('This is userInfo',this.state.userInfo);
-    // console.log('This is matchedInfo',this.state.matched);
-    // console.log('this is rating passback from rate', this.state.checkRating)
-    
-    console.log('booleon',this.state.booleon);
-    console.log('wow', this.state.matched.rated == 'true');
     const data = [
       { key: 0, label: 'Report User' },
       { key: 1, label: 'Delete User' },
       
   ];
-    // console.log('This is getRequest',this.state.kitkats);
     //We are rendering two if statements.
     //To make this more clear, should make this into a separate component and then render it here.
     //Also, have to make star activations ratings in a different file later.

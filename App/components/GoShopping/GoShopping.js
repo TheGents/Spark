@@ -40,13 +40,11 @@ export default class Shopping extends Component {
   }
 
   componentDidMount() {
-    console.log('age prefernece in shopping', this.state.agePreference);
-    console.log('userin shopping', this.state.userInfo.length);
     checkingForCards = () => {
       Axios.get(
         `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
       ).then(responseD => {
-        console.log('responseD this might be reloading', this.state.userInfo.length);
+        // console.log('responseD this might be reloading', this.state.userInfo.length);
         Axios.get(
           `http://webspark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
             .userInfo.gender}`
@@ -96,7 +94,7 @@ export default class Shopping extends Component {
     Axios.get(
       `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
     ).then(responseD => {
-      console.log('responseD this might be reloading 2', this.state.userInfo.length);
+      // console.log('responseD this might be reloading 2', this.state.userInfo.length);
       Axios.get(
         `http://webspark.herokuapp.com/shopFiltered/${this.state.userInfo.facebook_auth_id}/${this.state
           .userInfo.gender}`
@@ -152,7 +150,6 @@ export default class Shopping extends Component {
   
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
       // console.log('old cards', this.state.cards);
-      console.log('these are the newcards that i want', this.state.newCards.length);
       const currentCard = this.state.newCards[card];
       
         const filteredCards = this.state.cards.filter((obj) => {
@@ -197,18 +194,15 @@ export default class Shopping extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps locationPreference', nextProps.navigation.state.params.locationPreference)
     if (nextProps.navigation.state.params.user) {
       this.setState({ userInfo: nextProps.navigation.state.params.user });
       checkingForCards();
-      console.log('changing the user in componentWillReceiveProps (nextProps.navigation.state.params.user)');
       }
     if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference, locationPreference: nextProps.navigation.state.params.locationPreference });
-      console.log('nextProps.navigation.state.params,  (location_score)', this.state.userInfo.location_score);
       // console.log('cards are the deal', this.state.cards.length);
       const newCardArray = [];
-      console.log('newCardArray.length', newCardArray.length);
+      
       for (card of this.state.cards) {
         // console.log('this is the cards location score', card);
         let matchScore = Math.round((this.state.userInfo.location_score - card.location_score) * 71.9735137469);
@@ -220,15 +214,13 @@ export default class Shopping extends Component {
         if (card.age >= nextProps.navigation.state.params.agePreference[0] && 
           card.age <= nextProps.navigation.state.params.agePreference[1] && 
           matchScore <= nextProps.navigation.state.params.locationPreference) {
-          console.log('nextProps.navigation.state.params.agePreference[0]', nextProps.navigation.state.params.agePreference[0]);
-          console.log('nextProps.navigation.state.params.agePreference[1]', nextProps.navigation.state.params.agePreference[1]);
-          console.log('card age', card.age);
+          // console.log('nextProps.navigation.state.params.agePreference[0]', nextProps.navigation.state.params.agePreference[0]);
+          // console.log('nextProps.navigation.state.params.agePreference[1]', nextProps.navigation.state.params.agePreference[1]);
           newCardArray.push(card);
-          console.log('newcardarray', newCardArray.length);
+          // console.log('newcardarray', newCardArray.length);
         }
       }
       this.setState({ newCards: newCardArray });
-      console.log('these new cards are the deal', this.state.newCards.length);
     }
   }
 
@@ -247,8 +239,6 @@ export default class Shopping extends Component {
     }
     
     x.miles = matchScore;
-    console.log('card miles in (card)', x.miles);
-    console.log('locationPreference in (card)', this.state.locationPreference);
     if (x.rating && x.miles <= this.state.locationPreference) {
     return (
       <View style={styles.card}>
@@ -326,20 +316,16 @@ export default class Shopping extends Component {
 
   handleYup(cards) {
     const SwipeMatch = true;
-    console.log('handleYup', cards);
-    console.log('cards', cards);
     // PleaseShutYourMouthAndBeQuiet(cards, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
     const SwipeMatch = false;
-    console.log('handleNope', card);
     PleaseShutYourMouthAndBeQuiet(card, SwipeMatch);
     // console.log(`Nope for ${card.text}`);
   }
   noMore = () => {
-    console.log('the end of cards');
     this.setState({ newCards: 0 });
     checkingForCards();
   }
@@ -355,8 +341,6 @@ export default class Shopping extends Component {
   // }
 
   render() {
-    console.log('height', height, width);
-    console.log('dimensions ', Dimensions.get('window'));
     if (this.state.newCards === 0) {
       console.log('we have 0 cards');
       return (
@@ -406,7 +390,6 @@ export default class Shopping extends Component {
       );
     }
     if (!this.state.newCards.length > 0) {
-      console.log('!_.max', this.state.cards);
       return (
         <View style={styles.container}>
           <View style={styles.nav}>
@@ -453,7 +436,6 @@ export default class Shopping extends Component {
       );
     }
 
-    console.log('this.state.newcards', this.state.newCards);
     // console.log('hey this is noob', this.state.filtered);
     // console.log('hey this is poop', this.state.matches);
     return (

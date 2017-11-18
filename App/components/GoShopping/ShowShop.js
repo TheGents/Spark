@@ -109,7 +109,6 @@ class ShowShop extends Component {
       const data = [
         { key: 0, label: 'Report User' },
     ];
-      console.log('this is the width', width);
       return (
         <View style={{backgroundColor: 'white', flex: 1 }}>
           <View style={styles.nav}>

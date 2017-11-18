@@ -28,8 +28,6 @@ class SetupBio extends Component {
   }
 
   componentDidMount() {
-    console.log('size', responseHeight);
-    
     axios
       .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
@@ -41,12 +39,10 @@ class SetupBio extends Component {
       });
   }
   updateBio(general_bio) {
-    console.log('here', general_bio);
     this.setState({ general_bio: general_bio })
     this.props.handleChangeValue(general_bio, this.props.user.facebook_auth_id, this.state.occupation);
   }
   updateOccupation(occupation) {
-    console.log('here', occupation);
     this.setState({ occupation: occupation })
     this.props.handleChangeValue(this.state.bio, this.props.user.facebook_auth_id, occupation);
   }
