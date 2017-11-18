@@ -4,6 +4,8 @@ import { LoginManager } from 'react-native-fbsdk';
 import Button from 'apsl-react-native-button';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 console.ignoredYellowBox = ['Remote debugger'];
 
@@ -31,7 +33,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * (height / 667), }}>Logout</Text>
+            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * responseHeight, }}>Logout</Text>
           </View>
         </Button>
         <Button
@@ -40,7 +42,7 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * (height / 667), }}>Delete Account</Text>
+            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * responseHeight, }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -57,20 +59,20 @@ const styles = StyleSheet.create({
     left: 0,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginRight: 10 * (height / 667),
-    marginLeft: 10 * (height / 667)
+    marginRight: 10 * responseHeight,
+    marginLeft: 10 * responseHeight
     // backgroundColor: 'black'
   },
   buttonStyle8: {
     backgroundColor: 'white',
     borderColor: 'rgba(0,0,0,0.3)',
     borderWidth: 2,
-    borderRadius: 22 * (height / 667),
-    height: 50 * (height / 667),
+    borderRadius: 22 * responseHeight,
+    height: 50 * responseHeight,
     width: 128 * (width / 357),
   },
   textStyle8: {
-    width: 153 * (width / 375),
+    width: 153 * responseWidth,
     borderColor: 'red',
     borderWidth: 1,
     fontFamily: 'Avenir Next',
@@ -78,8 +80,8 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   customViewStyle: {
-    width: 128 * (width / 375),
-    height: 55 * (height / 667),
+    width: 128 * responseWidth,
+    height: 55 * responseHeight,
     alignItems: 'center',
     justifyContent: 'center'
   }

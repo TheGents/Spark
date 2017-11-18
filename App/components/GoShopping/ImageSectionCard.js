@@ -9,10 +9,12 @@ const ImageSectionCard = (props) => {
 };
 
 const {height, width} = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 
 const styles = {
   containerStyle: {
-    height: 295 * (height / 677),
+    height: 295 * responseHeight,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: 'black',

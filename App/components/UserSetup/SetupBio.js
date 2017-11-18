@@ -13,7 +13,10 @@ import {
 import axios from 'axios';
 
 const { width, height } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
+
 
 class SetupBio extends Component {
   constructor(props) {
@@ -25,6 +28,8 @@ class SetupBio extends Component {
   }
 
   componentDidMount() {
+    console.log('size', responseHeight);
+    
     axios
       .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
       .then(response => {
@@ -51,7 +56,7 @@ class SetupBio extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
-        <Text style={styles.textStyle}>Bio</Text>
+        <Text style={styles.textStyle}>Bios</Text>
           <ScrollView
             scrollEnabled={false}
           >
@@ -66,8 +71,8 @@ class SetupBio extends Component {
             backgroundColor={'transparent'}
             editable
           />
-          </ScrollView>
           <Text style={styles.textStyle}>Occupation</Text>
+          
           <TextInput
             placeholder="Work"
             maxLength={35}
@@ -78,6 +83,8 @@ class SetupBio extends Component {
             backgroundColor={'transparent'}
             editable
           />
+          
+          </ScrollView>
         </View>
       </View>
     );
@@ -91,20 +98,15 @@ const styles = {
     width: '100%'
   },
   nameStyle: {
-    fontSize: 29 * (height / 677),
+    fontSize: 29 * responseHeight,
     fontWeight: '400'
   },
   ageStyle: {
-    fontSize: 19 * (height / 677),
+    fontSize: 19 * responseHeight,
     fontWeight: '400'
   },
-  textInput: {
-    fontSize: 29 * (height / 677),
-    fontWeight: '400',
-    borderWidth: 1 * (height / 677),
-  },
   textStyle: {
-    fontSize: 20 * (height / 677), 
+    fontSize: 20 * responseHeight, 
     marginLeft: 5, 
     marginTop: 7, 
     color: '#34799b',
@@ -116,24 +118,24 @@ const styles = {
   },
   bioTextInput: {
     marginTop: 1,
-    fontSize: 20 * (height / 677),
+    fontSize: 20 * responseHeight,
     fontWeight: '400',
-    borderTopWidth: 1 * (height / 677),
-    borderBottomWidth: 1 * (height / 677),
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)',
     width: '100%',
     padding: 5 * (width / 357),
-    height: 100 * (height / 677)
+    height: 100 * responseHeight
   },
   occupationTextInput: {
-    marginTop: 1,
-    fontSize: 20 * (height / 677),
+    marginTop: 5,
+    fontSize: 20 * responseHeight,
     fontWeight: '400',
-    borderTopWidth: 1 * (height / 677),
-    borderBottomWidth: 1 * (height / 677),
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)',
     padding: 5 * (width / 357),
-    maxHeight: 50 * (height / 677),
+    maxHeight: 50 * responseHeight,
   }
 };
 

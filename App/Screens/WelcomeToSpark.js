@@ -35,6 +35,7 @@ const SLIDE_DATA = [
   
     async componentWillMount() {
       console.log('alert', Alert);
+
       // if (Platform.OS === 'android' && !Constants.isDevice) {
       //   this.setState({
       //     errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
@@ -53,7 +54,14 @@ const SLIDE_DATA = [
         this.setState({ token });
  
       } else {
-        Alert.alert(Terms.terms);
+        Alert.alert(
+          'End-User License Agreement for Dallas Spark',
+          Terms.terms,
+          [
+            { text: 'Continue', onPress: () => console.log('OK Pressed') },
+          ],
+          { cancelable: false }
+        );
         this.setState({ token: false });
       }
     }

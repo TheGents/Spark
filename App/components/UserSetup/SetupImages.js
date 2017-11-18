@@ -13,6 +13,8 @@ import axios from 'axios';
 console.disableYellowBox = true;
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = 100;
 
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
@@ -22,76 +24,59 @@ class SetupImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photo1: '',
-      photo2: '',
-      photo3: '',
-      photo4: ''
+      photo1: props.user.photo1 || '',
+      photo2: props.user.photo2 || '',
+      photo3: props.user.photo3 || '',
+      photo4: props.user.photo4 || ''
     };
   }
   componentDidMount() {
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo1);
-        if (response.data[0].photo1) {
-          this.setState({ photo1: response.data[0].photo1 });
-        }
-        console.log(this.state.photo1);
-      });
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo2);
-        if (response.data[0].photo2) {
-          this.setState({ photo2: response.data[0].photo2 });
-          console.log(this.state.photo2);
-        }
-      });
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo3);
-        if (response.data[0].photo3) {
-          this.setState({ photo3: response.data[0].photo3 });
-          console.log(this.state.photo3);
-        }
-      });
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo2);
-        if (response.data[0].photo2) {
-          this.setState({ photo2: response.data[0].photo2 });
-          console.log(this.state.photo2);
-        }
-      });
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo3);
-        if (response.data[0].photo3) {
-          this.setState({ photo3: response.data[0].photo3 });
-          console.log(this.state.photo3);
-        }
-      });
-    axios
-      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-      .then(response => {
-        console.log('this is what i need', response.data[0].photo4);
-        if (response.data[0].photo4) {
-          this.setState({ photo4: response.data[0].photo4 });
-          console.log(this.state.photo4);
-        }
-      });
+    // axios
+    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+    //   .then(response => {
+    //     console.log('this is what i need', response.data[0].photo1);
+    //     if (response.data[0].photo1) {
+    //       this.setState({ photo1: response.data[0].photo1 });
+    //     }
+    //     console.log(this.state.photo1);
+    //   });
+   
+    // axios
+    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+    //   .then(response => {
+    //     console.log('this is what i need', response.data[0].photo2);
+    //     if (response.data[0].photo2) {
+    //       this.setState({ photo2: response.data[0].photo2 });
+    //       console.log(this.state.photo2);
+    //     }
+    //   });
+    // axios
+    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+    //   .then(response => {
+    //     console.log('this is what i need', response.data[0].photo3);
+    //     if (response.data[0].photo3) {
+    //       this.setState({ photo3: response.data[0].photo3 });
+    //       console.log(this.state.photo3);
+    //     }
+    //   });
+    // axios
+    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+    //   .then(response => {
+    //     console.log('this is what i need', response.data[0].photo4);
+    //     if (response.data[0].photo4) {
+    //       this.setState({ photo4: response.data[0].photo4 });
+    //       console.log(this.state.photo4);
+    //     }
+    //   });
   }
 
   onClick(val) {
     this.props.ImagePicker(val);
+    
     if (val == 'first') {
       axios
         .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
-          console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo1) {
             this.setState({ photo1: response.data[0].photo1 });
           }
@@ -100,7 +85,6 @@ class SetupImage extends Component {
       axios
         .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
-          console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo2) {
             this.setState({ photo2: response.data[0].photo2 });
           }
@@ -109,7 +93,6 @@ class SetupImage extends Component {
       axios
         .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
-          console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo3) {
             this.setState({ photo3: response.data[0].photo3 });
           }
@@ -118,7 +101,6 @@ class SetupImage extends Component {
       axios
         .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
         .then(response => {
-          console.log('this is what i need', response.data[0].photo1);
           if (response.data[0].photo4) {
             this.setState({ photo4: response.data[0].photo4 });
           }
@@ -128,7 +110,6 @@ class SetupImage extends Component {
 
   render() {
     const { image, photo, third, fourth } = this.props.images;
-    console.log('third', this.state.photo3);
     const firstLogo = image || this.state.photo1 ? require('../images/deletelogo.png') : require('../images/add.png')
     const secondLogo = photo || this.state.photo2 ? require('../images/deletelogo.png') : require('../images/add.png')
     const thirdLogo = third || this.state.photo3 ? require('../images/deletelogo.png') : require('../images/add.png')
@@ -146,7 +127,7 @@ class SetupImage extends Component {
           style={styles.box}>
             <Image
               source={firstLogo}
-              style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
+              style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
             />
           </Animated.Image>  
         </TouchableOpacity>
@@ -161,7 +142,7 @@ class SetupImage extends Component {
           >
             <Image
             source={secondLogo}
-            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
             />
           </Animated.Image>
         </TouchableOpacity>
@@ -173,7 +154,7 @@ class SetupImage extends Component {
           <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box}>
             <Image
             source={thirdLogo}
-            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
             />
            </Animated.Image> 
         </TouchableOpacity>
@@ -188,7 +169,7 @@ class SetupImage extends Component {
           >
             <Image
             source={fourthLogo}
-            style={{ height: 30 * (height / 677), width: 30 * (width / 375) }}
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
             />
           </Animated.Image>
         </TouchableOpacity>

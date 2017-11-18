@@ -23,6 +23,8 @@ import Card from './MatchCard';
 
 
 const {height, width} = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
 const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 const BAR_HEIGHT = Constants.statusBarHeight * 1;
@@ -58,7 +60,7 @@ class SetupImage extends Component {
                       source={{ uri: image || photo1 || photo2 || photo3 || photo4 }}
                       style={[
                         {
-                          height: 303 * (height / 677),
+                          height: 303 * responseHeight,
                           width: width - 18,
                           flex: 1,
                           borderRadius: 10,

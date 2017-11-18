@@ -91,11 +91,11 @@ class App extends Component {
         ShowShop: {
           screen: ShowShop
         },
-        Setup: {
-          screen: Setup
-        },
         Preferences: {
           screen: Preferences
+        },
+        Setup: {
+          screen: Setup
         },
         Chat: {
           screen: ChatRoom
