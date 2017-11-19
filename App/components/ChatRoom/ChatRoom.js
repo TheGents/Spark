@@ -145,7 +145,7 @@ onSelect(value) {
     Axios.put(
       `http://webspark.herokuapp.com/putMatch/${this.state.matched.id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${false}`
     ).then(response => {
-      Alert.alert('Match Has Been Removed');
+      Alert.alert('User Has Been Blocked');
       this.setState({ matched: '' });
       this.props.navigation.navigate('Messages', { y: '' });
      
@@ -157,7 +157,7 @@ onSelect(value) {
   render() {
     const data = [
       { key: 0, label: 'Report User' },
-      { key: 1, label: 'Delete User' },
+      { key: 1, label: 'Block User' },
       
   ];
     //We are rendering two if statements.

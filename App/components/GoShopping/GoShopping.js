@@ -194,8 +194,8 @@ export default class Shopping extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.navigation.state.params.user) {
-      this.setState({ userInfo: nextProps.navigation.state.params.user });
+    if (nextProps.navigation.state.params.user || nextProps.navigation.state.params.userInfo) {
+      // this.setState({ userInfo: nextProps.navigation.state.params.user });
       checkingForCards();
       }
     if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
@@ -244,7 +244,7 @@ export default class Shopping extends Component {
       <View style={styles.card}>
         <TouchableHighlight
           onPress={() => {
-            this.props.navigation.navigate('ShowShop', { user: x });
+            this.props.navigation.navigate('ShowShop', { user: x, userInfo: this.state.userInfo });
           }}
         >
           <Image
@@ -282,7 +282,7 @@ export default class Shopping extends Component {
         <View style={styles.card}>
           <TouchableHighlight
             onPress={() => {
-              this.props.navigation.navigate('ShowShop', { user: x });
+              this.props.navigation.navigate('ShowShop', { user: x, userInfo: this.state.userInfo });
             }}
           >
             <Image
@@ -316,7 +316,7 @@ export default class Shopping extends Component {
 
   handleYup(cards) {
     const SwipeMatch = true;
-    // PleaseShutYourMouthAndBeQuiet(cards, SwipeMatch);
+    PleaseShutYourMouthAndBeQuiet(cards, SwipeMatch);
     // console.log(`Yup for ${card.text}`);
   }
 
