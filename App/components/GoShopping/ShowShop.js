@@ -207,7 +207,7 @@ class ShowShop extends Component {
             <Text style={ styles.textStyle8 }>Block and Report</Text>
             </ModalPicker>
               </View>
-              <View style={ styles.massiveHeight }>
+              <View style={styles.massiveHeight}>
                 <Text>{''}</Text>
               </View>
             

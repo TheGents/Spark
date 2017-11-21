@@ -40,7 +40,7 @@ class Setup extends Component {
     this.dismiss = this.dismiss.bind(this);
   }
   componentWillReceiveProps(nextProps) {
-    console.log('this is next props in preference', nextProps.navigation.state.params.user);
+
     this.setState({ user: nextProps.navigation.state.params.user });
   }
 

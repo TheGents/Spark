@@ -78,8 +78,6 @@ class App extends Component {
         auth: {
           screen: Login
         },
-        main: {
-          screen: TabNavigator({
             Home: {
               screen: Home,
             },
@@ -103,8 +101,6 @@ class App extends Component {
             },
             Rating: {
               screen: Rating
-            }
-          })
         }
         
       },
@@ -113,7 +109,7 @@ class App extends Component {
           tabBarVisible: true
         },
 
-        lazy: false
+        lazy: true
       }
     );
   }

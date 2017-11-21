@@ -151,7 +151,7 @@ export default class Shopping extends Component {
     PleaseShutYourMouthAndBeQuiet = (card, SwipeMatch) => {
       // console.log('old cards', this.state.cards);
       const currentCard = this.state.newCards[card];
-      
+      console.log('currentCard', currentCard);
         const filteredCards = this.state.cards.filter((obj) => {
           return obj !== currentCard;
         });
@@ -165,6 +165,7 @@ export default class Shopping extends Component {
     
       // console.log('!this.state.newCards', this.state.newCards.length);
       // this.setState({ cards: false })
+      console.log('this.state.matches', this.state.matches);
       const FoundMatch = [];
       for (let i = 0; i < this.state.matches.length; i++) {
         if (currentCard.facebook_auth_id === this.state.matches[i]) {
@@ -232,14 +233,15 @@ export default class Shopping extends Component {
   Card(x) {
 
     // console.log('here is the preference in card', this.state.locationPreference);
-    // console.log('here is the card', x);
+    // if (x) {
+      if(x) {
     let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
     if (matchScore < 0) {
       matchScore *= -1; 
     }
-    
     x.miles = matchScore;
-    if (x.rating && x.miles <= this.state.locationPreference) {
+
+    if ( x.rating && x.miles <= this.state.locationPreference) {
     return (
       <View style={styles.card}>
         <TouchableHighlight
@@ -250,8 +252,7 @@ export default class Shopping extends Component {
           <Image
             source={{
               uri:
-                x.image ||
-                'https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview'
+                x.image
             }}
             resizeMode='cover'
             style={{ borderRadius: 15, flex: 1, width: width * 0.9, alignItems: 'center', justifyContent: 'flex-end' }}
@@ -277,7 +278,7 @@ export default class Shopping extends Component {
       </View>
     );
   }
-  
+  else if (!x.rating && x.miles <= this.state.locationPreference) {
       return (
         <View style={styles.card}>
           <TouchableHighlight
@@ -303,7 +304,7 @@ export default class Shopping extends Component {
           </TouchableHighlight>
         </View>
       );
-  
+    }
   
   
   // return (
@@ -312,6 +313,8 @@ export default class Shopping extends Component {
   //     <ActivityIndicator size='large' color='#34799b' />
   //   </View>  
   // )
+  // }
+  }
    }
 
   handleYup(cards) {
@@ -502,7 +505,7 @@ export default class Shopping extends Component {
                 backgroundColor: 'white',
                 color: 'black',
                 marginRight: 30 * responseWidth,
-                width: 105 * responseWidth,
+                width: 110 * responseWidth,
                 fontSize: 38 * responseWidth,
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -524,7 +527,7 @@ export default class Shopping extends Component {
                   color: 'white',
                   marginLeft: 30 * responseWidth,
                   /* height: 80 * responseHeight, */
-                  width: 105 * responseWidth,
+                  width: 110 * responseWidth,
                   fontSize: 38 * responseWidth,
                   alignItems: 'center',
                   justifyContent: 'center'

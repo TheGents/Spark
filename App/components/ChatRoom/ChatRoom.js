@@ -182,10 +182,10 @@ onSelect(value) {
           iconStyle={{ marginLeft: 5 * responseWidth }}
         />
           </TouchableOpacity>
-          <View >
+          <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
             <Text style={styles.name}>{ this.state.matched.name }</Text>
             {this.state.showRatingButton && <TouchableOpacity
-              style={{ width: 40 * responseWidth, paddingRight: 1 * responseHeight }}
+              style={{ width: 40 * responseWidth, paddingRight: 1 * responseHeight, alignSelf: 'center' }}
               onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
