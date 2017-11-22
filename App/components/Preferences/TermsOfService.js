@@ -15,7 +15,8 @@ class TermsOfService extends Component {
             }}
             name={'md-settings'}
             type={'ionicon'}
-            color={'#009FF2'}
+            color={'#34799b'}
+            size={37}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
           />

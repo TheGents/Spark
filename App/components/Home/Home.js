@@ -273,7 +273,7 @@ class Home extends Component {
                   .facebook_auth_id}/picture?type=large`
               }}
               activeOpacity={0.7}
-              height={230 * responseHeight}
+              height={240 * responseHeight}
              
             />
           </View>
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     backgroundColor: 'white',
-    height: 1.1 * (height / 2.382),
+    height: 280 * responseHeight,
     marginTop: 32 * responseHeight,
     alignItems: 'center',
   },
@@ -356,14 +356,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 25 * responseHeight
+    marginTop: 65 * responseHeight
   },
   titleText: {
     width: width / 4.6875,
     marginLeft: 10 * responseWidth
   },
   homecardStyling: {
-    marginTop: 3 * responseHeight
+    marginTop: 1 * responseHeight
   }
 });
 

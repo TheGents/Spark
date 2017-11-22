@@ -142,13 +142,14 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'flex-end',
     position: 'absolute',
-    bottom: 0,
+    bottom: 1,
     width: '100%'
   },
   borderTerms: {
     borderTopWidth: 1 * responseHeight,
     borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)'
+
   },
   borderPrivacy: {
     borderTopWidth: 1 * responseHeight,

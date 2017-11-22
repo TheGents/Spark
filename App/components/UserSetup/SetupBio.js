@@ -52,7 +52,7 @@ class SetupBio extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
-        <Text style={styles.textStyle}>Bios</Text>
+        <Text style={styles.textStyle}>Bio</Text>
           <ScrollView
             scrollEnabled={false}
           >
