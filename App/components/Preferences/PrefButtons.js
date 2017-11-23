@@ -32,7 +32,8 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 16 * responseHeight, }}>Logout</Text>
+            {/* fontFamily: 'Avenir Next' */}
+            <Text style={{ fontSize: 16 * responseHeight, }}>Logout</Text>
           </View>
         </Button>
         <Button
@@ -40,7 +41,8 @@ class PrefButtons extends React.Component {
           onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 15 * responseHeight, }}>Delete Account</Text>
+          {/* fontFamily: 'Avenir Next' */}
+            <Text style={{ fontSize: 15 * responseHeight, }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     width: 153 * responseWidth,
     borderColor: 'red',
     borderWidth: 1,
-    fontFamily: 'Avenir Next',
+    // fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'white'
   },

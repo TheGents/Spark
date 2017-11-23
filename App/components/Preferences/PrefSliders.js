@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   },
   sliderOne: {
     flexDirection: 'row',
-    fontSize: 20 * responseHeight,
   },
   titleText: {
     alignSelf: 'flex-start',

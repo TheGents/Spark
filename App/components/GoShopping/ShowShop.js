@@ -197,10 +197,10 @@ class ShowShop extends Component {
                 onChange={this.onSelect.bind(this)}
                 style={ styles.buttons }
                 selectStyle={{ width: 350 * responseWidth, justifyContent: 'center', borderWidth: 0, }}
-                overlayStyle={{ borderWidth: 1.5, }}
-                sectionStyle={{ borderWidth: 1.5, }}
-                optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}
-                optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
+                overlayStyle={{ borderWidth: 1, }}
+                sectionStyle={{ borderWidth: 1, justifyContent: 'center' }}
+                optionStyle={{ borderWidth: 1, height: 50 * responseHeight, width: 280 * responseWidth, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
+                optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
                 cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
                 cancelTextStyle={{ fontSize: 24 * responseHeight }}
             >
@@ -239,14 +239,15 @@ class ShowShop extends Component {
         height: 68 * responseHeight
     },
     buttons: {
-      width: 350 * responseWidth,
+      width: 360 * responseWidth,
       borderBottomWidth: 1 * responseHeight,
       borderTopWidth: 1 * responseHeight,
-      borderColor: 'black',
+      borderColor: '#34799b',
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: 10 * responseHeight,
-      backgroundColor: 'rgba(50,121,155,0.05)',
+      marginTop: 20 * responseHeight,
+      backgroundColor: 'white',
       height: height / 11.114,
     },
     reportStyle: {
@@ -273,15 +274,15 @@ class ShowShop extends Component {
     name: {
       fontSize: 24 * responseHeight,
       fontWeight: 'bold',
-      fontFamily: 'Cochin'
+      // fontFamily: 'Cochin'
     },
     textStyle: {
       fontSize: 20 * responseHeight,
-      fontFamily: 'Cochin',
+      // fontFamily: 'Cochin',
     },
     textStyle8: {
       fontSize: 20 * responseHeight,
-      fontFamily: 'Cochin',
+      // fontFamily: 'Cochin',
       color: 'red'
     },
     occupation: {

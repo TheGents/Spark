@@ -356,7 +356,7 @@ export default class Shopping extends Component {
               }}
             >
           <Icon
-            style={{ alignSelf: 'right' }}
+            /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
             color={'#34799b'}
@@ -403,7 +403,7 @@ export default class Shopping extends Component {
               }}
             >
           <Icon
-            style={{ alignSelf: 'right' }}
+            /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
             color={'#34799b'}
@@ -451,7 +451,7 @@ export default class Shopping extends Component {
               }}
             >
           <Icon
-            style={{ alignSelf: 'right' }}
+            /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
             color={'#34799b'}
@@ -490,7 +490,7 @@ export default class Shopping extends Component {
           onSwipedAll={this.noMore}
           onSwipedRight={this.handleYup}
           onSwipedLeft={this.handleNope}
-          backgroundColor={'transparent'}
+          backgroundColor={'rgba(0, 0, 0, 0.0)'}
           disableBottomSwipe={'true'}
           disableTopSwipe='true'
           showSecondCard={this.state.secondCard}
@@ -581,7 +581,8 @@ loading: {
   name: {
     fontSize: 24 * responseHeight,
     fontWeight: 'bold',
-    fontFamily: 'Cochin'
+
+    // fontFamily: 'Cochin'
   },
   occupation: {
     fontSize: 18 * responseHeight,

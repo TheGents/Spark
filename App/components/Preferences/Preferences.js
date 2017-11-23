@@ -1,7 +1,15 @@
 'use strict';
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, AlertIOS, TouchableOpacity, Dimensions, AsyncStorage, Image } from 'react-native';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  AlertIOS, 
+  TouchableOpacity, 
+  Dimensions, 
+  AsyncStorage, 
+  Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import Axios from 'axios';

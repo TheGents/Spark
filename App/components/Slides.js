@@ -60,7 +60,8 @@ class Slides extends Component {
     }
         return (
           <View style={styles.container}>  
-          <Text style={styles.textStyle}>Welcome to Spark</Text>
+          <Text style={styles.textStyle}>Welcome to Dallas Spark</Text>
+          <Text style={styles.swipeTextStyle}>(Swipe Left to Progress)</Text>
           {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
           <Icon
               name={'ios-arrow-round-back-outline'}
@@ -109,6 +110,10 @@ const styles = {
   },
   textStyle: {
     fontSize: 30 * responseHeight,
+    color: '#34799b'
+  },
+  swipeTextStyle: {
+    fontSize: 16 * responseHeight,
     color: '#34799b'
   },
   swipeStyle: {

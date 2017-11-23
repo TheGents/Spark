@@ -287,7 +287,7 @@ class Home extends Component {
               <View>
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Setup', { user: this.state.user });
+                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
@@ -348,23 +348,23 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     backgroundColor: 'white',
-    height: 280 * responseHeight,
-    marginTop: 32 * responseHeight,
+    height: 260 * responseHeight,
+    marginTop: 29 * responseHeight,
     alignItems: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 65 * responseHeight
+    marginBottom: 5
   },
   titleText: {
     width: width / 4.6875,
     marginLeft: 10 * responseWidth
   },
-  homecardStyling: {
-    marginTop: 1 * responseHeight
-  }
+  // homecardStyling: {
+  //   marginTop: 1 
+  // }
 });
 
 export default Home;

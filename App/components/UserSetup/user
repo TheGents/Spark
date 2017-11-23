@@ -169,8 +169,8 @@ class Setup extends Component {
           </View>
           <View style={styles.bioStyle}>
             <SetupBio
-              key={1}
-              /* ImagePicker={this._pickImage} */
+              key={2}
+              ImagePicker={this._pickImage}
               handleChangeValue={this.handleChangeValue}
               user={this.state.user}
               style={styles.bioStyle}
@@ -213,3 +213,16 @@ const styles = {
 };
 
 export default Setup;
+
+
+
+
+
+
+
+
+
+
+
+
+

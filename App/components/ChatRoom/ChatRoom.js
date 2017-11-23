@@ -209,9 +209,9 @@ onSelect(value) {
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center'}}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
                     optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
                 
@@ -288,13 +288,13 @@ onSelect(value) {
                     initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
+                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
 
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 26 * responseHeight,
     fontWeight: 'bold',
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
     color: '#34799b',
     // marginRight: 10 * responseWidth
   },
