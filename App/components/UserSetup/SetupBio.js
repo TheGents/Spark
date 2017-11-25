@@ -47,12 +47,12 @@ class SetupBio extends Component {
     this.props.handleChangeValue(this.state.bio, this.props.user.facebook_auth_id, occupation);
   }
   render() {
-    const { general_bio, occupation, height } = this.state;
+    const { general_bio, occupation } = this.state;
 
     return (
       <View style={styles.container}>
         <View style={styles.bottomContainer}>
-        <Text style={styles.textStyle}>Bios</Text>
+        <Text style={styles.textStyle}>Bio</Text>
           <ScrollView
             scrollEnabled={false}
           >
@@ -64,8 +64,8 @@ class SetupBio extends Component {
             onChangeText={(general_bio) => this.updateBio(general_bio)}
             value={this.state.general_bio}
             style={{ ...styles.bioTextInput }}
-            backgroundColor={'transparent'}
-            editable
+            /*backgroundColor={'transparent'}*/
+            editable 
           />
           <Text style={styles.textStyle}>Occupation</Text>
           
@@ -76,9 +76,9 @@ class SetupBio extends Component {
             onChangeText={(occupation) => this.updateOccupation(occupation)}
             value={this.state.occupation}
             style={{ ...styles.occupationTextInput }}
-            backgroundColor={'transparent'}
+            /* backgroundColor={'transparent'} */
             editable
-          />
+          /> 
           
           </ScrollView>
         </View>

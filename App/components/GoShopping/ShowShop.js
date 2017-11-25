@@ -18,6 +18,7 @@ import {
   SharedElement,
   SharedElementGroup
 } from '@expo/ex-navigation';
+import Axios from 'axios';
 import Communications from 'react-native-communications';
 import ModalPicker from 'react-native-modal-picker';
 import { Icon } from 'react-native-elements';
@@ -41,24 +42,52 @@ class ShowShop extends Component {
       this.state = {
         scrollX: new Animated.Value(0),
         match: props.navigation.state.params.user,
+        userInfo: props.navigation.state.params.userInfo,
+        matches: [],
         value: '',
+        blocked: false
       };
       this.renderItem = this.renderItem.bind(this);
-    
     }
-  //   <TouchableOpacity
-  //   onPress={() => {
-  //     this.props.navigation.navigate('Shopping', { user: this.state.user });
-  //   }}
-  // >
+ 
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ match: nextProps.navigation.state.params.user });
+    console.log('match', this.state.match)
+    this.setState({ blocked: false, match: nextProps.navigation.state.params.user, userInfo: nextProps.navigation.state.params.userInfo });
   }
 
   onSelect(value) {
-      Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user with the id number: ${this.state.match.id}`);
-  }
+    if (value.key === 0) {
+      Communications.email(['vincent.castig@gmail.com', 'vinnycastig@gmail.com'],null,null,'Reporting User', `I would like to report user: ${this.state.match.first_name} with the id number: ${this.state.match.id}`);
+    }
+    else {
+      console.log('match', this.state.match);
+      console.log('user', this.state.userInfo);
+      const SwipeMatch = false;
+      
+        Axios.put(
+          `http://webspark.herokuapp.com/putMatch/${this.state.match.facebook_auth_id}/${this.state.userInfo
+            .facebook_auth_id}/${this.state.userInfo.gender}/${SwipeMatch}`
+        ).then(response => {
+          console.log('this', response);
+          if (response.data.length > 0) {
+            Alert.alert(`You have blocked ${this.state.match.first_name}`);
+            this.props.navigation.navigate('Shopping', { userInfo: true })
+          }
+          else {
+            Axios.post('http://webspark.herokuapp.com/postMatch', {
+              gender: this.state.userInfo.gender,
+              matchID: this.state.match.facebook_auth_id,
+              ID: this.state.userInfo.facebook_auth_id,
+              SwipeMatch
+            }).then(response => {
+              Alert.alert(`You have blocked ${this.state.match.first_name}`);
+              this.props.navigation.navigate('Shopping', { userInfo: true });
+            });
+          }
+      })
+    } 
+    }
 
     renderItem(item, i, gent) {
       let { image, photo1, photo2, photo3, photo4 } = this.state.match;
@@ -106,8 +135,10 @@ class ShowShop extends Component {
     
     
     render() {
+      console.log('user', this.state.userInfo);
       const data = [
-        { key: 0, label: 'Report User' },
+        { key: 0, label: 'Send Email Report' },
+        { key: 1, label: 'Block User' },
     ];
       return (
         <View style={{backgroundColor: 'white', flex: 1 }}>
@@ -115,7 +146,7 @@ class ShowShop extends Component {
           <TouchableOpacity
             style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
-                this.props.navigation.navigate('Shopping', { user: this.state.user });
+                this.props.navigation.navigate('Shopping');
               }}
           >  
               <Icon
@@ -163,20 +194,20 @@ class ShowShop extends Component {
               <View style={ styles.reportStyle }> 
                 <ModalPicker
                 data={data}
-                initValue={'Report User'}
                 onChange={this.onSelect.bind(this)}
                 style={ styles.buttons }
                 selectStyle={{ width: 350 * responseWidth, justifyContent: 'center', borderWidth: 0, }}
-                selectTextStyle={styles.textStyle8}
-                overlayStyle={{ borderWidth: 1.5, }}
-                sectionStyle={{ borderWidth: 1.5, }}
-                optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}
-                optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
+                overlayStyle={{ borderWidth: 1, }}
+                sectionStyle={{ borderWidth: 1, justifyContent: 'center' }}
+                optionStyle={{ borderWidth: 1, height: 50 * responseHeight, width: 280 * responseWidth, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
+                optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
                 cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
                 cancelTextStyle={{ fontSize: 24 * responseHeight }}
-            />
+            >
+            <Text style={ styles.textStyle8 }>Block and Report</Text>
+            </ModalPicker>
               </View>
-              <View style={ styles.massiveHeight }>
+              <View style={styles.massiveHeight}>
                 <Text>{''}</Text>
               </View>
             
@@ -208,14 +239,15 @@ class ShowShop extends Component {
         height: 68 * responseHeight
     },
     buttons: {
-      width: 350 * responseWidth,
+      width: 360 * responseWidth,
       borderBottomWidth: 1 * responseHeight,
       borderTopWidth: 1 * responseHeight,
-      borderColor: 'black',
+      borderColor: '#34799b',
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: 10 * responseHeight,
-      backgroundColor: 'rgba(50,121,155,0.05)',
+      marginTop: 20 * responseHeight,
+      backgroundColor: 'white',
       height: height / 11.114,
     },
     reportStyle: {
@@ -242,15 +274,15 @@ class ShowShop extends Component {
     name: {
       fontSize: 24 * responseHeight,
       fontWeight: 'bold',
-      fontFamily: 'Cochin'
+      // fontFamily: 'Cochin'
     },
     textStyle: {
       fontSize: 20 * responseHeight,
-      fontFamily: 'Cochin',
+      // fontFamily: 'Cochin',
     },
     textStyle8: {
       fontSize: 20 * responseHeight,
-      fontFamily: 'Cochin',
+      // fontFamily: 'Cochin',
       color: 'red'
     },
     occupation: {

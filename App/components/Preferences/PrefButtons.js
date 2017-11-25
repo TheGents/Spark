@@ -29,20 +29,20 @@ class PrefButtons extends React.Component {
       <View style={styles.container}>
         <Button
           style={styles.buttonStyle8}
-          textStyle={styles.textStyle8}
           onPress={() => this.props.logout('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * responseHeight, }}>Logout</Text>
+            {/* fontFamily: 'Avenir Next' */}
+            <Text style={{ fontSize: 16 * responseHeight, }}>Logout</Text>
           </View>
         </Button>
         <Button
           style={styles.buttonStyle8}
-          textStyle={styles.textStyle8}
           onPress={() => this.props.delete('Welcome')}
         >
           <View style={styles.customViewStyle}>
-            <Text style={{ fontFamily: 'Avenir', fontSize: 17 * responseHeight, }}>Delete Account</Text>
+          {/* fontFamily: 'Avenir Next' */}
+            <Text style={{ fontSize: 15 * responseHeight, }}>Delete Account</Text>
           </View>
         </Button>
       </View>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   buttonStyle8: {
     backgroundColor: 'white',
     borderColor: 'rgba(0,0,0,0.3)',
-    borderWidth: 2,
+    borderWidth: 1 * responseHeight,
     borderRadius: 22 * responseHeight,
     height: 50 * responseHeight,
     width: 128 * (width / 357),
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     width: 153 * responseWidth,
     borderColor: 'red',
     borderWidth: 1,
-    fontFamily: 'Avenir Next',
+    // fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'white'
   },

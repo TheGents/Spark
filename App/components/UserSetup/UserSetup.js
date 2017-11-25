@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { ImagePicker } from 'expo';
+import { ImagePicker, Constants } from 'expo';
 import {
   TouchableWithoutFeedback,
   StyleSheet,
@@ -21,8 +21,6 @@ import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
 
 const { height, width } = Dimensions.get('window');
-const responseHeight = Math.round(height / 667);
-const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
 // const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 // const BAR_HEIGHT = Constants.statusBarHeight * 1;
@@ -32,12 +30,15 @@ class Setup extends Component {
     super(props);
     this.state = {
       scrollX: new Animated.Value(0),
+      agePreference: props.navigation.state.params.agePreference,
+      locationPreference: props.navigation.state.params.locationPreference,
       user: props.navigation.state.params.user,
       value: ''
     };
     this._pickImage = this._pickImage.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.dismiss = this.dismiss.bind(this);
+    console.log('user in setup', props.navigation.state.params.user);
   }
   componentWillReceiveProps(nextProps) {
     console.log('this is next props in preference', nextProps.navigation.state.params.user);
@@ -89,7 +90,7 @@ class Setup extends Component {
             photo1: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log('putPics first', response.data[0].photo1));
+          .then(response => console.log(response.data.photo1));
       } else if (val === 'second') {
         this.setState({ photo: result.uri });
         axios
@@ -97,7 +98,7 @@ class Setup extends Component {
             photo2: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data[0].photo2));
+          .then(response => console.log(response.data.photo2));
       } else if (val === 'third') {
         this.setState({ third: result.uri });
         axios
@@ -105,7 +106,7 @@ class Setup extends Component {
             photo3: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data[0].photo3));
+          .then(response => console.log(response.data.photo3));
       } else {
         this.setState({ fourth: result.uri });
         axios
@@ -113,7 +114,7 @@ class Setup extends Component {
             photo4: localUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
-          .then(response => console.log(response.data[0].photo4));
+          .then(response => console.log(response.data.photo4));
       }
     }
     console.log('the facebook id', result.uri);
@@ -134,7 +135,7 @@ class Setup extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.nav}>
           <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
             onPress={() => {
               this.dismiss();
             }}
@@ -144,17 +145,17 @@ class Setup extends Component {
               type={'ionicon'}
               color={'#34799b'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * responseWidth }}
-              size={40 * responseHeight}
+              iconStyle={{ marginLeft: 10 * (width / 375) }}
+              size={40 * (height / 677)}
             />
             </TouchableOpacity>
             {/* <Text>Settings</Text> */}
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseHeight }}
+              style={{ width: 100 * (width / 375), height: 40 * (height / 677), margin: 10 * (height / 677) }}
             />
-            <Text style={{ width: 80 * responseWidth, marginRight: 10 * responseWidth }}>{'          '}</Text>
+            <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375) }}>{'          '}</Text>
           </View>
           </TouchableWithoutFeedback>
           <ScrollView style={styles.scrollViewStyle}>
@@ -168,8 +169,8 @@ class Setup extends Component {
           </View>
           <View style={styles.bioStyle}>
             <SetupBio
-              key={2}
-              ImagePicker={this._pickImage}
+              key={1}
+              /* ImagePicker={this._pickImage} */
               handleChangeValue={this.handleChangeValue}
               user={this.state.user}
               style={styles.bioStyle}
@@ -185,7 +186,7 @@ class Setup extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1
   },
@@ -194,21 +195,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10 * responseHeight,
-    borderBottomWidth: 1 * responseHeight,
+    paddingTop: 10 * (height / 677),
+    borderBottomWidth: 1 * (height / 677),
     borderColor: 'rgba(0, 0, 0, 0.1)'
   },
   bioStyle: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    marginTop: 15 * responseHeight
+    marginTop: 15 * (height / 677)
   },
   scrollViewStyle: {
     flex: 1
   },
   massiveHeight: {
-    height: 260 * responseHeight
+    height: 260 * (height / 677)
   }
-});
+};
 
 export default Setup;

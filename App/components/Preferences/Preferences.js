@@ -1,7 +1,15 @@
 'use strict';
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, AlertIOS, TouchableOpacity, Dimensions, AsyncStorage, Image } from 'react-native';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  AlertIOS, 
+  TouchableOpacity, 
+  Dimensions, 
+  AsyncStorage, 
+  Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import Axios from 'axios';
@@ -9,6 +17,7 @@ import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
 import Privacy from './Privacy';
 import TermsOfService from './TermsOfService';
+
 
 const { height, width } = Dimensions.get('window');
 const responseHeight = Math.round(height / 667);
@@ -141,24 +150,27 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'flex-end',
     position: 'absolute',
-    bottom: 0,
-    width: '100%'
-  },
-  borderPrivacy: {
-    borderTopWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
+    bottom: 1,
     width: '100%'
   },
   borderTerms: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
     borderColor: 'rgba(0,0,0,0.1)'
+
+  },
+  borderPrivacy: {
+    borderTopWidth: 1 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
+    borderColor: 'rgba(0,0,0,0.1)',
+    
+    width: '100%'
   },
   textLegalese: {
     color: 'gray',
     marginLeft: 10 * responseHeight,
     marginTop: 10 * responseHeight,
-    height: 30 * responseHeight
+    fontSize: 14 * responseHeight
   },
   sliderStyles: {
     flexDirection: 'row',

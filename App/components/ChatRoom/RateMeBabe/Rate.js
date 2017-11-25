@@ -109,15 +109,16 @@ class Rating extends Component {
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    optionStyle={{ borderWidth: 1.5, height: 60 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', backgroundColor: 'white' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 />
 
           {this.state.butt0n && (
             <Button
-              textStyle={{ fontSize: 18 * responseHeight, fontFamily: 'Avenir Next', color: 'black', fontWeight: '500' }}
+            //fontFamily: 'Avenir Next'
+              textStyle={{ fontSize: 18 * responseHeight, color: 'black', fontWeight: '500' }}
               buttonStyle={styles.buttonSmall}
               title={'Confirm Rating'}
               color='black'
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     // padding: 10 * responseHeight
   },
   titleText: {
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
     fontWeight: '500',
     color: '#34799b',
     fontSize: 26 * responseHeight,
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: 24 * responseHeight, 
     color: 'black',
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
   },
   nav: {
     height: height / 8.114,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     height: height / 11.114,
   },
   textStyle8: {
-    fontFamily: 'Avenir Next',
+    // fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'black',
     fontSize: 18 * responseHeight
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1 * responseHeight,
     borderTopWidth: 1 * responseHeight,
     justifyContent: 'center',
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
     alignItems: 'center',
     backgroundColor: 'rgba(50,121,155,0.05)',
     height: height / 11.114

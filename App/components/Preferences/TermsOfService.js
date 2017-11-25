@@ -15,7 +15,8 @@ class TermsOfService extends Component {
             }}
             name={'md-settings'}
             type={'ionicon'}
-            color={'#009FF2'}
+            color={'#34799b'}
+            size={37}
             underlayColor={'white'}
             iconStyle={{ marginLeft: 10 }}
           />
@@ -26,7 +27,7 @@ class TermsOfService extends Component {
           />
           <Text>{'         '}</Text>
         </View>
-        <View style={styles.termsLegalese}>
+        <ScrollView style={styles.termsLegalese}>
           <Text style={styles.heading}>Dallas Spark Terms and Conditions of Use{'\n'}</Text>
           <Text>
           End-User License Agreement for Dallas Spark
@@ -79,7 +80,7 @@ class TermsOfService extends Component {
           This Agreement, with the Privacy Policy, the Safety Tips and any terms disclosed and agreed to by you if you purchase additional features, products or services we offer on the Service, contains the entire agreement between you and Dallas Spark regarding the use of the Service. If any provision of this Agreement is held invalid, the remainder of this Agreement shall continue in full force and effect. The failure of the Company to exercise or enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision. You agree that your Dallas Spark account is non-transferable and all of your rights to your account and its Content terminate upon your death. No agency, partnership, joint venture or employment is created as a result of this Agreement and you may not make any representations or bind Dallas Spark in any manner.{'\n'}
           </Text>
           
-        </View>
+        </ScrollView>
       </View>
     );
   }

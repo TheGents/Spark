@@ -41,7 +41,7 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    // setInterval(() => {
+    setInterval(() => {
       Axios.get(`http://webspark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
         this.setState({ kitkats: response.data });
         let katkat = response.data;
@@ -73,7 +73,7 @@ class ChatRoom extends Component {
           this.setState({ showRatingButton: true })
         }
       });
-  // }, 3000);
+  }, 3000);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })
@@ -145,7 +145,7 @@ onSelect(value) {
     Axios.put(
       `http://webspark.herokuapp.com/putMatch/${this.state.matched.id}/${this.state.userInfo.facebook_auth_id}/${this.state.userInfo.gender}/${false}`
     ).then(response => {
-      Alert.alert('Match Has Been Removed');
+      Alert.alert('User Has Been Blocked');
       this.setState({ matched: '' });
       this.props.navigation.navigate('Messages', { y: '' });
      
@@ -157,7 +157,7 @@ onSelect(value) {
   render() {
     const data = [
       { key: 0, label: 'Report User' },
-      { key: 1, label: 'Delete User' },
+      { key: 1, label: 'Block User' },
       
   ];
     //We are rendering two if statements.
@@ -182,10 +182,10 @@ onSelect(value) {
           iconStyle={{ marginLeft: 5 * responseWidth }}
         />
           </TouchableOpacity>
-          <View >
+          <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
             <Text style={styles.name}>{ this.state.matched.name }</Text>
             {this.state.showRatingButton && <TouchableOpacity
-              style={{ width: 40 * responseWidth, paddingRight: 1 * responseHeight }}
+              style={{ width: 40 * responseWidth, paddingRight: 1 * responseHeight, alignSelf: 'center' }}
               onPress={() => { this.dismissBack(); }}>
               <Icon
                   name={'ios-star-half'}
@@ -209,9 +209,9 @@ onSelect(value) {
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
                 
@@ -288,13 +288,13 @@ onSelect(value) {
                     initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, borderColor:'red' }}
+                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
+                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
+                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 >
 
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 26 * responseHeight,
     fontWeight: 'bold',
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
     color: '#34799b',
     // marginRight: 10 * responseWidth
   },

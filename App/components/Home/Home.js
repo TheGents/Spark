@@ -219,6 +219,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log('responsheight', responseHeight);
     if (!this.state.homeLoaded) {
       return (
         <View style={styles.loading}>
@@ -240,7 +241,24 @@ class Home extends Component {
     return (
       <View style={container}>
           <View style={styles.nav}>
-            <Text style={styles.titleText} />
+            {/* <Text style={styles.titleText} /> */}
+            <TouchableHighlight>
+              <View>
+                
+                <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  }}
+                  name={'ios-create'}
+                  type={'ionicon'}
+                  color={'inherent'}
+                  size={36 * responseHeight}
+                  underlayColor={'#34799b'}
+                  iconStyle={{ color: '#34799b' }}
+                  reverse
+                />
+              </View>
+            </TouchableHighlight>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
@@ -248,7 +266,24 @@ class Home extends Component {
               size={25 * responseWidth}
               style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10 }}
             />
-            <TouchableOpacity
+            
+            <TouchableHighlight>
+              <View> 
+                <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  }}
+                  size={36 * responseHeight}
+                  name={'md-settings'}
+                  type={'ionicon'}
+                  color={'inherent'}
+                  underlayColor={'white'}
+                  iconStyle={{ color: '#34799b' }}
+                  reverse
+                />
+              </View>
+            </TouchableHighlight>
+            {/* <TouchableOpacity
             style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
@@ -262,7 +297,7 @@ class Home extends Component {
                 iconStyle={{ marginRight: 10 }}
                 size={50 * responseHeight}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -272,26 +307,45 @@ class Home extends Component {
                   .facebook_auth_id}/picture?type=large`
               }}
               activeOpacity={0.7}
-              width={280 * responseHeight}
-              height={280 * responseHeight}
+              height={240 * responseHeight}
+             
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
-            <Text style={ageStyle}>{ this.state.user.occupation}</Text>
-            <Text style={ageStyle}>{this.state.user.school}</Text>
+            <View style={{ borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 5 }}>
+              <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
+              <Text style={ageStyle}>{ this.state.user.occupation}</Text>
+              <Text style={ageStyle}>{this.state.user.school}</Text>
+            </View>
           </HomeCard>
           <View style={styles.buttonContainer}>
-            <TouchableHighlight>
+          <TouchableOpacity
+            style={{ width: 140 * responseWidth, height: 140 * responseWidth, borderWidth: 5, borderRadius: 82 }}
+            onPress={() => {
+                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                }}
+            >
+              <Icon
+                name={'ios-flash'}
+                type={'ionicon'}
+                color={'#34799b'}
+                underlayColor={'white'}
+                /* iconStyle={{ marginRight: 10 }} */
+                size={140 * responseHeight}
+                /* iconStyle={{ borderWidth: 1, width: 100 }} */
+              />
+            </TouchableOpacity>
+            {/* <TouchableHighlight>
               <View>
+                
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Setup', { user: this.state.user });
+                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
                   name={'ios-create'}
                   type={'ionicon'}
                   color={'#34799b'}
-                  size={37 * responseHeight}
+                  size={36 * responseHeight}
                   underlayColor={'white'}
                   reverse
                 />
@@ -303,7 +357,7 @@ class Home extends Component {
                   onPress={() => {
                     this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  size={37 * responseHeight}
+                  size={36 * responseHeight}
                   name={'md-settings'}
                   type={'ionicon'}
                   color={'#34799b'}
@@ -311,7 +365,7 @@ class Home extends Component {
                   reverse
                 />
               </View>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
           </View>
       </View>
     );
@@ -330,11 +384,13 @@ const styles = StyleSheet.create({
     height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10 * responseHeight,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    borderBottomLeftRadius: 88,
+    borderBottomRightRadius: 88
   },
   nameStyle: {
     fontSize: 23 * responseHeight,
@@ -343,27 +399,28 @@ const styles = StyleSheet.create({
   ageStyle: {
     fontSize: 21 * responseHeight,
     fontWeight: '300',
-    marginBottom: -2
+    marginBottom: -2 * responseHeight
   },
   contentContainerStyle: {
     backgroundColor: 'white',
-    height: 1.1 * ( height / 2.382 ),
-    marginTop: 35 * responseHeight,
+    height: 260 * responseHeight,
+    marginTop: 29 * responseHeight,
     alignItems: 'center',
   },
   buttonContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 27 * responseHeight
+    marginBottom: 5,
+    flex: 1
   },
   titleText: {
     width: width / 4.6875,
-    marginLeft: 10 
+    marginLeft: 10 * responseWidth
   },
-  homecardStyling: {
-    marginTop: 3 * responseHeight
-  }
+  // homecardStyling: {
+  //   marginTop: 1 
+  // }
 });
 
 export default Home;
