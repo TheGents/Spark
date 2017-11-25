@@ -54,13 +54,13 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/SparkScreen.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
+              source={require('../images/RightxScreen Shot 2017-11-21 at 3.46.19 PM copy.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
             </View>  
         );
     }
         return (
           <View style={styles.container}>  
-          <Text style={styles.textStyle}>Welcome to Dallas Spark</Text>
+          <Text style={styles.textStyle}>Welcome to Spark</Text>
           <Text style={styles.swipeTextStyle}>(Swipe Left to Progress)</Text>
           {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
           <Icon

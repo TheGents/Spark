@@ -241,7 +241,24 @@ class Home extends Component {
     return (
       <View style={container}>
           <View style={styles.nav}>
-            <Text style={styles.titleText} />
+            {/* <Text style={styles.titleText} /> */}
+            <TouchableHighlight>
+              <View>
+                
+                <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  }}
+                  name={'ios-create'}
+                  type={'ionicon'}
+                  color={'inherent'}
+                  size={36 * responseHeight}
+                  underlayColor={'#34799b'}
+                  iconStyle={{ color: '#34799b' }}
+                  reverse
+                />
+              </View>
+            </TouchableHighlight>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
@@ -249,7 +266,24 @@ class Home extends Component {
               size={25 * responseWidth}
               style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10 }}
             />
-            <TouchableOpacity
+            
+            <TouchableHighlight>
+              <View> 
+                <Icon
+                  onPress={() => {
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  }}
+                  size={36 * responseHeight}
+                  name={'md-settings'}
+                  type={'ionicon'}
+                  color={'inherent'}
+                  underlayColor={'white'}
+                  iconStyle={{ color: '#34799b' }}
+                  reverse
+                />
+              </View>
+            </TouchableHighlight>
+            {/* <TouchableOpacity
             style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
@@ -263,7 +297,7 @@ class Home extends Component {
                 iconStyle={{ marginRight: 10 }}
                 size={50 * responseHeight}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.contentContainerStyle}>
             <Avatar
@@ -278,13 +312,32 @@ class Home extends Component {
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
-            <Text style={ageStyle}>{ this.state.user.occupation}</Text>
-            <Text style={ageStyle}>{this.state.user.school}</Text>
+            <View style={{ borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 5 }}>
+              <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
+              <Text style={ageStyle}>{ this.state.user.occupation}</Text>
+              <Text style={ageStyle}>{this.state.user.school}</Text>
+            </View>
           </HomeCard>
           <View style={styles.buttonContainer}>
-            <TouchableHighlight>
+          <TouchableOpacity
+            style={{ width: 140 * responseWidth, height: 140 * responseWidth, borderWidth: 5, borderRadius: 82 }}
+            onPress={() => {
+                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                }}
+            >
+              <Icon
+                name={'ios-flash'}
+                type={'ionicon'}
+                color={'#34799b'}
+                underlayColor={'white'}
+                /* iconStyle={{ marginRight: 10 }} */
+                size={140 * responseHeight}
+                /* iconStyle={{ borderWidth: 1, width: 100 }} */
+              />
+            </TouchableOpacity>
+            {/* <TouchableHighlight>
               <View>
+                
                 <Icon
                   onPress={() => {
                     this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
@@ -312,7 +365,7 @@ class Home extends Component {
                   reverse
                 />
               </View>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
           </View>
       </View>
     );
@@ -331,11 +384,13 @@ const styles = StyleSheet.create({
     height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10 * responseHeight,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    borderBottomLeftRadius: 88,
+    borderBottomRightRadius: 88
   },
   nameStyle: {
     fontSize: 23 * responseHeight,
@@ -353,10 +408,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 5
+    marginBottom: 5,
+    flex: 1
   },
   titleText: {
     width: width / 4.6875,
