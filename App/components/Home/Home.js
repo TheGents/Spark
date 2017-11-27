@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Font } from 'expo';
+import { Font, Components } from 'expo';
 import {
   StyleSheet,
   Image,
@@ -13,12 +13,14 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { Constants, Location, Permissions } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
+
+// const { Svg } = Components;
+// const { Stop, LinearGradient } = Components.Svg;
 
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
@@ -253,6 +255,10 @@ class Home extends Component {
                   color={'inherit'}
                   size={36 * responseHeight}
                   underlayColor={'white'}
+                  iconStyle={{ shadowColor: '#000',
+                                shadowOffset: { width: 0, height: 6 },
+                                shadowOpacity: 0.9,
+                                shadowRadius: 1 }}
                   reverse
                 />
               </View>
@@ -262,7 +268,7 @@ class Home extends Component {
               resizeMode="contain"
               name="ios-chatboxes-outline"
               size={25 * responseWidth}
-              style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10, shadowOpacity: 0.0, }}
+              style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10 }}
             />
             <TouchableHighlight>
               <View> 
@@ -275,6 +281,10 @@ class Home extends Component {
                   type={'ionicon'}
                   color={'inherent'}
                   underlayColor={'white'}
+                  iconStyle={{ shadowColor: '#000',
+                                shadowOffset: { width: 0, height: 6 },
+                                shadowOpacity: 0.9,
+                                shadowRadius: 1 }}
                   reverse
                 />
               </View>
@@ -312,6 +322,10 @@ class Home extends Component {
                 iconStyle={{ marginRight: 20 * responseWidth }}
                 size={50 * responseHeight}
               />
+              <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <Stop offset="0" stopColor="#FF0EE5" stopOpacity="1" />
+            <Stop offset="1" stopColor="#FF0088" stopOpacity="1" />
+          </LinearGradient>
             </TouchableOpacity>
             {/* <TouchableHighlight>
               <View>
@@ -363,16 +377,16 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(1,1,1,0.1)',
+    backgroundColor: 'blue',
     borderBottomWidth: 2,
     borderColor: 'rgba(0,0,0,0.1)',
-    // borderBottomLeftRadius: 22,
-    // borderBottomRightRadius: 122,
+    borderBottomLeftRadius: 22,
+    borderBottomRightRadius: 22,
     borderBottomRadius: 93,
-    shadowColor: '#000',
+    // shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.9,
-    shadowRadius: 2,
+    // shadowOpacity: 0.9,
+    // shadowRadius: 1,
   },
   nameStyle: {
     fontSize: 23 * responseHeight,
