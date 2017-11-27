@@ -20,7 +20,7 @@ class Slides extends Component {
                   source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth }}/>
                   {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
-                  title="Login" 
+                  title="Facebook Login" 
                   raised buttonStyle={styles.buttonStyle} 
                   onPress={this.props.onComplete}
                   />
@@ -34,7 +34,7 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RatingShot.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight  }}/>
+              source={require('../images/Rating.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight  }}/>
             </View>  
           );
         }
@@ -54,7 +54,7 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RightxScreen Shot 2017-11-21 at 3.46.19 PM copy.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
+              source={require('../images/RightxScreen.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
             </View>  
         );
     }
@@ -137,9 +137,9 @@ const styles = {
     width: null,
 },
   buttonStyle: {
-    backgroundColor: '#34799b',
-    marginTop: 15 * responseHeight,
-    width: 100 * responseWidth
+    backgroundColor: '#345bbc',
+    marginTop: 50 * responseHeight,
+    width: 200 * responseWidth
   }
 };
 

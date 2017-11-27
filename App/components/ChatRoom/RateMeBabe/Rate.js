@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    marginTop: 20
     // padding: 30 * responseHeight
   }
 });
