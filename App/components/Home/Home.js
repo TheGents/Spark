@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Font, Components } from 'expo';
 import {
   StyleSheet,
   Image,
@@ -13,14 +12,12 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
+import { Constants, Location, Permissions, LinearGradient } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
-
-// const { Svg } = Components;
-// const { Stop, LinearGradient } = Components.Svg;
 
 console.ignoredYellowBox = ['Remote debugger'];
 const { height, width } = Dimensions.get('window');
@@ -62,7 +59,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log('this is location in componentdidmout', this.state.location);
+    console.log('this is LinearGradient in componentdidmout', LinearGradient);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -248,17 +245,19 @@ class Home extends Component {
               <View>
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  name={'ios-create'}
-                  type={'ionicon'}
-                  color={'inherit'}
                   size={36 * responseHeight}
-                  underlayColor={'white'}
-                  iconStyle={{ shadowColor: '#000',
-                                shadowOffset: { width: 0, height: 6 },
-                                shadowOpacity: 0.9,
-                                shadowRadius: 1 }}
+                  name={'md-settings'}
+                  type={'ionicon'}
+                  color={'inherent'}
+                  underlayColor={'#34799b'}
+                  iconStyle={{ 
+                    color: '#34799b',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
                   reverse
                 />
               </View>
@@ -274,22 +273,25 @@ class Home extends Component {
               <View> 
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  size={36 * responseHeight}
-                  name={'md-settings'}
+                  name={'md-create'}
                   type={'ionicon'}
-                  color={'inherent'}
-                  underlayColor={'white'}
-                  iconStyle={{ shadowColor: '#000',
-                                shadowOffset: { width: 0, height: 6 },
-                                shadowOpacity: 0.9,
-                                shadowRadius: 1 }}
-                  reverse
-                />
+                  color={'inherit'}
+                  size={36 * responseHeight}
+                  underlayColor={'#34799b'}
+                  iconStyle={{ 
+                    color: '#34799b',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
+                    reverse
+            />
               </View>
             </TouchableHighlight>
           </View>
+          {/* <View style={styles.body}> */}
           <View style={styles.contentContainerStyle}>
             <Avatar
               rounded
@@ -303,12 +305,14 @@ class Home extends Component {
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
-            <Text style={ageStyle}>{ this.state.user.occupation}</Text>
-            <Text style={ageStyle}>{this.state.user.school}</Text>
+            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 * responseHeight, alignItems: 'center' }}>
+              <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
+              <Text style={ageStyle}>{ this.state.user.occupation}</Text>
+              <Text style={ageStyle}>{this.state.user.school}</Text>
+            </View>
           </HomeCard>
           <View style={styles.buttonContainer}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
@@ -326,7 +330,25 @@ class Home extends Component {
             <Stop offset="0" stopColor="#FF0EE5" stopOpacity="1" />
             <Stop offset="1" stopColor="#FF0088" stopOpacity="1" />
           </LinearGradient>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <Button
+                large
+                iconRight
+                raised
+                containerViewStyle={{ 
+                  width: 400 * responseWidth,
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 1,
+                }}
+                fontWeight={'bold'}
+                backgroundColor='#34799b'
+                title='Start Swiping'
+                onPress={() => {
+                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                }} 
+            />
             {/* <TouchableHighlight>
               <View>
                 <Icon
@@ -358,6 +380,7 @@ class Home extends Component {
               </View>
             </TouchableHighlight> */}
           </View>
+          {/* </View> */}
       </View>
     );
   }
@@ -377,12 +400,12 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: 'white',
     borderBottomWidth: 2,
     borderColor: 'rgba(0,0,0,0.1)',
     borderBottomLeftRadius: 22,
     borderBottomRightRadius: 22,
-    borderBottomRadius: 93,
+    // borderBottomRadius: 93,
     // shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     // shadowOpacity: 0.9,
