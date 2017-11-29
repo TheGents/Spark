@@ -17,11 +17,12 @@ class Slides extends Component {
                 <View style={styles.container}>
                   <Image 
                   resizeMode='contain'
-                  source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth }}/>
+                  source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth, marginBottom: 50 }}/>
                   {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Facebook Login" 
-                  raised buttonStyle={styles.buttonStyle} 
+                  raised 
+                  buttonStyle={styles.buttonStyle} 
                   onPress={this.props.onComplete}
                   />
                 </View>
@@ -137,8 +138,8 @@ const styles = {
     width: null,
 },
   buttonStyle: {
-    backgroundColor: '#345bbc',
-    marginTop: 50 * responseHeight,
+    backgroundColor: '#627aab',
+    // marginTop: 50 * responseHeight,
     width: 200 * responseWidth
   }
 };

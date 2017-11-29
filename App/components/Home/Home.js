@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { Constants, Location, Permissions, LinearGradient } from 'expo';
 // import Button from 'apsl-react-native-button';
+import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
@@ -26,9 +27,13 @@ const responseWidth = Math.round(width / 375);
 
 // after registering, settings link/pref settings link/profile setup link
 
+
 class Home extends Component {
+  
   constructor(props) {
+    
     super(props);
+    
     this.state = {
       isOnPressing: false,
       homeLoaded: false,
@@ -43,23 +48,22 @@ class Home extends Component {
       city: null
     };
   }
+  
  
   componentWillMount() {
+    console.log('LinearGradient', LinearGradient);
     console.log(Location.getCurrentPositionAsync({}));
     if (Platform.OS === 'android' && !Constants.isDevice) {
       this.setState({
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
-      console.log('componentwillmount user is', this.state.user);
-      console.log('height and width', height, width);
       console.log('size ', height * width);
       this._getLocationAsync();
     }
   }
 
   componentDidMount() {
-    console.log('this is LinearGradient in componentdidmout', LinearGradient);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -75,9 +79,17 @@ class Home extends Component {
       .then(res => {
         console.log('this.state.user');
         if (res.data[0]) {
-          console.log('double success', this.state.user);
-          
-              console.log('id', this.state.user.id);
+              // console.log('id', this.state.user.id);
+              // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
+              // .then(response => {
+              //   console.log('city', response.data.results[0].address_components[3].long_name);
+              //   console.log('user in if res.data', this.state.user.facebook_auth_id);
+              //   console.log('numlocation', this.state.location.coords.latitude + this.state.location.coords.longitude);
+              //   this.setState({ location: response.data.results[0].address_components[3].long_name, homeLoaded: true });
+                
+              //   axios.put('http://webspark.herokuapp.com/adduser', { id: this.state.user.id, location: response.data.results[0].address_components[3].long_name, numLocation: -84.62058300000001 });
+                
+              // });
             //   if (this.state.user.photos && this.state.user.photos.data[0].id) {
             //     console.log('this.state.user.photos.data[0].id', this.state.user.id);
             //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
@@ -111,10 +123,10 @@ class Home extends Component {
           this.setState({ user: res.data[0], homeLoaded: true });
         }
         else if (res.data[0] === undefined) {
-          console.log('adding new user', this.state.numLocation);
+          console.log('adding new user');
           axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
           .then(response => {
-            console.log('city', response.data.results[0].address_components[3].long_name);
+            console.log('city', response.data.results[0].address_components);
             this.setState({ location: response.data.results[0].address_components[3].long_name, homeLoaded: true });
             
             axios.post('http://webspark.herokuapp.com/adduser', { user: this.state.user, location: response.data.results[0].address_components[3].long_name, numLocation: this.state.numLocation });
@@ -128,13 +140,10 @@ class Home extends Component {
           });
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
             console.log('user.id  at home.js', this.state.user.id);
-            console.log('this.state.user.photos.data[0].id', this.state.user.photos.data[0].id);
-            console.log('this.state.user.userToken', this.state.userToken);
 
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
                 console.log('response.data.source', response.data.source);
-                console.log('this.state.user.id ', this.state.user.id );
 
               axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.id })
               .then(put => {
@@ -144,7 +153,7 @@ class Home extends Component {
           }
 
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
-            
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               
@@ -152,12 +161,14 @@ class Home extends Component {
             });
             }
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.id }); 
             });
           }
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.id }); 
@@ -219,13 +230,13 @@ class Home extends Component {
 
   render() {
     console.log('responsheight', responseHeight);
-    if (!this.state.homeLoaded) {
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicator size='large' color='#34799b' />
-        </View>
-      );
-    }
+    // if (!this.state.homeLoaded) {
+    //   return (
+    //     <View style={styles.loading}>
+    //       <ActivityIndicator size='large' color='#34799b' />
+    //     </View>
+    //   );
+    // }
 
     let onPressProps;
 
@@ -239,7 +250,11 @@ class Home extends Component {
 
     return (
       <View style={container}>
-          <View style={styles.nav}>
+          <View >
+          <LinearGradient
+          colors={['#ffffff', '#fffffd', '#dddfdd']}
+          style={styles.nav}
+          >
             {/* <Text style={styles.titleText} /> */}
             <TouchableHighlight>
               <View>
@@ -290,6 +305,7 @@ class Home extends Component {
             />
               </View>
             </TouchableHighlight>
+            </LinearGradient>
           </View>
           {/* <View style={styles.body}> */}
           <View style={styles.contentContainerStyle}>
@@ -305,7 +321,7 @@ class Home extends Component {
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 * responseHeight, alignItems: 'center' }}>
+            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 * responseHeight, alignItems: 'center', padding: 10 }}>
               <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
               <Text style={ageStyle}>{ this.state.user.occupation}</Text>
               <Text style={ageStyle}>{this.state.user.school}</Text>
@@ -400,11 +416,11 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 2,
-    borderColor: 'rgba(0,0,0,0.1)',
-    borderBottomLeftRadius: 22,
-    borderBottomRightRadius: 22,
+    
+    // borderBottomLeftRadius: 22,
+    // borderBottomRightRadius: 22,
     // borderBottomRadius: 93,
     // shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },

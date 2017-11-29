@@ -71,39 +71,47 @@ class App extends Component {
     }
   );
   if (Platform.OS === 'android') {
-      MainNavigator = DrawerNavigator({
-        Welcome: {
-          screen: WelcomeScreen
+      MainNavigator = TabNavigator(
+        {
+          main: {
+            screen: DrawerNavigator({
+              Welcome: {
+                screen: WelcomeScreen
+              },
+              auth: {
+                screen: Login
+              },
+              Home: {
+                screen: Home
+              },
+            })
+          },
+          Setup: {
+            screen: Setup
+          },
+          Preferences: {
+            screen: Preferences
+          },
+          Messages: {
+            screen: Messages
+          },
+          Shopping: {
+            screen: Shopping
+          },
+          ShowShop: {
+            screen: ShowShop
+          },
+          Chat: {
+            screen: ChatRoom
+          },
+          Rating: {
+            screen: Rating
+          },
+          TermsOfService: {
+            screen: TermsOfService
+          }
+          
         },
-        auth: {
-          screen: Login
-        },
-            Home: {
-              screen: Home,
-            },
-            Messages: {
-              screen: Messages
-            },
-            Shopping: {
-              screen: Shopping
-            },
-            ShowShop: {
-              screen: ShowShop
-            },
-            Preferences: {
-              screen: Preferences
-            },
-            Setup: {
-              screen: Setup
-            },
-            Chat: {
-              screen: ChatRoom
-            },
-            Rating: {
-              screen: Rating
-        }
-        
-      },
       {
         navigationOptions: {
           tabBarVisible: true
