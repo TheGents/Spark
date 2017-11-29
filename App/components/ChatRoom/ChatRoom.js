@@ -205,7 +205,7 @@ onSelect(value) {
                     initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, }}
+                    selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
@@ -288,7 +288,7 @@ onSelect(value) {
                     initValue={''}
                     onChange={this.onSelect.bind(this)}
                     style={ styles.buttons }
-                    selectStyle={{ width: 70 * responseWidth, justifyContent: 'center', borderWidth: 1, }}
+                    selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}

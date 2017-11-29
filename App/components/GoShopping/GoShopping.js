@@ -350,7 +350,7 @@ export default class Shopping extends Component {
         <View style={styles.container}>
           <View style={styles.nav}>
             <TouchableOpacity
-              style={{ width: 80 * responseWidth }}
+              style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
               onPress={() => {
                 this.props.navigation.navigate('Home', { userToken: 5 });
               }}
@@ -397,7 +397,7 @@ export default class Shopping extends Component {
         <View style={styles.container}>
           <View style={styles.nav}>
             <TouchableOpacity
-              style={{ width: 80 * responseWidth}}
+              style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
@@ -445,7 +445,7 @@ export default class Shopping extends Component {
       <View style={styles.container}>
         <View style={styles.nav}>
         <TouchableOpacity
-            style={{ width: 80 * responseWidth }}
+            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
             onPress={() => {
                 this.props.navigation.navigate('Home');
               }}

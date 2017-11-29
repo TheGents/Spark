@@ -31,43 +31,43 @@ class SetupImage extends Component {
     };
   }
   componentDidMount() {
-    // axios
-    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-    //   .then(response => {
-    //     console.log('this is what i need', response.data[0].photo1);
-    //     if (response.data[0].photo1) {
-    //       this.setState({ photo1: response.data[0].photo1 });
-    //     }
-    //     console.log(this.state.photo1);
-    //   });
+    axios
+      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+      .then(response => {
+        console.log('this is what i need', response.data[0].photo1);
+        if (response.data[0].photo1) {
+          this.setState({ photo1: response.data[0].photo1 });
+        }
+        console.log(this.state.photo1);
+      });
    
-    // axios
-    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-    //   .then(response => {
-    //     console.log('this is what i need', response.data[0].photo2);
-    //     if (response.data[0].photo2) {
-    //       this.setState({ photo2: response.data[0].photo2 });
-    //       console.log(this.state.photo2);
-    //     }
-    //   });
-    // axios
-    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-    //   .then(response => {
-    //     console.log('this is what i need', response.data[0].photo3);
-    //     if (response.data[0].photo3) {
-    //       this.setState({ photo3: response.data[0].photo3 });
-    //       console.log(this.state.photo3);
-    //     }
-    //   });
-    // axios
-    //   .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
-    //   .then(response => {
-    //     console.log('this is what i need', response.data[0].photo4);
-    //     if (response.data[0].photo4) {
-    //       this.setState({ photo4: response.data[0].photo4 });
-    //       console.log(this.state.photo4);
-    //     }
-    //   });
+    axios
+      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+      .then(response => {
+        console.log('this is what i need', response.data[0].photo2);
+        if (response.data[0].photo2) {
+          this.setState({ photo2: response.data[0].photo2 });
+          console.log(this.state.photo2);
+        }
+      });
+    axios
+      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+      .then(response => {
+        console.log('this is what i need', response.data[0].photo3);
+        if (response.data[0].photo3) {
+          this.setState({ photo3: response.data[0].photo3 });
+          console.log(this.state.photo3);
+        }
+      });
+    axios
+      .get(`http://webspark.herokuapp.com/getHome/${this.props.user.facebook_auth_id}`)
+      .then(response => {
+        console.log('this is what i need', response.data[0].photo4);
+        if (response.data[0].photo4) {
+          this.setState({ photo4: response.data[0].photo4 });
+          console.log(this.state.photo4);
+        }
+      });
   }
 
   onClick(val) {

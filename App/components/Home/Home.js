@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Font } from 'expo';
 import {
   StyleSheet,
   Image,
@@ -13,8 +12,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { Constants, Location, Permissions } from 'expo';
+import { Constants, Location, Permissions, LinearGradient } from 'expo';
 // import Button from 'apsl-react-native-button';
+import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Card from './Card';
 import Nav from '../global-widgets/nav';
@@ -27,9 +27,13 @@ const responseWidth = Math.round(width / 375);
 
 // after registering, settings link/pref settings link/profile setup link
 
+
 class Home extends Component {
+  
   constructor(props) {
+    
     super(props);
+    
     this.state = {
       isOnPressing: false,
       homeLoaded: false,
@@ -44,23 +48,22 @@ class Home extends Component {
       city: null
     };
   }
+  
  
   componentWillMount() {
+    console.log('LinearGradient', LinearGradient);
     console.log(Location.getCurrentPositionAsync({}));
     if (Platform.OS === 'android' && !Constants.isDevice) {
       this.setState({
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
-      console.log('componentwillmount user is', this.state.user);
-      console.log('height and width', height, width);
       console.log('size ', height * width);
       this._getLocationAsync();
     }
   }
 
   componentDidMount() {
-    console.log('this is location in componentdidmout', this.state.location);
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -76,9 +79,17 @@ class Home extends Component {
       .then(res => {
         console.log('this.state.user');
         if (res.data[0]) {
-          console.log('double success', this.state.user);
-          
-              console.log('id', this.state.user.id);
+              // console.log('id', this.state.user.id);
+              // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
+              // .then(response => {
+              //   console.log('city', response.data.results[0].address_components[3].long_name);
+              //   console.log('user in if res.data', this.state.user.facebook_auth_id);
+              //   console.log('numlocation', this.state.location.coords.latitude + this.state.location.coords.longitude);
+              //   this.setState({ location: response.data.results[0].address_components[3].long_name, homeLoaded: true });
+                
+              //   axios.put('http://webspark.herokuapp.com/adduser', { id: this.state.user.id, location: response.data.results[0].address_components[3].long_name, numLocation: -84.62058300000001 });
+                
+              // });
             //   if (this.state.user.photos && this.state.user.photos.data[0].id) {
             //     console.log('this.state.user.photos.data[0].id', this.state.user.id);
             //     axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
@@ -112,10 +123,10 @@ class Home extends Component {
           this.setState({ user: res.data[0], homeLoaded: true });
         }
         else if (res.data[0] === undefined) {
-          console.log('adding new user', this.state.numLocation);
+          console.log('adding new user');
           axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&key=AIzaSyBKu6v30uE0db0TvQnua4G8kQHGufGHbTQ`)
           .then(response => {
-            console.log('city', response.data.results[0].address_components[3].long_name);
+            console.log('city', response.data.results[0].address_components);
             this.setState({ location: response.data.results[0].address_components[3].long_name, homeLoaded: true });
             
             axios.post('http://webspark.herokuapp.com/adduser', { user: this.state.user, location: response.data.results[0].address_components[3].long_name, numLocation: this.state.numLocation });
@@ -129,13 +140,10 @@ class Home extends Component {
           });
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[0] && this.state.user.photos.data[0].id) {
             console.log('user.id  at home.js', this.state.user.id);
-            console.log('this.state.user.photos.data[0].id', this.state.user.photos.data[0].id);
-            console.log('this.state.user.userToken', this.state.userToken);
 
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[0].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
                 console.log('response.data.source', response.data.source);
-                console.log('this.state.user.id ', this.state.user.id );
 
               axios.put('http://webspark.herokuapp.com/putPics', { photo1: response.data.source, facebook_auth_id: this.state.user.id })
               .then(put => {
@@ -145,7 +153,7 @@ class Home extends Component {
           }
 
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[1]) {
-            
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[1].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               
@@ -153,12 +161,14 @@ class Home extends Component {
             });
             }
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[2] && this.state.user.photos.data[2].id) {
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[2].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               axios.put('http://webspark.herokuapp.com/putPics', { photo3: response.data.source, facebook_auth_id: this.state.user.id }); 
             });
           }
           if (this.state.user.photos && this.state.user.photos.data && this.state.user.photos.data[3] && this.state.user.photos.data[3].id) {
+            console.log('user.id  at home.js', this.state.user.id);
             axios.get(`https://graph.facebook.com/${this.state.user.photos.data[3].id}?fields=source&access_token=${this.state.userToken}`)
             .then(response => {
               axios.put('http://webspark.herokuapp.com/putPics', { photo4: response.data.source, facebook_auth_id: this.state.user.id }); 
@@ -220,13 +230,13 @@ class Home extends Component {
 
   render() {
     console.log('responsheight', responseHeight);
-    if (!this.state.homeLoaded) {
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicator size='large' color='#34799b' />
-        </View>
-      );
-    }
+    // if (!this.state.homeLoaded) {
+    //   return (
+    //     <View style={styles.loading}>
+    //       <ActivityIndicator size='large' color='#34799b' />
+    //     </View>
+    //   );
+    // }
 
     let onPressProps;
 
@@ -240,21 +250,29 @@ class Home extends Component {
 
     return (
       <View style={container}>
-          <View style={styles.nav}>
+          <View >
+          <LinearGradient
+          colors={['#ffffff', '#fffffd', '#dddfdd']}
+          style={styles.nav}
+          >
             {/* <Text style={styles.titleText} /> */}
             <TouchableHighlight>
               <View>
-                
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  name={'ios-create'}
+                  size={36 * responseHeight}
+                  name={'md-settings'}
                   type={'ionicon'}
                   color={'inherent'}
-                  size={36 * responseHeight}
                   underlayColor={'#34799b'}
-                  iconStyle={{ color: '#34799b' }}
+                  iconStyle={{ 
+                    color: '#34799b',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
                   reverse
                 />
               </View>
@@ -266,39 +284,30 @@ class Home extends Component {
               size={25 * responseWidth}
               style={{ width: 130 * responseWidth, height: height / 16.675, margin: 10 }}
             />
-            
             <TouchableHighlight>
               <View> 
                 <Icon
                   onPress={() => {
-                    this.props.navigation.navigate('Preferences', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                   }}
-                  size={36 * responseHeight}
-                  name={'md-settings'}
+                  name={'md-create'}
                   type={'ionicon'}
-                  color={'inherent'}
-                  underlayColor={'white'}
-                  iconStyle={{ color: '#34799b' }}
-                  reverse
-                />
+                  color={'inherit'}
+                  size={36 * responseHeight}
+                  underlayColor={'#34799b'}
+                  iconStyle={{ 
+                    color: '#34799b',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
+                    reverse
+            />
               </View>
             </TouchableHighlight>
-            {/* <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
-            onPress={() => {
-                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
-                }}
-            >
-              <Icon
-                name={'ios-flash'}
-                type={'ionicon'}
-                color={'#34799b'}
-                underlayColor={'white'}
-                iconStyle={{ marginRight: 10 }}
-                size={50 * responseHeight}
-              />
-            </TouchableOpacity> */}
+            </LinearGradient>
           </View>
+          {/* <View style={styles.body}> */}
           <View style={styles.contentContainerStyle}>
             <Avatar
               rounded
@@ -312,15 +321,15 @@ class Home extends Component {
             />
           </View>
           <HomeCard style={styles.homecardStyling}>
-            <View style={{ borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 5 }}>
+            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1 * responseHeight, alignItems: 'center', padding: 10 }}>
               <Text style={nameStyle}>{this.state.user.first_name}, {this.state.user.age}</Text>
               <Text style={ageStyle}>{ this.state.user.occupation}</Text>
               <Text style={ageStyle}>{this.state.user.school}</Text>
             </View>
           </HomeCard>
           <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={{ width: 140 * responseWidth, height: 140 * responseWidth, borderWidth: 5, borderRadius: 82 }}
+          {/* <TouchableOpacity
+            style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
             onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                 }}
@@ -330,14 +339,34 @@ class Home extends Component {
                 type={'ionicon'}
                 color={'#34799b'}
                 underlayColor={'white'}
-                /* iconStyle={{ marginRight: 10 }} */
-                size={140 * responseHeight}
-                /* iconStyle={{ borderWidth: 1, width: 100 }} */
+                iconStyle={{ marginRight: 20 * responseWidth }}
+                size={50 * responseHeight}
               />
-            </TouchableOpacity>
+              <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <Stop offset="0" stopColor="#FF0EE5" stopOpacity="1" />
+            <Stop offset="1" stopColor="#FF0088" stopOpacity="1" />
+          </LinearGradient>
+            </TouchableOpacity> */}
+            <Button
+                large
+                iconRight
+                raised
+                containerViewStyle={{ 
+                  width: 400 * responseWidth,
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 3 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 1,
+                }}
+                fontWeight={'bold'}
+                backgroundColor='#34799b'
+                title='Start Swiping'
+                onPress={() => {
+                  this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                }} 
+            />
             {/* <TouchableHighlight>
               <View>
-                
                 <Icon
                   onPress={() => {
                     this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
@@ -367,6 +396,7 @@ class Home extends Component {
               </View>
             </TouchableHighlight> */}
           </View>
+          {/* </View> */}
       </View>
     );
   }
@@ -384,13 +414,18 @@ const styles = StyleSheet.create({
     height: height / 8.114,
     flexDirection: 'row',
     paddingTop: 10 * responseHeight,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
-    borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
-    borderBottomLeftRadius: 88,
-    borderBottomRightRadius: 88
+    borderBottomWidth: 2,
+    
+    // borderBottomLeftRadius: 22,
+    // borderBottomRightRadius: 22,
+    // borderBottomRadius: 93,
+    // shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    // shadowOpacity: 0.9,
+    // shadowRadius: 1,
   },
   nameStyle: {
     fontSize: 23 * responseHeight,
@@ -409,10 +444,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // flexDirection: 'row',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 5,
-    flex: 1
+    marginBottom: 5
   },
   titleText: {
     width: width / 4.6875,
