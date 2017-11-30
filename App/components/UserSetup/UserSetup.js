@@ -30,8 +30,6 @@ class Setup extends Component {
     super(props);
     this.state = {
       scrollX: new Animated.Value(0),
-      agePreference: props.navigation.state.params.agePreference,
-      locationPreference: props.navigation.state.params.locationPreference,
       user: props.navigation.state.params.user,
       value: ''
     };

@@ -71,7 +71,7 @@ class App extends Component {
     }
   );
   if (Platform.OS === 'android') {
-      MainNavigator = TabNavigator(
+      MainNavigator = DrawerNavigator(
         {
           main: {
             screen: DrawerNavigator({
@@ -86,20 +86,20 @@ class App extends Component {
               },
             })
           },
-          Setup: {
-            screen: Setup
-          },
+              Setup: {
+                screen: Setup
+              },
           Preferences: {
             screen: Preferences
-          },
-          Messages: {
-            screen: Messages
           },
           Shopping: {
             screen: Shopping
           },
           ShowShop: {
             screen: ShowShop
+          },
+          Messages: {
+            screen: Messages
           },
           Chat: {
             screen: ChatRoom

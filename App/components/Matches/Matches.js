@@ -47,6 +47,12 @@ export default class Messages extends Component {
       if (this.state.userInfo.gender === '0') {
         console.log('gender is zero in matches. Here is res.data', matchedUsers);
         matchedUsers.map(x => {
+          for (objects of convos) {
+            if (objects.id === x.dude_id) {
+              console.log('ok object === x.dude_id');
+              return;
+            }
+          }
           convos.push({
             id: x.dude_id,
             name: x.first_name,
@@ -58,6 +64,12 @@ export default class Messages extends Component {
       }
       if (this.state.userInfo.gender === '1') {
         matchedUsers.map(x => {
+          for (objects of convos) {
+            if (objects.id === x.chick_id) {
+              console.log('ok object === x.dude_id');
+              return;
+            }
+          }
           convos.push({
             id: x.chick_id,
             name: x.first_name,
@@ -83,9 +95,11 @@ export default class Messages extends Component {
           newMatchedUsers.map(x => {
             for (objects of convos) {
               if (objects.id === x.dude_id) {
+                console.log('ok object === x.dude_id');
                 return;
               }
             }
+            
                 convos.push({
                   id: x.dude_id,
                   name: x.first_name,
@@ -93,7 +107,7 @@ export default class Messages extends Component {
                   chatRoom: x.id,
                   rated: x.rated
                 });
-            })
+            });
           }
         else if (this.state.userInfo.gender === '1') {
           convos = [];

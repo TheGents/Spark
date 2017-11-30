@@ -45,7 +45,8 @@ class Home extends Component {
       location: null,
       numLocation: null,
       errorMessage: null,
-      city: null
+      city: null,
+      pic: ''
     };
   }
   
@@ -120,7 +121,7 @@ class Home extends Component {
             //     });  
             // }
           
-          this.setState({ user: res.data[0], homeLoaded: true });
+          this.setState({ user: res.data[0], homeLoaded: true, pic: `https://graph.facebook.com/${res.data[0].facebook_auth_id}/picture?type=large` });
         }
         else if (res.data[0] === undefined) {
           console.log('adding new user');
@@ -288,7 +289,7 @@ class Home extends Component {
               <View> 
                 <Icon
                   onPress={() => {
-                  this.props.navigation.navigate('Setup', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
+                  this.props.navigation.navigate('Setup', { user: this.state.user });
                   }}
                   name={'md-create'}
                   type={'ionicon'}
@@ -312,8 +313,7 @@ class Home extends Component {
             <Avatar
               rounded
               source={{
-                uri: `https://graph.facebook.com/${this.state.user
-                  .facebook_auth_id}/picture?type=large`
+                uri: this.state.pic 
               }}
               activeOpacity={0.7}
               height={240 * responseHeight}
