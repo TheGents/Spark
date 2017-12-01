@@ -133,7 +133,7 @@ class Home extends Component {
             axios.post('http://webspark.herokuapp.com/adduser', { user: this.state.user, location: response.data.results[0].address_components[3].long_name, numLocation: this.state.numLocation });
             return axios.get(`http://webspark.herokuapp.com/getHome/${this.state.user.id}`)
             .then(responses => {
-              this.setState({ user: responses.data[0], homeLoaded: true });
+              this.setState({ user: responses.data[0], homeLoaded: true, pic: `https://graph.facebook.com/${this.state.user.id}/picture?type=large` });
               // console.log('setState city', this.state.location);
               // console.log('setState score', this.state.numLocation);
               // console.log('setState id', this.state.user.id);
@@ -231,13 +231,13 @@ class Home extends Component {
 
   render() {
     console.log('responsheight', responseHeight);
-    // if (!this.state.homeLoaded) {
-    //   return (
-    //     <View style={styles.loading}>
-    //       <ActivityIndicator size='large' color='#34799b' />
-    //     </View>
-    //   );
-    // }
+    if (!this.state.homeLoaded) {
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicator size='large' color='#34799b' />
+        </View>
+      );
+    }
 
     let onPressProps;
 

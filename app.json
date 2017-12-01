@@ -7,6 +7,9 @@
     // "sdkVersion": "21.0.0",
     "sdkVersion": "21.0.0",
     "version": "2.0.0",
+    "splash": {
+      "image": "./assets/splash.png"
+    },
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/SparkWithoutAP.png",

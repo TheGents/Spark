@@ -6,6 +6,7 @@ import Login from './App/Screens/Login';
 import store from './App/Store';
 
 
+import Splash from './App/Screens/SplashScreen';
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
 import Shopping from './App/components/GoShopping/GoShopping.js';
 import Messages from './App/components/Matches/Matches';
@@ -114,7 +115,7 @@ class App extends Component {
         },
       {
         navigationOptions: {
-          tabBarVisible: true
+          tabBarVisible: false
         },
 
         lazy: true
