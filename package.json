@@ -39,7 +39,7 @@
     "react-native-modal-picker": "0.0.16",
     "react-native-selectme": "^1.2.3",
     "react-native-swipe-cards": "^0.1.0",
-    "react-navigation": "^1.0.0-beta.11",
+    "react-navigation": "git+https://github.com/react-community/react-navigation.git",
     "react-redux": "^5.0.6",
     "react-test-renderer": "^16.0.0",
     "react-update": "^0.4.4",

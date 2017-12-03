@@ -23,6 +23,12 @@ const SLIDE_DATA = [
     params: { user: null },
     key: 'Preferences',
   });
+  const resetAction = NavigationActions.reset({
+    index: 0,
+    // actions: [
+    //   NavigationActions.navigate({ routeName: 'Welcome' })
+    // ]
+  });
 
   class WelcomeScreen extends Component {
     constructor(props) {
@@ -43,8 +49,9 @@ const SLIDE_DATA = [
       // } else {
       //   this._getLocationAsync();
       // }
-      this.props.navigation.dispatch(setParamsAction);
+      this.props.navigation.dispatch(resetAction);
       console.log('we are in welcomescreen componentwillmount', this.props.navigation.state.params);
+      console.log('nav in welcome', this.props.navigation);
       let token = await AsyncStorage.getItem('fb_token');
       console.log('token is', await AsyncStorage.getItem('fb_token'));
       // console.log("token from async storage", token)
@@ -88,10 +95,11 @@ const SLIDE_DATA = [
 
     onSlidesComplete = () => {
       //On Clicking Button on Last Slide, We Either Go to Home Screen or Facebook Login
-      if (this.state.logout) {
+      if (this.props.navigation.state.params) {
         console.log('onSlidesComplete logout');
-        this.props.navigation.navigate('auth', { logout: 'ok' });
+        this.props.navigation.navigate('auth', { delete: 'ok' });
       }
+      console.log('onSlidesComplete nav', this.props.navigation);
       this.props.navigation.navigate('auth');
     }
   

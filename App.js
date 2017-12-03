@@ -37,8 +37,11 @@ class App extends Component {
           },
         })
       },
-      Messages: {
-        screen: Messages
+      Setup: {
+        screen: Setup
+      },
+      Preferences: {
+        screen: Preferences
       },
       Shopping: {
         screen: Shopping
@@ -46,11 +49,8 @@ class App extends Component {
       ShowShop: {
         screen: ShowShop
       },
-      Setup: {
-        screen: Setup
-      },
-      Preferences: {
-        screen: Preferences
+      Messages: {
+        screen: Messages
       },
       Chat: {
         screen: ChatRoom
@@ -114,7 +114,7 @@ class App extends Component {
         },
       {
         navigationOptions: {
-          tabBarVisible: true
+          tabBarVisible: false
         },
 
         lazy: true
