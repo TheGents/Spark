@@ -40,6 +40,7 @@ export default class Shopping extends Component {
   }
 
   componentDidMount() {
+    console.log('nav', this.props.navigation);
     checkingForCards = () => {
       Axios.get(
         `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
@@ -196,7 +197,7 @@ export default class Shopping extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.navigation.state.params.user || nextProps.navigation.state.params.userInfo) {
-      // this.setState({ userInfo: nextProps.navigation.state.params.user });
+      this.setState({ userInfo: nextProps.navigation.state.params.user });
       checkingForCards();
       }
     if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
@@ -225,9 +226,10 @@ export default class Shopping extends Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   this.serverRequest.abort();
-  // }
+  componentWillUnmount() {
+    console.log('componentWillUnmount in shopping');
+    this.serverRequest.abort();
+  }
   
 
   Card(x) {

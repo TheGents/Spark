@@ -6,7 +6,6 @@ import Login from './App/Screens/Login';
 import store from './App/Store';
 
 
-import Splash from './App/Screens/SplashScreen';
 import WelcomeScreen from './App/Screens/WelcomeToSpark';
 import Shopping from './App/components/GoShopping/GoShopping.js';
 import Messages from './App/components/Matches/Matches';
@@ -38,8 +37,11 @@ class App extends Component {
           },
         })
       },
-      Messages: {
-        screen: Messages
+      Setup: {
+        screen: Setup
+      },
+      Preferences: {
+        screen: Preferences
       },
       Shopping: {
         screen: Shopping
@@ -47,11 +49,8 @@ class App extends Component {
       ShowShop: {
         screen: ShowShop
       },
-      Setup: {
-        screen: Setup
-      },
-      Preferences: {
-        screen: Preferences
+      Messages: {
+        screen: Messages
       },
       Chat: {
         screen: ChatRoom

@@ -230,7 +230,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log('responsheight', responseHeight);
     if (!this.state.homeLoaded) {
       return (
         <View style={styles.loading}>

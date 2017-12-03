@@ -27,7 +27,17 @@ const setParamsAction = NavigationActions.setParams(
   {
     params: { user: null },
     key: 'Preferences',
+  },
+  {
+    params: { userToken: null },
+    key: 'Shopping',
   });
+const resetAction = NavigationActions.reset({
+  index: 0,
+  // actions: [
+  //   NavigationActions.navigate({ routeName: 'Welcome' })
+  // ]
+});
 
 class Preferences extends Component {
   constructor(props) {
@@ -51,17 +61,19 @@ class Preferences extends Component {
   
   logout = async (val) => {
     AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
-    this.props.navigation.dispatch(setParamsAction);
+    this.props.navigation.dispatch(resetAction);
+    console.log('nav', this.props.navigation);
     this.props.navigation.navigate('Welcome', { logout: 'logout' });
   }
 
   delete = async (val) => {
+    AsyncStorage.removeItem('fb_token');
     console.log('in ths delete', this.state.user.id);
     Axios.delete(`http://webspark.herokuapp.com/deleteUserAccount/${this.state.user.id}`).then((res) => {
       console.log('in delete', res);
-      AsyncStorage.removeItem('fb_token');
+      this.props.navigation.dispatch(resetAction);
       AlertIOS.alert('You Have Been Logged Out');
-      this.props.navigation.navigate(val);
+      this.props.navigation.navigate('Welcome', { logout: 'logout' });
     });
   }
 
