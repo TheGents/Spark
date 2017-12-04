@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { LinearGradient } from 'expo';
 import { Icon } from 'react-native-elements';
 
+const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 // want stack
 
 class TermsOfService extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.nav}>
+      <View>
+        <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+        >
           <Icon
             onPress={() => {
               this.props.navigation.navigate('Preferences');
             }}
             name={'md-settings'}
             type={'ionicon'}
-            color={'#34799b'}
+            color={'white'}
             size={37}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
+            iconStyle={{ 
+              marginLeft: 10,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.9,
+              shadowRadius: 1 
+            }}
           />
           <Image
             source={require('../images/sparkLogo.png')}
@@ -26,7 +41,9 @@ class TermsOfService extends Component {
             style={{ width: 100, height: 30 }}
           />
           <Text>{'         '}</Text>
+        </LinearGradient>
         </View>
+        
         <ScrollView style={styles.termsLegalese}>
           <Text style={styles.heading}>Dallas Spark Terms and Conditions of Use{'\n'}</Text>
           <Text>
@@ -89,7 +106,6 @@ class TermsOfService extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     width: '100%'
   },
@@ -97,14 +113,18 @@ const styles = StyleSheet.create({
     fontWeight: '900'
   },
   nav: {
-    height: 70,
+    height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10,
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(9,9,9,0.3)',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    shadowOpacity: 0.9,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 1,
   },
   termsLegalese: {
     marginTop: 20

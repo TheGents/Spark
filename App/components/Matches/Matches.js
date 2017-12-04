@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import AppLoading from 'expo';
+import { LinearGradient } from 'expo';
 import {
   StyleSheet,
   Image,
@@ -189,59 +189,44 @@ export default class Messages extends Component {
     if (!this.state.matchesLoaded) {
       return (
         <View style={styles.loading} >
-          {/* <View style={styles.nav}>
-          <Icon
-            onPress={() => {
-              this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
-            }}
-            name={'ios-flash'}
-            type={'ionicon'}
-            color={'#34799b'}
-            underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 }}
-            size={50}
-          />
-          <Image
-            source={require('../images/sparkLogo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 40, margin: 10, marginLeft: 30 }}
-          />
-          <Text style={styles.titleText} />
-          
-        </View> */}
+         
           <ActivityIndicator type='large' color='#34799b' />
         </View>
       );
     }
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.nav}>
+        <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
           <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping', { user: this.state.userInfo });
             }}
           >   
             <Icon
-              name={'ios-flash'}
+              name={'ios-arrow-back'}
               type={'ionicon'}
-              color={'#34799b'}
+              color={'white'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * responseWidth, }}
-              size={50 * responseHeight}
+              size={40 * responseHeight}
+              iconStyle={{ 
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.9,
+                shadowRadius: 1 }}
             />
         </TouchableOpacity>  
-          <Image
-            source={require('../images/sparkLogo.png')}
-            resizeMode="contain"
-            style={{ width: 100 * responseWidth, height: 40 * responseHeight }}
-          />
+          <Text style={styles.textStyle}>Matches</Text>
           <Text style={styles.titleText} />
-          
-        </View>
+          </LinearGradient>
+        
         
         <ScrollView style={{ margin: 10 * responseHeight, }} onPress={console.log('Chat')}>
-          <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 * responseHeight }}>MATCHES</Text>
+          {/* <Text style={{ color: '#487cd6', fontWeight: '600', fontSize: 12 * responseHeight }}>MATCHES</Text> */}
           <ListView
             enableEmptySections
             horizontal={false}
@@ -266,6 +251,11 @@ const styles = StyleSheet.create({
   titleText: {
     width: 80 * responseWidth,
   },
+  textStyle: {
+    color: 'white',
+    fontSize: 20 * responseHeight,
+    fontWeight: '600'
+  },
   loading: {
     flex: 1,
     justifyContent: 'center'
@@ -276,9 +266,13 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     borderBottomWidth: 1 * responseHeight,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
   },
   matches: {
     borderTopWidth: 1 * responseHeight,

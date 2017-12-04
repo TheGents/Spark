@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { ImagePicker, Constants } from 'expo';
+import { ImagePicker, LinearGradient } from 'expo';
 import {
   TouchableWithoutFeedback,
   StyleSheet,
@@ -21,6 +21,8 @@ import SetupImage from './SetupImages.js';
 import SetupBio from './SetupBio.js';
 
 const { height, width } = Dimensions.get('window');
+const responseHeight = Math.round(height / 667);
+const responseWidth = Math.round(width / 375);
 const ITEM_SIZE = width * 0.68;
 // const EMPTY_ITEM_SIZE = width - ITEM_SIZE;
 // const BAR_HEIGHT = Constants.statusBarHeight * 1;
@@ -131,29 +133,35 @@ class Setup extends Component {
       <View style={styles.container}>
         <KeyboardAvoidingView behavior="position" style={{ alignItems: 'center' }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.nav}>
+          <View>
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
           <TouchableOpacity
-            style={{ width: 80 * (width / 375), alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
               this.dismiss();
             }}
           >  
             <Icon
-              name={'ios-home'}
+               name={'ios-arrow-back'}
               type={'ionicon'}
-              color={'#34799b'}
-              underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * (width / 375) }}
-              size={40 * (height / 677)}
+              color={'inherent'}
+              underlayColor={'#34799b'}
+              iconStyle={{ 
+                color: 'white',
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.9,
+                shadowRadius: 1 }}
+              size={40 * responseHeight}
             />
             </TouchableOpacity>
-            {/* <Text>Settings</Text> */}
-            <Image
-              source={require('../images/sparkLogo.png')}
-              resizeMode="contain"
-              style={{ width: 100 * (width / 375), height: 40 * (height / 677), margin: 10 * (height / 677) }}
-            />
-            <Text style={{ width: 80 * (width / 375), marginRight: 10 * (width / 375) }}>{'          '}</Text>
+              <Text style={{ fontSize: 22 * responseHeight, backgroundColor: 'rgba(0,0,0,0.0)', color: 'white', fontWeight: '600' }}>Profile</Text>
+              <Text style={{ width: 80 * responseWidth, backgroundColor: 'rgba(0,0,0,0.0)' }}>{''}</Text>
+            </LinearGradient>
           </View>
           </TouchableWithoutFeedback>
           <ScrollView style={styles.scrollViewStyle}>
@@ -184,7 +192,7 @@ class Setup extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1
   },
@@ -193,9 +201,15 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10 * (height / 677),
-    borderBottomWidth: 1 * (height / 677),
-    borderColor: 'rgba(0, 0, 0, 0.1)'
+    paddingTop: 10 * responseHeight,
+    borderBottomWidth: 1 * responseHeight,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
+    // backgroundColor: 'rgba(9,9,9,0.1)',
   },
   bioStyle: {
     flexDirection: 'column',
@@ -208,6 +222,6 @@ const styles = {
   massiveHeight: {
     height: 260 * (height / 677)
   }
-};
+});
 
 export default Setup;

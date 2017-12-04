@@ -1,6 +1,7 @@
 'use strict';
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { LinearGradient } from 'expo';
 import { 
   View, 
   Text, 
@@ -89,28 +90,41 @@ class Preferences extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.nav}>
+        <View>
+        <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
         <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
               this.props.navigation.navigate('Home', { agePreference: this.state.agePreference, locationPreference: this.state.locationPreference, user: this.state.user });
             }}
         >    
           <Icon
-            name={'ios-home'}
+            name={'ios-arrow-back'}
             type={'ionicon'}
-            color={'#34799b'}
-            underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 * responseWidth }}
+            color={'inherent'}
+            underlayColor={'#34799b'}
+            iconStyle={{ 
+              color: 'white',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.9,
+              shadowRadius: 1 }}
+            
             size={40 * responseHeight}
           />
         </TouchableOpacity>  
-          <Image
+          {/* <Image
             source={require('../images/sparkLogo.png')}
             resizeMode="contain"
             style={{ width: 100 * responseWidth, height: 30 * responseHeight }}
-          />
-          <Text style={{ width: 80 * responseWidth, marginRight: 10 * responseWidth}}>{'      '}</Text>
+          /> */}
+            <Text style={{ fontSize: 22 * responseHeight, color: 'white', fontWeight: '600' }}>Settings</Text>
+            <Text style={{ width: 80 * responseWidth }}>{''}</Text>
+          </LinearGradient>
         </View>
         <View style={{ width: 25 * responseHeight, height: 25 * responseHeight, margin: 10 * responseHeight }} />
         <View style={styles.sliderStyles}>
@@ -154,9 +168,14 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    shadowOpacity: 0.9,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 1,
+    // shadowRadius: 1,
   },
   privacyAndTerms: {
     flex: 1,

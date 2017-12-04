@@ -252,7 +252,8 @@ class Home extends Component {
       <View style={container}>
           <View >
           <LinearGradient
-          colors={['#ffffff', '#fffffd', '#dddfdd']}
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
           style={styles.nav}
           >
             {/* <Text style={styles.titleText} /> */}
@@ -268,7 +269,7 @@ class Home extends Component {
                   color={'inherent'}
                   underlayColor={'#34799b'}
                   iconStyle={{ 
-                    color: '#34799b',
+                    // color: '#34799b',
                     shadowColor: '#000',
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.9,
@@ -278,7 +279,7 @@ class Home extends Component {
               </View>
             </TouchableHighlight>
             <Image
-              source={require('../images/sparkLogo.png')}
+              // source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               name="ios-chatboxes-outline"
               size={25 * responseWidth}
@@ -296,7 +297,7 @@ class Home extends Component {
                   size={36 * responseHeight}
                   underlayColor={'#34799b'}
                   iconStyle={{ 
-                    color: '#34799b',
+                    // color: 'gray',
                     shadowColor: '#000',
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.9,
@@ -346,6 +347,10 @@ class Home extends Component {
             <Stop offset="1" stopColor="#FF0088" stopOpacity="1" />
           </LinearGradient>
             </TouchableOpacity> */}
+            <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+              colors={['#b8dfef', '#91c1ed', '#9ac1ed']}
+            >
             <Button
                 large
                 iconRight
@@ -357,13 +362,14 @@ class Home extends Component {
                   shadowOpacity: 0.2,
                   shadowRadius: 1,
                 }}
-                fontWeight={'bold'}
-                backgroundColor='#34799b'
+                fontWeight={'600'}
+                backgroundColor={'rgba(0, 0, 0, 0.3)'}
                 title='Start Swiping'
                 onPress={() => {
                   this.props.navigation.navigate('Shopping', { user: this.state.user, agePreference: this.state.agePreference, locationPreference: this.state.locationPreference });
                 }} 
             />
+            </ LinearGradient>
             {/* <TouchableHighlight>
               <View>
                 <Icon
@@ -415,14 +421,17 @@ const styles = StyleSheet.create({
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    borderBottomWidth: 2,
-    
+    borderBottomWidth: 1 * responseHeight,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
     // borderBottomLeftRadius: 22,
     // borderBottomRightRadius: 22,
     // borderBottomRadius: 93,
     // shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
     // shadowOpacity: 0.9,
     // shadowRadius: 1,
   },

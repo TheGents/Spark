@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImagePicker, Constants } from 'expo';
+import { LinearGradient, Constants } from 'expo';
 import {
   TouchableWithoutFeedback,
   StyleSheet,
@@ -141,10 +141,15 @@ class ShowShop extends Component {
         { key: 1, label: 'Block User' },
     ];
       return (
-        <View style={{backgroundColor: 'white', flex: 1 }}>
-          <View style={styles.nav}>
+        <View style={{ backgroundColor: 'white', flex: 1 }}>
+          
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
           <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
                 this.props.navigation.navigate('Shopping');
               }}
@@ -152,14 +157,21 @@ class ShowShop extends Component {
               <Icon
               name={'ios-arrow-back'}
               type={'ionicon'}
-              color={'#34799b'}
+              color={'white'}
               underlayColor={'white'}
-              iconStyle={{ marginRight: 10 * responseWidth }}
+              iconStyle={{ 
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.9,
+                shadowRadius: 1 }}
               size={40 * responseHeight}
               />
             </TouchableOpacity>
-          </View>
-          <ScrollView style={{backgroundColor: 'white', flex: 1 }}>
+            <Text></Text>
+            <Text></Text>
+            </LinearGradient>
+          
+          <ScrollView style={{ flex: 1 }}>
             <ImageSectionCard>
               <Animated.ScrollView
               horizontal={true}
@@ -186,14 +198,16 @@ class ShowShop extends Component {
                 <Text style={styles.occupation}>{this.state.match.occupation}</Text>
                 <Text style={styles.occupation}>{this.state.match.location}</Text>
               </View>
-              <Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', }}>Bio</Text>
-              <View style={styles.bioStyle}>
+              { this.state.match.general_bio && (<Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', fontSize: 18 }}>About Me:</Text>)}
+              { this.state.match.general_bio && (<View style={styles.bioStyle}>
                 {/* <Text>Education: {this.state.match.school}</Text> */}
                 <Text style={styles.textStyle}>{this.state.match.general_bio}</Text>
-              </View>
-              <View style={ styles.reportStyle }> 
+              </View>)}
+              {/* <View style={ styles.reportStyle }>  */}
+              <View style={styles.reportStyle}>
                 <ModalPicker
                 data={data}
+                initValue={''}
                 onChange={this.onSelect.bind(this)}
                 style={ styles.buttons }
                 selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
@@ -213,7 +227,9 @@ class ShowShop extends Component {
                     cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }} */
             >
-            <Text style={ styles.textStyle8 }>Block and Report</Text>
+            
+              <Text style={ styles.textStyle8 }>Block and Report</Text>
+            
             </ModalPicker>
               </View>
               <View style={styles.massiveHeight}>
@@ -230,25 +246,23 @@ class ShowShop extends Component {
 
   const styles = {
       containerStyle: {
-        borderWidth: 1,
-        borderRadius: 10,
-        borderBottomWidth: 0.1,
+        backgroundColor: 'rgba(250,250,250, 0.1)',
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#34799b',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 1,
-        marginLeft: 5,
-        marginRight: 5,
-        marginTop: 10,
         marginBottom: 5,
         padding: 1,
         alignItems: 'center',
-        height: 68 * responseHeight
+        height: 68 * responseHeight,
+        
     },
     buttons: {
-      width: 360 * responseWidth,
+      width,
       borderBottomWidth: 1 * responseHeight,
       borderTopWidth: 1 * responseHeight,
       borderColor: '#34799b',
@@ -256,26 +270,25 @@ class ShowShop extends Component {
       justifyContent: 'center',
       marginBottom: 10 * responseHeight,
       marginTop: 20 * responseHeight,
-      backgroundColor: 'white',
+      backgroundColor: 'rgba(250,250,250, 0.1)',
       height: height / 11.114,
     },
     reportStyle: {
       marginTop: 5,
       marginBottom: 30,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      
+      
     },
     bioStyle: {
-      borderWidth: 1,
-      borderRadius: 10,
-      borderColor: '#34799b',
+      backgroundColor: 'rgba(250,250,250, 0.1)',
+      // borderColor: '#34799b',
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
       shadowRadius: 2,
       elevation: 1,
-      marginLeft: 5,
-      marginRight: 5,
       marginTop: 1,
       marginBottom: 5,
       padding: 9
@@ -291,8 +304,14 @@ class ShowShop extends Component {
     },
     textStyle8: {
       fontSize: 20 * responseHeight,
+      
       // fontFamily: 'Cochin',
-      color: 'red'
+      padding: 12 * responseHeight,
+      textAlign: 'center',
+      textAlignVertical: 'center',
+      width,
+      color: 'red',
+      zIndex: 1
     },
     occupation: {
       fontSize: 15 * responseHeight,
@@ -300,15 +319,19 @@ class ShowShop extends Component {
       fontStyle: 'italic'
     },
     nav: {
-      height: 70 * responseHeight,
-      flexDirection:'row',
+      height: height / 8.114,
+      flexDirection: 'row',
       paddingTop: 10 * responseHeight,
-      marginLeft: 10 * responseWidth,
       justifyContent: 'space-between',
       alignItems: 'center',
-      backgroundColor: '#fff',
-      borderBottomWidth:1,
-      borderColor:'rgba(0, 0, 0, 0.1)'
+      // backgroundColor: '#fff',
+      borderBottomWidth: 1,
+      borderColor: 'rgba(0,0,0,0.1)',
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.9,
+      shadowRadius: 1,
     },
     massiveHeight: {
       height: 260 * responseHeight
