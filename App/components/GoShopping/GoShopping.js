@@ -1,6 +1,7 @@
 
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { LinearGradient } from 'expo';
 import { 
   StyleSheet, 
   Image, 
@@ -350,42 +351,57 @@ export default class Shopping extends Component {
       console.log('we have 0 cards');
       return (
         <View style={styles.container}>
-          <View style={styles.nav}>
+          <View>
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
             <TouchableOpacity
-              style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+              style={{ width: 80 * responseWidth }}
               onPress={() => {
-                this.props.navigation.navigate('Home', { userToken: 5 });
+                this.props.navigation.navigate('Home');
               }}
             >
           <Icon
             /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
-            color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 * responseWidth }}
+            iconStyle={{ 
+              color: 'white',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.9,
+              shadowRadius: 1 }}
             size={40 * responseHeight}
           />
           </TouchableOpacity>
             <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseHeight }}
+              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
             />
             <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseWidth }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
-          >  
-            <Icon
-              name={'ios-chatboxes'}
-              type={'ionicon'}
-              color={'#34799b'}
-              underlayColor={'white'}
-              size={37 * responseHeight}
-            />
+            >  
+              <Icon
+                name={'ios-chatboxes'}
+                type={'ionicon'}
+                underlayColor={'white'}
+                size={37 * responseHeight}
+                iconStyle={{ 
+                  color: 'white',
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.9,
+                  shadowRadius: 1 }}
+              />
           </TouchableOpacity>
+          </LinearGradient>
           </View>
           <View style={styles.card}>
             <Text style={{ paddingBottom: 22 * responseWidth, fontSize: 18 * responseHeight }}>There are no people in your area, please check back later.</Text>
@@ -397,9 +413,14 @@ export default class Shopping extends Component {
     if (!this.state.newCards.length > 0) {
       return (
         <View style={styles.container}>
-          <View style={styles.nav}>
+          <View>
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
             <TouchableOpacity
-              style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+              style={{ width: 80 * responseWidth }}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
@@ -408,9 +429,13 @@ export default class Shopping extends Component {
             /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
-            color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 * responseWidth }}
+            iconStyle={{ 
+              color: 'white',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.9,
+              shadowRadius: 1 }}
             size={40 * responseHeight}
           />
           </TouchableOpacity>
@@ -420,7 +445,7 @@ export default class Shopping extends Component {
               style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
             />
             <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseWidth }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
               this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
             }}
@@ -428,11 +453,17 @@ export default class Shopping extends Component {
               <Icon
                 name={'ios-chatboxes'}
                 type={'ionicon'}
-                color={'#34799b'}
+                iconStyle={{ 
+                  color: 'white',
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.9,
+                  shadowRadius: 1 }}
                 underlayColor={'white'}
                 size={37 * responseHeight}
               />
           </TouchableOpacity>
+          </LinearGradient>
           </View>
           <View style={styles.card}>
             <Text style={{ paddingBottom: 22 * responseWidth, fontSize: 18 * responseHeight }}>There are no people in your area, please check back later.</Text>
@@ -445,10 +476,15 @@ export default class Shopping extends Component {
     // console.log('hey this is poop', this.state.matches);
     return (
       <View style={styles.container}>
-        <View style={styles.nav}>
-        <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
-            onPress={() => {
+        <View>
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
+            <TouchableOpacity
+              style={{ width: 80 * responseWidth }}
+              onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
             >
@@ -456,34 +492,42 @@ export default class Shopping extends Component {
             /* style={{ alignSelf: 'right' }} */
             name={'ios-home'}
             type={'ionicon'}
-            color={'#34799b'}
             underlayColor={'white'}
-            iconStyle={{ marginLeft: 10 * responseWidth }}
+            iconStyle={{ 
+              color: 'white',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.9,
+              shadowRadius: 1 }}
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-          <Image
-            source={require('../images/sparkLogo.png')}
-            resizeMode="contain"
-            style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-          />
-          
-        <TouchableOpacity
-          style={{ width: 80 * responseWidth, alignItems: 'flex-end' }}
-          onPress={() => {
-            this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
-          }}
-        >  
-          <Icon
-            name={'ios-chatboxes'}
-            type={'ionicon'}
-            color={'#34799b'}
-            underlayColor={'white'}
-            size={38 * responseHeight}
-            iconStyle={{ marginRight: 10 * responseWidth }}
-          />
-        </TouchableOpacity>
-        </View>
+            <Image
+              source={require('../images/sparkLogo.png')}
+              resizeMode="contain"
+              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
+            />
+            <TouchableOpacity
+            style={{ width: 80 * responseWidth }}
+            onPress={() => {
+              this.props.navigation.navigate('Messages', { user: this.state.userInfo, y: this.state.newCards.length });
+            }}
+            >  
+              <Icon
+                name={'ios-chatboxes'}
+                type={'ionicon'}
+                iconStyle={{ 
+                  color: 'white',
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.9,
+                  shadowRadius: 1 }}
+                underlayColor={'white'}
+                size={37 * responseHeight}
+              />
+          </TouchableOpacity>
+          </LinearGradient>
+          </View>
         <Swiper
           ref={'swiper'}
           cards={ this.state.newCards }
@@ -597,9 +641,14 @@ loading: {
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
   },
   icon: {
     margin: 20 * responseHeight

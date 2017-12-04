@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, alert, TextInput, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { LinearGradient } from 'expo';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import Axios from 'axios';
 import { Select, Option } from 'react-native-chooser';
@@ -50,30 +51,33 @@ class Rating extends Component {
     
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.nav}>
+        <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
           <TouchableOpacity
-            style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
+            style={{ width: 80 * responseWidth }}
             onPress={() => {
-              this.props.navigation.navigate('Messages', { user: this.state.userInfo });
+              this.props.navigation.navigate('Chat', { user: this.state.userInfo });
             }}
           >  
             <Icon
               name={'ios-arrow-back'}
               type={'ionicon'}
-              color={'#34799b'}
+              color={'white'}
               underlayColor={'white'}
-              iconStyle={{ marginLeft: 10 * responseHeight }}
+              iconStyle={{ 
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.9,
+                shadowRadius: 1 }}
               size={40 * responseHeight}
             />
           </TouchableOpacity>  
-          <Image
-            source={require('../../images/sparkLogo.png')}
-            name="ios-chatboxes-outline"
-            resizeMode='contain'
-            style={{ width: 100 * responseWidth, height: 40 * responseHeight, marginVertical: 1 }}
-          />
+          <Text style={ styles.textStyle }>Rating</Text>
           <Text style={{ width: 80 * responseWidth }}>{'        '}</Text>
-        </View>
+        </LinearGradient>
         <View style={styles.avatarStyles}>
         <Text style={styles.titleText}>{this.state.matched.name}</Text> 
           <Avatar
@@ -85,21 +89,7 @@ class Rating extends Component {
           />
         
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          {/* <Select
-            onSelect={this.onSelect.bind(this)}
-            defaultText={this.state.value}
-            style={ styles.buttons }
-            textStyle={ styles.textStyle8 }
-            backdropStyle={{ backgroundColor: 'transparent', alignItems: 'center' }}
-            optionListStyle={{ backgroundColor: '#F5FCFF', alignItems: 'center'}}
-            
-          >
-            <Option styleText={styles.ratingText} value={[1, ' - Jerk']}>1 - Jerk</Option>
-            <Option styleText={styles.ratingText} value={[2, ' - Intolerable']}>2 - Intolerable</Option>
-            <Option styleText={styles.ratingText} value={[3, ' - Average']}>3 - Average </Option>
-            <Option styleText={styles.ratingText} value={[4, ' - Great!']}>4 - Great! </Option>
-            <Option styleText={styles.ratingText} value={[5, ' - Spark!']}>5 - Spark! </Option>
-          </Select> */}
+          
                 <ModalPicker
                     data={data}
                     initValue={'Provide Rating'}
@@ -154,12 +144,16 @@ const styles = StyleSheet.create({
   nav: {
     height: height / 8.114,
     flexDirection: 'row',
-    paddingTop: 10 * responseWidth,
+    paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     borderBottomWidth: 1 * responseHeight,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
   },
   buttons: {
     width: 350 * responseWidth,
@@ -177,6 +171,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: 'black',
     fontSize: 18 * responseHeight
+  },
+  textStyle: {
+    color: 'white',
+    fontSize: 20 * responseHeight,
+    fontWeight: '600'
   },
   buttonSmall: {
     width: 350 * responseWidth,

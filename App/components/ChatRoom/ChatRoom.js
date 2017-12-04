@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard 
 } from 'react-native';
+import { LinearGradient } from 'expo';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
 import Communications from 'react-native-communications';
@@ -41,7 +42,7 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    // setInterval(() => {
       Axios.get(`http://webspark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
         this.setState({ kitkats: response.data });
         let katkat = response.data;
@@ -73,7 +74,7 @@ class ChatRoom extends Component {
           this.setState({ showRatingButton: true })
         }
       });
-  }, 3000);
+  // }, 3000);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })
@@ -167,19 +168,27 @@ onSelect(value) {
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.nav}>
-          <TouchableOpacity
-          style={{ width: 80 * responseWidth, alignItems: 'flex-start' }}
-            onPress={() => {
-            this.dismiss();
-          }}>
+          <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
+            <TouchableOpacity
+              style={{ width: 80 * responseWidth }}
+              onPress={() => {
+              this.dismiss();
+            }}>
           <Icon
           name={'ios-arrow-back'}
           type={'ionicon'}
-          color={'#34799b'}
+          color={'white'}
           underlayColor={'white'}
           size={40 * responseHeight}
-          iconStyle={{ marginLeft: 5 * responseWidth }}
+          iconStyle={{ 
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.9,
+            shadowRadius: 1 }}
         />
           </TouchableOpacity>
           <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
@@ -190,16 +199,21 @@ onSelect(value) {
               <Icon
                   name={'ios-star-half'}
                   type={'ionicon'}
-                  color={'#34799b'}
+                  color={'white'}
+                  iconStyle={{ 
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
                   underlayColor={'white'}
                   size={39 * responseHeight}
                 />
-          </TouchableOpacity>}
+            </TouchableOpacity>}
           </View>
           {/* <TouchableOpacity
             style={{ width: 40 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseHeight }}
             > */}
-            <View style={{ width: 70 * responseWidth, alignItems: 'flex-end' }}>
+          <View style={{ width: 80 * responseWidth }}>
           <ModalPicker
                     data={data}
                     initValue={''}
@@ -223,7 +237,11 @@ onSelect(value) {
                   title="Email Me"
                   color="#ce260a"
                   accessabilityLabel="Purple Email Me Button"
-                  iconStyle={{ marginRight: 5 * responseWidth }}
+                  iconStyle={{ 
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
                 />
           {/* </TouchableOpacity> */}
                 </ModalPicker>
@@ -237,7 +255,7 @@ onSelect(value) {
             height: 100,
             borderRadius:15,
           }}/> */}
-        </View>
+          </LinearGradient >
         </TouchableWithoutFeedback>
         <GiftedChat
           placeholder='Message...'
@@ -252,20 +270,29 @@ onSelect(value) {
   if (this.state.userInfo.gender === '1') {
     return (
       <View style={styles.container}>
-        <View style={styles.nav}>
+        <LinearGradient
+          // colors={['#ffffff', '#fffffd', '#dddfdd']}
+          colors={['#91c1ef', '#91c1ed', '#9ac1ed']}
+          style={styles.nav}
+          >
+        
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <TouchableOpacity
-          style={{ width: 70 * responseWidth, alignItems: 'flex-start' }}
+          style={{ width: 80 * responseWidth }}
             onPress={() => {
               this.dismiss();
           }}>
             <Icon
               name={'ios-arrow-back'}
               type={'ionicon'}
-              color={'#34799b'}
+              color={'white'}
               underlayColor={'white'}
               size={40 * responseHeight}
-              iconStyle={{ marginLeft: 5 * responseWidth }} 
+              iconStyle={{ 
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.9,
+                shadowRadius: 1 }} 
             />
           </TouchableOpacity>
           </TouchableWithoutFeedback>
@@ -282,7 +309,7 @@ onSelect(value) {
             height: 100,
             borderRadius:15,
           }}/> */}
-          <View style={{ width: 70 * responseWidth, alignItems: 'flex-end' }}>
+          <View style={{ width: 80 * responseWidth }}>
           <ModalPicker
                     data={data}
                     initValue={''}
@@ -307,12 +334,16 @@ onSelect(value) {
                   underlayColor={'white'}
                   size={39 * responseHeight}
                   color="#ce260a"
-                  iconStyle={{ marginRight: 5 * responseWidth }}
+                  iconStyle={{ 
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.9,
+                    shadowRadius: 1 }}
                 />
           {/* </TouchableOpacity> */}
           </ModalPicker>
           </View>
-        </View>
+        </LinearGradient>
         <GiftedChat
           placeholder='Message...'
           messages={this.state.messages}
@@ -329,7 +360,6 @@ onSelect(value) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10 * responseHeight,
   },
   loading: {
     flex: 1,
@@ -337,20 +367,24 @@ const styles = StyleSheet.create({
   },
   nav: {
     height: height / 8.114,
-    // backgroundColor: 'blue',
     flexDirection: 'row',
     paddingTop: 10 * responseHeight,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
   },
   name: {
     fontSize: 26 * responseHeight,
     fontWeight: 'bold',
     // fontFamily: 'Cochin',
-    color: '#34799b',
+    color: 'white',
     // marginRight: 10 * responseWidth
   },
 });
