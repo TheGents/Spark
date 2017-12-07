@@ -21,6 +21,11 @@ class Rating extends Component {
       textInputValue: ''
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ userInfo: nextProps.navigation.state.params.userInfo, matched: nextProps.navigation.state.params.matched });
+  }
+
   onSelect(value) {
     value = value.key;
     this.setState({ value });
@@ -39,6 +44,7 @@ class Rating extends Component {
       this.props.navigation.navigate('Chat', { user: this.state.userInfo, match: newMatched });
     });
   }
+ 
 
   render() {
     const data = [

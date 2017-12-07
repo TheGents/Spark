@@ -197,9 +197,10 @@ export default class Shopping extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    checkingForCards();
     if (nextProps.navigation.state.params.user || nextProps.navigation.state.params.userInfo) {
       this.setState({ userInfo: nextProps.navigation.state.params.user });
-      checkingForCards();
+      
       }
     if (nextProps.navigation.state.params.agePreference || nextProps.navigation.state.params.locationPreference) {
       this.setState({ agePreference: nextProps.navigation.state.params.agePreference, locationPreference: nextProps.navigation.state.params.locationPreference });
@@ -551,7 +552,7 @@ export default class Shopping extends Component {
                 backgroundColor: 'white',
                 color: 'black',
                 marginRight: 30 * responseWidth,
-                width: 110 * responseWidth,
+                
                 fontSize: 38 * responseWidth,
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -572,8 +573,9 @@ export default class Shopping extends Component {
                   borderColor: 'black',
                   color: 'white',
                   marginLeft: 30 * responseWidth,
+                  paddingLeft: 10 * responseWidth,
+                  paddingRight: 10 * responseWidth,
                   /* height: 80 * responseHeight, */
-                  width: 110 * responseWidth,
                   fontSize: 38 * responseWidth,
                   alignItems: 'center',
                   justifyContent: 'center'

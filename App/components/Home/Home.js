@@ -279,7 +279,7 @@ class Home extends Component {
               </View>
             </TouchableHighlight>
             <Image
-              // source={require('../images/sparkLogo.png')}
+              source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               name="ios-chatboxes-outline"
               size={25 * responseWidth}
