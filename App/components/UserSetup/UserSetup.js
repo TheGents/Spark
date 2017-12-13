@@ -61,6 +61,7 @@ class Setup extends Component {
 
   _pickImage = async val => {
     const result = await ImagePicker.launchImageLibraryAsync({
+      base64: true,
       allowsEditing: true,
       aspect: [4, 3]
     });
@@ -68,9 +69,9 @@ class Setup extends Component {
     if (result.cancelled) {
       return;
     }
-
+    const imageUri = `data:image/jpg;base64,${result.base64}`;
     const localUri = result.uri;
-    console.log('this is localUri', localUri);
+    console.log('this is result', result);
     const filename = localUri.split('/').pop();
     console.log('filename is', filename);
     const match = /\.(\w+)$/.exec(filename);
@@ -87,7 +88,7 @@ class Setup extends Component {
         this.setState({ image: result.uri });
         axios
           .put('http://webspark.herokuapp.com/putPics', {
-            photo1: localUri,
+            photo1: imageUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
           .then(response => console.log(response.data.photo1));
@@ -95,15 +96,15 @@ class Setup extends Component {
         this.setState({ photo: result.uri });
         axios
           .put('http://webspark.herokuapp.com/putPics', {
-            photo2: localUri,
+            photo2: imageUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
           .then(response => console.log(response.data.photo2));
       } else if (val === 'third') {
-        this.setState({ third: result.uri });
+        this.setState({ third: imageUri });
         axios
           .put('http://webspark.herokuapp.com/putPics', {
-            photo3: localUri,
+            photo3: imageUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
           .then(response => console.log(response.data.photo3));
@@ -111,7 +112,7 @@ class Setup extends Component {
         this.setState({ fourth: result.uri });
         axios
           .put('http://webspark.herokuapp.com/putPics', {
-            photo4: localUri,
+            photo4: imageUri,
             facebook_auth_id: this.state.user.facebook_auth_id
           })
           .then(response => console.log(response.data.photo4));

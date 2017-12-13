@@ -42,7 +42,7 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    // setInterval(() => {
+    setInterval(() => {
       Axios.get(`http://webspark.herokuapp.com/getmessage/${this.state.roomID}`).then((response)=> {
         this.setState({ kitkats: response.data });
         let katkat = response.data;
@@ -74,7 +74,7 @@ class ChatRoom extends Component {
           this.setState({ showRatingButton: true })
         }
       });
-  // }, 3000);
+  }, 3000);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ roomID: nextProps.navigation.state.params.match.chatRoom })

@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
     borderWidth: 1 * responseHeight,
     borderRadius: 22 * responseHeight,
     height: 50 * responseHeight,
-    width: 128 * (width / 357),
+    width: 128 * responseWidth,
   },
   textStyle8: {
     width: 153 * responseWidth,
     borderColor: 'red',
-    borderWidth: 1,
+    borderWidth: 1 * responseHeight,
     // fontFamily: 'Avenir Next',
     fontWeight: '500',
     color: 'white'

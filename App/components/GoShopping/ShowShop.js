@@ -25,7 +25,6 @@ import { Icon } from 'react-native-elements';
 import ITEMS from './data';
 import SetupImage from './MatchImage.js';
 import ImageSectionCard from './ImageSectionCard';
-import BioCardSection from './BioCardSection';
 
 const {height, width} = Dimensions.get('window');
 const responseHeight = Math.round(height / 667);
@@ -104,33 +103,27 @@ class ShowShop extends Component {
       // Ensure that we're leaving space for first and last item.
       
       
-      if (i===1) { 
+      if (i === 1) { 
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} images={{ image }} index={i} />
-        );
-      }
-      else if (i === 2 && photo1) {
+        ); 
+      } else if (i === 2 && photo1) {
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo1 }} />
         );
-      }
-      else if (i === 3 && photo2) {
+      } else if (i === 3 && photo2) {
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo2 }} />
         );
-      }
-      else if (i === 4 && photo3) {
+      } else if (i === 4 && photo3) {
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo3 }} />
         );
-      }
-      else if (i === 5 && photo4) {
+      } else if (i === 5 && photo4) {
         return (
           <SetupImage key={i} inputRange={inputRange} scrollX={this.state.scrollX} gent={gent} index={i} images={{ photo4 }} />
         );
-      }
-      
-      
+      } 
     }
     
     
@@ -192,17 +185,21 @@ class ShowShop extends Component {
               }
               </Animated.ScrollView>
             </ImageSectionCard>
-            
+            <View>
               <View style={styles.containerStyle}>
                 <Text style={styles.name}>{this.state.match.first_name}, {this.state.match.age}</Text>
                 <Text style={styles.occupation}>{this.state.match.occupation}</Text>
                 <Text style={styles.occupation}>{this.state.match.location}</Text>
               </View>
-              { this.state.match.general_bio && (<Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', fontSize: 18 }}>About Me:</Text>)}
-              { this.state.match.general_bio && (<View style={styles.bioStyle}>
-                {/* <Text>Education: {this.state.match.school}</Text> */}
+              <View>
+              <Text>
+              { this.state.match.general_bio && this.state.match.general_bio.length > 0 && (<Text style={{ marginTop: 4, marginLeft: 5, color: '#34799b', fontSize: 18 }}>About Me:</Text>)}
+              
+              { this.state.match.general_bio && this.state.match.general_bio.length > 0 && (<View style={styles.bioStyle}>
                 <Text style={styles.textStyle}>{this.state.match.general_bio}</Text>
               </View>)}
+              </Text>
+              </View>
               {/* <View style={ styles.reportStyle }>  */}
               <View style={styles.reportStyle}>
                 <ModalPicker
@@ -219,22 +216,13 @@ class ShowShop extends Component {
                 cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
                 cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
-                    
-                    /* overlayStyle={{ borderWidth: 1.5, }}
-                    sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * responseHeight }} */
-            >
+              >
             
               <Text style={ styles.textStyle8 }>Block and Report</Text>
             
             </ModalPicker>
               </View>
-              <View style={styles.massiveHeight}>
-                <Text>{''}</Text>
-              </View>
+          </View>
             
           </ScrollView>
         </View>
@@ -247,8 +235,8 @@ class ShowShop extends Component {
   const styles = {
       containerStyle: {
         backgroundColor: 'rgba(250,250,250, 0.1)',
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
+        borderTopWidth: 1 * responseHeight,
+        borderBottomWidth: 1 * responseHeight,
         borderColor: '#34799b',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -274,11 +262,10 @@ class ShowShop extends Component {
       height: height / 11.114,
     },
     reportStyle: {
-      marginTop: 5,
-      marginBottom: 30,
+      marginTop: 22,
       justifyContent: 'center',
       alignItems: 'center',
-      
+      flex: 1
       
     },
     bioStyle: {
@@ -291,7 +278,9 @@ class ShowShop extends Component {
       elevation: 1,
       marginTop: 1,
       marginBottom: 5,
-      padding: 9
+      padding: 9,
+      width,
+      height: 160 * responseHeight
     },
     name: {
       fontSize: 24 * responseHeight,

@@ -197,6 +197,7 @@ export default class Shopping extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // checkingForCards();
     if (nextProps.navigation.state.params.user || nextProps.navigation.state.params.userInfo) {
       this.setState({ userInfo: nextProps.navigation.state.params.user });
       checkingForCards();
@@ -227,17 +228,17 @@ export default class Shopping extends Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount in shopping');
-    this.serverRequest.abort();
-  }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount in shopping');
+  //   this.serverRequest.abort();
+  // }
   
 
   Card(x) {
 
     // console.log('here is the preference in card', this.state.locationPreference);
     // if (x) {
-      if(x) {
+      if (x) {
     let matchScore = Math.round((this.state.userInfo.location_score - x.location_score) * 71.9735137469);
     if (matchScore < 0) {
       matchScore *= -1; 
@@ -502,11 +503,18 @@ export default class Shopping extends Component {
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-            <Image
+            {/* <Image
               source={require('../images/sparkLogo.png')}
               resizeMode="contain"
               style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-            />
+            /> */}
+            <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >VINTRUV</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
             <TouchableOpacity
             style={{ width: 80 * responseWidth }}
             onPress={() => {
@@ -529,7 +537,6 @@ export default class Shopping extends Component {
           </LinearGradient>
           </View>
         <Swiper
-          ref={'swiper'}
           cards={ this.state.newCards }
           /* containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }} */
           renderCard={cardData => this.Card(cardData)}
@@ -551,7 +558,7 @@ export default class Shopping extends Component {
                 backgroundColor: 'white',
                 color: 'black',
                 marginRight: 30 * responseWidth,
-                width: 110 * responseWidth,
+                
                 fontSize: 38 * responseWidth,
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -572,8 +579,9 @@ export default class Shopping extends Component {
                   borderColor: 'black',
                   color: 'white',
                   marginLeft: 30 * responseWidth,
+                  paddingLeft: 10 * responseWidth,
+                  paddingRight: 10 * responseWidth,
                   /* height: 80 * responseHeight, */
-                  width: 110 * responseWidth,
                   fontSize: 38 * responseWidth,
                   alignItems: 'center',
                   justifyContent: 'center'
@@ -649,6 +657,29 @@ loading: {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.9,
     shadowRadius: 1,
+  },
+  logoContainer: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 6, 
+    flexDirection: 'row', 
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'black',
+    borderRadius: 33 * responseHeight,
+    borderStyle: 'hidden',
+    // borderWidth: 4 * responseHeight,
+    paddingTop: 4 * responseHeight,
+    paddingBottom: 4 * responseHeight
+  },
+  logo: {
+    fontFamily: 'Cochin',
+    fontSize: 24 * responseWidth,
+    fontWeight: '600',
+    backgroundColor: 'rgba(0,0,0,0.0)',
+    color: 'white'
   },
   icon: {
     margin: 20 * responseHeight
