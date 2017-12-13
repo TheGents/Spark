@@ -25,7 +25,6 @@ import { Icon } from 'react-native-elements';
 import ITEMS from './data';
 import SetupImage from './MatchImage.js';
 import ImageSectionCard from './ImageSectionCard';
-import BioCardSection from './BioCardSection';
 
 const {height, width} = Dimensions.get('window');
 const responseHeight = Math.round(height / 667);
@@ -217,14 +216,7 @@ class ShowShop extends Component {
                 cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
                 cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
-                    
-                    /* overlayStyle={{ borderWidth: 1.5, }}
-                    sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * responseHeight }} */
-            >
+              >
             
               <Text style={ styles.textStyle8 }>Block and Report</Text>
             
