@@ -215,7 +215,7 @@ class ShowShop extends Component {
                 optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
                 cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center' }}
                 cancelTextStyle={{ fontSize: 24 * responseHeight }}
-                selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
+                selectStyle={{ justifyContent: 'center', borderWidth: 1 }}
               >
             
               <Text style={ styles.textStyle8 }>Block and Report</Text>

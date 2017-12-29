@@ -288,7 +288,7 @@ class Home extends Component {
             <View style={styles.logoContainer}>
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
                
-                  <Text style={styles.logo} >VINTRUV</Text>
+                  <Text style={styles.logo} >Dallas Spark</Text>
                
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
             </View>

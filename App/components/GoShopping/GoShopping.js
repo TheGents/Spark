@@ -378,11 +378,13 @@ export default class Shopping extends Component {
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-            <Image
-              source={require('../images/sparkLogo.png')}
-              resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-            />
+          <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >Dallas Spark</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
             <TouchableOpacity
             style={{ width: 80 * responseWidth }}
             onPress={() => {
@@ -440,11 +442,13 @@ export default class Shopping extends Component {
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-            <Image
-              source={require('../images/sparkLogo.png')}
-              resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-            />
+          <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >Dallas Spark</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
             <TouchableOpacity
             style={{ width: 80 * responseWidth }}
             onPress={() => {
@@ -511,7 +515,7 @@ export default class Shopping extends Component {
             <View style={styles.logoContainer}>
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
                
-                  <Text style={styles.logo} >VINTRUV</Text>
+                  <Text style={styles.logo} >Dallas Spark</Text>
                
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
             </View>
