@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, AsyncStorage, Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { Font } from 'expo';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
 
@@ -9,6 +10,12 @@ const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
+
+  componentDidMount() {
+    Font.loadAsync({
+      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+    });
+  }
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
           //  AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
@@ -28,6 +35,7 @@ class Slides extends Component {
                   raised 
                   buttonStyle={styles.buttonStyle} 
                   onPress={this.props.onComplete}
+                  fontSize={18 * responseHeight}
                   />
                 </View>
                 
@@ -65,7 +73,7 @@ class Slides extends Component {
     }
         return (
           <View style={styles.container}>  
-          <Text style={styles.textStyle}>Welcome to Spark</Text>
+          <Text style={styles.textStyle}>Welcome to Dallas Spark</Text>
           <Text style={styles.swipeTextStyle}>(Swipe Left to Progress)</Text>
           {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
           <Icon
@@ -147,14 +155,14 @@ const styles = {
     alignItems: 'center',
     borderColor: 'black',
     borderRadius: 33 * responseHeight,
-    borderStyle: 'hidden',
+    // borderStyle: 'hidden',
     // borderWidth: 4 * responseHeight,
     paddingTop: 4 * responseHeight,
     paddingBottom: 4 * responseHeight,
     marginBottom: 38
   },
   logo: {
-    fontFamily: 'Cochin',
+    fontFamily: 'open-sans-bold',
     fontSize: 48 * responseWidth,
     fontWeight: '200',
     backgroundColor: 'rgba(0,0,0,0.0)',
@@ -168,7 +176,8 @@ const styles = {
   buttonStyle: {
     backgroundColor: '#627aab',
     // marginTop: 50 * responseHeight,
-    width: 200 * responseWidth
+    width: 200 * responseWidth,
+    height: 50 * responseHeight
   }
 };
 

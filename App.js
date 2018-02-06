@@ -71,8 +71,10 @@ class App extends Component {
     }
   );
   if (Platform.OS === 'android') {
-      MainNavigator = DrawerNavigator(
+      MainNavigator = TabNavigator(
+        
         {
+          
           main: {
             screen: DrawerNavigator({
               Welcome: {

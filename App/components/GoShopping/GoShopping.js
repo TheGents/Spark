@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { LinearGradient } from 'expo';
+import { LinearGradient, Font } from 'expo';
 import { 
   StyleSheet, 
   Image, 
@@ -41,6 +41,9 @@ export default class Shopping extends Component {
   }
 
   componentDidMount() {
+    Font.loadAsync({
+      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+    })
     console.log('nav', this.props.navigation);
     checkingForCards = () => {
       Axios.get(
@@ -673,13 +676,13 @@ loading: {
     alignItems: 'center',
     borderColor: 'black',
     borderRadius: 33 * responseHeight,
-    borderStyle: 'hidden',
+    // borderStyle: 'hidden',
     // borderWidth: 4 * responseHeight,
     paddingTop: 4 * responseHeight,
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'Cochin',
+    fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',

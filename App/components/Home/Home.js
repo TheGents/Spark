@@ -12,7 +12,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { Constants, Location, Permissions, LinearGradient } from 'expo';
+import { Constants, Location, Permissions, LinearGradient, Font } from 'expo';
 // import Button from 'apsl-react-native-button';
 import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
@@ -65,6 +65,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    Font.loadAsync({
+      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+    });
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -371,6 +374,7 @@ class Home extends Component {
                   shadowRadius: 1,
                 }}
                 fontWeight={'600'}
+                fontSize={18 * responseHeight}
                 backgroundColor={'rgba(0, 0, 0, 0.3)'}
                 title='Start Swiping'
                 onPress={() => {
@@ -458,13 +462,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: 'black',
     borderRadius: 33 * responseHeight,
-    borderStyle: 'hidden',
+    // borderStyle: 'hidden',
     // borderWidth: 4 * responseHeight,
     paddingTop: 4 * responseHeight,
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'Cochin',
+    fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',
