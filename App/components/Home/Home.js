@@ -14,10 +14,10 @@ import {
 import axios from 'axios';
 import { Constants, Location, Permissions, LinearGradient, Font } from 'expo';
 // import Button from 'apsl-react-native-button';
-import { navigationOptions } from 'react-navigation';
+// import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
-import Card from './Card';
-import Nav from '../global-widgets/nav';
+// import Card from './Card';
+// import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
 
 console.ignoredYellowBox = ['Remote debugger'];
@@ -29,9 +29,7 @@ const responseWidth = Math.round(width / 375);
 
 
 class Home extends Component {
-  
   constructor(props) {
-    
     super(props);
     
     this.state = {
@@ -205,8 +203,7 @@ class Home extends Component {
     }
    
   }
-
-  _getLocationAsync = async () => {
+    _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     console.log('_getLocationAsync this is the status', status);
     if (status !== 'granted') {

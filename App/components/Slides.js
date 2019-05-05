@@ -46,7 +46,8 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/Rating.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight  }}/>
+              source={'../images/Rating.png'} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}
+              />
             </View>  
           );
         }
@@ -66,7 +67,8 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RightxScreen.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
+              source={'../images/RightxScreen.png'} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}
+              />
             </View>  
         );
     }
@@ -87,10 +89,11 @@ class Slides extends Component {
           resizeMode='contain'
           source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/> */}
         </View> 
-        )
+        );
   }
     renderSlides() {
-        return this.props.data.map((slide, index) => {
+        return this.props.data.map((slide, index) => 
+        {
             return (
             <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
                 <Text style={styles.welcomeTextStyle}>{slide.text}</Text>
