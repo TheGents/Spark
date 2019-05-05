@@ -42,9 +42,9 @@ export default class Shopping extends Component {
 
   componentDidMount() {
     Font.loadAsync({
-      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
-    })
-    console.log('nav', this.props.navigation);
+      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
+    });
+    // console.log('nav', this.props.navigation);
     checkingForCards = () => {
       Axios.get(
         `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`

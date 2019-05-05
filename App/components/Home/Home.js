@@ -66,7 +66,7 @@ class Home extends Component {
 
   componentDidMount() {
     Font.loadAsync({
-      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
     });
     axios
       .get(

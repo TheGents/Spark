@@ -10,10 +10,9 @@ const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
-
   componentDidMount() {
     Font.loadAsync({
-      'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
     });
   }
     renderLastSlide(index) {
