@@ -40,10 +40,10 @@ export default class Shopping extends Component {
     };
   }
 
-  async componentDidMount() {
-    await Expo.Font.loadAsync({
-      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
-    });
+   componentDidMount() {
+    //  Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf')
+    // });
     // console.log('nav', this.props.navigation);
     checkingForCards = () => {
       Axios.get(
@@ -682,7 +682,7 @@ loading: {
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'open-sans-bold',
+    // fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',

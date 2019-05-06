@@ -62,10 +62,10 @@ class Home extends Component {
     }
   }
 
-  async componentDidMount() {
-    await Expo.Font.loadAsync({
-      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
-    });
+   componentDidMount() {
+    //  Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+    // });
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -465,7 +465,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'open-sans-bold',
+    // fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',

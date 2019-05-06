@@ -10,10 +10,10 @@ const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
-  async componentDidMount() {
-    await Expo.Font.loadAsync({
-      'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
-    });
+  componentDidMount() {
+    // Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-ExtraBold.ttf'),
+    // });
   }
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
@@ -164,7 +164,7 @@ const styles = {
     marginBottom: 38
   },
   logo: {
-    fontFamily: 'open-sans-bold',
+    // fontFamily: 'open-sans-bold',
     fontSize: 48 * responseWidth,
     fontWeight: '200',
     backgroundColor: 'rgba(0,0,0,0.0)',
