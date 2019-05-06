@@ -1,1 +1,0 @@
-SELECT * FROM user_profile WHERE gender = '0';

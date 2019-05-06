@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { LinearGradient } from 'expo';
+import { LinearGradient, Font, Expo } from 'expo';
 import { 
   StyleSheet, 
   Image, 
@@ -40,8 +40,11 @@ export default class Shopping extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log('nav', this.props.navigation);
+   componentDidMount() {
+    //  Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf')
+    // });
+    // console.log('nav', this.props.navigation);
     checkingForCards = () => {
       Axios.get(
         `http://webspark.herokuapp.com/shopTillYouDrop/${this.state.userInfo.gender}`
@@ -378,11 +381,13 @@ export default class Shopping extends Component {
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-            <Image
-              source={require('../images/sparkLogo.png')}
-              resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-            />
+          <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >Dallas Spark</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
             <TouchableOpacity
             style={{ width: 80 * responseWidth }}
             onPress={() => {
@@ -440,11 +445,13 @@ export default class Shopping extends Component {
             size={40 * responseHeight}
           />
           </TouchableOpacity>
-            <Image
-              source={require('../images/sparkLogo.png')}
-              resizeMode="contain"
-              style={{ width: 100 * responseWidth, height: 40 * responseHeight, margin: 10 * responseWidth }}
-            />
+          <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >Dallas Spark</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
             <TouchableOpacity
             style={{ width: 80 * responseWidth }}
             onPress={() => {
@@ -511,7 +518,7 @@ export default class Shopping extends Component {
             <View style={styles.logoContainer}>
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
                
-                  <Text style={styles.logo} >VINTRUV</Text>
+                  <Text style={styles.logo} >Dallas Spark</Text>
                
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
             </View>
@@ -669,13 +676,13 @@ loading: {
     alignItems: 'center',
     borderColor: 'black',
     borderRadius: 33 * responseHeight,
-    borderStyle: 'hidden',
+    // borderStyle: 'hidden',
     // borderWidth: 4 * responseHeight,
     paddingTop: 4 * responseHeight,
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'Cochin',
+    // fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',

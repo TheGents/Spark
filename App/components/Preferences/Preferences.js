@@ -12,7 +12,7 @@ import {
   AsyncStorage, 
   Image } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 import Axios from 'axios';
 import PrefSliders from './PrefSliders';
 import PrefButtons from './PrefButtons';
@@ -33,7 +33,7 @@ const setParamsAction = NavigationActions.setParams(
     params: { userToken: null },
     key: 'Shopping',
   });
-const resetAction = NavigationActions.reset({
+const resetAction = StackActions.reset({
   index: 0,
   // actions: [
   //   NavigationActions.navigate({ routeName: 'Welcome' })

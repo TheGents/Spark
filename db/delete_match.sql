@@ -1,1 +1,0 @@
-DELETE from matches WHERE id = $1;

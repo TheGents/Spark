@@ -51,8 +51,8 @@ class Rating extends Component {
         { key: 1, label: '1 - Jerk' },
         { key: 2, label: '2 - Intolerable' },
         { key: 3, label: '3 - Average' },
-        { key: 4, label: '4 - Great!' },
-        { key: 5, label: '5 - Spark!' }
+        { key: 4, label: '4 - Great' },
+        { key: 5, label: '5 - Gentleman' }
     ];
     
     return (
@@ -105,7 +105,8 @@ class Rating extends Component {
                     selectTextStyle={styles.textStyle8}
                     overlayStyle={{ borderWidth: 1.5, }}
                     sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1.5, height: 60 * responseHeight, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}
+                    optionStyle={{ borderWidth: 1, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
+                    
                     optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
                     cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', backgroundColor: 'white' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}

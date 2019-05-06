@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, AsyncStorage, Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { Font, Expo } from 'expo';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
 
@@ -9,21 +10,37 @@ const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
+  componentDidMount() {
+    // Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-ExtraBold.ttf'),
+    // });
+  }
     renderLastSlide(index) {
         if (index === this.props.data.length - 1) {
           //  AsyncStorage.removeItem('fb_token', (err) => console.log('finished', err));
             return (
               
                 <View style={styles.container}>
-                  <Image 
+
+                  {/* <Image 
                   resizeMode='contain'
-                  source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth, marginBottom: 50 }}/>
+                  source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth, marginBottom: 50 }}/> */}
                   {/*<Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
+
+                  <View style={styles.logoContainer}>
+              <Text style={{ height: 1, borderWidth: 4, borderColor: '#34799b', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
+               
+                  <Text style={styles.logo} >Dallas Spark</Text>
+               
+              <Text style={{ height: 1, borderWidth: 4, borderColor: '#34799b', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
+            </View>
+                  {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Facebook Login" 
                   raised 
                   buttonStyle={styles.buttonStyle} 
                   onPress={this.props.onComplete}
+                  fontSize={18 * responseHeight}
                   />
                 </View>
                 
@@ -35,7 +52,8 @@ class Slides extends Component {
               <Text style={styles.textStyle} >Girls Rate the Guys</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/Rating.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight  }}/>
+              source={'../images/Rating.png'} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}
+              />
             </View>  
           );
         }
@@ -55,13 +73,14 @@ class Slides extends Component {
               <Text style={styles.textStyle}>Find Your Match</Text>
               <Image 
               resizeMode='contain'
-              source={require('../images/RightxScreen.png')} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}/>
+              source={'../images/RightxScreen.png'} style={{ marginTop: 25 * responseHeight, height: 320 * responseHeight }}
+              />
             </View>  
         );
     }
         return (
           <View style={styles.container}>  
-          <Text style={styles.textStyle}>Welcome to Spark</Text>
+          <Text style={styles.textStyle}>Welcome to Dallas Spark</Text>
           <Text style={styles.swipeTextStyle}>(Swipe Left to Progress)</Text>
           {/* <Text style={styles.swipeStyle}>Start Swiping</Text> */}
           <Icon
@@ -76,10 +95,11 @@ class Slides extends Component {
           resizeMode='contain'
           source={require('../images/welcomeSecond.png')} style={{ marginTop: 25, height: 300 }}/> */}
         </View> 
-        )
+        );
   }
     renderSlides() {
-        return this.props.data.map((slide, index) => {
+        return this.props.data.map((slide, index) => 
+        {
             return (
             <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
                 <Text style={styles.welcomeTextStyle}>{slide.text}</Text>
@@ -132,6 +152,30 @@ const styles = {
     alignItems: 'center',
   //   backgroundColor: '#F5FCFF',
   },
+  logoContainer: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2, 
+    flexDirection: 'row', 
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'black',
+    borderRadius: 33 * responseHeight,
+    // borderStyle: 'hidden',
+    // borderWidth: 4 * responseHeight,
+    paddingTop: 4 * responseHeight,
+    paddingBottom: 4 * responseHeight,
+    marginBottom: 38
+  },
+  logo: {
+    // fontFamily: 'open-sans-bold',
+    fontSize: 48 * responseWidth,
+    fontWeight: '200',
+    backgroundColor: 'rgba(0,0,0,0.0)',
+    color: '#34799b'
+  },
   backgroundImage: {
     flex: 1,
     alignSelf: 'stretch',
@@ -140,7 +184,8 @@ const styles = {
   buttonStyle: {
     backgroundColor: '#627aab',
     // marginTop: 50 * responseHeight,
-    width: 200 * responseWidth
+    width: 200 * responseWidth,
+    height: 50 * responseHeight
   }
 };
 

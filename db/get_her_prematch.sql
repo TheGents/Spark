@@ -1,1 +1,0 @@
-SELECT dude_id FROM matches WHERE (chick_id = $1 AND chick_swipe IS NULL)

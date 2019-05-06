@@ -12,12 +12,12 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { Constants, Location, Permissions, LinearGradient } from 'expo';
+import { Constants, Location, Permissions, LinearGradient, Font, Expo } from 'expo';
 // import Button from 'apsl-react-native-button';
-import { navigationOptions } from 'react-navigation';
+// import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
-import Card from './Card';
-import Nav from '../global-widgets/nav';
+// import Card from './Card';
+// import Nav from '../global-widgets/nav';
 import HomeCard from './HomeCard';
 
 console.ignoredYellowBox = ['Remote debugger'];
@@ -29,9 +29,7 @@ const responseWidth = Math.round(width / 375);
 
 
 class Home extends Component {
-  
   constructor(props) {
-    
     super(props);
     
     this.state = {
@@ -64,7 +62,10 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
+   componentDidMount() {
+    //  Expo.Font.loadAsync({
+    //   'open-sans-bold': require('../../../assets/fonts/OpenSans-Bold.ttf'),
+    // });
     axios
       .get(
         `https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large),photos,birthday,work,gender&access_token=${this.state.userToken}`
@@ -202,8 +203,7 @@ class Home extends Component {
     }
    
   }
-
-  _getLocationAsync = async () => {
+    _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     console.log('_getLocationAsync this is the status', status);
     if (status !== 'granted') {
@@ -288,7 +288,7 @@ class Home extends Component {
             <View style={styles.logoContainer}>
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>
                
-                  <Text style={styles.logo} >VINTRUV</Text>
+                  <Text style={styles.logo} >Dallas Spark</Text>
                
               <Text style={{ height: 1, borderWidth: 4, borderColor: 'white', borderStyle: 'solid', borderBottomWidth: 0, borderRadius: 2 }} >{' '}</Text>  
             </View>
@@ -371,6 +371,7 @@ class Home extends Component {
                   shadowRadius: 1,
                 }}
                 fontWeight={'600'}
+                fontSize={18 * responseHeight}
                 backgroundColor={'rgba(0, 0, 0, 0.3)'}
                 title='Start Swiping'
                 onPress={() => {
@@ -458,13 +459,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: 'black',
     borderRadius: 33 * responseHeight,
-    borderStyle: 'hidden',
+    // borderStyle: 'hidden',
     // borderWidth: 4 * responseHeight,
     paddingTop: 4 * responseHeight,
     paddingBottom: 4 * responseHeight
   },
   logo: {
-    fontFamily: 'Cochin',
+    // fontFamily: 'open-sans-bold',
     fontSize: 24 * responseWidth,
     fontWeight: '600',
     backgroundColor: 'rgba(0,0,0,0.0)',

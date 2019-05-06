@@ -35,11 +35,7 @@ class TermsOfService extends Component {
               shadowRadius: 1 
             }}
           />
-          <Image
-            source={require('../images/sparkLogo.png')}
-            resizeMode="contain"
-            style={{ width: 100, height: 30 }}
-          />
+          <Text>{'         '}</Text>
           <Text>{'         '}</Text>
         </LinearGradient>
         </View>

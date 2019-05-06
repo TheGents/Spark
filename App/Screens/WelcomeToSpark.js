@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 import { AppLoading, Location, Constants, Permissions } from 'expo';
 import Slides from '../components/Slides';
 import Terms from './Terms';
@@ -23,7 +23,7 @@ const SLIDE_DATA = [
     params: { user: null },
     key: 'Preferences',
   });
-  const resetAction = NavigationActions.reset({
+  const resetAction = StackActions.reset({
     index: 0,
     // actions: [
     //   NavigationActions.navigate({ routeName: 'Welcome' })

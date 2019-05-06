@@ -12,7 +12,7 @@ import {
 import DefaultMarker from './DefaultMarker';
 import { createArray, valueToPosition, positionToValue } from './converter';
 
-const ViewPropTypes = require('react-native').ViewPropTypes || View.propTypes;
+const ViewPropTypes = 'react-native'.ViewPropTypes || View.propTypes;
 
 export default class MultiSlider extends React.Component {
   static propTypes = {

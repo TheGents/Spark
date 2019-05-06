@@ -4,8 +4,7 @@
     "description": "A dating app where guys message first and girls rate the guys.",
     "slug": "spark3",
     "privacy": "public",
-    // "sdkVersion": "21.0.0",
-    "sdkVersion": "21.0.0",
+    "sdkVersion": "28.0.0",
     "version": "2.0.0",
     "splash": {
       "backgroundColor": "#34799b"
