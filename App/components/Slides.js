@@ -18,7 +18,7 @@ class Slides extends Component {
                   <Image 
                   resizeMode='contain'
                   source={require('../images/sparkLogo.png')} style={{width: 310 * responseWidth, marginBottom: 50 }}/>
-                  {/* <Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
+                  {/*<Image source={require('../images/Spark.png')} style={{width: 140, height: 150, marginLeft: 50 }}/> */}
                   <Button 
                   title="Facebook Login" 
                   raised 
