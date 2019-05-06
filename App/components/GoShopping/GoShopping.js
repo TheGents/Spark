@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { LinearGradient, Font } from 'expo';
+import { LinearGradient, Font, Expo } from 'expo';
 import { 
   StyleSheet, 
   Image, 
@@ -40,8 +40,8 @@ export default class Shopping extends Component {
     };
   }
 
-  componentDidMount() {
-    Font.loadAsync({
+  async componentDidMount() {
+    await Expo.Font.loadAsync({
       'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
     });
     // console.log('nav', this.props.navigation);

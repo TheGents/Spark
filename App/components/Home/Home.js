@@ -12,7 +12,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import axios from 'axios';
-import { Constants, Location, Permissions, LinearGradient, Font } from 'expo';
+import { Constants, Location, Permissions, LinearGradient, Font, Expo } from 'expo';
 // import Button from 'apsl-react-native-button';
 // import { navigationOptions } from 'react-navigation';
 import { Button, Avatar, Icon } from 'react-native-elements';
@@ -62,8 +62,8 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
-    Font.loadAsync({
+  async componentDidMount() {
+    await Expo.Font.loadAsync({
       'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
     });
     axios

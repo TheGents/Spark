@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, AsyncStorage, Dimensions, Image } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-import { Font } from 'expo';
+import { Font, Expo } from 'expo';
 
 const SPARK_WIDTH = Dimensions.get('window').width;
 
@@ -10,8 +10,8 @@ const responseHeight = Math.round(height / 667);
 const responseWidth = Math.round(width / 375);
 
 class Slides extends Component {
-  componentDidMount() {
-    Font.loadAsync({
+  async componentDidMount() {
+    await Expo.Font.loadAsync({
       'open-sans-bold': '../../../assets/fonts/OpenSans-Bold.ttf',
     });
   }
