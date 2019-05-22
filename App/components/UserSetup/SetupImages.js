@@ -3,6 +3,7 @@ import { Constants } from 'expo';
 import {
   StyleSheet,
   Image,
+  ImageBackground,
   Animated,
   TouchableOpacity,
   Dimensions,
@@ -124,12 +125,12 @@ class SetupImage extends Component {
         >
           <Animated.Image 
           source={{ uri: image || this.state.photo1 }} 
-          style={styles.box}>
-            <Image
+          style={styles.box}
+          />
+           <Image
               source={firstLogo}
-              style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
-            />
-          </Animated.Image>  
+              style={{ height: 30 * responseHeight, width: 30 * responseWidth, position: 'absolute' }}
+           />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -139,24 +140,22 @@ class SetupImage extends Component {
           <Animated.Image 
           source={{ uri: photo || this.state.photo2 }} 
           style={styles.box}
-          >
-            <Image
+          />
+           <Image
             source={secondLogo}
-            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
-            />
-          </Animated.Image>
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth, position: 'absolute' }}
+           />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.onClick('third');
           }}
         >
-          <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box}>
-            <Image
+          <Animated.Image source={{ uri: third || this.state.photo3 }} style={styles.box} />
+          <Image
             source={thirdLogo}
-            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
-            />
-           </Animated.Image> 
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth, position: 'absolute' }}
+          />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -166,12 +165,11 @@ class SetupImage extends Component {
           <Animated.Image 
           source={{ uri: fourth || this.state.photo4 }} 
           style={styles.box} 
-          >
-            <Image
+          />
+          <Image
             source={fourthLogo}
-            style={{ height: 30 * responseHeight, width: 30 * responseWidth }}
-            />
-          </Animated.Image>
+            style={{ height: 30 * responseHeight, width: 30 * responseWidth, position: 'absolute' }}
+          />
         </TouchableOpacity>
       </View>
     );
