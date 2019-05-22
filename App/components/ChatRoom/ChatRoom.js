@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard 
 } from 'react-native';
+
 import { LinearGradient } from 'expo';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Icon } from 'react-native-elements';
@@ -214,37 +215,7 @@ onSelect(value) {
             style={{ width: 40 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseHeight }}
             > */}
           <View style={{ width: 80 * responseWidth }}>
-          <ModalPicker
-                    data={data}
-                    initValue={''}
-                    onChange={this.onSelect.bind(this)}
-                    style={ styles.buttons }
-                    selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
-                    selectTextStyle={styles.textStyle8}
-                    overlayStyle={{ borderWidth: 1.5, }}
-                    sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * responseHeight }}
-                >
-                
-              <Icon
-                  name={'ios-flag'}
-                  type={'ionicon'}
-                  underlayColor={'white'}
-                  size={39 * responseHeight}
-                  title="Email Me"
-                  color="#ce260a"
-                  accessabilityLabel="Purple Email Me Button"
-                  iconStyle={{ 
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.9,
-                    shadowRadius: 1 }}
-                />
-          {/* </TouchableOpacity> */}
-                </ModalPicker>
+         f
                 </View>
           {/* This will display her picture in the center zomgz */}
           {/* <Image
@@ -310,38 +281,7 @@ onSelect(value) {
             borderRadius:15,
           }}/> */}
           <View style={{ width: 80 * responseWidth }}>
-          <ModalPicker
-                    data={data}
-                    initValue={''}
-                    onChange={this.onSelect.bind(this)}
-                    style={ styles.buttons }
-                    selectStyle={{ justifyContent: 'center', borderWidth: 1, }}
-                    selectTextStyle={styles.textStyle8}
-                    overlayStyle={{ borderWidth: 1.5, }}
-                    sectionStyle={{ borderWidth: 1.5, }}
-                    optionStyle={{ borderWidth: 1, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: '#ce260a' }} 
-                    cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center' }}
-                    cancelTextStyle={{ fontSize: 24 * responseHeight }}
-                >
-
-          {/* <TouchableOpacity
-            style={{ width: 40 * responseWidth, alignItems: 'flex-end', paddingRight: 10 * responseHeight }}
-            > */}
-              <Icon
-                  name={'ios-flag'}
-                  type={'ionicon'}
-                  underlayColor={'white'}
-                  size={39 * responseHeight}
-                  color="#ce260a"
-                  iconStyle={{ 
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.9,
-                    shadowRadius: 1 }}
-                />
-          {/* </TouchableOpacity> */}
-          </ModalPicker>
+          
           </View>
         </LinearGradient>
         <GiftedChat

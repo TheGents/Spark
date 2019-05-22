@@ -107,7 +107,7 @@ class Rating extends Component {
                     sectionStyle={{ borderWidth: 1.5, }}
                     optionStyle={{ borderWidth: 1, height: 50 * responseHeight, alignItems: 'center', justifyContent: 'center', marginTop: 10, backgroundColor: 'white' }}
                     
-                    optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
+                    //optionTextStyle={{ alignItems: 'center', fontSize: 18 * responseHeight, color: 'black' }} 
                     cancelStyle={{ borderWidth: 1.5, height: 50 * responseHeight, alignItems: 'center', backgroundColor: 'white' }}
                     cancelTextStyle={{ fontSize: 24 * responseHeight }}
                 />
